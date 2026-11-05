@@ -127,6 +127,35 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 /* ── Tooltip ── */
 .tip{position:relative}.tip::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:rgba(0,0,0,.85);color:#fff;padding:5px 10px;border-radius:8px;font-size:.72rem;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
 .tip:hover::after{opacity:1}
+
+/* ── Mobile Responsiveness ── */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(100%);
+    width: 260px !important;
+    z-index: 100;
+  }
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+  .main {
+    margin-right: 0 !important;
+  }
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    z-index: 90;
+    display: none;
+  }
+  .sidebar-backdrop.active {
+    display: block;
+  }
+  .topbar {
+    padding: 12px 16px;
+  }
+}
 </style>
 </head>
 <body>
@@ -136,6 +165,9 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 </div>
 
 <div class="layout">
+
+<!-- Mobile Backdrop -->
+<div id="sidebar-backdrop" class="sidebar-backdrop" onclick="toggleSidebar()"></div>
 
 <!-- ══════════════════ SIDEBAR ══════════════════ -->
 <aside class="sidebar" id="sidebar">
@@ -582,8 +614,15 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <script>
 // ══════════ Sidebar Toggle ══════════
 function toggleSidebar(){
-  document.getElementById('sidebar').classList.toggle('collapsed');
-  document.getElementById('main-area').classList.toggle('expanded');
+  if (window.innerWidth <= 768) {
+    const s = document.getElementById('sidebar');
+    const b = document.getElementById('sidebar-backdrop');
+    s.classList.toggle('mobile-open');
+    if (b) b.classList.toggle('active');
+  } else {
+    document.getElementById('sidebar').classList.toggle('collapsed');
+    document.getElementById('main-area').classList.toggle('expanded');
+  }
 }
 
 // ══════════ Nav Click ══════════

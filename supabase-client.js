@@ -224,6 +224,153 @@
       return this.getLocalOrders();
     }
 
+    // ── 4. Medical Appointments API ──
+    async createAppointment(payload) {
+      const appt = {
+        doctor_name: payload.doctor_name || 'طبيب استشاري',
+        specialty: payload.specialty || 'عام',
+        patient_name: payload.patient_name || 'مريض الحسينية',
+        patient_phone: payload.patient_phone || '',
+        appointment_date: payload.appointment_date || new Date().toISOString().split('T')[0],
+        clinic_address: payload.clinic_address || 'الحسينية — شارع المستشفى',
+        status: 'confirmed',
+        created_at: new Date().toISOString()
+      };
+
+      if (this.isConnected && this.client) {
+        try {
+          const { data, error } = await this.client.from('appointments').insert([appt]).select();
+          if (error) throw error;
+          const inserted = (data && data[0]) ? data[0] : appt;
+          return { success: true, appointment: inserted, cloud: true };
+        } catch (e) {
+          console.warn('⚠️ تعذر حفظ الحجز في السحابة، حفظ محلي:', e);
+        }
+      }
+
+      const localAppts = this.getLocal('husayniya_local_appointments');
+      localAppts.unshift(appt);
+      localStorage.setItem('husayniya_local_appointments', JSON.stringify(localAppts));
+      return { success: true, appointment: appt, cloud: false };
+    }
+
+    async getAppointments() {
+      if (this.isConnected && this.client) {
+        try {
+          const { data, error } = await this.client
+            .from('appointments')
+            .select('*')
+            .order('created_at', { ascending: false })
+            .limit(50);
+          if (!error && data) return data;
+        } catch (e) {
+          console.warn('⚠️ تعذر جلب الحجوزات من السحابة:', e);
+        }
+      }
+      return this.getLocal('husayniya_local_appointments');
+    }
+
+    // ── 5. Real Estate Properties API ──
+    async createProperty(payload) {
+      const prop = {
+        title: payload.title || 'عقار جديد بالحسينية',
+        prop_type: payload.prop_type || 'rent',
+        area_name: payload.area_name || 'شارع المركز',
+        price: parseFloat(payload.price) || 0,
+        phone: payload.phone || '',
+        details: payload.details || '',
+        created_at: new Date().toISOString()
+      };
+
+      if (this.isConnected && this.client) {
+        try {
+          const { data, error } = await this.client.from('properties').insert([prop]).select();
+          if (error) throw error;
+          const inserted = (data && data[0]) ? data[0] : prop;
+          return { success: true, property: inserted, cloud: true };
+        } catch (e) {
+          console.warn('⚠️ تعذر حفظ العقار في السحابة، حفظ محلي:', e);
+        }
+      }
+
+      const localProps = this.getLocal('husayniya_local_properties');
+      localProps.unshift(prop);
+      localStorage.setItem('husayniya_local_properties', JSON.stringify(localProps));
+      return { success: true, property: prop, cloud: false };
+    }
+
+    async getProperties() {
+      if (this.isConnected && this.client) {
+        try {
+          const { data, error } = await this.client
+            .from('properties')
+            .select('*')
+            .order('created_at', { ascending: false })
+            .limit(50);
+          if (!error && data) return data;
+        } catch (e) {
+          console.warn('⚠️ تعذر جلب العقارات من السحابة:', e);
+        }
+      }
+      return this.getLocal('husayniya_local_properties');
+    }
+
+    // ── 6. Lost & Found API ──
+    async createLostItem(payload) {
+      const item = {
+        title: payload.title || 'مفقود/معثور عليه',
+        item_type: payload.item_type || 'lost',
+        category: payload.category || 'أوراق ومحافظ',
+        location_desc: payload.location_desc || 'الحسينية',
+        phone: payload.phone || '',
+        details: payload.details || '',
+        status: 'open',
+        created_at: new Date().toISOString()
+      };
+
+      if (this.isConnected && this.client) {
+        try {
+          const { data, error } = await this.client.from('lost_items').insert([item]).select();
+          if (error) throw error;
+          const inserted = (data && data[0]) ? data[0] : item;
+          return { success: true, item: inserted, cloud: true };
+        } catch (e) {
+          console.warn('⚠️ تعذر حفظ الأمانات في السحابة، حفظ محلي:', e);
+        }
+      }
+
+      const localLost = this.getLocal('husayniya_local_lost');
+      localLost.unshift(item);
+      localStorage.setItem('husayniya_local_lost', JSON.stringify(localLost));
+      return { success: true, item: item, cloud: false };
+    }
+
+    async getLostItems() {
+      if (this.isConnected && this.client) {
+        try {
+          const { data, error } = await this.client
+            .from('lost_items')
+            .select('*')
+            .order('created_at', { ascending: false })
+            .limit(50);
+          if (!error && data) return data;
+        } catch (e) {
+          console.warn('⚠️ تعذر جلب المفقودات من السحابة:', e);
+        }
+      }
+      return this.getLocal('husayniya_local_lost');
+    }
+
+    // Generic local getter
+    getLocal(storageKey) {
+      try {
+        const raw = localStorage.getItem(storageKey);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
     // Local Storage helpers
     getLocalOrders() {
       try {

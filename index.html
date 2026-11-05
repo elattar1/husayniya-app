@@ -214,6 +214,7 @@ body {
       <nav class="hidden lg:flex items-center gap-1.5 text-xs font-bold text-white/70">
         <button onclick="navigateTo('home')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">الرئيسية</button>
         <button onclick="navigateTo('store')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">المطاعم 🍖</button>
+        <button onclick="navigateTo('pharmacy')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">صيدليات وروشتة 💊</button>
         <button onclick="navigateTo('medical')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">دليل الأطباء 🏥</button>
         <button onclick="navigateTo('realestate')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">عقارات 🏠</button>
         <button onclick="navigateTo('lost')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">أمانات 🔍</button>
@@ -259,6 +260,9 @@ body {
       </button>
       <button onclick="navigateTo('store'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <span>🍖</span><span>المطاعم وقائمة الوجبات</span>
+      </button>
+      <button onclick="navigateTo('pharmacy'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>💊</span><span>صيدليات الحسينية ورفع الروشتة</span>
       </button>
       <button onclick="navigateTo('medical'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <span>🏥</span><span>دليل الأطباء والعيادات بالحسينية</span>
@@ -354,10 +358,11 @@ body {
 
         <!-- Store 1: مشويات الباز والحسينية -->
         <div onclick="navigateTo('store-baz')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="مشويات الباز">
-          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#1a3a2a,#0d6640)">
-            🍖
-            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.9</span>
+          <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="مشويات الباز" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.9</span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">مشويات الباز (سعود والحسينية)</h3>
           <p class="text-xs text-white/50 mb-3">كباب، كفتة بلدي، طرب، ريش ضاني، ودجاج مشوي ع الفحم</p>
@@ -369,10 +374,11 @@ body {
 
         <!-- Store 2: كشري ومطاعم شعبية -->
         <div onclick="navigateTo('store-koshary')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="كشري التحرير والزعيم">
-          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#3a1a1a,#551111)">
-            🍲
-            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.8</span>
+          <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="كشري الزعيم" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.8</span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">كشري الزعيم والتحرير — شارع المركز</h3>
           <p class="text-xs text-white/50 mb-3">كشري مخصوص، طواجن فراخ ولحمة في الفرن، كماليات وأرز باللبن</p>
@@ -384,10 +390,11 @@ body {
 
         <!-- Store 3: كريب وبيتزا شارع المدارس -->
         <div onclick="navigateTo('store-pizza')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="بيتزا وكريب الحسينية">
-          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#3a2a1a,#663a0d)">
-            🍕
-            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.7</span>
+          <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="بيتزا وكريب الرواد" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.7</span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">بيتزا وكريب الرواد — شارع المدارس</h3>
           <p class="text-xs text-white/50 mb-3">كريب زنجر، كرانشي، شاورما سوري، بيتزا شرقي وإيطالي، وبطاطس فارم</p>
@@ -399,10 +406,11 @@ body {
 
         <!-- Store 4: حلواني شندل -->
         <div onclick="navigateTo('store-shendel')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="حلواني شندل">
-          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#3d1a3a,#5e1a4d)">
-            🍰
-            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.9</span>
+          <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="حلواني شندل" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.9</span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">حلواني شندل والبارون — شارع المركز</h3>
           <p class="text-xs text-white/50 mb-3">تورتات أعياد ميلاد، بسبوسة، كنافة نابلسية، وجاتوهات شرقية وغربية</p>
@@ -414,10 +422,11 @@ body {
 
         <!-- Store 5: فول وفلافل البرنس -->
         <div onclick="navigateTo('store-falafel')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="فول وفلافل البرنس">
-          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#1b3b1e,#28552c)">
-            🧆
-            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.9</span>
+          <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1593001874117-c99c800e3eb7?auto=format&fit=crop&w=600&q=80" alt="فول وفلافل البرنس" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.9</span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">فول وفلافل البرنس — ترعة سراج</h3>
           <p class="text-xs text-white/50 mb-3">ساندوتشات فلافل محشية كيري، فول فلاحي زيت حار، مسقعة، وباذنجان مخلل</p>
@@ -427,12 +436,13 @@ body {
           </div>
         </div>
 
-        <!-- Store 5: سوبر ماركت أولاد رجب والأمل -->
-        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="grocery" data-name="سوبر ماركت الفرسان">
-          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#1a2a3e,#0d3d6e)">
-            🛒
-            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.8</span>
+        <!-- Store 6: سوبر ماركت الفرسان -->
+        <div onclick="navigateTo('store-baz')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="grocery" data-name="سوبر ماركت الفرسان">
+          <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" alt="هايبر الفرسان" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● متاح للتسوق</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.8</span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">هايبر الفرسان — شارع بورسعيد</h3>
           <p class="text-xs text-white/50 mb-3">منتجات ألبان، جبن رومي وموزاريلا، بقالة تموينية، مجمدات، وعصائر</p>
@@ -442,42 +452,45 @@ body {
           </div>
         </div>
 
-        <!-- Store 6: صيدلية الشفاء والعزازي -->
-        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="pharmacy" data-name="صيدلية الشفاء والعزازي">
-          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#2a1a3e,#4a0d6e)">
-            💊
-            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[10px] font-bold">● 24 ساعة</span>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.9</span>
+        <!-- Store 7: صيدليات الحسينية ورفع الروشتة -->
+        <div onclick="navigateTo('pharmacy')" class="store-card glass-card rounded-3xl p-5 cursor-pointer border-2 border-emerald-500/30" data-cat="pharmacy" data-name="صيدليات الحسينية وطلب الروشتة">
+          <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=600&q=80" alt="صيدليات الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-blue-500 text-white text-[10px] font-black shadow-lg">💊 تصوير الروشتة أونلاين</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-emerald-400 text-[10px] font-black shadow-lg">24 ساعة</span>
           </div>
-          <h3 class="font-bold text-base text-white mb-1">صيدلية الشفاء والعزازي — أمام المستشفى</h3>
-          <p class="text-xs text-white/50 mb-3">صرف روشتات، أدوية الأمراض المزمنة، مستحضرات تجميل، وقياس ضغط وسكر</p>
+          <h3 class="font-bold text-base text-white mb-1">صيدليات الحسينية — تصوير وطلب الروشتة</h3>
+          <p class="text-xs text-white/50 mb-3">صيدلية العطار، السلام، والجمهورية — صور الروشتة بالكاميرا واستلم الدواء في دقائق</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ 10 - 15 دقيقة</span>
-            <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
+            <span>⏱️ 10 - 20 دقيقة</span>
+            <span class="text-emerald-400 font-bold">توصيل منزلي فوري 🛵</span>
           </div>
         </div>
 
-        <!-- Store 7: حجز الأطباء بمستشفى الحسينية المركزي -->
-        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="medical" data-name="عيادات أطباء الحسينية" onclick="navigateTo('medical')">
-          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#1f3d3a,#113333)">
-            🩺
-            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● حجز فوري</span>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.8</span>
+        <!-- Store 8: مجمع عيادات الأطباء -->
+        <div onclick="navigateTo('medical')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="medical" data-name="عيادات أطباء الحسينية">
+          <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80" alt="عيادات أطباء الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● حجز فوري</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.9</span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">مجمع عيادات الأطباء — شارع المستشفى</h3>
-          <p class="text-xs text-white/50 mb-3">باطنة، أطفال، عظام، رمد، نساء وتوليد، ومعامل تحاليل ومراكز أشعة</p>
+          <p class="text-xs text-white/50 mb-3">باطنة، أطفال، عظام، رمد، نساء وتوليد، أسنان، ومعامل تحاليل ومراكز أشعة</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ حجز مسبق</span>
+            <span>⏱️ حجز أونلاين مؤكد</span>
             <span class="text-emerald-400 font-bold">كشف من 100 ج.م</span>
           </div>
         </div>
 
-        <!-- Store 8: تكسي وتوصيل قرى الحسينية -->
-        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="ride" data-name="تكسي الحسينية وتوك توك دليفري">
-          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#3d3a1f,#4a4411)">
-            🚖
-            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● متاح فوري</span>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.7</span>
+        <!-- Store 9: تكسي وتوصيل قرى الحسينية -->
+        <div onclick="navigateTo('driver')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="ride" data-name="تكسي الحسينية وتوك توك دليفري">
+          <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80" alt="تكسي ومشاوير الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-amber-500 text-black text-[10px] font-black shadow-lg">● كباتن جاهزون</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.8</span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">تكسي ومشاوير الحسينية وقرى المركز</h3>
           <p class="text-xs text-white/50 mb-3">مشاوير داخلية بالمدينة، جزيرة سعود، الأخيوة، بحر البقر، وتوصيل طلبات</p>
@@ -487,18 +500,35 @@ body {
           </div>
         </div>
 
-        <!-- Store 9: عقارات وشقق الحسينية -->
-        <div onclick="navigateTo('realestate')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="realty" data-name="مكتب عقارات الحسينية">
-          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#2f1f3d,#331144)">
-            🏠
-            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● 45 عقار متاح</span>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.6</span>
+        <!-- Store 10: عقارات وشقق الحسينية -->
+        <div onclick="navigateTo('realestate')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="realty" data-name="عقارات وشقق الحسينية">
+          <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80" alt="عقارات الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-cyan-500 text-black text-[10px] font-black shadow-lg">🏢 إيجار وتمليك</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-white text-[10px] font-black shadow-lg">أحدث العروض</span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">عقارات الحسينية — شارع جمال عبد الناصر</h3>
           <p class="text-xs text-white/50 mb-3">شقق للإيجار، أراضي للبناء، محلات تجارية، ومنازل للبيع بحي المحجوب والمعاشات</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>📍 جميع أحياء المركز</span>
-            <span class="text-emerald-400 font-bold">استعراض العقارات</span>
+            <span>📍 جميع أحياء وقرى المركز</span>
+            <span class="text-emerald-400 font-bold">استعراض وإضافة عقار</span>
+          </div>
+        </div>
+
+        <!-- Store 11: أمانات ومفقودات الحسينية -->
+        <div onclick="navigateTo('lost')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="lost" data-name="أمانات ومفقودات الحسينية">
+          <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=600&q=80" alt="أمانات ومفقودات الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-rose-500 text-white text-[10px] font-black shadow-lg">🔍 خدمة الأهالي مجاناً</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">أمانات</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-1">أمانات ومفقودات الحسينية</h3>
+          <p class="text-xs text-white/50 mb-3">محافظ وبطاقات رقم قومي، موبايلات مفقودة، ومفاتيح تم العثور عليها بالمركز</p>
+          <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
+            <span>🤝 لوجه الله تعالى</span>
+            <span class="text-emerald-400 font-bold">إبلاغ أو استرجاع</span>
           </div>
         </div>
 
@@ -552,6 +582,7 @@ const PAGE_ROUTES = {
   'merchant': 'husayniya-merchant.html',
   'driver': 'husayniya-driver.html',
   'medical': 'husayniya-medical.html',
+  'pharmacy': 'husayniya-pharmacy.html',
   'lost': 'husayniya-lost.html',
   'realestate': 'husayniya-realestate.html',
   'login': 'husayniya-login.html'

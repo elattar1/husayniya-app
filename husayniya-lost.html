@@ -131,9 +131,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         </div>
 
         <div class="flex items-center gap-4 mb-4">
-          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#00b09b,#045353)">
-            🪪
-          </div>
+          <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=300&q=80" alt="بطاقة رقم قومي" class="w-16 h-16 rounded-2xl object-cover shadow-lg border border-white/15 flex-shrink-0" loading="lazy" />
           <div>
             <h3 class="font-bold text-base text-white">بطاقة رقم قومي ورخصة قيادة</h3>
             <p class="text-xs text-amber-300 font-bold mt-0.5">باسم: إبراهيم محمود حسن الشرقاوي</p>
@@ -161,9 +159,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         </div>
 
         <div class="flex items-center gap-4 mb-4">
-          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#e53e3e,#742a2a)">
-            📱
-          </div>
+          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&q=80" alt="موبايل سامسونج" class="w-16 h-16 rounded-2xl object-cover shadow-lg border border-white/15 flex-shrink-0" loading="lazy" />
           <div>
             <h3 class="font-bold text-base text-white">موبايل Samsung Galaxy A54</h3>
             <p class="text-xs text-rose-300 font-bold mt-0.5">لون كحلي — جراب أسود عليه كارت شخصي</p>
@@ -191,9 +187,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         </div>
 
         <div class="flex items-center gap-4 mb-4">
-          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#00b09b,#045353)">
-            🔑
-          </div>
+          <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=300&q=80" alt="مفاتيح سيارة تويوتا" class="w-16 h-16 rounded-2xl object-cover shadow-lg border border-white/15 flex-shrink-0" loading="lazy" />
           <div>
             <h3 class="font-bold text-base text-white">ريموت ومفاتيح سيارة تويوتا</h3>
             <p class="text-xs text-amber-300 font-bold mt-0.5">ميدالية جلد سوداء بها 4 مفاتيح</p>
@@ -221,9 +215,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         </div>
 
         <div class="flex items-center gap-4 mb-4">
-          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#3182ce,#2b6cb0)">
-            📁
-          </div>
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=300&q=80" alt="شهادة تخرج وملف" class="w-16 h-16 rounded-2xl object-cover shadow-lg border border-white/15 flex-shrink-0" loading="lazy" />
           <div>
             <h3 class="font-bold text-base text-white">شهادة تخرج وملف أوراق جيش</h3>
             <p class="text-xs text-blue-300 font-bold mt-0.5">باسم: محمد فتحي عبد السلام</p>
@@ -250,9 +242,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         </div>
 
         <div class="flex items-center gap-4 mb-4">
-          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#00b09b,#045353)">
-            💳
-          </div>
+          <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=300&q=80" alt="كارت فيزا ميزة" class="w-16 h-16 rounded-2xl object-cover shadow-lg border border-white/15 flex-shrink-0" loading="lazy" />
           <div>
             <h3 class="font-bold text-base text-white">كارت ميزة بنك مصر (معاشات)</h3>
             <p class="text-xs text-amber-300 font-bold mt-0.5">باسم: الحاجة فاطمة السيد إبراهيم</p>
@@ -280,9 +270,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         </div>
 
         <div class="flex items-center gap-4 mb-4">
-          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#e53e3e,#742a2a)">
-            ⌚
-          </div>
+          <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=300&q=80" alt="ساعة يد كاسيو" class="w-16 h-16 rounded-2xl object-cover shadow-lg border border-white/15 flex-shrink-0" loading="lazy" />
           <div>
             <h3 class="font-bold text-base text-white">ساعة يد كاسيو فضية كلاسيك</h3>
             <p class="text-xs text-rose-300 font-bold mt-0.5">هدية عزيزة من الوالد</p>
@@ -410,7 +398,7 @@ function closeReportModal() {
   document.getElementById('report-modal').classList.remove('show');
 }
 
-function submitReport() {
+async function submitReport() {
   const type = document.getElementById('report-type').value;
   const title = document.getElementById('report-title').value.trim();
   const area = document.getElementById('report-area').value;
@@ -423,10 +411,25 @@ function submitReport() {
     return;
   }
 
+  // Save to Supabase Cloud
+  let cloudMsg = '';
+  if (window.HusayniyaCloud) {
+    const res = await window.HusayniyaCloud.createLostItem({
+      title: title,
+      item_type: type,
+      category: 'أمانات ومفقودات الحسينية',
+      location_desc: area,
+      phone: phone,
+      details: `${name} - ${desc}`
+    });
+    if (res && res.cloud) {
+      cloudMsg = '\n⚡ تم حفظ الإعلان سحابياً في Supabase ومزامنته فوراً لأهالي الحسينية!';
+    }
+  }
+
   const isFound = type === 'found';
   const badgeClass = isFound ? 'b-found' : 'b-lost';
   const badgeText = isFound ? '🟢 تم العثور عليها' : '🔴 مفقود';
-  const icon = isFound ? '🪪' : '🔍';
 
   const newCard = `
     <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-type="${type}">
@@ -437,9 +440,7 @@ function submitReport() {
         </div>
 
         <div class="flex items-center gap-4 mb-4">
-          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#00b09b,#045353)">
-            ${icon}
-          </div>
+          <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=300&q=80" alt="${title}" class="w-16 h-16 rounded-2xl object-cover shadow-lg border border-white/15 flex-shrink-0" loading="lazy" />
           <div>
             <h3 class="font-bold text-base text-white">${title}</h3>
             <p class="text-xs text-amber-300 font-bold mt-0.5">الحسينية — ${area}</p>
@@ -467,9 +468,12 @@ function submitReport() {
   countEl.textContent = parseInt(countEl.textContent) + 1;
 
   closeReportModal();
-  alert(`تم نشر إعلانك بنجاح في قسم مفقودات الحسينية! 🎉\nسيتم إشعار أهالي المنطقة لمساعدتك.`);
+  alert(`تم نشر إعلانك بنجاح في قسم مفقودات الحسينية! 🎉${cloudMsg}\nسيتم إشعار أهالي المنطقة لمساعدتك.`);
 }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
 
 </body>
 </html>

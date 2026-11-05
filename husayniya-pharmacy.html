@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>صيدليات الحسينية وطلب الروشتة — خدمات الحسينية (الشرقية)</title>
+<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+
+/* ── Background Scene ── */
+.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35;animation:drift 18s ease-in-out infinite alternate}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#00b09b,#045353);top:-150px;right:-150px}
+.o2{width:500px;height:500px;background:radial-gradient(circle,#3b82f6,#1d4ed8);bottom:-150px;left:-150px;animation-delay:-6s}
+.o3{width:400px;height:400px;background:radial-gradient(circle,#ec4899,#be185d);top:40%;left:30%;animation-delay:-10s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-15px) scale(1.05)}100%{transform:translate(-20px,20px) scale(.95)}}
+
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+
+/* ── Liquid Glass Utilities ── */
+.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,.14)}
+.glass-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.12);transition:all .3s ease}
+.glass-card:hover{border-color:rgba(0,176,155,.45);box-shadow:0 14px 40px rgba(0,176,155,.15);transform:translateY(-3px)}
+
+/* ── Gradients ── */
+.gt{background:linear-gradient(135deg,#00e5c8 0%,#43cea2 45%,#f7c948 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── Buttons ── */
+.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-primary:hover{transform:scale(1.02);box-shadow:0 0 25px rgba(0,176,155,.45)}
+
+.btn-whatsapp{background:linear-gradient(135deg,#25D366,#128C7E);border:none;cursor:pointer;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-whatsapp:hover{transform:scale(1.02);box-shadow:0 0 25px rgba(37,211,102,.45)}
+
+/* ── Form Inputs ── */
+.input-glass{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.16);color:#fff;transition:all .3s;font-size:.88rem}
+.input-glass:focus{outline:none;background:rgba(255,255,255,.12);border-color:rgba(0,176,155,.7);box-shadow:0 0 0 3px rgba(0,176,155,.15)}
+
+.upload-box{border:2px dashed rgba(0,229,200,0.4);border-radius:20px;background:rgba(0,176,155,0.04);cursor:pointer;transition:all .3s ease}
+.upload-box:hover{border-color:rgba(0,229,200,0.8);background:rgba(0,176,155,0.08)}
+
+.scroll-touch{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.scroll-touch::-webkit-scrollbar{display:none}
+</style>
+</head>
+<body>
+
+<!-- Animated Orbs -->
+<div class="bg-scene">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<div class="page">
+
+<!-- ══════════════════ NAVBAR ══════════════════ -->
+<nav class="glass sticky top-0 z-50 px-6 py-4" style="background:rgba(4,14,30,.7);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <!-- Back to Home -->
+    <a href="index.html" class="flex items-center gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
+      <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">←</div>
+      <div>
+        <span class="text-xs text-emerald-400 font-semibold">الرئيسية</span>
+        <div class="text-sm font-bold">خدمات الحسينية (الشرقية)</div>
+      </div>
+    </a>
+
+    <!-- Emergency Call -->
+    <div class="flex items-center gap-3">
+      <a href="tel:123" class="px-3.5 py-1.5 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-bold flex items-center gap-1.5 hover:bg-rose-500/30 transition" style="text-decoration:none">
+        <span>🚨</span>
+        <span>طوارئ الإسعاف: 123</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════ MAIN PHARMACY PORTAL ══════════════════ -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
+
+  <!-- Header Banner -->
+  <div class="glass-card rounded-3xl p-6 md:p-10 mb-8 relative overflow-hidden">
+    <div class="max-w-3xl relative z-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold mb-4">
+        <span>💊</span>
+        <span>خدمة صيدليات مركز الحسينية 24 ساعة توصيل منزلي</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-black leading-tight mb-3">
+        صور روشتتك بالموبايل<br/><span class="gt">ودواءك هيوصل لحد باب بيتك في دقائق!</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-white/60 mb-6 leading-relaxed">
+        ارفع صورة الروشتة مباشرة بالكاميرا أو أرفقها كملف، وحدد صيدليتك المفضلة بالحسينية (صيدلية العطار، صيدلية الشفاء والعزازي، صيدلية السلام). سيقوم دكتور الصيدلية بتجهيز الأدوية وتوصيلها فوراً إلى عنوانك بالمدينة أو القرى.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+    <!-- ── LEFT: PRESCRIPTION UPLOAD FORM (7 COLS) ── -->
+    <div class="lg:col-span-7 space-y-6">
+      <div class="glass-card rounded-3xl p-6 sm:p-8">
+        <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-xl">📸</div>
+            <div>
+              <h2 class="text-base font-bold text-white">طلب وصرف الروشتة أونلاين</h2>
+              <p class="text-xs text-white/50">تجهيز فوري وسري بواسطة دكتور صيدلي</p>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">خدمة فورية ⚡</span>
+        </div>
+
+        <!-- File Upload Area -->
+        <div class="mb-5">
+          <label class="block font-bold text-xs mb-2 text-white/80">1. تصوير أو إرفاق صورة الروشتة</label>
+          <div class="upload-box p-6 text-center" onclick="document.getElementById('rx-file').click()">
+            <input type="file" id="rx-file" accept="image/*" capture="environment" class="hidden" onchange="handleFileSelect(event)" />
+            
+            <div id="upload-placeholder">
+              <div class="text-4xl mb-3">📷</div>
+              <p class="text-sm font-bold text-white mb-1">اضغط هنا لتصوير الروشتة بالكاميرا أو اختيار صورة</p>
+              <p class="text-xs text-white/40">يدعم صيغ JPG, PNG, WEBP (الحد الأقصى 10 ميجا)</p>
+            </div>
+
+            <!-- Preview Container -->
+            <div id="upload-preview-wrap" class="hidden">
+              <img id="upload-preview" src="" alt="معاينة الروشتة" class="max-h-60 mx-auto rounded-xl object-contain shadow-lg border border-white/20 mb-3" />
+              <div class="flex items-center justify-center gap-3">
+                <button type="button" onclick="event.stopPropagation(); removePhoto();" class="px-3 py-1.5 rounded-xl bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-bold hover:bg-rose-500/30">
+                  🗑️ إلغاء وتغيير الصورة
+                </button>
+                <span class="text-xs text-emerald-400 font-bold">✓ تم التقاط الصورة بنجاح</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Medicine Notes -->
+        <div class="mb-4">
+          <label class="block font-bold text-xs mb-1 text-white/80">2. كتابة أسماء الأدوية أو ملاحظات الجرعة (اختياري)</label>
+          <textarea id="rx-notes" rows="3" placeholder="اكتب اسم العلاج المطلوب، هل ترغب في بديل بنفس المادة الفعالة إذا لم يتوفر، أو أي تعليمات خاصة للصيدلي..." class="input-glass w-full rounded-2xl px-4 py-3 text-white placeholder-white/30"></textarea>
+        </div>
+
+        <!-- Pharmacy Selection -->
+        <div class="mb-4">
+          <label class="block font-bold text-xs mb-1 text-white/80">3. اختر الصيدلية المفضلة للتنفيذ</label>
+          <select id="rx-pharmacy" class="input-glass w-full rounded-2xl px-4 py-3 bg-slate-900 text-white">
+            <option value="صيدلية العطار — شارع المركز">صيدلية العطار — شارع المركز أمام بنك مصر (خدمة 24 ساعة)</option>
+            <option value="صيدلية الشفاء والعزازي — أمام المستشفى">صيدلية الشفاء والعزازي — شارع المستشفى المركزي (خدمة 24 ساعة)</option>
+            <option value="صيدلية السلام والجمهورية — شارع بورسعيد">صيدلية السلام والجمهورية — شارع بورسعيد بجوار المحطة</option>
+            <option value="صيدلية الشعب — شارع ترعة سراج">صيدلية الشعب — شارع ترعة سراج أمام المعهد الديني</option>
+          </select>
+        </div>
+
+        <!-- Customer Info Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block font-bold text-xs mb-1 text-white/80">الاسم ثلاثي *</label>
+            <input id="rx-name" type="text" placeholder="مثلاً: محمد أحمد إبراهيم" class="input-glass w-full rounded-2xl px-4 py-3 text-white placeholder-white/30" />
+          </div>
+          <div>
+            <label class="block font-bold text-xs mb-1 text-white/80">رقم الهاتف (مصر) *</label>
+            <input id="rx-phone" type="tel" placeholder="010XXXXXXXX" maxlength="11" class="input-glass w-full rounded-2xl px-4 py-3 text-white placeholder-white/30" />
+          </div>
+        </div>
+
+        <!-- Delivery Address -->
+        <div class="mb-6">
+          <label class="block font-bold text-xs mb-1 text-white/80">عنوان التوصيل بالتفصيل بالحسينية *</label>
+          <input id="rx-address" type="text" placeholder="مثلاً: حي المعاشات، شارع المدارس بجوار سوبر ماركت الفرسان، الدور الثاني" class="input-glass w-full rounded-2xl px-4 py-3 text-white placeholder-white/30" />
+          
+          <div class="flex items-center gap-1.5 flex-wrap mt-2 text-[11px]">
+            <span class="text-white/40">مناطق سريعة:</span>
+            <button type="button" onclick="setArea('شارع المركز')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-white/70">شارع المركز</button>
+            <button type="button" onclick="setArea('حي المعاشات')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-white/70">حي المعاشات</button>
+            <button type="button" onclick="setArea('حي المحجوب')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-white/70">حي المحجوب</button>
+            <button type="button" onclick="setArea('شارع بورسعيد')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-white/70">شارع بورسعيد</button>
+            <button type="button" onclick="setArea('جزيرة سعود')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-white/70">جزيرة سعود</button>
+          </div>
+        </div>
+
+        <!-- Submit Buttons -->
+        <div class="space-y-3">
+          <button type="button" onclick="submitPrescriptionOrder()" class="btn-primary w-full py-4 rounded-2xl text-sm font-extrabold flex items-center justify-center gap-2 shadow-xl">
+            <span>🚀 إرسال الطلب وحفظه سحابياً للصيدلية</span>
+          </button>
+
+          <button type="button" onclick="sendViaWhatsApp()" class="btn-whatsapp w-full py-3.5 rounded-2xl text-xs font-bold flex items-center justify-center gap-2">
+            <span>💬 إرسال الروشتة مباشرة عبر واتساب الصيدلية</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RIGHT: LOCAL PHARMACIES & QUICK SUPPLIES (5 COLS) ── -->
+    <div class="lg:col-span-5 space-y-6">
+
+      <!-- Al-Husayniya Pharmacies Cards -->
+      <div class="glass-card rounded-3xl p-6">
+        <h3 class="text-base font-bold text-white mb-1">دليل صيدليات الحسينية المعتمدة</h3>
+        <p class="text-xs text-white/50 mb-4">صيدليات تعمل على مدار 24 ساعة مع خدمة الدليفري</p>
+
+        <div class="space-y-4">
+
+          <!-- Pharmacy 1 -->
+          <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/5 flex items-start gap-4">
+            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=200&q=80" alt="صيدلية العطار" class="w-16 h-16 rounded-2xl object-cover border border-white/10 flex-shrink-0" />
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <h4 class="font-bold text-sm text-white">صيدلية العطار</h4>
+                <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">24 ساعة</span>
+              </div>
+              <p class="text-xs text-white/50 mt-0.5">الحسينية — شارع المركز أمام بنك مصر</p>
+              <div class="flex items-center gap-2 mt-2">
+                <a href="tel:01000000001" class="text-[11px] text-emerald-400 font-bold hover:underline">📞 اتصال فوري</a>
+                <span class="text-white/20">•</span>
+                <span class="text-[11px] text-white/40">توصيل 10 ج.م</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pharmacy 2 -->
+          <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/5 flex items-start gap-4">
+            <img src="https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=200&q=80" alt="صيدلية الشفاء والعزازي" class="w-16 h-16 rounded-2xl object-cover border border-white/10 flex-shrink-0" />
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <h4 class="font-bold text-sm text-white">صيدلية الشفاء والعزازي</h4>
+                <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">24 ساعة</span>
+              </div>
+              <p class="text-xs text-white/50 mt-0.5">الحسينية — شارع المستشفى المركزي</p>
+              <div class="flex items-center gap-2 mt-2">
+                <a href="tel:01000000002" class="text-[11px] text-emerald-400 font-bold hover:underline">📞 اتصال فوري</a>
+                <span class="text-white/20">•</span>
+                <span class="text-[11px] text-white/40">توصيل 10 ج.م</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pharmacy 3 -->
+          <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/5 flex items-start gap-4">
+            <img src="https://images.unsplash.com/photo-1586015555751-63bb77f4322a?auto=format&fit=crop&w=200&q=80" alt="صيدلية السلام" class="w-16 h-16 rounded-2xl object-cover border border-white/10 flex-shrink-0" />
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <h4 class="font-bold text-sm text-white">صيدلية السلام والجمهورية</h4>
+                <span class="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[10px] font-bold">8 ص - 2 ص</span>
+              </div>
+              <p class="text-xs text-white/50 mt-0.5">الحسينية — شارع بورسعيد بجوار المحطة</p>
+              <div class="flex items-center gap-2 mt-2">
+                <a href="tel:01000000003" class="text-[11px] text-emerald-400 font-bold hover:underline">📞 اتصال فوري</a>
+                <span class="text-white/20">•</span>
+                <span class="text-[11px] text-white/40">توصيل 10 ج.م</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Quick First Aid & Essentials -->
+      <div class="glass-card rounded-3xl p-6">
+        <h3 class="text-base font-bold text-white mb-1">مستلزمات الطوارئ والإسعافات الأولية</h3>
+        <p class="text-xs text-white/50 mb-4">أضفها لطلبك بنقرة واحدة</p>
+
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div onclick="addQuickNote('خافض حرارة وبنادول')" class="p-3 rounded-2xl bg-white/[0.03] hover:bg-emerald-500/10 border border-white/5 cursor-pointer transition">
+            <span class="text-lg block mb-1">💊</span>
+            <div class="font-bold text-white">مسكن وخافض حرارة</div>
+            <span class="text-[10px] text-emerald-400">+ إضافة للطلب</span>
+          </div>
+          <div onclick="addQuickNote('شاش ومطهر بتادين وبلاستر')" class="p-3 rounded-2xl bg-white/[0.03] hover:bg-emerald-500/10 border border-white/5 cursor-pointer transition">
+            <span class="text-lg block mb-1">🩹</span>
+            <div class="font-bold text-white">إسعافات ومطهر جروح</div>
+            <span class="text-[10px] text-emerald-400">+ إضافة للطلب</span>
+          </div>
+          <div onclick="addQuickNote('ترمومتر قياس حرارة ديجيتال')" class="p-3 rounded-2xl bg-white/[0.03] hover:bg-emerald-500/10 border border-white/5 cursor-pointer transition">
+            <span class="text-lg block mb-1">🌡️</span>
+            <div class="font-bold text-white">مقياس حرارة ديجيتال</div>
+            <span class="text-[10px] text-emerald-400">+ إضافة للطلب</span>
+          </div>
+          <div onclick="addQuickNote('حفاضات أطفال ولبن نمرة 1')" class="p-3 rounded-2xl bg-white/[0.03] hover:bg-emerald-500/10 border border-white/5 cursor-pointer transition">
+            <span class="text-lg block mb-1">🍼</span>
+            <div class="font-bold text-white">عناية وألبان أطفال</div>
+            <span class="text-[10px] text-emerald-400">+ إضافة للطلب</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+</div><!-- .page -->
+
+<script>
+let currentBase64Image = '';
+
+function handleFileSelect(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    currentBase64Image = e.target.result;
+    document.getElementById('upload-preview').src = currentBase64Image;
+    document.getElementById('upload-placeholder').classList.add('hidden');
+    document.getElementById('upload-preview-wrap').classList.remove('hidden');
+  };
+  reader.readAsDataURL(file);
+}
+
+function removePhoto() {
+  currentBase64Image = '';
+  document.getElementById('rx-file').value = '';
+  document.getElementById('upload-preview').src = '';
+  document.getElementById('upload-preview-wrap').classList.add('hidden');
+  document.getElementById('upload-placeholder').classList.remove('hidden');
+}
+
+function setArea(areaName) {
+  const addr = document.getElementById('rx-address');
+  addr.value = `الحسينية — ${areaName}، `;
+  addr.focus();
+}
+
+function addQuickNote(text) {
+  const notes = document.getElementById('rx-notes');
+  if (notes.value.trim()) {
+    notes.value += ` + ${text}`;
+  } else {
+    notes.value = text;
+  }
+}
+
+async function submitPrescriptionOrder() {
+  const name = document.getElementById('rx-name').value.trim();
+  const phone = document.getElementById('rx-phone').value.trim();
+  const address = document.getElementById('rx-address').value.trim();
+  const pharmacy = document.getElementById('rx-pharmacy').value;
+  const notes = document.getElementById('rx-notes').value.trim();
+
+  if (!name || phone.length < 11 || !address) {
+    alert('يرجى كتابة الاسم ورقم هاتف مصري صحيح (11 رقماً) وعنوان التوصيل بالحسينية.');
+    return;
+  }
+
+  if (!currentBase64Image && !notes) {
+    alert('يرجى التقاط صورة الروشتة أو كتابة أسماء الأدوية المطلوبة في الملاحظات.');
+    return;
+  }
+
+  let cloudStatus = '';
+  if (window.HusayniyaCloud) {
+    const res = await window.HusayniyaCloud.createOrder({
+      store_name: pharmacy,
+      customer_name: name,
+      customer_phone: phone,
+      delivery_address: address,
+      notes: `[طلب روشتة طبية] ${notes} ${currentBase64Image ? '(مرفق صورة روشتة)' : ''}`,
+      items: [
+        { name: 'صرف روشتة علاجية / أدوية', price: 0, qty: 1, icon: '💊' }
+      ],
+      total_amount: 0,
+      delivery_fee: 10,
+      payment_method: 'كاش عند الاستلام'
+    });
+    if (res && res.cloud) {
+      cloudStatus = '\n⚡ تم حفظ الطلب سحابياً في Supabase وتم إشعار صيدليات الحسينية!';
+    }
+  }
+
+  alert(`تم استلام طلب الروشتة بنجاح! 🎉\n\nالمريض: ${name}\nالصيدلية: ${pharmacy}\nالعنوان: ${address}${cloudStatus}\n\nسيقوم الصيدلي بالتواصل معك هاتفياً لتأكيد السعر وميعاد التوصيل.`);
+  
+  // Reset form
+  removePhoto();
+  document.getElementById('rx-notes').value = '';
+}
+
+function sendViaWhatsApp() {
+  const name = document.getElementById('rx-name').value.trim();
+  const phone = document.getElementById('rx-phone').value.trim();
+  const address = document.getElementById('rx-address').value.trim();
+  const pharmacy = document.getElementById('rx-pharmacy').value;
+  const notes = document.getElementById('rx-notes').value.trim();
+
+  const msg = encodeURIComponent(
+    `السلام عليكم، أرغب في صرف روشتة علاجية من صيدليات الحسينية:\n\n` +
+    `👤 الاسم: ${name || 'عميل الحسينية'}\n` +
+    `📞 الهاتف: ${phone || 'غير مسجل'}\n` +
+    `📍 العنوان: ${address || 'الحسينية، الشرقية'}\n` +
+    `🏥 الصيدلية المختارة: ${pharmacy}\n` +
+    `📝 ملاحظات / الأدوية المطلوبة:\n${notes || 'سأقوم بإرسال صورة الروشتة هنا في المحادثة مباشرة.'}`
+  );
+
+  const whatsappUrl = `https://wa.me/201012345678?text=${msg}`;
+  window.open(whatsappUrl, '_blank');
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+
+</body>
+</html>
