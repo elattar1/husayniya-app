@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>سلة التسوق وإتمام الطلب — خدمات الحسينية</title>
+<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+
+/* ── Animated Background ── */
+.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.4;animation:drift 15s ease-in-out infinite alternate}
+.o1{width:550px;height:550px;background:radial-gradient(circle,#00b09b,#045353);top:-150px;right:-100px}
+.o2{width:450px;height:450px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-100px;left:-100px;animation-delay:-5s}
+.o3{width:350px;height:350px;background:radial-gradient(circle,#667eea,#764ba2);top:40%;left:35%;animation-delay:-9s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-15px) scale(1.06)}100%{transform:translate(-20px,25px) scale(.96)}}
+
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+
+/* ── Liquid Glass Utilities ── */
+.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,.14)}
+.glass-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.12);transition:all .3s ease}
+.glass-card:hover{border-color:rgba(0,176,155,.4);box-shadow:0 12px 36px rgba(0,176,155,.12)}
+
+/* ── Typography & Gradients ── */
+.gt{background:linear-gradient(135deg,#00e5c8 0%,#43cea2 45%,#f7c948 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt-gold{background:linear-gradient(135deg,#f7c948,#f7971e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── Buttons ── */
+.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-primary::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.25),transparent);opacity:0;transition:.3s}
+.btn-primary:hover::after{opacity:1}
+.btn-primary:hover{transform:scale(1.02);box-shadow:0 0 28px rgba(0,176,155,.45)}
+
+.btn-icon{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:#fff}
+.btn-icon:hover{background:rgba(0,176,155,.25);border-color:rgba(0,176,155,.6);color:#00e5c8}
+
+/* ── Form Inputs ── */
+.input-glass{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.16);color:#fff;transition:all .3s;font-size:.9rem}
+.input-glass:focus{outline:none;background:rgba(255,255,255,.12);border-color:rgba(0,176,155,.7);box-shadow:0 0 0 3px rgba(0,176,155,.15)}
+.input-glass::placeholder{color:rgba(255,255,255,.35)}
+
+/* ── Payment Options ── */
+.pay-option{border:1.5px solid rgba(255,255,255,.12);border-radius:18px;padding:16px;cursor:pointer;transition:all .3s;background:rgba(255,255,255,.05);display:flex;align-items:center;gap:14px}
+.pay-option:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.25)}
+.pay-option.selected{border-color:#00e5c8;background:rgba(0,176,155,.15);box-shadow:0 0 20px rgba(0,176,155,.2)}
+.pay-radio{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;transition:all .3s}
+.pay-option.selected .pay-radio{border-color:#00e5c8}
+.pay-option.selected .pay-radio::after{content:'';width:10px;height:10px;border-radius:50%;background:#00e5c8}
+
+/* ── Address Simulated Map ── */
+.map-canvas{height:160px;border-radius:16px;background:linear-gradient(135deg,#0a192f,#0d383b);position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.15)}
+.map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);background-size:24px 24px}
+.map-pin{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);animation:pinBounce 2s infinite ease-in-out}
+@keyframes pinBounce{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,-65%)}}
+
+/* ── Animations ── */
+.fade-up{opacity:0;transform:translateY(24px);animation:fu .6s ease forwards}
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+.d1{animation-delay:.08s}.d2{animation-delay:.16s}.d3{animation-delay:.24s}
+
+/* ── Quantity Controls ── */
+.qty-display{min-width:32px;text-align:center;font-weight:700;font-size:1rem}
+
+/* ── Modal overlay ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(4,8,20,.85);backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+</style>
+</head>
+<body>
+
+<!-- Background Scene -->
+<div class="bg-scene">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<div class="page">
+
+<!-- ══════════════════ NAVBAR ══════════════════ -->
+<nav class="glass sticky top-0 z-50 px-6 py-4" style="background:rgba(4,14,30,.65);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <!-- Logo -->
+    <a href="husayniya-full.html" class="flex items-center gap-3" style="text-decoration:none">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#00b09b,#06d6a0);box-shadow:0 0 20px rgba(0,176,155,.4)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9,22 9,12 15,12 15,22"/>
+        </svg>
+      </div>
+      <div>
+        <div style="font-size:1.1rem;font-weight:800;background:linear-gradient(135deg,#fff,#a8f0e8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">خدمات الحسينية</div>
+        <div style="font-size:.65rem;color:rgba(0,229,200,.7)">إتمام الشراء والدفع</div>
+      </div>
+    </a>
+
+    <!-- Steps indicator -->
+    <div class="hidden md:flex items-center gap-4 text-xs font-semibold">
+      <div class="flex items-center gap-2 text-emerald-400">
+        <span class="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center font-bold">1</span>
+        <span>السلة</span>
+      </div>
+      <div style="width:30px;height:1px;background:rgba(0,229,200,.4)"></div>
+      <div class="flex items-center gap-2 text-emerald-400">
+        <span class="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center font-bold">2</span>
+        <span>العنوان والدفع</span>
+      </div>
+      <div style="width:30px;height:1px;background:rgba(255,255,255,.15)"></div>
+      <div class="flex items-center gap-2 text-white/40">
+        <span class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center font-bold">3</span>
+        <span>تأكيد الطلب</span>
+      </div>
+    </div>
+
+    <!-- Help / Safe Badge -->
+    <div class="flex items-center gap-2 px-3 py-1.5 rounded-full" style="background:rgba(0,176,155,.12);border:1px solid rgba(0,176,155,.3);font-size:.78rem;color:#00e5c8">
+      <span>🔒</span>
+      <span>دفع آمن 100%</span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════ MAIN CONTENT ══════════════════ -->
+<main class="max-w-6xl mx-auto px-6 py-10 flex-1">
+
+  <!-- Header -->
+  <div class="mb-8 fade-up">
+    <h1 class="text-2xl md:text-3xl font-extrabold mb-2">
+      سلة المشتريات <span class="gt">وإتمام الطلب</span> 🛍️
+    </h1>
+    <p class="text-sm text-white/50">راجع طلباتك، حدد عنوان التوصيل في الحسينية، واختر وسيلة الدفع المفضلة لديك.</p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+    <!-- ═══ LEFT 2 COLUMNS: Cart Items + Delivery + Payment ═══ -->
+    <div class="lg:col-span-2 space-y-8">
+
+      <!-- 1. CART ITEMS SECTION -->
+      <section class="glass-card rounded-3xl p-6 fade-up d1">
+        <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+          <div class="flex items-center gap-3">
+            <span class="text-xl">🏪</span>
+            <div>
+              <h2 class="text-base font-bold">مطعم السلام — مشاوي وشواء فاخر</h2>
+              <p class="text-xs text-white/40">التوصيل التقديري: 25 - 35 دقيقة</p>
+            </div>
+          </div>
+          <button onclick="clearCart()" class="text-xs text-rose-400 hover:underline">تفريغ السلة</button>
+        </div>
+
+        <div id="cart-list" class="space-y-4">
+          <!-- Item 1 -->
+          <div class="cart-item flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.04] border border-white/5" data-id="1" data-price="18.50">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#1a3a2a,#0d6640)">
+                🍢
+              </div>
+              <div>
+                <h3 class="font-bold text-sm">وجبة كباب عراقي مشكل (نفر)</h3>
+                <p class="text-xs text-white/40 mb-1">مع مقبلات، خبز حار، وسلطات</p>
+                <div class="text-sm font-extrabold text-emerald-400"><span class="item-total-price">18.50</span> $</div>
+              </div>
+            </div>
+            <!-- Qty control -->
+            <div class="flex items-center gap-2">
+              <button onclick="updateQty(1, -1)" class="btn-icon text-lg font-bold">−</button>
+              <span id="qty-1" class="qty-display">1</span>
+              <button onclick="updateQty(1, 1)" class="btn-icon text-lg font-bold">+</button>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="cart-item flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.04] border border-white/5" data-id="2" data-price="12.00">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#3a2a1a,#663a0d)">
+                🍗
+              </div>
+              <div>
+                <h3 class="font-bold text-sm">نصف دجاجة شواية مع أرز بسمتي</h3>
+                <p class="text-xs text-white/40 mb-1">شوربة عدس وصلصة خاصة</p>
+                <div class="text-sm font-extrabold text-emerald-400"><span class="item-total-price">24.00</span> $</div>
+              </div>
+            </div>
+            <!-- Qty control -->
+            <div class="flex items-center gap-2">
+              <button onclick="updateQty(2, -1)" class="btn-icon text-lg font-bold">−</button>
+              <span id="qty-2" class="qty-display">2</span>
+              <button onclick="updateQty(2, 1)" class="btn-icon text-lg font-bold">+</button>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="cart-item flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.04] border border-white/5" data-id="3" data-price="2.50">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#1a2a3e,#0d3d6e)">
+                🥤
+              </div>
+              <div>
+                <h3 class="font-bold text-sm">مشروب غازي عائلي (1 لتر)</h3>
+                <p class="text-xs text-white/40 mb-1">بارد جداً</p>
+                <div class="text-sm font-extrabold text-emerald-400"><span class="item-total-price">2.50</span> $</div>
+              </div>
+            </div>
+            <!-- Qty control -->
+            <div class="flex items-center gap-2">
+              <button onclick="updateQty(3, -1)" class="btn-icon text-lg font-bold">−</button>
+              <span id="qty-3" class="qty-display">1</span>
+              <button onclick="updateQty(3, 1)" class="btn-icon text-lg font-bold">+</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. DELIVERY ADDRESS & MAP -->
+      <section class="glass-card rounded-3xl p-6 fade-up d2">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">📍</span>
+            <h2 class="text-base font-bold">عنوان وموقع التوصيل</h2>
+          </div>
+          <span class="text-xs text-emerald-400">الحسينية، بغداد</span>
+        </div>
+
+        <!-- Simulated Map View -->
+        <div class="map-canvas mb-5">
+          <div class="map-grid"></div>
+          <!-- Road simulations -->
+          <div style="position:absolute;top:40%;left:0;right:0;height:8px;background:rgba(255,255,255,.1);transform:rotate(-3deg)"></div>
+          <div style="position:absolute;top:0;bottom:0;left:55%;width:10px;background:rgba(255,255,255,.08)"></div>
+          <!-- Pin -->
+          <div class="map-pin flex flex-col items-center">
+            <div class="px-2.5 py-1 rounded-full text-[10px] font-bold text-white mb-1 shadow-lg" style="background:linear-gradient(135deg,#00b09b,#06d6a0);white-space:nowrap">
+              موقع التوصيل المختار
+            </div>
+            <div class="w-8 h-8 rounded-full bg-emerald-400/20 flex items-center justify-center animate-ping absolute top-4"></div>
+            <div class="text-2xl drop-shadow-md">📍</div>
+          </div>
+          <!-- Change pin button -->
+          <button class="glass absolute bottom-3 left-3 px-3 py-1.5 rounded-xl text-xs font-semibold text-white/90 hover:bg-white/20 transition">
+            🎯 تحديد موقعي الحالي (GPS)
+          </button>
+        </div>
+
+        <!-- Address inputs -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-white/70 mb-2">المنطقة والحي</label>
+            <select class="input-glass w-full rounded-2xl px-4 py-3">
+              <option class="bg-slate-900" selected>الحسينية — الحي العسكري</option>
+              <option class="bg-slate-900">الحسينية — الحي الشمالي</option>
+              <option class="bg-slate-900">الحسينية — شارع الحسين الرئيسي</option>
+              <option class="bg-slate-900">الحسينية — حي الزهور</option>
+              <option class="bg-slate-900">الحسينية — قرب جامع الرحمن</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-white/70 mb-2">رقم الزقاق / الدار أو أقرب نقطة دالة</label>
+            <input type="text" placeholder="مثلاً: زقاق 14، قرب مدرسة النور" value="قرب أسواق البركة، دار 22" class="input-glass w-full rounded-2xl px-4 py-3 text-sm"/>
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-xs font-semibold text-white/70 mb-2">ملاحظات إضافية للسائق (اختياري)</label>
+            <input type="text" placeholder="مثال: يرجى الاتصال عند الوصول، الباب الأزرق" class="input-glass w-full rounded-2xl px-4 py-3 text-sm"/>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. PAYMENT METHOD -->
+      <section class="glass-card rounded-3xl p-6 fade-up d3">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-xl">💳</span>
+          <h2 class="text-base font-bold">طريقة الدفع</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Cash on delivery -->
+          <div class="pay-option selected" onclick="selectPayment(this, 'cash')">
+            <div class="pay-radio"></div>
+            <div class="flex-1">
+              <div class="font-bold text-sm flex items-center justify-between">
+                <span>الدفع نقدياً عند الاستلام (كاش)</span>
+                <span class="text-lg">💵</span>
+              </div>
+              <p class="text-xs text-white/40 mt-0.5">ادفع مباشرة لمندوب التوصيل فور وصول الطلب</p>
+            </div>
+          </div>
+
+          <!-- Zain Cash -->
+          <div class="pay-option" onclick="selectPayment(this, 'zaincash')">
+            <div class="pay-radio"></div>
+            <div class="flex-1">
+              <div class="font-bold text-sm flex items-center justify-between">
+                <span>زين كاش (ZainCash)</span>
+                <span class="text-xs px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 font-extrabold">سريع</span>
+              </div>
+              <p class="text-xs text-white/40 mt-0.5">الدفع الآمن عبر محفظة زين كاش العراق</p>
+            </div>
+          </div>
+
+          <!-- AsiaHawala -->
+          <div class="pay-option" onclick="selectPayment(this, 'asiahawala')">
+            <div class="pay-radio"></div>
+            <div class="flex-1">
+              <div class="font-bold text-sm flex items-center justify-between">
+                <span>آسيا حوالة (AsiaHawala)</span>
+                <span class="text-lg">📲</span>
+              </div>
+              <p class="text-xs text-white/40 mt-0.5">تحويل مباشر برقم المحفظة</p>
+            </div>
+          </div>
+
+          <!-- Visa / Mastercard -->
+          <div class="pay-option" onclick="selectPayment(this, 'card')">
+            <div class="pay-radio"></div>
+            <div class="flex-1">
+              <div class="font-bold text-sm flex items-center justify-between">
+                <span>بطاقة إلكترونية (Visa / Mastercard)</span>
+                <span class="text-lg">💳</span>
+              </div>
+              <p class="text-xs text-white/40 mt-0.5">فيزا كارد، ماستركارد، كي كارد</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ═══ RIGHT COLUMN: Order Summary & Checkout Action ═══ -->
+    <div class="space-y-6">
+
+      <!-- ORDER SUMMARY CARD -->
+      <div class="glass-card rounded-3xl p-6 sticky top-24 fade-up d2">
+        <h2 class="text-lg font-extrabold mb-5 flex items-center justify-between pb-3 border-b border-white/10">
+          <span>ملخص الفاتورة</span>
+          <span class="text-xs font-normal text-white/40">3 أصناف</span>
+        </h2>
+
+        <!-- Coupon code input -->
+        <div class="mb-6">
+          <label class="block text-xs font-semibold text-white/70 mb-2">كوبون خصم</label>
+          <div class="flex gap-2">
+            <input id="coupon-input" type="text" placeholder="اكتب كود الخصم (جرب HUSAYN)" class="input-glass flex-1 rounded-2xl px-4 py-2.5 uppercase font-bold tracking-wider text-xs"/>
+            <button onclick="applyCoupon()" class="px-4 py-2.5 rounded-2xl bg-white/10 hover:bg-emerald-500/20 text-emerald-400 font-bold text-xs border border-white/15 transition">تطبيق</button>
+          </div>
+          <div id="coupon-msg" class="text-[11px] mt-1.5 hidden"></div>
+        </div>
+
+        <!-- Calculation lines -->
+        <div class="space-y-3 text-sm pb-5 border-b border-white/10">
+          <div class="flex justify-between text-white/70">
+            <span>مجموع الوجبات:</span>
+            <span class="font-bold text-white"><span id="subtotal">45.00</span> $</span>
+          </div>
+          <div class="flex justify-between text-white/70">
+            <span>رسوم التوصيل (الحسينية):</span>
+            <span class="font-bold text-white"><span id="delivery-fee">2.50</span> $</span>
+          </div>
+          <div id="discount-row" class="flex justify-between text-emerald-400 hidden">
+            <span>خصم الكوبون:</span>
+            <span class="font-bold">-<span id="discount-val">0.00</span> $</span>
+          </div>
+          <div class="flex justify-between text-white/70">
+            <span>الضريبة والخدمة:</span>
+            <span class="font-bold text-emerald-400">مجاناً (0.00 $)</span>
+          </div>
+        </div>
+
+        <!-- Grand Total -->
+        <div class="pt-5 pb-6 flex items-center justify-between">
+          <div>
+            <div class="text-xs text-white/40">المبلغ الإجمالي النهائي</div>
+            <div class="text-2xl font-black gt" id="grand-total">47.50 $</div>
+          </div>
+          <div class="text-right">
+            <div class="text-xs text-amber-300 font-semibold">توفير 4.00 $</div>
+            <div class="text-[10px] text-white/40">يشمل عروض اليوم</div>
+          </div>
+        </div>
+
+        <!-- Checkout Button -->
+        <button onclick="submitOrder()" class="btn-primary w-full py-4 rounded-2xl text-base font-extrabold flex items-center justify-center gap-2 shadow-xl">
+          <span>تأكيد وإرسال الطلب الآن</span>
+          <span class="text-lg">←</span>
+        </button>
+
+        <p class="text-center text-[11px] text-white/40 mt-4 leading-relaxed">
+          بالضغط على تأكيد، أنت توافق على شروط الخدمة وسياسة استرجاع الطلبات الخاصة بخدمات الحسينية.
+        </p>
+      </div>
+
+      <!-- Driver Guarantee Card -->
+      <div class="glass rounded-2xl p-4 flex items-center gap-3 fade-up d3 border border-white/10">
+        <div class="text-3xl">🛵</div>
+        <div>
+          <div class="text-xs font-bold text-emerald-300">ضمان سرعة التوصيل</div>
+          <div class="text-[11px] text-white/50 leading-tight">طلبك مضمون أن يصل ساخناً وبحالة ممتازة خلال الوقت المحدد، أو ستحصل على توصيل مجاني للمرة القادمة.</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+<!-- ══════════════════ SUCCESS MODAL ══════════════════ -->
+<div id="success-modal" class="modal-overlay">
+  <div class="glass-card rounded-3xl p-8 max-w-md w-full text-center relative border border-emerald-400/30">
+    <div class="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl" style="background:linear-gradient(135deg,#00b09b,#06d6a0);box-shadow:0 0 35px rgba(0,176,155,.5)">
+      ✓
+    </div>
+    <h3 class="text-2xl font-black mb-2">تم تأكيد طلبك بنجاح! 🎉</h3>
+    <p class="text-sm text-white/60 mb-6 leading-relaxed">
+      رقم الطلب الخاص بك هو <span class="font-extrabold text-emerald-400">#HS-9482</span>.<br/>
+      تم إرسال الطلب للمتجر والمندوب في طريقه للتحضير.
+    </p>
+
+    <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 text-right text-xs space-y-2 mb-6">
+      <div class="flex justify-between">
+        <span class="text-white/50">المتجر:</span>
+        <span class="font-bold">مطعم السلام</span>
+      </div>
+      <div class="flex justify-between">
+        <span class="text-white/50">طريقة الدفع:</span>
+        <span class="font-bold text-amber-300" id="confirmed-payment">نقدياً عند الاستلام</span>
+      </div>
+      <div class="flex justify-between">
+        <span class="text-white/50">وقت الوصول المتوقع:</span>
+        <span class="font-bold text-emerald-400">30 - 40 دقيقة</span>
+      </div>
+    </div>
+
+    <div class="flex gap-3">
+      <button onclick="window.location.reload()" class="btn-primary flex-1 py-3.5 rounded-2xl text-sm font-bold">
+        تتبع مسار الطلب 🗺️
+      </button>
+      <button onclick="window.location.href='husayniya-full.html'" class="px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-xs font-bold transition">
+        الرئيسية
+      </button>
+    </div>
+  </div>
+</div>
+
+</div><!-- .page -->
+
+<script>
+// ── Global Cart State ──
+const items = {
+  1: { price: 18.50, qty: 1 },
+  2: { price: 12.00, qty: 2 },
+  3: { price: 2.50, qty: 1 }
+};
+const deliveryFee = 2.50;
+let discount = 0.00;
+let selectedPaymentMethod = 'الدفع نقدياً عند الاستلام (كاش)';
+
+// ── Update Quantity ──
+function updateQty(id, delta) {
+  if (!items[id]) return;
+  items[id].qty += delta;
+  if (items[id].qty < 1) items[id].qty = 1;
+
+  document.getElementById(`qty-${id}`).textContent = items[id].qty;
+  const itemTotalEl = document.querySelector(`.cart-item[data-id="${id}"] .item-total-price`);
+  if (itemTotalEl) {
+    itemTotalEl.textContent = (items[id].price * items[id].qty).toFixed(2);
+  }
+  calculateTotal();
+}
+
+// ── Calculate Totals ──
+function calculateTotal() {
+  let subtotal = 0;
+  for (let id in items) {
+    subtotal += items[id].price * items[id].qty;
+  }
+  document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+  
+  const total = Math.max(0, subtotal + deliveryFee - discount);
+  document.getElementById('grand-total').textContent = total.toFixed(2) + ' $';
+}
+
+// ── Apply Coupon ──
+function applyCoupon() {
+  const input = document.getElementById('coupon-input');
+  const msg = document.getElementById('coupon-msg');
+  const code = input.value.trim().toUpperCase();
+
+  if (code === 'HUSAYN' || code === 'HUSAYNIYA') {
+    discount = 5.00;
+    document.getElementById('discount-val').textContent = discount.toFixed(2);
+    document.getElementById('discount-row').classList.remove('hidden');
+    msg.textContent = '✓ تم تطبيق خصم بقيمة 5.00 $ بنجاح!';
+    msg.className = 'text-[11px] mt-1.5 text-emerald-400 font-semibold block';
+    calculateTotal();
+  } else {
+    msg.textContent = '✕ كود الخصم غير صحيح أو منتهي الصلاحية.';
+    msg.className = 'text-[11px] mt-1.5 text-rose-400 font-semibold block';
+  }
+}
+
+// ── Payment Selection ──
+function selectPayment(element, methodKey) {
+  document.querySelectorAll('.pay-option').forEach(el => el.classList.remove('selected'));
+  element.classList.add('selected');
+  selectedPaymentMethod = element.querySelector('.font-bold span').textContent;
+}
+
+// ── Clear Cart ──
+function clearCart() {
+  if (confirm('هل أنت متأكد من رغبتك في تفريغ السلة؟')) {
+    document.getElementById('cart-list').innerHTML = `
+      <div class="text-center py-12 text-white/40">
+        <div class="text-4xl mb-2">🛒</div>
+        <p class="text-sm">سلتك فارغة الآن.</p>
+        <a href="husayniya-full.html" class="inline-block mt-3 text-xs text-emerald-400 font-bold hover:underline">تصفح المتاجر والمطاعم</a>
+      </div>
+    `;
+    for (let id in items) items[id].qty = 0;
+    calculateTotal();
+  }
+}
+
+// ── Submit Order ──
+function submitOrder() {
+  let hasItems = false;
+  for (let id in items) {
+    if (items[id].qty > 0) hasItems = true;
+  }
+  if (!hasItems) {
+    alert('سلتك فارغة! يرجى إضافة عناصر أولاً.');
+    return;
+  }
+
+  document.getElementById('confirmed-payment').textContent = selectedPaymentMethod;
+  document.getElementById('success-modal').classList.add('show');
+}
+</script>
+
+</body>
+</html>

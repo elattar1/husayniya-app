@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+<title>خدمات الحسينية — المنصة الشاملة</title>
+<link rel="manifest" href="manifest.json"/>
+<meta name="theme-color" content="#00b09b"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<link rel="apple-touch-icon" href="icon-192.png"/>
+<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js">// ── Register Service Worker for PWA / APK ──
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+</script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #06091a;
+  color: #fff;
+  overflow-x: hidden;
+  direction: rtl;
+  min-height: 100vh;
+}
+
+/* ── Dynamic Viewport & Orbs ── */
+.bg-scene { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .35;
+  animation: drift 15s ease-in-out infinite alternate;
+}
+.o1 { width: min(500px, 80vw); height: min(500px, 80vw); background: radial-gradient(circle,#00b09b,#045353); top: -100px; right: -80px; }
+.o2 { width: min(400px, 70vw); height: min(400px, 70vw); background: radial-gradient(circle,#f7971e,#e4a832); bottom: -80px; left: -80px; animation-delay: -5s; }
+.o3 { width: min(300px, 60vw); height: min(300px, 60vw); background: radial-gradient(circle,#667eea,#764ba2); top: 40%; left: 30%; animation-delay: -9s; }
+@keyframes drift {
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(15px,-12px) scale(1.04); }
+  100% { transform: translate(-12px,15px) scale(.96); }
+}
+
+.app-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 74px; /* Space for Mobile Bottom Bar */
+}
+@media (min-width: 768px) {
+  .app-container { padding-bottom: 0; }
+}
+
+/* ── Liquid Glass Responsive Classes ── */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all .25s ease;
+}
+.glass-card:active { transform: scale(0.98); }
+@media (hover: hover) {
+  .glass-card:hover {
+    border-color: rgba(0, 176, 155, 0.45);
+    box-shadow: 0 12px 30px rgba(0, 176, 155, 0.15);
+    transform: translateY(-3px);
+  }
+}
+
+/* ── Gradients & Typography ── */
+.gt {
+  background: linear-gradient(135deg, #00e5c8 0%, #43cea2 45%, #f7c948 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #00b09b, #06d6a0);
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 700;
+  transition: all .25s ease;
+}
+.btn-primary:active { transform: scale(0.97); }
+
+/* ── Responsive Horizontal Scroll ── */
+.scroll-touch {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.scroll-touch::-webkit-scrollbar { display: none; }
+
+/* ── Bottom Mobile Bar (PWA Style) ── */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 64px;
+  background: rgba(4, 14, 30, 0.92);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 8px;
+}
+@media (min-width: 768px) {
+  .mobile-nav { display: none; }
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: all .2s;
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+.mobile-nav-item.active {
+  color: #00e5c8;
+}
+
+/* ── Slide Drawer for Mobile ── */
+.drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: min(320px, 85vw);
+  background: rgba(4, 14, 30, 0.96);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+.drawer.open { transform: translateX(0); }
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(4px);
+  z-index: 190;
+  display: none;
+}
+.drawer-backdrop.open { display: block; }
+
+/* ── Dynamic SPA View Switcher ── */
+.app-view { display: none; animation: fadeIn .3s ease; }
+.app-view.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<!-- Animated Orbs -->
+<div class="bg-scene">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<div class="app-container">
+
+  <!-- ══════════════ RESPONSIVE TOPBAR ══════════════ -->
+  <header class="glass sticky top-0 z-40 px-4 md:px-8 py-3.5" style="background:rgba(4,14,30,.72);border-bottom:1px solid rgba(255,255,255,.08)">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+      
+      <!-- Brand & Drawer Trigger -->
+      <div class="flex items-center gap-3">
+        <button onclick="toggleDrawer()" class="md:hidden glass p-2 rounded-xl text-white/80 active:scale-95">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+
+        <div onclick="navigateTo('home')" class="flex items-center gap-2.5 cursor-pointer">
+          <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center text-xl shadow-lg" style="background:linear-gradient(135deg,#00b09b,#06d6a0)">
+            🏠
+          </div>
+          <div>
+            <div class="text-sm md:text-base font-extrabold gt leading-tight">خدمات الحسينية</div>
+            <div class="text-[10px] text-emerald-400/80 font-semibold">تطبيق المنطقة الموحد</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-1.5 text-xs font-bold text-white/70">
+        <button onclick="navigateTo('home')" class="px-3.5 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">الرئيسية</button>
+        <button onclick="navigateTo('store')" class="px-3.5 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">المتاجر والمطاعم</button>
+        <button onclick="navigateTo('tracking')" class="px-3.5 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">تتبع طلبي 🛵</button>
+        <button onclick="navigateTo('dashboard')" class="px-3.5 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">لوحة الإدارة 📊</button>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2">
+        <!-- Live Cart Badge -->
+        <button onclick="navigateTo('checkout')" class="glass px-3.5 py-2 rounded-xl flex items-center gap-2 text-xs font-bold hover:bg-white/10 active:scale-95 transition">
+          <span>🛒</span>
+          <span class="hidden sm:inline">السلة</span>
+          <span id="global-cart-qty" class="w-5 h-5 rounded-full bg-amber-400 text-black font-black text-[10px] flex items-center justify-center">2</span>
+        </button>
+
+        <!-- Account Pill -->
+        <button onclick="navigateTo('account')" class="hidden sm:flex glass p-1.5 pr-3 rounded-xl items-center gap-2 text-xs font-semibold hover:bg-white/10 transition">
+          <span>أحمد</span>
+          <div class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px]">أ</div>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ══════════════ MOBILE DRAWER MENU ══════════════ -->
+  <div id="drawer-backdrop" class="drawer-backdrop" onclick="toggleDrawer()"></div>
+  <aside id="drawer" class="drawer">
+    <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-sm">🏠</div>
+        <span class="font-bold text-sm text-white">خدمات الحسينية</span>
+      </div>
+      <button onclick="toggleDrawer()" class="text-white/40 hover:text-white text-lg">✕</button>
+    </div>
+
+    <div class="space-y-1.5 flex-1">
+      <button onclick="navigateTo('home'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>🏠</span><span>الرئيسية</span>
+      </button>
+      <button onclick="navigateTo('store'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>🍖</span><span>قائمة المطعم والوجبات</span>
+      </button>
+      <button onclick="navigateTo('checkout'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>🛒</span><span>سلة التسوق وإتمام الدفع</span>
+      </button>
+      <button onclick="navigateTo('tracking'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>🛵</span><span>تتبع مسار السائق الحي</span>
+      </button>
+      <button onclick="navigateTo('account'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>👤</span><span>حسابي الشخصي وسجل الطلبات</span>
+      </button>
+      <button onclick="navigateTo('dashboard'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>📊</span><span>لوحة الإدارة والتحكم</span>
+      </button>
+      <button onclick="navigateTo('login'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>🔐</span><span>تسجيل الدخول / إنشاء حساب</span>
+      </button>
+    </div>
+
+    <div class="pt-4 border-t border-white/10 text-xs text-white/40 text-center">
+      الحسينية، بغداد • دعم 24/7
+    </div>
+  </aside>
+
+  <!-- ══════════════ DYNAMIC PAGE VIEWS CONTAINER ══════════════ -->
+  <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ── 1. HOME VIEW ── -->
+    <div id="view-home" class="app-view active space-y-8">
+      
+      <!-- Responsive Hero -->
+      <div class="glass-card rounded-3xl p-6 md:p-10 relative overflow-hidden">
+        <div class="max-w-2xl relative z-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold mb-4">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>+250 متجر ومزود خدمة داخل الحسينية</span>
+          </div>
+          <h1 class="text-2xl sm:text-4xl md:text-5xl font-black leading-tight mb-4">
+            كل خدمات الحسينية<br/><span class="gt">أسرع وأقرب ليك دائماً!</span>
+          </h1>
+          <p class="text-xs sm:text-sm text-white/60 mb-6 leading-relaxed">
+            من أفضل مشاوي ومطاعم، إلى التسوق المنزلي والدليل الطبي وحجز النقل — اطلب الآن واستلم في دقائق.
+          </p>
+          
+          <!-- Search box -->
+          <div class="glass p-1.5 rounded-2xl flex items-center gap-2 max-w-lg border border-white/20">
+            <input id="home-search" oninput="dynamicSearch(this.value)" type="text" placeholder="ابحث عن مطعم، صيدلية، أو خدمة..." class="flex-1 bg-transparent px-3 text-xs sm:text-sm text-white focus:outline-none"/>
+            <button onclick="navigateTo('store')" class="btn-primary px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap">
+              استكشف 🔍
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Filter Chips (Touch Friendly) -->
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-base sm:text-lg font-bold">أقسام الخدمات في الحسينية</h2>
+          <span class="text-xs text-emerald-400">اسحب للتصفح ←</span>
+        </div>
+        <div class="flex items-center gap-2.5 scroll-touch pb-2">
+          <button onclick="filterCategory('all', this)" class="cat-pill active px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white whitespace-nowrap">🌟 الكل</button>
+          <button onclick="filterCategory('food', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🍔 مطاعم ومشاوي</button>
+          <button onclick="filterCategory('grocery', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🛒 سوبر ماركت</button>
+          <button onclick="filterCategory('pharmacy', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">💊 صيدليات 24h</button>
+          <button onclick="filterCategory('ride', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🚖 تكسي وتوصيل</button>
+          <button onclick="filterCategory('medical', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🏥 دليل الأطباء</button>
+          <button onclick="filterCategory('realty', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🏠 عقارات المنطقة</button>
+        </div>
+      </div>
+
+      <!-- Responsive Stores Cards Grid (1 col mobile, 2 tablet, 3 desktop) -->
+      <div id="stores-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Store 1 -->
+        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="مطعم السلام">
+          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#1a3a2a,#0d6640)">
+            🍖
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.9</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-1">مطعم السلام للمشاوي</h3>
+          <p class="text-xs text-white/50 mb-3">كباب، قوزي، برياني، ودجاج مشوي على الفحم</p>
+          <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
+            <span>⏱️ 25 - 35 دقيقة</span>
+            <span class="text-emerald-400 font-bold">توصيل 2.50 $</span>
+          </div>
+        </div>
+
+        <!-- Store 2 -->
+        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="grocery" data-name="سوبر ماركت الأمل">
+          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#1a2a3e,#0d3d6e)">
+            🛒
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.7</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-1">سوبر ماركت الأمل المركزي</h3>
+          <p class="text-xs text-white/50 mb-3">جميع المواد الغذائية والخضار الطازجة والمعلبات</p>
+          <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
+            <span>⏱️ 20 - 30 دقيقة</span>
+            <span class="text-emerald-400 font-bold">توصيل 2.00 $</span>
+          </div>
+        </div>
+
+        <!-- Store 3 -->
+        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="pharmacy" data-name="صيدلية الشفاء">
+          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#2a1a3e,#4a0d6e)">
+            💊
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[10px] font-bold">● 24 ساعة</span>
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.8</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-1">صيدلية الشفاء التخصصية</h3>
+          <p class="text-xs text-white/50 mb-3">أدوية، مستلزمات طبية، وعناية بالأطفال</p>
+          <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
+            <span>⏱️ 15 - 20 دقيقة</span>
+            <span class="text-emerald-400 font-bold">توصيل 1.50 $</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ── 2. STORE DETAIL (SPA EMBED / LINK) ── -->
+    <div id="view-store" class="app-view space-y-6">
+      <div class="glass-card rounded-3xl p-6 text-center">
+        <h2 class="text-xl font-bold mb-2">قائمة طعام ومأكولات مطعم السلام</h2>
+        <p class="text-xs text-white/60 mb-6">يمكنك تخصيص الوجبات وتحديد الإضافات بالسلة فوراً</p>
+        <a href="husayniya-store.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold" style="text-decoration:none">
+          <span>افتح قائمة المتجر الكاملة</span>
+          <span>←</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── 3. CHECKOUT VIEW ── -->
+    <div id="view-checkout" class="app-view space-y-6">
+      <div class="glass-card rounded-3xl p-6 text-center">
+        <h2 class="text-xl font-bold mb-2">سلة المشتريات وإتمام الدفع</h2>
+        <p class="text-xs text-white/60 mb-6">حدد موقعك على الخريطة واختر طريقة الدفع (كاش / زين كاش)</p>
+        <a href="husayniya-checkout.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold" style="text-decoration:none">
+          <span>الانتقال لشاشة الدفع وتحديد العنوان</span>
+          <span>←</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── 4. TRACKING VIEW ── -->
+    <div id="view-tracking" class="app-view space-y-6">
+      <div class="glass-card rounded-3xl p-6 text-center">
+        <h2 class="text-xl font-bold mb-2">تتبع مسار السائق المباشر</h2>
+        <p class="text-xs text-white/60 mb-6">خريطة GPS ورصد حركة الدراجة النارية حتى باب منزلك</p>
+        <a href="husayniya-tracking.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold" style="text-decoration:none">
+          <span>مشاهدة الخريطة الحية ومحادثة السائق</span>
+          <span>←</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── 5. ACCOUNT VIEW ── -->
+    <div id="view-account" class="app-view space-y-6">
+      <div class="glass-card rounded-3xl p-6 text-center">
+        <h2 class="text-xl font-bold mb-2">الملف الشخصي والمحفظة</h2>
+        <p class="text-xs text-white/60 mb-6">سجل الطلبات السابقة، العناوين المحفوظة، ورصيدك المتاح</p>
+        <a href="husayniya-account.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold" style="text-decoration:none">
+          <span>فتح الحساب الشخصي</span>
+          <span>←</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── 6. DASHBOARD VIEW ── -->
+    <div id="view-dashboard" class="app-view space-y-6">
+      <div class="glass-card rounded-3xl p-6 text-center">
+        <h2 class="text-xl font-bold mb-2">لوحة الإدارة والتحكم</h2>
+        <p class="text-xs text-white/60 mb-6">إحصائيات الإيرادات، إدارة السائقين، والطلبات الحية</p>
+        <a href="husayniya-dashboard.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold" style="text-decoration:none">
+          <span>فتح لوحة الإدارة</span>
+          <span>←</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── 7. LOGIN VIEW ── -->
+    <div id="view-login" class="app-view space-y-6">
+      <div class="glass-card rounded-3xl p-6 text-center">
+        <h2 class="text-xl font-bold mb-2">تسجيل الدخول والتحقق بـ OTP</h2>
+        <p class="text-xs text-white/60 mb-6">سجل رقم هاتفك واستلم كود التفعيل في ثوانٍ</p>
+        <a href="husayniya-login.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold" style="text-decoration:none">
+          <span>شاشة تسجيل الدخول</span>
+          <span>←</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ══════════════ MOBILE BOTTOM NAVIGATION ══════════════ -->
+  <nav class="mobile-nav">
+    <div onclick="navigateTo('home')" id="mob-home" class="mobile-nav-item active">
+      <span class="text-lg">🏠</span>
+      <span>الرئيسية</span>
+    </div>
+    <div onclick="navigateTo('store')" id="mob-store" class="mobile-nav-item">
+      <span class="text-lg">🍖</span>
+      <span>المطاعم</span>
+    </div>
+    <div onclick="navigateTo('checkout')" id="mob-checkout" class="mobile-nav-item relative">
+      <span class="text-lg">🛒</span>
+      <span>السلة</span>
+      <span class="w-4 h-4 rounded-full bg-amber-400 text-black font-black text-[9px] flex items-center justify-center absolute top-1 left-2">2</span>
+    </div>
+    <div onclick="navigateTo('tracking')" id="mob-tracking" class="mobile-nav-item">
+      <span class="text-lg">🛵</span>
+      <span>تتبّع</span>
+    </div>
+    <div onclick="navigateTo('account')" id="mob-account" class="mobile-nav-item">
+      <span class="text-lg">👤</span>
+      <span>حسابي</span>
+    </div>
+  </nav>
+
+</div><!-- .app-container -->
+
+<script>
+// ── Responsive SPA Router ──
+function navigateTo(viewId) {
+  document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active'));
+  const target = document.getElementById(`view-${viewId}`);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Update mobile active states
+  document.querySelectorAll('.mobile-nav-item').forEach(m => m.classList.remove('active'));
+  const activeMob = document.getElementById(`mob-${viewId}`);
+  if (activeMob) activeMob.classList.add('active');
+}
+
+// ── Mobile Drawer Toggle ──
+function toggleDrawer() {
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('drawer-backdrop').classList.toggle('open');
+}
+
+// ── Category Filter ──
+function filterCategory(cat, btn) {
+  document.querySelectorAll('.cat-pill').forEach(p => {
+    p.classList.remove('active', 'text-white');
+    p.classList.add('text-white/70');
+  });
+  btn.classList.add('active', 'text-white');
+  btn.classList.remove('text-white/70');
+
+  document.querySelectorAll('.store-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// ── Dynamic Search Filter ──
+function dynamicSearch(val) {
+  const q = val.toLowerCase().trim();
+  document.querySelectorAll('.store-card').forEach(card => {
+    const name = card.dataset.name.toLowerCase();
+    if (name.includes(q)) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+// ── Register Service Worker for PWA / APK ──
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+</script>
+
+</body>
+</html>

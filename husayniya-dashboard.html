@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>لوحة الإدارة — خدمات الحسينية</title>
+<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#fff;overflow-x:hidden;direction:rtl}
+
+/* ── BG ── */
+.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.35;animation:drift 16s ease-in-out infinite alternate}
+.o1{width:500px;height:500px;background:radial-gradient(circle,#00b09b,#045353);top:-150px;right:20%;animation-delay:0s}
+.o2{width:400px;height:400px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-100px;left:10%;animation-delay:-6s}
+.o3{width:300px;height:300px;background:radial-gradient(circle,#667eea,#764ba2);top:40%;left:50%;animation-delay:-10s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-15px) scale(1.05)}100%{transform:translate(-15px,20px) scale(.97)}}
+
+/* ── Layout ── */
+.layout{position:relative;z-index:1;display:flex;min-height:100vh}
+
+/* ── Sidebar ── */
+.sidebar{width:260px;background:rgba(4,12,28,.7);backdrop-filter:blur(30px) saturate(200%);-webkit-backdrop-filter:blur(30px) saturate(200%);border-left:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;transition:width .3s;overflow:hidden;position:fixed;top:0;bottom:0;right:0;z-index:50}
+.sidebar.collapsed{width:72px}
+.sidebar.collapsed .hide-col{display:none}
+.sidebar.collapsed .nav-label{opacity:0;width:0}
+.sidebar.collapsed .logo-text{opacity:0;width:0}
+
+.nav-item{display:flex;align-items:center;gap:12px;padding:11px 16px;border-radius:14px;cursor:pointer;transition:all .25s;color:rgba(255,255,255,.5);font-size:.88rem;font-weight:500;white-space:nowrap;margin:2px 10px}
+.nav-item:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.8)}
+.nav-item.active{background:rgba(0,176,155,.18);color:#00e5c8;border:1px solid rgba(0,176,155,.3)}
+.nav-item .nav-icon{width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-badge{background:linear-gradient(135deg,#f7971e,#f7c948);color:#000;font-size:.65rem;font-weight:800;padding:2px 7px;border-radius:8px;margin-right:auto}
+
+/* ── Main ── */
+.main{flex:1;margin-right:260px;transition:margin .3s;padding:0}
+.main.expanded{margin-right:72px}
+
+/* ── Glass ── */
+.glass{background:rgba(255,255,255,.07);backdrop-filter:blur(18px) saturate(170%);-webkit-backdrop-filter:blur(18px) saturate(170%);border:1px solid rgba(255,255,255,.11)}
+.glass-card{background:rgba(255,255,255,.06);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);border:1px solid rgba(255,255,255,.1);transition:all .3s}
+.glass-card:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);transform:translateY(-2px)}
+
+/* ── Topbar ── */
+.topbar{background:rgba(4,12,28,.5);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,.07);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:40}
+
+/* ── Gradient Text ── */
+.gt{background:linear-gradient(135deg,#00e5c8,#43cea2,#f7c948);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── Stat card ── */
+.stat-card{border-radius:20px;padding:22px;position:relative;overflow:hidden}
+.stat-card::after{content:'';position:absolute;top:-30%;right:-20%;width:100px;height:100px;border-radius:50%;opacity:.15}
+.stat-card.c1::after{background:#00e5c8}.stat-card.c2::after{background:#f7c948}.stat-card.c3::after{background:#667eea}.stat-card.c4::after{background:#ff7070}
+.stat-val{font-size:1.8rem;font-weight:800;line-height:1;margin:8px 0 4px}
+.stat-change{font-size:.78rem;font-weight:600;display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:8px}
+.stat-up{background:rgba(0,214,160,.15);color:#00d6a0}
+.stat-down{background:rgba(255,80,80,.15);color:#ff7070}
+
+/* ── Button ── */
+.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;color:#fff;font-weight:700;transition:all .3s}
+.btn-primary:hover{transform:scale(1.03);box-shadow:0 0 24px rgba(0,176,155,.4)}
+.btn-sm{border-radius:12px;padding:8px 16px;font-size:.82rem}
+.btn-outline{background:transparent;border:1.5px solid rgba(255,255,255,.2);cursor:pointer;color:#fff;transition:all .3s;font-weight:600}
+.btn-outline:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4)}
+
+/* ── Input ── */
+.input-glass{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14);color:#fff;border-radius:12px;padding:9px 14px;font-size:.85rem;transition:.3s}
+.input-glass:focus{outline:none;background:rgba(255,255,255,.12);border-color:rgba(0,176,155,.6);box-shadow:0 0 0 3px rgba(0,176,155,.1)}
+.input-glass::placeholder{color:rgba(255,255,255,.3)}
+
+/* ── Table ── */
+.tbl{width:100%;border-collapse:separate;border-spacing:0}
+.tbl th{text-align:right;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.4);padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.08);text-transform:uppercase;letter-spacing:.5px}
+.tbl td{padding:12px 14px;font-size:.85rem;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:middle}
+.tbl tr:hover td{background:rgba(255,255,255,.04)}
+.tbl-badge{padding:4px 12px;border-radius:10px;font-size:.75rem;font-weight:700;display:inline-flex;align-items:center;gap:4px}
+.b-new{background:rgba(0,176,155,.18);color:#00e5c8;border:1px solid rgba(0,176,155,.3)}
+.b-prep{background:rgba(247,201,72,.15);color:#f7c948;border:1px solid rgba(247,201,72,.3)}
+.b-del{background:rgba(100,149,237,.15);color:#6fa8f0;border:1px solid rgba(100,149,237,.3)}
+.b-done{background:rgba(0,214,160,.15);color:#00d6a0;border:1px solid rgba(0,214,160,.3)}
+.b-cancel{background:rgba(255,80,80,.12);color:#ff7070;border:1px solid rgba(255,80,80,.25)}
+
+/* ── Chart container ── */
+.chart-wrap{border-radius:20px;padding:22px;position:relative}
+
+/* ── Quick action ── */
+.qa{border-radius:18px;padding:20px;cursor:pointer;transition:all .3s;text-align:center}
+.qa:hover{transform:translateY(-4px);border-color:rgba(0,176,155,.4)}
+.qa-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 10px}
+
+/* ── Animations ── */
+.fade-up{opacity:0;transform:translateY(20px);animation:fu .5s ease forwards}
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+.d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.15s}.d4{animation-delay:.2s}.d5{animation-delay:.25s}.d6{animation-delay:.3s}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:rgba(255,255,255,.02)}::-webkit-scrollbar-thumb{background:rgba(0,176,155,.35);border-radius:3px}
+
+/* ── Notification dropdown ── */
+.notif-drop{position:absolute;top:calc(100% + 8px);left:0;width:340px;border-radius:18px;padding:6px;display:none;z-index:100}
+.notif-drop.open{display:block}
+.notif-item{display:flex;gap:10px;padding:12px;border-radius:14px;cursor:pointer;transition:.2s}
+.notif-item:hover{background:rgba(255,255,255,.06)}
+.notif-dot{width:8px;height:8px;border-radius:50%;background:#00e5c8;flex-shrink:0;margin-top:6px}
+
+/* ── Top stores ── */
+.rank-num{width:28px;height:28px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;flex-shrink:0}
+.rank-1{background:linear-gradient(135deg,#f7c948,#f7971e);color:#000}
+.rank-2{background:rgba(192,192,192,.25);color:#ccc}
+.rank-3{background:rgba(205,127,50,.2);color:#cd7f32}
+.rank-other{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4)}
+
+/* ── Progress bar ── */
+.pbar{height:6px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.pbar-fill{height:100%;border-radius:3px;transition:width .8s ease}
+
+/* ── Driver status ── */
+.drv-online{width:8px;height:8px;border-radius:50%;background:#00d6a0;box-shadow:0 0 8px rgba(0,214,160,.6)}
+.drv-busy{width:8px;height:8px;border-radius:50%;background:#f7c948;box-shadow:0 0 8px rgba(247,201,72,.6)}
+.drv-offline{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)}
+
+/* ── Date chip ── */
+.date-chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:7px 14px;font-size:.8rem;cursor:pointer;transition:.25s;color:rgba(255,255,255,.55)}
+.date-chip:hover,.date-chip.on{background:rgba(0,176,155,.18);border-color:rgba(0,176,155,.5);color:#00e5c8}
+
+/* ── Tooltip ── */
+.tip{position:relative}.tip::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:rgba(0,0,0,.85);color:#fff;padding:5px 10px;border-radius:8px;font-size:.72rem;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
+.tip:hover::after{opacity:1}
+</style>
+</head>
+<body>
+
+<div class="bg-scene">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+</div>
+
+<div class="layout">
+
+<!-- ══════════════════ SIDEBAR ══════════════════ -->
+<aside class="sidebar" id="sidebar">
+  <!-- Logo -->
+  <div style="padding:18px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:8px">
+    <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#00b09b,#06d6a0);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+    </div>
+    <div class="logo-text" style="transition:opacity .3s;overflow:hidden">
+      <div style="font-size:.95rem;font-weight:800;background:linear-gradient(135deg,#fff,#a8f0e8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap">خدمات الحسينية</div>
+      <div style="font-size:.6rem;color:rgba(0,229,200,.5)">لوحة الإدارة</div>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <nav style="flex:1;overflow-y:auto;padding:0 0 12px">
+    <div style="padding:0 16px 6px;font-size:.68rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:1px" class="hide-col">الرئيسية</div>
+    <div class="nav-item active" onclick="navClick(this)">
+      <span class="nav-icon">📊</span><span class="nav-label">لوحة التحكم</span>
+    </div>
+    <div class="nav-item" onclick="navClick(this)">
+      <span class="nav-icon">📦</span><span class="nav-label">الطلبات</span><span class="nav-badge">12</span>
+    </div>
+    <div class="nav-item" onclick="navClick(this)">
+      <span class="nav-icon">🏪</span><span class="nav-label">المتاجر</span>
+    </div>
+    <div class="nav-item" onclick="navClick(this)">
+      <span class="nav-icon">🛍️</span><span class="nav-label">المنتجات</span>
+    </div>
+
+    <div style="padding:14px 16px 6px;font-size:.68rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:1px" class="hide-col">التوصيل</div>
+    <div class="nav-item" onclick="navClick(this)">
+      <span class="nav-icon">🚗</span><span class="nav-label">السائقين</span><span class="nav-badge" style="background:rgba(0,214,160,.2);color:#00d6a0">8 نشط</span>
+    </div>
+    <div class="nav-item" onclick="navClick(this)">
+      <span class="nav-icon">🗺️</span><span class="nav-label">خريطة التتبع</span>
+    </div>
+
+    <div style="padding:14px 16px 6px;font-size:.68rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:1px" class="hide-col">المستخدمين</div>
+    <div class="nav-item" onclick="navClick(this)">
+      <span class="nav-icon">👥</span><span class="nav-label">العملاء</span>
+    </div>
+    <div class="nav-item" onclick="navClick(this)">
+      <span class="nav-icon">🏢</span><span class="nav-label">مزودي الخدمات</span>
+    </div>
+
+    <div style="padding:14px 16px 6px;font-size:.68rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:1px" class="hide-col">النظام</div>
+    <div class="nav-item" onclick="navClick(this)">
+      <span class="nav-icon">🔔</span><span class="nav-label">الإشعارات</span><span class="nav-badge" style="background:rgba(255,80,80,.2);color:#ff7070">3</span>
+    </div>
+    <div class="nav-item" onclick="navClick(this)">
+      <span class="nav-icon">📈</span><span class="nav-label">التقارير</span>
+    </div>
+    <div class="nav-item" onclick="navClick(this)">
+      <span class="nav-icon">⚙️</span><span class="nav-label">الإعدادات</span>
+    </div>
+  </nav>
+
+  <!-- Bottom -->
+  <div style="padding:12px 10px;border-top:1px solid rgba(255,255,255,.06)">
+    <div class="nav-item" onclick="navClick(this)" style="margin:0">
+      <span class="nav-icon">🚪</span><span class="nav-label">تسجيل الخروج</span>
+    </div>
+  </div>
+</aside>
+
+<!-- ══════════════════ MAIN ══════════════════ -->
+<div class="main" id="main-area">
+
+  <!-- ── TOPBAR ── -->
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:14px">
+      <!-- Toggle sidebar -->
+      <button onclick="toggleSidebar()" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,.5);transition:.3s;padding:6px" onmouseover="this.style.color='#00e5c8'" onmouseout="this.style.color='rgba(255,255,255,.5)'">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+      <div>
+        <h1 style="font-size:1.15rem;font-weight:800">مرحباً، <span class="gt">محمد</span> 👋</h1>
+        <p style="font-size:.75rem;color:rgba(255,255,255,.4)">آخر تسجيل: اليوم 10:24 ص</p>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:10px">
+      <!-- Search -->
+      <div style="position:relative;display:flex;align-items:center">
+        <input class="input-glass" placeholder="بحث..." style="width:200px;padding-right:36px"/>
+        <svg style="position:absolute;right:12px;opacity:.35" width="14" height="14" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+
+      <!-- Date range -->
+      <div style="display:flex;gap:4px">
+        <button class="date-chip on" onclick="dateClick(this)">اليوم</button>
+        <button class="date-chip" onclick="dateClick(this)">الأسبوع</button>
+        <button class="date-chip" onclick="dateClick(this)">الشهر</button>
+      </div>
+
+      <!-- Notifications -->
+      <div style="position:relative">
+        <button onclick="toggleNotif()" class="glass" style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;border:1px solid rgba(255,255,255,.12)">
+          <svg width="17" height="17" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span style="position:absolute;top:-3px;left:-3px;width:16px;height:16px;border-radius:50%;background:#ff5050;font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center">3</span>
+        </button>
+        <!-- Dropdown -->
+        <div class="notif-drop glass" id="notif-panel" style="border-radius:18px">
+          <div style="padding:14px 16px 8px;font-size:.88rem;font-weight:700;display:flex;justify-content:space-between;align-items:center">
+            <span>الإشعارات</span>
+            <span style="font-size:.75rem;color:#00e5c8;cursor:pointer">قراءة الكل</span>
+          </div>
+          <div class="notif-item">
+            <div class="notif-dot"></div>
+            <div>
+              <div style="font-size:.82rem;font-weight:600">طلب جديد #1247</div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.4)">مطعم السلام — 3 وجبات · منذ 2 دقيقة</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-dot" style="background:#f7c948"></div>
+            <div>
+              <div style="font-size:.82rem;font-weight:600">سائق جديد بانتظار الموافقة</div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.4)">أحمد محمود — منذ 15 دقيقة</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-dot" style="background:#ff7070"></div>
+            <div>
+              <div style="font-size:.82rem;font-weight:600">شكوى من عميل</div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.4)">طلب #1238 تأخر التوصيل — منذ 1 ساعة</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile -->
+      <div class="glass" style="display:flex;align-items:center;gap:10px;border-radius:14px;padding:6px 14px 6px 8px;cursor:pointer">
+        <div style="width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#00b09b,#06d6a0);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800">م</div>
+        <div>
+          <div style="font-size:.82rem;font-weight:700;line-height:1.1">محمد المشرف</div>
+          <div style="font-size:.65rem;color:rgba(0,229,200,.6)">مدير النظام</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CONTENT ── -->
+  <div style="padding:24px 28px 60px">
+
+    <!-- ━━━ STATS CARDS ━━━ -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px">
+
+      <div class="glass-card stat-card c1 fade-up d1" style="border-radius:20px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="font-size:.82rem;color:rgba(255,255,255,.5)">إجمالي الإيرادات</div>
+          <div style="width:36px;height:36px;border-radius:12px;background:rgba(0,176,155,.18);display:flex;align-items:center;justify-content:center;font-size:16px">💰</div>
+        </div>
+        <div class="stat-val gt">$24,580</div>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span class="stat-change stat-up">↑ 12.5%</span>
+          <canvas id="spark1" width="80" height="30" style="opacity:.6"></canvas>
+        </div>
+      </div>
+
+      <div class="glass-card stat-card c2 fade-up d2" style="border-radius:20px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="font-size:.82rem;color:rgba(255,255,255,.5)">الطلبات اليوم</div>
+          <div style="width:36px;height:36px;border-radius:12px;background:rgba(247,201,72,.15);display:flex;align-items:center;justify-content:center;font-size:16px">📦</div>
+        </div>
+        <div class="stat-val" style="color:#f7c948">156</div>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span class="stat-change stat-up">↑ 8.3%</span>
+          <canvas id="spark2" width="80" height="30" style="opacity:.6"></canvas>
+        </div>
+      </div>
+
+      <div class="glass-card stat-card c3 fade-up d3" style="border-radius:20px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="font-size:.82rem;color:rgba(255,255,255,.5)">المستخدمين النشطين</div>
+          <div style="width:36px;height:36px;border-radius:12px;background:rgba(102,126,234,.15);display:flex;align-items:center;justify-content:center;font-size:16px">👥</div>
+        </div>
+        <div class="stat-val" style="color:#667eea">1,248</div>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span class="stat-change stat-up">↑ 22.1%</span>
+          <canvas id="spark3" width="80" height="30" style="opacity:.6"></canvas>
+        </div>
+      </div>
+
+      <div class="glass-card stat-card c4 fade-up d4" style="border-radius:20px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="font-size:.82rem;color:rgba(255,255,255,.5)">متوسط التقييم</div>
+          <div style="width:36px;height:36px;border-radius:12px;background:rgba(255,112,112,.12);display:flex;align-items:center;justify-content:center;font-size:16px">⭐</div>
+        </div>
+        <div class="stat-val" style="color:#f7c948">4.9</div>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span class="stat-change stat-up">↑ 0.2</span>
+          <div style="color:#f7c948;font-size:.85rem;letter-spacing:2px">★★★★★</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ━━━ CHARTS ROW ━━━ -->
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:24px">
+
+      <!-- Revenue Chart -->
+      <div class="glass-card chart-wrap fade-up d3">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+          <div>
+            <h3 style="font-size:1rem;font-weight:700">الإيرادات والطلبات</h3>
+            <p style="font-size:.78rem;color:rgba(255,255,255,.4)">آخر 7 أيام</p>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;font-size:.78rem">
+            <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:#00e5c8"></span>الإيرادات</span>
+            <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:#f7c948"></span>الطلبات</span>
+          </div>
+        </div>
+        <canvas id="mainChart" width="600" height="220"></canvas>
+      </div>
+
+      <!-- Orders by category pie -->
+      <div class="glass-card chart-wrap fade-up d4">
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:4px">الطلبات حسب الفئة</h3>
+        <p style="font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:14px">توزيع اليوم</p>
+        <canvas id="pieChart" width="220" height="220"></canvas>
+        <!-- Legend -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px">
+          <div style="display:flex;align-items:center;gap:6px;font-size:.78rem"><span style="width:10px;height:10px;border-radius:3px;background:#00e5c8"></span>مطاعم 45%</div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:.78rem"><span style="width:10px;height:10px;border-radius:3px;background:#f7c948"></span>بقالة 25%</div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:.78rem"><span style="width:10px;height:10px;border-radius:3px;background:#667eea"></span>صيدلية 18%</div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:.78rem"><span style="width:10px;height:10px;border-radius:3px;background:#ff7070"></span>أخرى 12%</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ━━━ ORDERS TABLE + SIDEBAR ━━━ -->
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:24px">
+
+      <!-- Recent Orders -->
+      <div class="glass-card fade-up d4" style="border-radius:20px;overflow:hidden">
+        <div style="padding:18px 22px 12px;display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <h3 style="font-size:1rem;font-weight:700">أحدث الطلبات</h3>
+            <p style="font-size:.78rem;color:rgba(255,255,255,.4)">آخر 10 طلبات</p>
+          </div>
+          <button class="btn-outline btn-sm">عرض الكل ←</button>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>العميل</th>
+                <th>المتجر</th>
+                <th>المبلغ</th>
+                <th>الحالة</th>
+                <th>الوقت</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight:700;color:#00e5c8">#1247</td>
+                <td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#00b09b,#06d6a0);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800">أ</div>أحمد م.</div></td>
+                <td>مطعم السلام</td>
+                <td style="font-weight:700">$42.50</td>
+                <td><span class="tbl-badge b-new">● جديد</span></td>
+                <td style="color:rgba(255,255,255,.45);font-size:.8rem">منذ 2 د</td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;color:#f7c948">#1246</td>
+                <td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#f7971e,#f7c948);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;color:#000">س</div>سارة ع.</div></td>
+                <td>سوبر ماركت الأمل</td>
+                <td style="font-weight:700">$78.00</td>
+                <td><span class="tbl-badge b-prep">● قيد التحضير</span></td>
+                <td style="color:rgba(255,255,255,.45);font-size:.8rem">منذ 8 د</td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;color:#6fa8f0">#1245</td>
+                <td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800">م</div>محمد ح.</div></td>
+                <td>صيدلية الشفاء</td>
+                <td style="font-weight:700">$25.00</td>
+                <td><span class="tbl-badge b-del">● في الطريق</span></td>
+                <td style="color:rgba(255,255,255,.45);font-size:.8rem">منذ 15 د</td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;color:#00d6a0">#1244</td>
+                <td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:8px;background:rgba(0,214,160,.2);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;color:#00d6a0">ع</div>علي ك.</div></td>
+                <td>بيتزا الحسينية</td>
+                <td style="font-weight:700">$36.00</td>
+                <td><span class="tbl-badge b-done">✓ تم التسليم</span></td>
+                <td style="color:rgba(255,255,255,.45);font-size:.8rem">منذ 30 د</td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;color:#ff7070">#1243</td>
+                <td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:8px;background:rgba(255,80,80,.15);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;color:#ff7070">ن</div>نور ص.</div></td>
+                <td>مطعم السلام</td>
+                <td style="font-weight:700">$18.50</td>
+                <td><span class="tbl-badge b-cancel">✕ ملغي</span></td>
+                <td style="color:rgba(255,255,255,.45);font-size:.8rem">منذ 45 د</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Right panel -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <!-- Top Stores -->
+        <div class="glass-card fade-up d5" style="border-radius:20px;padding:20px">
+          <h3 style="font-size:1rem;font-weight:700;margin-bottom:16px">🏆 أفضل المتاجر</h3>
+          <div style="display:flex;flex-direction:column;gap:12px">
+
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="rank-num rank-1">1</div>
+              <div style="flex:1">
+                <div style="font-size:.85rem;font-weight:700">مطعم السلام</div>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:4px">
+                  <div class="pbar" style="flex:1"><div class="pbar-fill" style="width:92%;background:linear-gradient(90deg,#00b09b,#06d6a0)"></div></div>
+                  <span style="font-size:.72rem;color:rgba(255,255,255,.5)">92%</span>
+                </div>
+              </div>
+              <span style="font-size:.8rem;font-weight:700;color:#00e5c8">$4,280</span>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="rank-num rank-2">2</div>
+              <div style="flex:1">
+                <div style="font-size:.85rem;font-weight:700">سوبر ماركت الأمل</div>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:4px">
+                  <div class="pbar" style="flex:1"><div class="pbar-fill" style="width:78%;background:linear-gradient(90deg,#667eea,#764ba2)"></div></div>
+                  <span style="font-size:.72rem;color:rgba(255,255,255,.5)">78%</span>
+                </div>
+              </div>
+              <span style="font-size:.8rem;font-weight:700;color:#6fa8f0">$3,150</span>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="rank-num rank-3">3</div>
+              <div style="flex:1">
+                <div style="font-size:.85rem;font-weight:700">صيدلية الشفاء</div>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:4px">
+                  <div class="pbar" style="flex:1"><div class="pbar-fill" style="width:65%;background:linear-gradient(90deg,#f7971e,#f7c948)"></div></div>
+                  <span style="font-size:.72rem;color:rgba(255,255,255,.5)">65%</span>
+                </div>
+              </div>
+              <span style="font-size:.8rem;font-weight:700;color:#f7c948">$2,420</span>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="rank-num rank-other">4</div>
+              <div style="flex:1">
+                <div style="font-size:.85rem;font-weight:700">بيتزا الحسينية</div>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:4px">
+                  <div class="pbar" style="flex:1"><div class="pbar-fill" style="width:52%;background:rgba(255,255,255,.25)"></div></div>
+                  <span style="font-size:.72rem;color:rgba(255,255,255,.5)">52%</span>
+                </div>
+              </div>
+              <span style="font-size:.8rem;font-weight:600;color:rgba(255,255,255,.5)">$1,890</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Active Drivers -->
+        <div class="glass-card fade-up d6" style="border-radius:20px;padding:20px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <h3 style="font-size:1rem;font-weight:700">🚗 السائقين</h3>
+            <span style="font-size:.78rem;color:#00e5c8;font-weight:600">8/12 نشط</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.04)">
+              <div class="drv-online"></div>
+              <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#00b09b,#06d6a0);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800">خ</div>
+              <div style="flex:1">
+                <div style="font-size:.82rem;font-weight:600">خالد أحمد</div>
+                <div style="font-size:.7rem;color:rgba(255,255,255,.4)">3 طلبات مكتملة</div>
+              </div>
+              <span style="font-size:.72rem;padding:3px 8px;border-radius:8px;background:rgba(0,214,160,.15);color:#00d6a0">متصل</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.04)">
+              <div class="drv-busy"></div>
+              <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#f7971e,#f7c948);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;color:#000">ع</div>
+              <div style="flex:1">
+                <div style="font-size:.82rem;font-weight:600">عمر حسن</div>
+                <div style="font-size:.7rem;color:rgba(255,255,255,.4)">يوصل طلب #1245</div>
+              </div>
+              <span style="font-size:.72rem;padding:3px 8px;border-radius:8px;background:rgba(247,201,72,.15);color:#f7c948">مشغول</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.04)">
+              <div class="drv-online"></div>
+              <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800">ي</div>
+              <div style="flex:1">
+                <div style="font-size:.82rem;font-weight:600">يوسف علي</div>
+                <div style="font-size:.7rem;color:rgba(255,255,255,.4)">5 طلبات مكتملة</div>
+              </div>
+              <span style="font-size:.72rem;padding:3px 8px;border-radius:8px;background:rgba(0,214,160,.15);color:#00d6a0">متصل</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ━━━ QUICK ACTIONS ━━━ -->
+    <div class="fade-up d5" style="margin-bottom:24px">
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:14px">⚡ إجراءات سريعة</h3>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px">
+        <div class="glass-card qa">
+          <div class="qa-icon" style="background:rgba(0,176,155,.18)">📦</div>
+          <div style="font-size:.82rem;font-weight:600">طلب جديد</div>
+        </div>
+        <div class="glass-card qa">
+          <div class="qa-icon" style="background:rgba(247,201,72,.15)">🏪</div>
+          <div style="font-size:.82rem;font-weight:600">إضافة متجر</div>
+        </div>
+        <div class="glass-card qa">
+          <div class="qa-icon" style="background:rgba(102,126,234,.15)">👤</div>
+          <div style="font-size:.82rem;font-weight:600">عميل جديد</div>
+        </div>
+        <div class="glass-card qa">
+          <div class="qa-icon" style="background:rgba(0,214,160,.15)">🚗</div>
+          <div style="font-size:.82rem;font-weight:600">إضافة سائق</div>
+        </div>
+        <div class="glass-card qa">
+          <div class="qa-icon" style="background:rgba(255,80,80,.12)">📊</div>
+          <div style="font-size:.82rem;font-weight:600">تقرير يومي</div>
+        </div>
+        <div class="glass-card qa">
+          <div class="qa-icon" style="background:rgba(247,151,30,.15)">📢</div>
+          <div style="font-size:.82rem;font-weight:600">إرسال إشعار</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- content -->
+</div><!-- main -->
+</div><!-- layout -->
+
+<script>
+// ══════════ Sidebar Toggle ══════════
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('collapsed');
+  document.getElementById('main-area').classList.toggle('expanded');
+}
+
+// ══════════ Nav Click ══════════
+function navClick(el){
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ══════════ Date Chips ══════════
+function dateClick(el){
+  document.querySelectorAll('.date-chip').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+}
+
+// ══════════ Notifications ══════════
+function toggleNotif(){
+  document.getElementById('notif-panel').classList.toggle('open');
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('[onclick*="toggleNotif"]')&&!e.target.closest('#notif-panel')){
+    document.getElementById('notif-panel').classList.remove('open');
+  }
+});
+
+// ══════════ Draw Sparklines ══════════
+function drawSparkline(id,data,color){
+  const c=document.getElementById(id);if(!c)return;
+  const ctx=c.getContext('2d');
+  const w=c.width,h=c.height;
+  const max=Math.max(...data),min=Math.min(...data);
+  const step=w/(data.length-1);
+  ctx.clearRect(0,0,w,h);
+
+  // Gradient fill
+  const grad=ctx.createLinearGradient(0,0,0,h);
+  grad.addColorStop(0,color+'44');
+  grad.addColorStop(1,color+'00');
+  ctx.beginPath();
+  ctx.moveTo(0,h);
+  data.forEach((v,i)=>{
+    const x=i*step;
+    const y=h-((v-min)/(max-min))*h*.85-h*.05;
+    if(i===0)ctx.lineTo(x,y);else ctx.lineTo(x,y);
+  });
+  ctx.lineTo(w,h);ctx.closePath();
+  ctx.fillStyle=grad;ctx.fill();
+
+  // Line
+  ctx.beginPath();
+  data.forEach((v,i)=>{
+    const x=i*step;
+    const y=h-((v-min)/(max-min))*h*.85-h*.05;
+    if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+  });
+  ctx.strokeStyle=color;ctx.lineWidth=2;ctx.stroke();
+}
+
+drawSparkline('spark1',[12,19,15,22,18,25,24],'#00e5c8');
+drawSparkline('spark2',[80,95,110,105,130,125,156],'#f7c948');
+drawSparkline('spark3',[800,950,880,1050,1100,1180,1248],'#667eea');
+
+// ══════════ Main Chart ══════════
+function drawMainChart(){
+  const c=document.getElementById('mainChart');if(!c)return;
+  const ctx=c.getContext('2d');
+  const W=c.width,H=c.height;
+  ctx.clearRect(0,0,W,H);
+
+  const revenue=[3200,4100,3800,4800,5200,4600,5800];
+  const orders=[42,58,51,72,85,68,96];
+  const days=['السبت','الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة'];
+  const px=70,py=20;
+  const cw=W-px-20,ch=H-py-35;
+
+  // Grid lines
+  ctx.strokeStyle='rgba(255,255,255,.06)';
+  ctx.lineWidth=1;
+  for(let i=0;i<=5;i++){
+    const y=py+ch/5*i;
+    ctx.beginPath();ctx.moveTo(px,y);ctx.lineTo(W-20,y);ctx.stroke();
+    ctx.fillStyle='rgba(255,255,255,.25)';ctx.font='11px sans-serif';ctx.textAlign='right';
+    ctx.fillText('$'+Math.round(6000-6000/5*i),px-8,y+4);
+  }
+
+  // Day labels
+  const barW=cw/days.length;
+  days.forEach((d,i)=>{
+    ctx.fillStyle='rgba(255,255,255,.3)';ctx.font='11px sans-serif';ctx.textAlign='center';
+    ctx.fillText(d,px+barW*i+barW/2,H-8);
+  });
+
+  // Revenue bars
+  const maxR=Math.max(...revenue);
+  revenue.forEach((v,i)=>{
+    const bh=v/maxR*ch*.85;
+    const x=px+barW*i+barW*.2;
+    const w=barW*.35;
+    const y=py+ch-bh;
+    const grad=ctx.createLinearGradient(0,y,0,py+ch);
+    grad.addColorStop(0,'#00e5c8');grad.addColorStop(1,'#00b09b44');
+    ctx.fillStyle=grad;
+    roundRect(ctx,x,y,w,bh,6);
+  });
+
+  // Orders line
+  const maxO=Math.max(...orders);
+  ctx.beginPath();
+  orders.forEach((v,i)=>{
+    const x=px+barW*i+barW/2;
+    const y=py+ch-v/maxO*ch*.85;
+    if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+  });
+  ctx.strokeStyle='#f7c948';ctx.lineWidth=2.5;ctx.stroke();
+
+  // Dots
+  orders.forEach((v,i)=>{
+    const x=px+barW*i+barW/2;
+    const y=py+ch-v/maxO*ch*.85;
+    ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);
+    ctx.fillStyle='#f7c948';ctx.fill();
+    ctx.beginPath();ctx.arc(x,y,2,0,Math.PI*2);
+    ctx.fillStyle='#06091a';ctx.fill();
+  });
+}
+
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h);ctx.lineTo(x,y+h);ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();ctx.fill();
+}
+
+drawMainChart();
+
+// ══════════ Pie Chart ══════════
+function drawPie(){
+  const c=document.getElementById('pieChart');if(!c)return;
+  const ctx=c.getContext('2d');
+  const W=c.width,H=c.height;
+  const cx=W/2,cy=H/2,r=Math.min(W,H)/2-20;
+  ctx.clearRect(0,0,W,H);
+
+  const data=[45,25,18,12];
+  const colors=['#00e5c8','#f7c948','#667eea','#ff7070'];
+  let start=-Math.PI/2;
+
+  data.forEach((v,i)=>{
+    const angle=v/100*Math.PI*2;
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,r,start,start+angle);
+    ctx.closePath();
+    ctx.fillStyle=colors[i];
+    ctx.fill();
+
+    // Gap
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,r,start,start+angle);
+    ctx.closePath();
+    ctx.strokeStyle='#06091a';
+    ctx.lineWidth=3;
+    ctx.stroke();
+
+    start+=angle;
+  });
+
+  // Center hole (donut)
+  ctx.beginPath();
+  ctx.arc(cx,cy,r*.55,0,Math.PI*2);
+  ctx.fillStyle='#06091a';
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(cx,cy,r*.55,0,Math.PI*2);
+  ctx.strokeStyle='rgba(255,255,255,.08)';
+  ctx.lineWidth=1;
+  ctx.stroke();
+
+  // Center text
+  ctx.fillStyle='#fff';ctx.font='bold 22px sans-serif';ctx.textAlign='center';
+  ctx.fillText('156',cx,cy-2);
+  ctx.fillStyle='rgba(255,255,255,.45)';ctx.font='11px sans-serif';
+  ctx.fillText('طلب',cx,cy+16);
+}
+
+drawPie();
+
+// ══════════ Responsive ══════════
+if(window.innerWidth<1024){
+  document.getElementById('sidebar').classList.add('collapsed');
+  document.getElementById('main-area').classList.add('expanded');
+}
+</script>
+</body>
+</html>
