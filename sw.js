@@ -3,7 +3,7 @@
  * استراتيجية: Network-First (جلب أحدث التحديثات دائماً من الإنترنت مع حفظ نسخة للطوارئ فقط)
  */
 
-const CACHE_NAME = 'husayniya-v11-bottom-nav-clearance';
+const CACHE_NAME = 'husayniya-v12-unified-stores-template';
 
 self.addEventListener('install', (event) => {
   // التفعيل الفوري للنسخة الجديدة دون انتظار إغلاق التبويبات

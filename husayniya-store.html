@@ -2,51 +2,147 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>مطعم السلام — قائمة المأكولات | خدمات الحسينية</title>
-<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+<title>مطاعم الحسينية — قائمة المأكولات الموحدة | خدمات الحسينية</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+html {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  width: 100%;
+  max-width: 100vw;
+  background: #06091a;
+  color: #fff;
+  overflow-x: hidden !important;
+  min-height: 100vh;
+  direction: rtl;
+  position: relative;
+}
 
-/* ── Background Scene ── */
-.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.38;animation:drift 16s ease-in-out infinite alternate}
-.o1{width:600px;height:600px;background:radial-gradient(circle,#00b09b,#045353);top:-200px;right:-150px}
-.o2{width:480px;height:480px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-150px;left:-150px;animation-delay:-6s}
-.o3{width:380px;height:380px;background:radial-gradient(circle,#43cea2,#185a9d66);top:45%;left:40%;animation-delay:-10s}
-@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-18px) scale(1.05)}100%{transform:translate(-20px,25px) scale(.97)}}
+/* ── Background Liquid Scene ── */
+.bg-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: .35;
+  animation: drift 16s ease-in-out infinite alternate;
+}
+.o1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #00b09b, #045353);
+  top: -180px;
+  right: -120px;
+}
+.o2 {
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, #f7971e, #e4a832);
+  bottom: -140px;
+  left: -120px;
+  animation-delay: -6s;
+}
+.o3 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, #43cea2, #185a9d66);
+  top: 45%;
+  left: 35%;
+  animation-delay: -10s;
+}
+@keyframes drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -15px) scale(1.04); }
+  100% { transform: translate(-15px, 20px) scale(.98); }
+}
 
-.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  min-width: 0;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
 
 /* ── Liquid Glass Utilities ── */
-.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,.14)}
-.glass-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.12);transition:all .3s ease}
-.glass-card:hover{border-color:rgba(0,176,155,.45);box-shadow:0 14px 40px rgba(0,176,155,.15);transform:translateY(-3px)}
+.glass {
+  background: rgba(255, 255, 255, .08);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, .14);
+}
+.glass-card {
+  background: rgba(255, 255, 255, .06);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, .12);
+  transition: all .25s ease;
+}
+@media (hover: hover) {
+  .glass-card:hover {
+    border-color: rgba(0, 229, 200, .45);
+    box-shadow: 0 12px 35px rgba(0, 229, 200, .15);
+    transform: translateY(-3px);
+  }
+}
 
-/* ── Gradients ── */
-.gt{background:linear-gradient(135deg,#00e5c8 0%,#43cea2 45%,#f7c948 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.gt-gold{background:linear-gradient(135deg,#f7c948,#f7971e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+/* ── Gradient Text ── */
+.gt {
+  background: linear-gradient(135deg, #00e5c8 0%, #43cea2 45%, #f7c948 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
 /* ── Buttons ── */
-.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
-.btn-primary::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.25),transparent);opacity:0;transition:.3s}
-.btn-primary:hover::after{opacity:1}
-.btn-primary:hover{transform:scale(1.02);box-shadow:0 0 28px rgba(0,176,155,.45)}
+.btn-primary {
+  background: linear-gradient(135deg, #00b09b, #06d6a0);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all .25s ease;
+  color: #fff;
+  font-weight: 700;
+}
+.btn-primary:active {
+  transform: scale(0.97);
+}
 
-.btn-add{background:rgba(0,176,155,.18);border:1px solid rgba(0,176,155,.5);color:#00e5c8;font-weight:700;border-radius:12px;padding:8px 16px;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:6px}
-.btn-add:hover{background:linear-gradient(135deg,#00b09b,#06d6a0);color:#fff;box-shadow:0 0 16px rgba(0,176,155,.4);transform:scale(1.04)}
-
-/* Quantity Stepper Styles */
+/* ── Interactive Quantity Stepper ── */
 .qty-stepper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-width: 125px;
+  min-width: 0;
   padding: 4px 6px;
   border-radius: 14px;
-  background: rgba(0, 229, 200, 0.14);
+  background: rgba(0, 229, 200, 0.12);
   border: 1.5px solid rgba(0, 229, 200, 0.5);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
   animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -68,13 +164,14 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
   outline: none;
   transition: all 0.15s ease;
   user-select: none;
+  flex-shrink: 0;
 }
 .qty-btn:active { transform: scale(0.88); }
 .qty-btn-plus {
   background: linear-gradient(135deg, #00b09b, #06d6a0);
   color: #040e1e;
   font-size: 1.2rem;
-  box-shadow: 0 2px 8px rgba(0, 229, 200, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 229, 200, 0.35);
 }
 .qty-btn-minus {
   background: rgba(255, 255, 255, 0.12);
@@ -82,24 +179,23 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
   font-size: 1.2rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
-.qty-btn-minus:hover { background: rgba(255, 255, 255, 0.2); }
 .qty-btn-delete {
   background: rgba(244, 63, 94, 0.2);
   color: #fda4af;
   font-size: 0.95rem;
   border: 1px solid rgba(244, 63, 94, 0.45);
 }
-.qty-btn-delete:hover { background: rgba(244, 63, 94, 0.35); }
 .qty-count-wrap {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
+  min-width: 0;
 }
 .qty-count {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: #00e5c8;
   font-weight: 900;
-  min-width: 20px;
+  min-width: 18px;
   text-align: center;
 }
 .qty-unit {
@@ -109,33 +205,129 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 }
 
 /* ── Store Hero Banner ── */
-.store-hero{border-radius:24px;position:relative;overflow:hidden;background:linear-gradient(135deg,#0d3826 0%,#154d37 50%,#092419 100%);border:1px solid rgba(255,255,255,.14)}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(6,9,26,0.95) 10%, rgba(6,9,26,0.4) 60%, transparent 100%)}
+.store-hero {
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(255, 255, 255, .14);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6, 9, 26, 0.96) 15%, rgba(6, 9, 26, 0.6) 65%, rgba(6, 9, 26, 0.3) 100%);
+}
 
-/* ── Menu Category Chips ── */
-.menu-tab{padding:8px 18px;border-radius:14px;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .3s;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);white-space:nowrap}
-.menu-tab:hover,.menu-tab.active{background:rgba(0,176,155,.22);color:#00e5c8;border-color:rgba(0,176,155,.6);box-shadow:0 0 20px rgba(0,176,155,.25)}
+/* ── Category Tabs ── */
+.menu-tab {
+  padding: 7px 16px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: .82rem;
+  font-weight: 700;
+  transition: all .25s ease;
+  background: rgba(255, 255, 255, .07);
+  border: 1px solid rgba(255, 255, 255, .12);
+  color: rgba(255, 255, 255, .7);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.menu-tab:hover, .menu-tab.active {
+  background: rgba(0, 176, 155, .25);
+  color: #00e5c8;
+  border-color: rgba(0, 176, 155, .6);
+  box-shadow: 0 0 18px rgba(0, 176, 155, .25);
+}
 
-/* ── Floating Cart Bar ── */
-.floating-cart{position:fixed;bottom:14px;bottom:calc(14px + env(safe-area-inset-bottom, 0px));left:12px;right:12px;margin:0 auto;z-index:90;max-width:580px;width:auto;background:rgba(4,14,30,.92);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid rgba(0,176,155,.4);border-radius:20px;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 20px 50px rgba(0,0,0,.6), 0 0 30px rgba(0,176,155,.2);box-sizing:border-box;transform:translateY(0);transition:transform .35s cubic-bezier(.175,.885,.32,1.275),opacity .3s ease}
-.floating-cart.hidden{transform:translateY(160%);opacity:0;pointer-events:none}
+/* ── Responsive Scroll Bars ── */
+.scroll-touch {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-touch::-webkit-scrollbar {
+  display: none;
+}
 
-/* ── Toast notification ── */
-.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-100px);z-index:200;background:rgba(0,176,155,.95);backdrop-filter:blur(10px);color:#fff;padding:10px 20px;border-radius:16px;font-weight:700;font-size:.82rem;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .4s cubic-bezier(.175,.885,.32,1.275);display:flex;align-items:center;gap:10px}
-.toast.show{transform:translateX(-50%) translateY(0)}
+/* ── Floating Cart Bar (RTL Safe) ── */
+.floating-cart {
+  position: fixed;
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  left: 12px;
+  right: 12px;
+  margin: 0 auto;
+  max-width: 560px;
+  width: auto;
+  box-sizing: border-box;
+  z-index: 90;
+  background: rgba(4, 14, 30, 0.94);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(0, 229, 200, 0.4);
+  border-radius: 20px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 229, 200, 0.15);
+  transform: translateY(0);
+  transition: transform .35s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease;
+}
+.floating-cart.hidden {
+  transform: translateY(160%);
+  opacity: 0;
+  pointer-events: none;
+}
 
-/* ── Modal (Product Options) ── */
-.modal-overlay{position:fixed;inset:0;background:rgba(4,8,20,.85);backdrop-filter:blur(12px);z-index:150;display:none;align-items:center;justify-content:center;padding:16px}
-.modal-overlay.show{display:flex}
+/* ── Toast Notification ── */
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  z-index: 200;
+  background: rgba(0, 176, 155, .95);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: .82rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
 
-/* ── Stars & Badges ── */
-.stars{color:#f7c948;letter-spacing:2px}
-.b-open{background:rgba(0,214,160,.18);border:1px solid rgba(0,214,160,.4);color:#00d6a0}
-.b-popular{background:rgba(247,201,72,.18);border:1px solid rgba(247,201,72,.4);color:#f7c948}
+/* ── Badges ── */
+.b-open {
+  background: rgba(0, 214, 160, .18);
+  border: 1px solid rgba(0, 214, 160, .4);
+  color: #00d6a0;
+}
+.b-feature {
+  background: rgba(247, 201, 72, .18);
+  border: 1px solid rgba(247, 201, 72, .4);
+  color: #f7c948;
+}
 
-/* ── Scrollbars & Touch ── */
-.scroll-x,.scroll-touch{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.scroll-x::-webkit-scrollbar,.scroll-touch::-webkit-scrollbar{display:none}
+/* ── Menu Card Strict Sizing ── */
+.menu-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
 </style>
 </head>
 <body>
@@ -149,621 +341,1131 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
 <div class="page">
 
-<!-- ══════════════════ NAVBAR ══════════════════ -->
-<nav class="glass sticky top-0 z-50 px-3 sm:px-6 py-3 sm:py-4" style="background:rgba(4,14,30,.85);border-bottom:1px solid rgba(255,255,255,.08)">
-  <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
-    <!-- Back to Stores / Home -->
-    <a href="index.html" class="flex items-center gap-2 sm:gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
-      <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl glass flex items-center justify-center font-bold text-sm flex-shrink-0">
-        ←
+  <!-- ══════════════════ NAVBAR ══════════════════ -->
+  <nav class="glass sticky top-0 z-50 w-full" style="background:rgba(4,14,30,.88);border-bottom:1px solid rgba(255,255,255,.08)">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3 w-full box-border">
+      
+      <!-- Back to Stores / Home -->
+      <a href="index.html" class="flex items-center gap-2.5 text-white/80 hover:text-white transition flex-shrink-0" style="text-decoration:none">
+        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl glass flex items-center justify-center font-bold text-sm">
+          ←
+        </div>
+        <div class="min-w-0">
+          <span class="text-[10px] sm:text-xs text-emerald-400 font-semibold block leading-tight">العودة للرئيسية</span>
+          <div class="text-xs sm:text-sm font-bold truncate max-w-[125px] sm:max-w-none">خدمات الحسينية</div>
+        </div>
+      </a>
+
+      <!-- Search in menu (desktop) -->
+      <div class="hidden md:flex items-center relative w-72">
+        <input id="menu-search" oninput="filterMenuItems()" type="text" placeholder="ابحث في قائمة المطعم..." class="w-full rounded-2xl px-4 py-2 pr-10 text-xs bg-white/[0.07] border border-white/15 focus:outline-none focus:border-emerald-400 text-white"/>
+        <span class="absolute right-3 text-white/40 text-xs">🔍</span>
+      </div>
+
+      <!-- Actions: Switch Store & View Cart -->
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Switch Store Dropdown -->
+        <div class="relative">
+          <button id="store-selector-btn" onclick="toggleStoreMenu(event)" class="glass px-2.5 sm:px-3 py-2 rounded-2xl flex items-center gap-1.5 text-xs font-bold text-white/90 hover:bg-white/10 transition">
+            <span class="text-xs">🏪</span>
+            <span class="hidden sm:inline text-xs">تغيير المطعم</span>
+            <span class="text-[10px] text-emerald-400">▼</span>
+          </button>
+          <div id="store-selector-dropdown" class="hidden absolute left-0 mt-2 w-64 glass-card rounded-2xl p-2 z-50 shadow-2xl border border-white/20 bg-[#091124]/95 backdrop-blur-xl">
+            <div class="text-[10px] text-white/50 px-2 py-1 font-bold">مطاعم الحسينية المعتمدة:</div>
+            <a href="husayniya-store.html?store=baz" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="text-base">🍖</span>
+              <div class="min-w-0 flex-1 truncate font-semibold">مشويات الباز والحسينية</div>
+            </a>
+            <a href="husayniya-store.html?store=koshary" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="text-base">🍲</span>
+              <div class="min-w-0 flex-1 truncate font-semibold">كشري الزعيم والتحرير</div>
+            </a>
+            <a href="husayniya-store.html?store=pizza" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="text-base">🍕</span>
+              <div class="min-w-0 flex-1 truncate font-semibold">بيتزا وكريب الرواد</div>
+            </a>
+            <a href="husayniya-store.html?store=shendel" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="text-base">🍰</span>
+              <div class="min-w-0 flex-1 truncate font-semibold">حلواني شندل والبارون</div>
+            </a>
+            <a href="husayniya-store.html?store=falafel" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="text-base">🧆</span>
+              <div class="min-w-0 flex-1 truncate font-semibold">فول وفلافل البرنس</div>
+            </a>
+          </div>
+        </div>
+
+        <!-- View Cart Pill -->
+        <a href="husayniya-checkout.html" class="glass px-3 sm:px-4 py-2 rounded-2xl flex items-center gap-2 text-xs font-bold hover:bg-white/10 transition flex-shrink-0" style="text-decoration:none;color:#fff">
+          <span>🛒</span>
+          <span class="hidden sm:inline">السلة</span>
+          <span id="nav-cart-badge" class="px-2 py-0.5 rounded-full bg-amber-400 text-black font-extrabold text-[10px]">0</span>
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ══════════════════ MAIN CONTENT ══════════════════ -->
+  <main class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6 pb-48 sm:pb-36 flex-1 min-w-0 overflow-hidden box-border">
+
+    <!-- ── 1. STORE HERO BANNER (Dynamic) ── -->
+    <div id="store-hero-banner" class="store-hero mb-6 sm:mb-8 p-4 sm:p-6 md:p-8 flex flex-col justify-between gap-4 sm:gap-6 box-border">
+      <div class="hero-overlay"></div>
+
+      <!-- Floating Badges Top Row -->
+      <div class="relative z-10 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span id="store-status" class="b-open px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold">● مفتوح الآن</span>
+          <span id="store-badge" class="b-feature px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold">🔥 خيار الحسينية الأول</span>
+        </div>
+        <div class="text-[11px] text-white/80 glass px-2.5 py-1 rounded-xl flex items-center gap-1 sm:hidden">
+          <span id="store-time-mobile">⏱️ 25 - 35 د</span>
+        </div>
+      </div>
+
+      <!-- Avatar & Store Info -->
+      <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-center gap-3.5 sm:gap-5 min-w-0 w-full">
+        <img id="store-avatar" src="" alt="شعار المطعم" class="w-16 h-16 sm:w-24 sm:h-24 rounded-2xl object-cover shadow-2xl border-2 border-white/20 flex-shrink-0" />
+        <div class="min-w-0 flex-1 w-full">
+          <h1 id="store-name" class="text-xl sm:text-2xl md:text-3xl font-black text-white leading-tight mb-1 break-words">اسم المطعم</h1>
+          <p id="store-tagline" class="text-xs sm:text-sm text-white/70 mb-2 leading-relaxed break-words">وصف المطعم والمأكولات المتوفرة</p>
+          <div class="flex flex-wrap items-center gap-2 sm:gap-3 text-xs text-white/80">
+            <span id="store-rating" class="font-bold text-amber-400">★ 4.9</span>
+            <span id="store-reviews-count" class="text-white/50">(+1,420 تقييم)</span>
+            <span>•</span>
+            <span id="store-time-desktop" class="hidden sm:inline">⏱️ 25 - 35 دقيقة</span>
+            <span class="hidden sm:inline">•</span>
+            <span id="store-address">📍 شارع المركز، الحسينية</span>
+            <span>•</span>
+            <span id="store-delivery-fee" class="text-emerald-400 font-bold">توصيل 15 ج.م</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Delivery Info Card -->
+      <div class="relative z-10 glass p-3 sm:px-5 sm:py-3 rounded-2xl flex items-center justify-between sm:justify-start gap-4 sm:gap-6 text-xs w-full overflow-hidden">
+        <div>
+          <div class="text-white/50 text-[10px] sm:text-xs">الحد الأدنى للطلب</div>
+          <div id="store-min-order" class="font-bold text-xs sm:text-sm text-white">50 ج.م</div>
+        </div>
+        <div style="width:1px;height:24px;background:rgba(255,255,255,.15)"></div>
+        <div class="min-w-0 flex-1 truncate">
+          <div class="text-white/50 text-[10px] sm:text-xs">طرق الدفع المتوفرة</div>
+          <div id="store-payments" class="font-bold text-xs sm:text-sm text-emerald-400 truncate">كاش • فودافون كاش • إنستاباي</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 2. MENU CATEGORIES (TABS) ── -->
+    <div class="w-full max-w-full overflow-hidden mb-6 sm:mb-8">
+      <div id="category-tabs-container" class="flex items-center gap-2 overflow-x-auto scroll-touch pb-2 w-full max-w-full">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+    <!-- ── 3. MENU ITEMS GRID ── -->
+    <div id="menu-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full max-w-full min-w-0">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- ── 4. REVIEWS SECTION ── -->
+    <div id="reviews-section" class="hidden space-y-6 mt-6">
+      <div class="glass-card rounded-3xl p-6 md:p-8">
+        <div class="flex flex-col md:flex-row items-center gap-8 pb-6 border-b border-white/10">
+          <div class="text-center md:text-right">
+            <div id="reviews-avg-rating" class="text-5xl font-black text-amber-400 mb-1">4.9</div>
+            <div class="text-amber-400 text-lg mb-1">★★★★★</div>
+            <div id="reviews-summary-text" class="text-xs text-white/50">بناءً على التقييمات الموثقة لأهالي الحسينية</div>
+          </div>
+          <div class="flex-1 w-full space-y-2 text-xs">
+            <div class="flex items-center gap-3">
+              <span class="w-12 text-white/60">5 نجوم</span>
+              <div class="flex-1 h-2 rounded-full bg-white/10 overflow-hidden"><div class="h-full bg-emerald-400 rounded-full" style="width:94%"></div></div>
+              <span class="w-8 text-left font-bold text-white/70">94%</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-12 text-white/60">4 نجوم</span>
+              <div class="flex-1 h-2 rounded-full bg-white/10 overflow-hidden"><div class="h-full bg-emerald-400 rounded-full" style="width:5%"></div></div>
+              <span class="w-8 text-left font-bold text-white/70">5%</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-12 text-white/60">3 نجوم</span>
+              <div class="flex-1 h-2 rounded-full bg-white/10 overflow-hidden"><div class="h-full bg-amber-400 rounded-full" style="width:1%"></div></div>
+              <span class="w-8 text-left font-bold text-white/70">1%</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="reviews-list-container" class="pt-6 space-y-4">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ══════════════════ FLOATING CART BAR ══════════════════ -->
+  <div id="floating-cart" class="floating-cart hidden">
+    <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
+      <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg flex-shrink-0">
+        🛒
       </div>
       <div class="min-w-0">
-        <span class="text-[10px] sm:text-xs text-emerald-400 font-semibold block leading-tight">العودة للرئيسية</span>
-        <div class="text-xs sm:text-sm font-bold truncate max-w-[140px] sm:max-w-none">خدمات الحسينية</div>
+        <div class="text-xs text-white/60">سلة طلبات الحسينية</div>
+        <div class="text-sm font-extrabold text-white flex items-center gap-1.5 truncate">
+          <span id="cart-item-count">0 عناصر</span>
+          <span class="text-white/30">•</span>
+          <span id="cart-total-price" class="text-emerald-400">0 ج.م</span>
+        </div>
       </div>
-    </a>
-
-    <!-- Search in menu -->
-    <div class="hidden md:flex items-center relative w-72">
-      <input id="menu-search" oninput="filterMenuItems()" type="text" placeholder="ابحث في قائمة المطعم..." class="w-full rounded-2xl px-4 py-2 pr-10 text-xs bg-white/[0.07] border border-white/15 focus:outline-none focus:border-emerald-400 text-white"/>
-      <span class="absolute right-3 text-white/40 text-xs">🔍</span>
     </div>
-
-    <!-- View Cart Pill -->
-    <a href="husayniya-checkout.html" class="glass px-3 sm:px-4 py-2 rounded-2xl flex items-center gap-2 text-xs font-bold hover:bg-white/10 transition flex-shrink-0" style="text-decoration:none;color:#fff">
-      <span>🛒 السلة</span>
-      <span id="nav-cart-badge" class="px-2 py-0.5 rounded-full bg-amber-400 text-black font-extrabold text-[10px]">0</span>
+    <a href="husayniya-checkout.html" class="btn-primary px-4 sm:px-6 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 whitespace-nowrap flex-shrink-0" style="text-decoration:none">
+      <span>إتمام الطلب</span>
+      <span>←</span>
     </a>
   </div>
-</nav>
 
-<!-- ══════════════════ MAIN CONTENT ══════════════════ -->
-<main class="max-w-6xl mx-auto px-3 sm:px-6 py-4 sm:py-6 pb-44 sm:pb-36 flex-1 w-full overflow-hidden">
-
-  <!-- ── 1. STORE HERO BANNER ── -->
-  <div class="store-hero mb-6 sm:mb-8 p-4 sm:p-6 md:p-8 flex flex-col justify-between gap-4 sm:gap-6">
-    <div class="hero-overlay"></div>
-
-    <!-- Floating tag on top -->
-    <div class="relative z-10 flex flex-wrap items-center justify-between gap-2">
-      <div class="flex items-center gap-2 flex-wrap">
-        <span class="b-open px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold">● مفتوح الآن</span>
-        <span class="b-popular px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold">🔥 خيار الحسينية الأول</span>
-      </div>
-      <div class="text-[11px] text-white/70 glass px-2.5 py-1 rounded-xl flex items-center gap-1 sm:hidden">
-        <span>⏱️ 25 - 35 د</span>
-      </div>
-    </div>
-
-    <!-- Avatar & Store Info -->
-    <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-center gap-3.5 sm:gap-5">
-      <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=300&q=80" alt="مشويات الباز والحسينية" class="w-16 h-16 sm:w-24 sm:h-24 rounded-2xl object-cover shadow-2xl border-2 border-white/20 flex-shrink-0" />
-      <div class="min-w-0 flex-1">
-        <h1 class="text-xl sm:text-2xl md:text-3xl font-black text-white leading-tight mb-1">مشويات الباز والحسينية — كباب وكفتة بلدي</h1>
-        <p class="text-xs sm:text-sm text-white/60 mb-2 leading-relaxed">أشهى المشويات المصرية، كباب وكفتة حاتي، طرب، حمام محشي، وطواجن فرن بلدي</p>
-        <div class="flex flex-wrap items-center gap-2 sm:gap-3 text-xs text-white/70">
-          <span class="stars font-bold text-amber-400">★ 4.9</span>
-          <span class="text-white/40">(+1,420 تقييم)</span>
-          <span>•</span>
-          <span class="hidden sm:inline">⏱️ 25 - 35 دقيقة</span>
-          <span class="hidden sm:inline">•</span>
-          <span>📍 شارع المركز أمام بنك مصر</span>
-          <span>•</span>
-          <span class="text-emerald-400 font-bold">توصيل 15 ج.م</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quick Delivery Info Card -->
-    <div class="relative z-10 glass p-3 sm:px-5 sm:py-3 rounded-2xl flex items-center justify-between sm:justify-start gap-4 sm:gap-6 text-xs w-full sm:w-auto">
-      <div>
-        <div class="text-white/40 text-[10px] sm:text-xs">الحد الأدنى للطلب</div>
-        <div class="font-bold text-xs sm:text-sm text-white">50 ج.م</div>
-      </div>
-      <div style="width:1px;height:24px;background:rgba(255,255,255,.15)"></div>
-      <div>
-        <div class="text-white/40 text-[10px] sm:text-xs">طرق الدفع</div>
-        <div class="font-bold text-xs sm:text-sm text-emerald-400 truncate">كاش • فودافون كاش • إنستاباي</div>
-      </div>
-    </div>
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <span class="text-base">✅</span>
+    <span id="toast-text">تمت إضافة الوجبة للسلة!</span>
   </div>
 
-  <!-- ── 2. MENU CATEGORIES (TABS) ── -->
-  <div class="flex items-center gap-2 sm:gap-3 scroll-touch pb-3 mb-6 sm:mb-8">
-    <button onclick="switchCategory('all', this)" class="menu-tab active">🍽️ الكل</button>
-    <button onclick="switchCategory('grills', this)" class="menu-tab">🍢 المشاوي والكباب</button>
-    <button onclick="switchCategory('rice', this)" class="menu-tab">🍚 القوزي والأرز</button>
-    <button onclick="switchCategory('fastfood', this)" class="menu-tab">🍔 الوجبات السريعة</button>
-    <button onclick="switchCategory('appetizers', this)" class="menu-tab">🥗 المقبلات والسلطات</button>
-    <button onclick="switchCategory('drinks', this)" class="menu-tab">🥤 المشروبات والعصائر</button>
-    <button onclick="switchCategory('reviews', this)" class="menu-tab">⭐ آراء العملاء (4.9)</button>
-  </div>
-
-  <!-- ── 3. MENU ITEMS GRID ── -->
-  <div id="menu-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-
-    <!-- Item 1: كباب -->
-    <div class="menu-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-category="grills" data-title="كيلو مشكل كباب وكفتة حاتي بلدي">
-      <div>
-        <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
-          <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="كباب وكفتة حاتي" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">الأكثر طلباً 🔥</span>
-        </div>
-        <div class="flex items-start justify-between gap-2 mb-1">
-          <h3 class="font-bold text-base text-white">كيلو مشكل كباب وكفتة حاتي بلدي</h3>
-          <span class="text-sm font-extrabold text-emerald-400 whitespace-nowrap">380 ج.م</span>
-        </div>
-        <p class="text-xs text-white/50 mb-4 leading-relaxed">كباب ضاني وكفتة بلدي مشوية على الفحم مع طحينة، سلطة خضراء، عيش بلدي ساخن، ومخلل.</p>
-      </div>
-      <div id="ctrl-baz-1">
-        <button onclick="changeQty('baz-1', 'كيلو مشكل كباب وكفتة حاتي بلدي', 380, '🍢', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-          <span>+ أضف للسلة</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Item 2: قوزي -->
-    <div class="menu-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-category="rice" data-title="قوزي لحم على التمن">
-      <div>
-        <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
-          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="طاجن لحمة بلدي" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-amber-400 text-black text-[10px] font-black shadow-lg">وجبة فاخرة 👑</span>
-        </div>
-        <div class="flex items-start justify-between gap-2 mb-1">
-          <h3 class="font-bold text-base text-white">طاجن لحمة بلدي بالبصل والأرز البسمتي</h3>
-          <span class="text-sm font-extrabold text-emerald-400 whitespace-nowrap">240 ج.م</span>
-        </div>
-        <p class="text-xs text-white/50 mb-4 leading-relaxed">قطع لحم بلدي طازجة مع أرز بسمتي بالمكسرات وشوربة لسان عصفور وطحينة.</p>
-      </div>
-      <div id="ctrl-baz-2">
-        <button onclick="changeQty('baz-2', 'طاجن لحمة بلدي بالبصل والأرز البسمتي', 240, '🍖', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-          <span>+ أضف للسلة</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Item 3: دجاج شواية -->
-    <div class="menu-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-category="grills" data-title="وجبة فرخة مشوية على الفحم مع أرز وبطاطس">
-      <div>
-        <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
-          <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=600&q=80" alt="فرخة مشوية على الفحم" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-rose-500 text-white text-[10px] font-black shadow-lg">عرض خاص 🔥</span>
-        </div>
-        <div class="flex items-start justify-between gap-2 mb-1">
-          <h3 class="font-bold text-base text-white">وجبة فرخة مشوية على الفحم مع أرز وبطاطس</h3>
-          <span class="text-sm font-extrabold text-emerald-400 whitespace-nowrap">190 ج.م</span>
-        </div>
-        <p class="text-xs text-white/50 mb-4 leading-relaxed">فرخة متبلة بالخلطة السرية مشوية على الفحم مع أرز بسمتي، تومية، سلطة، وبطاطس.</p>
-      </div>
-      <div id="ctrl-baz-3">
-        <button onclick="changeQty('baz-3', 'وجبة فرخة مشوية على الفحم مع أرز وبطاطس', 190, '🍗', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-          <span>+ أضف للسلة</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Item 4: تكا لحم -->
-    <div class="menu-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-category="grills" data-title="وجبة تكا لحم غنم">
-      <div>
-        <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
-          <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=600&q=80" alt="طرب وكفتة بلدي" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">طرب حاتي</span>
-        </div>
-        <div class="flex items-start justify-between gap-2 mb-1">
-          <h3 class="font-bold text-base text-white">وجبة طرب وكفتة بلدي مخصوص</h3>
-          <span class="text-sm font-extrabold text-emerald-400 whitespace-nowrap">260 ج.م</span>
-        </div>
-        <p class="text-xs text-white/50 mb-4 leading-relaxed">طرب ضاني وكفتة مشوية على الفحم مع سلطة بلدي، سلطة طحينة، وعيش بلدي.</p>
-      </div>
-      <div id="ctrl-baz-4">
-        <button onclick="changeQty('baz-4', 'وجبة طرب وكفتة بلدي مخصوص', 260, '🥩', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-          <span>+ أضف للسلة</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Item 5: برجر السلام -->
-    <div class="menu-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-category="fastfood" data-title="ساندوتش كريب زنجر سوبر كرانشي">
-      <div>
-        <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
-          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="ساندوتش كريب زنجر" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-blue-500 text-white text-[10px] font-black shadow-lg">سريع ⚡</span>
-        </div>
-        <div class="flex items-start justify-between gap-2 mb-1">
-          <h3 class="font-bold text-base text-white">ساندوتش كريب زنجر سوبر كرانشي</h3>
-          <span class="text-sm font-extrabold text-emerald-400 whitespace-nowrap">85 ج.م</span>
-        </div>
-        <p class="text-xs text-white/50 mb-4 leading-relaxed">قطع دجاج زنجر مقرمشة مع جبنة موزاريلا سايحة، صوص شيدر، ومايونيز في عيش كريب مقرمش.</p>
-      </div>
-      <div id="ctrl-baz-5">
-        <button onclick="changeQty('baz-5', 'ساندوتش كريب زنجر سوبر كرانشي', 85, '🍔', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-          <span>+ أضف للسلة</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Item 6: مقبلات مشكلة -->
-    <div class="menu-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-category="appetizers" data-title="طبق مقبلات وطحينة بلدي وسلطات">
-      <div>
-        <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
-          <img src="https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=600&q=80" alt="طبق مقبلات وطحينة بلدي" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-amber-500 text-black text-[10px] font-black shadow-lg">مقبلات</span>
-        </div>
-        <div class="flex items-start justify-between gap-2 mb-1">
-          <h3 class="font-bold text-base text-white">طبق مقبلات وطحينة بلدي وسلطات</h3>
-          <span class="text-sm font-extrabold text-emerald-400 whitespace-nowrap">40 ج.م</span>
-        </div>
-        <p class="text-xs text-white/50 mb-4 leading-relaxed">طحينة بيضاء بالخل، بابا غنوج، سلطة خضراء بلدي، ومخلل مشكل بلدي.</p>
-      </div>
-      <div id="ctrl-baz-6">
-        <button onclick="changeQty('baz-6', 'طبق مقبلات وطحينة بلدي وسلطات', 40, '🥗', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-          <span>+ أضف للسلة</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Item 7: عصير رمان طبيعي -->
-    <div class="menu-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-category="drinks" data-title="عصير رمان الحسينية طبيعي">
-      <div>
-        <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
-          <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80" alt="عصير طبيعي فريش" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">عصائر فريش</span>
-        </div>
-        <div class="flex items-start justify-between gap-2 mb-1">
-          <h3 class="font-bold text-base text-white">عصير قصب / برتقال فريش من الحسينية</h3>
-          <span class="text-sm font-extrabold text-emerald-400 whitespace-nowrap">25 ج.م</span>
-        </div>
-        <p class="text-xs text-white/50 mb-4 leading-relaxed">عصير طبيعي فريش بارد ينعشك بعد الأكل.</p>
-      </div>
-      <div id="ctrl-baz-7">
-        <button onclick="changeQty('baz-7', 'عصير رمان الحسينية طبيعي', 25, '🥤', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-          <span>+ أضف للسلة</span>
-        </button>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ── 4. REVIEWS SECTION (Hidden by default) ── -->
-  <div id="reviews-section" class="hidden space-y-6">
-    <div class="glass-card rounded-3xl p-6 md:p-8">
-      <div class="flex flex-col md:flex-row items-center gap-8 pb-6 border-b border-white/10">
-        <div class="text-center md:text-right">
-          <div class="text-5xl font-black text-amber-400 mb-1">4.9</div>
-          <div class="stars text-lg mb-1">★★★★★</div>
-          <div class="text-xs text-white/50">بناءً على 1,420 تقييم من أهالي الحسينية</div>
-        </div>
-        <div class="flex-1 w-full space-y-2 text-xs">
-          <div class="flex items-center gap-3">
-            <span class="w-12 text-white/60">5 نجوم</span>
-            <div class="flex-1 h-2 rounded-full bg-white/10 overflow-hidden"><div class="h-full bg-emerald-400 rounded-full" style="width:92%"></div></div>
-            <span class="w-8 text-left font-bold text-white/70">92%</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="w-12 text-white/60">4 نجوم</span>
-            <div class="flex-1 h-2 rounded-full bg-white/10 overflow-hidden"><div class="h-full bg-emerald-400 rounded-full" style="width:6%"></div></div>
-            <span class="w-8 text-left font-bold text-white/70">6%</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="w-12 text-white/60">3 نجوم</span>
-            <div class="flex-1 h-2 rounded-full bg-white/10 overflow-hidden"><div class="h-full bg-amber-400 rounded-full" style="width:2%"></div></div>
-            <span class="w-8 text-left font-bold text-white/70">2%</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="pt-6 space-y-4">
-        <!-- Review 1 -->
-        <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/5">
-          <div class="flex items-center justify-between mb-2">
-            <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">أ</div>
-              <span class="font-bold text-sm">أحمد الشرقاوي (شارع المركز)</span>
-              <span class="text-[10px] text-white/40">• منذ يومين</span>
-            </div>
-            <div class="stars text-xs">★★★★★</div>
-          </div>
-          <p class="text-xs text-white/70 leading-relaxed">"المشويات وصلت سخنة جداً وريحة الفحم تحفة، الكفتة بلدي وتتبيلتها ممتازة والتوصيل في ربع ساعة لشارع المركز. التوصيل كان بأقل من نصف ساعة داخل الحسينية. أنصح به بشدة."</p>
-        </div>
-        <!-- Review 2 -->
-        <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/5">
-          <div class="flex items-center justify-between mb-2">
-            <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs">م</div>
-              <span class="font-bold text-sm">د. منى عبد الله (شارع المدارس)</span>
-              <span class="text-[10px] text-white/40">• منذ أسبوع</span>
-            </div>
-            <div class="stars text-xs">★★★★★</div>
-          </div>
-          <p class="text-xs text-white/70 leading-relaxed">"القوزي ممتاز واللحم ذايب ذوبان، والتغليف راقي جداً ونظيف. شكراً لمطعم السلام وتطبيق خدمات الحسينية."</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bottom Footer Clearance -->
-  <footer class="mt-12 pt-6 pb-8 border-t border-white/10 text-center text-xs text-white/40">
-    <p>مشويات الباز والحسينية — طلبك يوصلك ساخن وطازج حتى باب منزلك</p>
-  </footer>
-
-</main>
-
-<!-- ══════════════════ FLOATING CART BAR ══════════════════ -->
-<div id="floating-cart-bar" class="floating-cart hidden">
-  <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
-    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-xl sm:text-2xl flex-shrink-0" style="background:linear-gradient(135deg,#00b09b,#06d6a0)">
-      🛒
-    </div>
-    <div class="min-w-0">
-      <div class="text-[11px] sm:text-xs text-white/60 truncate"><span id="cart-items-count">0</span> أصناف</div>
-      <div class="text-base sm:text-lg font-black gt truncate" id="cart-total-price">0.00 ج.م</div>
-    </div>
-  </div>
-  <a href="husayniya-checkout.html" class="btn-primary px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-1.5 flex-shrink-0" style="text-decoration:none">
-    <span>إتمام الطلب</span>
-    <span>←</span>
-  </a>
 </div>
 
-<!-- ══════════════════ TOAST NOTIFICATION ══════════════════ -->
-<div id="toast-msg" class="toast">
-  <span>✓</span>
-  <span id="toast-text">تمت إضافة الوجبة إلى السلة!</span>
-</div>
-
-<!-- ══════════════════ PRODUCT CUSTOMIZER MODAL ══════════════════ -->
-<div id="item-modal" class="modal-overlay">
-  <div class="glass-card rounded-3xl p-5 sm:p-7 max-w-lg w-full max-h-[90vh] overflow-y-auto relative border border-white/20">
-    <button onclick="closeCustomizer()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg">✕</button>
-
-    <div class="flex items-center gap-4 mb-5">
-      <div id="modal-icon" class="w-16 h-16 rounded-2xl flex items-center justify-center text-4xl" style="background:linear-gradient(135deg,#00b09b,#06d6a0)">
-        🍢
-      </div>
-      <div>
-        <h3 id="modal-title" class="text-lg font-bold">اسم الوجبة</h3>
-        <p class="text-xs text-white/50">خصص وجبتك حسب رغبتك</p>
-        <div id="modal-base-price" class="text-sm font-extrabold text-emerald-400 mt-1">380 ج.م</div>
-      </div>
-    </div>
-
-    <!-- Options Section -->
-    <div class="space-y-4 mb-6 text-xs">
-      <!-- Extras -->
-      <div>
-        <label class="block font-bold text-white/80 mb-2">إضافات مع الوجبة:</label>
-        <div class="space-y-2">
-          <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.04] border border-white/5 cursor-pointer hover:bg-white/[0.08]">
-            <div class="flex items-center gap-2">
-              <input type="checkbox" class="extra-check" data-price="2.00" onchange="calcModalTotal()"/>
-              <span>صحن حمص بطحينة إضافي</span>
-            </div>
-            <span class="text-emerald-400 font-bold">+2.00 ج.م</span>
-          </label>
-          <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.04] border border-white/5 cursor-pointer hover:bg-white/[0.08]">
-            <div class="flex items-center gap-2">
-              <input type="checkbox" class="extra-check" data-price="1.50" onchange="calcModalTotal()"/>
-              <span>خبز تنور إضافي حار (3 أقراص)</span>
-            </div>
-            <span class="text-emerald-400 font-bold">+1.50 ج.م</span>
-          </label>
-          <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.04] border border-white/5 cursor-pointer hover:bg-white/[0.08]">
-            <div class="flex items-center gap-2">
-              <input type="checkbox" class="extra-check" data-price="1.00" onchange="calcModalTotal()"/>
-              <span>علبة صوص عمبة حارة وثومية</span>
-            </div>
-            <span class="text-emerald-400 font-bold">+1.00 ج.م</span>
-          </label>
-        </div>
-      </div>
-
-      <!-- Notes -->
-      <div>
-        <label class="block font-bold text-white/80 mb-1">ملاحظات للمطعم:</label>
-        <input id="modal-notes" type="text" placeholder="مثلاً: بدون بصل، زيادة سماق..." class="w-full rounded-xl px-3 py-2 text-xs bg-white/[0.07] border border-white/10 text-white focus:outline-none focus:border-emerald-400"/>
-      </div>
-    </div>
-
-    <!-- Modal Footer -->
-    <div class="flex items-center justify-between pt-4 border-t border-white/10">
-      <div>
-        <div class="text-[10px] text-white/40">المجموع الكلي للوجبة</div>
-        <div id="modal-total-price" class="text-xl font-black text-emerald-400">380 ج.م</div>
-      </div>
-      <button onclick="confirmAddToCart()" class="btn-primary px-6 py-3 rounded-2xl text-sm font-bold">
-        إضافة للسلة 🛍️
-      </button>
-    </div>
-  </div>
-</div>
-
-</div><!-- .page -->
-
+<!-- ══════════════════════════════════════════════════════════════
+     UNIFIED RESTAURANT TEMPLATE ENGINE & DATABASE
+     ══════════════════════════════════════════════════════════════ -->
 <script>
-const STORE_NAME = 'مشويات الباز والحسينية — شارع المركز';
-const STORE_KEY = 'baz';
-const itemCatalog = {
-  'baz-1': { title: 'كيلو مشكل كباب وكفتة حاتي بلدي', price: 380, icon: '🍢' },
-  'baz-2': { title: 'طاجن لحمة بلدي بالبصل والأرز البسمتي', price: 240, icon: '🍖' },
-  'baz-3': { title: 'وجبة فرخة مشوية على الفحم مع أرز وبطاطس', price: 190, icon: '🍗' },
-  'baz-4': { title: 'وجبة طرب وكفتة بلدي مخصوص', price: 260, icon: '🥩' },
-  'baz-5': { title: 'ساندوتش كريب زنجر سوبر كرانشي', price: 85, icon: '🍔' },
-  'baz-6': { title: 'طبق مقبلات وطحينة بلدي وسلطات', price: 40, icon: '🥗' },
-  'baz-7': { title: 'عصير رمان الحسينية طبيعي', price: 25, icon: '🥤' }
+/**
+ * قاعدة بيانات مطاعم الحسينية الموحدة
+ * أي مطعم جديد يمكن إضافته هنا كعنصر مستقل بكل سهولة
+ */
+const STORES_DATABASE = {
+  // ── 1. مشويات الباز ──
+  'baz': {
+    id: 'baz',
+    name: 'مشويات الباز والحسينية — كباب وكفتة بلدي',
+    tagline: 'أشهى المشويات المصرية، كباب وكفتة حاتي، طرب، حمام محشي، وطواجن فرن بلدي',
+    category: 'مشويات وأكلات بلدية',
+    statusBadge: '● مفتوح الآن',
+    featureBadge: '🔥 خيار الحسينية الأول',
+    rating: '★ 4.9',
+    reviewsCount: '(+1,420 تقييم)',
+    deliveryTime: '25 - 35 دقيقة',
+    address: 'شارع المركز أمام بنك مصر، الحسينية',
+    deliveryFee: '15 ج.م',
+    minOrder: '50 ج.م',
+    paymentMethods: 'كاش • فودافون كاش • إنستاباي',
+    avatar: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=300&q=80',
+    cover: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
+    themeGradient: 'linear-gradient(135deg, #0d3826 0%, #154d37 50%, #092419 100%)',
+    categories: [
+      { id: 'all', name: '🍽️ الكل' },
+      { id: 'grills', name: '🍢 المشاوي والكباب' },
+      { id: 'rice', name: '🍚 القوزي والأرز' },
+      { id: 'fastfood', name: '🍔 الوجبات السريعة' },
+      { id: 'appetizers', name: '🥗 المقبلات والسلطات' },
+      { id: 'drinks', name: '🥤 المشروبات والعصائر' },
+      { id: 'reviews', name: '⭐ آراء العملاء (4.9)' }
+    ],
+    items: [
+      {
+        id: 'baz-1',
+        title: 'كيلو مشكل كباب وكفتة حاتي بلدي',
+        price: 380,
+        desc: 'كباب ضاني وكفتة بلدي مشوية على الفحم مع طحينة، سلطة خضراء، عيش بلدي ساخن، ومخلل.',
+        image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80',
+        badge: 'الأكثر طلباً 🔥',
+        badgeColor: 'bg-emerald-500 text-black',
+        cat: 'grills',
+        icon: '🍢'
+      },
+      {
+        id: 'baz-2',
+        title: 'طاجن لحمة بلدي بالبصل والأرز البسمتي',
+        price: 240,
+        desc: 'قطع لحم بلدي طازجة مع أرز بسمتي بالمكسرات وشوربة لسان عصفور وطحينة.',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+        badge: 'وجبة فاخرة 👑',
+        badgeColor: 'bg-amber-400 text-black',
+        cat: 'rice',
+        icon: '🍖'
+      },
+      {
+        id: 'baz-3',
+        title: 'وجبة فرخة مشوية على الفحم مع أرز وبطاطس',
+        price: 190,
+        desc: 'فرخة متبلة بالخلطة السرية مشوية على الفحم مع أرز بسمتي، تومية، سلطة، وبطاطس.',
+        image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=600&q=80',
+        badge: 'عرض خاص 🔥',
+        badgeColor: 'bg-rose-500 text-white',
+        cat: 'grills',
+        icon: '🍗'
+      },
+      {
+        id: 'baz-4',
+        title: 'وجبة طرب وكفتة بلدي مخصوص',
+        price: 260,
+        desc: 'طرب ضاني وكفتة مشوية على الفحم مع سلطة بلدي، سلطة طحينة، وعيش بلدي.',
+        image: 'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=600&q=80',
+        badge: 'طرب حاتي',
+        badgeColor: 'bg-emerald-500 text-black',
+        cat: 'grills',
+        icon: '🥩'
+      },
+      {
+        id: 'baz-5',
+        title: 'ساندوتش كريب زنجر سوبر كرانشي',
+        price: 85,
+        desc: 'قطع دجاج زنجر مقرمشة مع جبنة موزاريلا سايحة، صوص شيدر، ومايونيز في عيش كريب مقرمش.',
+        image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80',
+        badge: 'سريع ⚡',
+        badgeColor: 'bg-blue-500 text-white',
+        cat: 'fastfood',
+        icon: '🍔'
+      },
+      {
+        id: 'baz-6',
+        title: 'طبق مقبلات وطحينة بلدي وسلطات',
+        price: 40,
+        desc: 'طحينة بيضاء بالخل، بابا غنوج، سلطة خضراء بلدي، ومخلل مشكل بلدي.',
+        image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=600&q=80',
+        badge: 'مقبلات',
+        badgeColor: 'bg-amber-500 text-black',
+        cat: 'appetizers',
+        icon: '🥗'
+      },
+      {
+        id: 'baz-7',
+        title: 'عصير قصب / برتقال فريش من الحسينية',
+        price: 25,
+        desc: 'عصير طبيعي فريش بارد ينعشك بعد الأكل في علبة محكمة الإغلاق.',
+        image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80',
+        badge: 'عصائر فريش',
+        badgeColor: 'bg-emerald-500 text-black',
+        cat: 'drinks',
+        icon: '🥤'
+      }
+    ],
+    reviews: [
+      { author: 'أحمد الشرقاوي (شارع المركز)', text: 'أفضل كباب وكفتة في الحسينية، اللحمة بلدي طازة والتوصيل وصل في نص ساعة سخن ملهلب!', rating: '★★★★★', time: 'منذ يومين' },
+      { author: 'د. محمود سليم (سعود)', text: 'الطرب والكفتة المشوية ريحتهم تجنن والتغليف محترم جداً.. استمروا على هذا المستوى الممتاز.', rating: '★★★★★', time: 'منذ 4 أيام' },
+      { author: 'الحاج إبراهيم منصور', text: 'طاجن اللحمة بالبصل حكاية، تسلم إيدكم وتوصيل سريع ومحترم.', rating: '★★★★★', time: 'منذ أسبوع' }
+    ]
+  },
+
+  // ── 2. كشري الزعيم ──
+  'koshary': {
+    id: 'koshary',
+    name: 'كشري الزعيم والتحرير — شارع المركز',
+    tagline: 'أفضل كشري مصري مخصوص، طواجن فرن فخار باللحمة والفراخ، دقة وشطة كمون وصلصة مميزة',
+    category: 'كشري وطواجن فرن',
+    statusBadge: '● مفتوح الآن',
+    featureBadge: '🍲 كشري أصلي',
+    rating: '★ 4.8',
+    reviewsCount: '(+980 تقييم)',
+    deliveryTime: '15 - 25 دقيقة',
+    address: 'شارع المركز أمام مجمع المحاكم، الحسينية',
+    deliveryFee: '10 ج.م',
+    minOrder: '30 ج.م',
+    paymentMethods: 'كاش • محافظ إلكترونية • إنستاباي',
+    avatar: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=300&q=80',
+    cover: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1200&q=80',
+    themeGradient: 'linear-gradient(135deg, #3d1c06 0%, #572909 50%, #291102 100%)',
+    categories: [
+      { id: 'all', name: '🌟 كامل المنيو' },
+      { id: 'koshary', name: '🍲 علب الكشري' },
+      { id: 'tajin', name: '🥘 طواجن الفرن الساخنة' },
+      { id: 'extras', name: '🧅 إضافات ودقات' },
+      { id: 'dessert', name: '🍨 حلويات ومشروبات' },
+      { id: 'reviews', name: '⭐ آراء الزبائن' }
+    ],
+    items: [
+      {
+        id: 'kosh-1',
+        title: 'علبة كشري وسط — مخصوص الزعيم',
+        price: 35,
+        desc: 'أرز مصري مفلفل، شعرية محمرة، مكرونة مقصوصة وإسباجيتي، عدس بجبة، حمص شامي، بصل مقرمش ذهبي، مع كيس دقة وصلصة حارة.',
+        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
+        badge: '🔥 الأكثر طلباً',
+        badgeColor: 'bg-amber-500 text-black',
+        cat: 'koshary',
+        icon: '🍲'
+      },
+      {
+        id: 'kosh-2',
+        title: 'علبة كشري ميجا سوبر جامبو',
+        price: 50,
+        desc: 'حجم كبير جداً يكفي شخصين، مع دبل حمص وتقلية وعدس زيادة، وعبوتين صلصة كبيرة ودقة ثوم بالخل.',
+        image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80',
+        badge: 'حجم عائلي',
+        badgeColor: 'bg-emerald-500 text-black',
+        cat: 'koshary',
+        icon: '🥣'
+      },
+      {
+        id: 'kosh-3',
+        title: 'كشري توبينج كبدة إسكندراني',
+        price: 55,
+        desc: 'علبة كشري مع طبقة كبدة إسكندراني بتتبيلة الثوم والفلفل الأخضر الحار والليمون والكمون.',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+        badge: 'سبايسي 🌶️',
+        badgeColor: 'bg-rose-500 text-white',
+        cat: 'koshary',
+        icon: '🥩'
+      },
+      {
+        id: 'kosh-4',
+        title: 'طاجن فرن لحمة مفرومة بلدي',
+        price: 45,
+        desc: 'طاجن مكرونة قلم مخبوز بالفرن مع صلصة الطماطم الغنية بالبهارات ولحمة مفرومة بلدي على الوجه.',
+        image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80',
+        badge: 'فرن فخار',
+        badgeColor: 'bg-red-600 text-white',
+        cat: 'tajin',
+        icon: '🥘'
+      },
+      {
+        id: 'kosh-5',
+        title: 'طاجن مكرونة فراخ بالموزاريلا',
+        price: 50,
+        desc: 'قطع صدور فراخ متبلة مع مكرونة فرن وطبقة موزاريلا غنية ذائبة ومحمرة في الفرن.',
+        image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=600&q=80',
+        badge: 'جبنة سايحة',
+        badgeColor: 'bg-amber-400 text-black',
+        cat: 'tajin',
+        icon: '🍗'
+      },
+      {
+        id: 'kosh-6',
+        title: 'طاجن سجق بلدي شرقي مشطشط',
+        price: 50,
+        desc: 'سجق بلدي إسكندراني بقطع الطماطم والفلفل الحار والصلصة المتبكة في الفرن.',
+        image: 'https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=600&q=80',
+        badge: 'حار ونار',
+        badgeColor: 'bg-red-500 text-white',
+        cat: 'tajin',
+        icon: '🌶️'
+      },
+      {
+        id: 'kosh-7',
+        title: 'طاجن أرز باللبن فرن بالقشطة',
+        price: 25,
+        desc: 'أرز باللبن الطبيعي مع وش قشطة بلدي محمر في الفرن ومكسرات خفيفة.',
+        image: 'https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=600&q=80',
+        badge: 'قشطة بلدي',
+        badgeColor: 'bg-blue-500 text-white',
+        cat: 'dessert',
+        icon: '🍮'
+      },
+      {
+        id: 'kosh-8',
+        title: 'طاجن أم علي ساخن بالمكسرات',
+        price: 30,
+        desc: 'عجينة الميلفاي الهشة مع الحليب المكثف والقشطة والزبيب وجوز الهند والبندق.',
+        image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80',
+        badge: 'مكسرات مشكلة',
+        badgeColor: 'bg-amber-500 text-black',
+        cat: 'dessert',
+        icon: '🥧'
+      }
+    ],
+    reviews: [
+      { author: 'محمد يوسف (بحر البقر)', text: 'طاجن اللحمة المفرومة والكشري سخنين جداً والتقلية مقرمشة وزيت نقي!', rating: '★★★★★', time: 'منذ يوم' },
+      { author: 'كريم عبد الله (شارع المركز)', text: 'أحلى طاجن مكرونة فراخ بالموزاريلا في الحسينية، وسرعة في التوصيل ما شاء الله.', rating: '★★★★★', time: 'منذ 3 أيام' }
+    ]
+  },
+
+  // ── 3. بيتزا وكريب الرواد ──
+  'pizza': {
+    id: 'pizza',
+    name: 'بيتزا وكريب الرواد — شارع المدارس',
+    tagline: 'أقوى كريب كرانشي حار، شاورما سوري، بيتزا شرقي وإيطالي بالموزاريلا الطبيعية، وبرجر دوبل',
+    category: 'كريب وبيتزا وفاست فود',
+    statusBadge: '● مفتوح الآن',
+    featureBadge: '🍕 كريب وبيتزا إيطالي',
+    rating: '★ 4.7',
+    reviewsCount: '(+840 تقييم)',
+    deliveryTime: '20 - 30 دقيقة',
+    address: 'شارع المدارس أمام مدرسة التجارة، الحسينية',
+    deliveryFee: '12 ج.م',
+    minOrder: '40 ج.م',
+    paymentMethods: 'كاش • محافظ إلكترونية • إنستاباي',
+    avatar: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=300&q=80',
+    cover: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80',
+    themeGradient: 'linear-gradient(135deg, #3d0e12 0%, #54191d 50%, #24070a 100%)',
+    categories: [
+      { id: 'all', name: '🌟 كامل المنيو' },
+      { id: 'crepe', name: '🌯 كريب مالح مقرمش' },
+      { id: 'pizza', name: '🍕 بيتزا إيطالي وشرقي' },
+      { id: 'burger', name: '🍔 برجر وسندوتشات' },
+      { id: 'sweet', name: '🍫 كريب حلو ومشروبات' },
+      { id: 'reviews', name: '⭐ آراء الزبائن' }
+    ],
+    items: [
+      {
+        id: 'piz-1',
+        title: 'كريب زنجر سوبر كرانشي حار',
+        price: 65,
+        desc: 'قطع صدور فراخ كرانشي متبلة حارة، بطاطس فارم فريتس، ميكس جبن موزاريلا وشيدر، صوص رانش ومايونيز.',
+        image: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=600&q=80',
+        badge: '🔥 الأكثر طلباً',
+        badgeColor: 'bg-red-600 text-white',
+        cat: 'crepe',
+        icon: '🌯'
+      },
+      {
+        id: 'piz-2',
+        title: 'كريب شاورما فراخ سوري ميكس جبن',
+        price: 60,
+        desc: 'شاورما فراخ سوري على السيخ، ثومية مخصوصة، خيار مخلل، وبطاطس وموزاريلا سايحة على الجريل.',
+        image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=600&q=80',
+        badge: 'شاورما سوري',
+        badgeColor: 'bg-amber-500 text-black',
+        cat: 'crepe',
+        icon: '🌮'
+      },
+      {
+        id: 'piz-3',
+        title: 'كريب ميكس جبن (كيري + موزاريلا + رومي)',
+        price: 50,
+        desc: 'أربع أنواع جبن غنية تذوب معاً مع الزيتون الأخضر والفلفل الألوان وصوص الجبنة الشيدر.',
+        image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80',
+        badge: '4 جبن',
+        badgeColor: 'bg-emerald-500 text-black',
+        cat: 'crepe',
+        icon: '🧀'
+      },
+      {
+        id: 'piz-4',
+        title: 'بيتزا سوبر سوبريم إيطالي (L)',
+        price: 140,
+        desc: 'لحم مفروم بلدي، سجق شرقي، مشروم فريش، زيتون أسود، فلفل أخضر، صوص طماطم إيطالي وموزاريلا دوبل.',
+        image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80',
+        badge: 'حجم كبير L',
+        badgeColor: 'bg-amber-400 text-black',
+        cat: 'pizza',
+        icon: '🍕'
+      },
+      {
+        id: 'piz-5',
+        title: 'بيتزا فراخ صوص الباربكيو المدخن',
+        price: 125,
+        desc: 'قطع دجاج متبلة مشوية مع صوص الباربكيو الأمريكي المدخن، بصل أحمر شرائح وموزاريلا طبيعية.',
+        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80',
+        badge: 'باربكيو مدخن',
+        badgeColor: 'bg-red-600 text-white',
+        cat: 'pizza',
+        icon: '🍗'
+      },
+      {
+        id: 'piz-6',
+        title: 'ساندوتش برجر دوبل بالجبنة الشيدر',
+        price: 75,
+        desc: 'قطعتين برجر لحمة مفرومة بلدي مشوية على الجريل مع جبنة شيدر، خس، طماطم، صوص بيج تيستي وبطاطس.',
+        image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80',
+        badge: 'دوبل بيف 🍔',
+        badgeColor: 'bg-amber-500 text-black',
+        cat: 'burger',
+        icon: '🍔'
+      },
+      {
+        id: 'piz-7',
+        title: 'كريب شوكولاتة نوتيلا بالموز والمكسرات',
+        price: 45,
+        desc: 'كريب حلو محشو شوكولاتة نوتيلا أصلية غنية مع شرائح الموز الطازجة والمكسرات وصوص شوكولاتة.',
+        image: 'https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=600&q=80',
+        badge: 'نوتيلا وموز',
+        badgeColor: 'bg-pink-500 text-white',
+        cat: 'sweet',
+        icon: '🍫'
+      },
+      {
+        id: 'piz-8',
+        title: 'كريب زبدة اللوتس والكراميل',
+        price: 50,
+        desc: 'كريب حلو غني بزبدة بسكويت اللوتس المقرمشة مع صوص كراميل ومكسرات بندق مجروش.',
+        image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80',
+        badge: 'لوتس كراميل',
+        badgeColor: 'bg-amber-600 text-white',
+        cat: 'sweet',
+        icon: '🧇'
+      }
+    ],
+    reviews: [
+      { author: 'عمر الخالد (شارع المدارس)', text: 'كريب الزنجر الكرانشي مقرمش وساخن جداً وجبنة بتمط لحد السقف!', rating: '★★★★★', time: 'أمس' },
+      { author: 'سارة إبراهيم', text: 'البيتزا عجينتها هشة وخفيفة ومش تقيلة، أفضل مطعم بيتزا بالحسينية بلا منازع.', rating: '★★★★★', time: 'منذ يومين' }
+    ]
+  },
+
+  // ── 4. حلواني شندل ──
+  'shendel': {
+    id: 'shendel',
+    name: 'حلواني شندل والبارون — شارع المركز',
+    tagline: 'تورتات أعياد ميلاد، بسبوسة بالسمن البلدي، كنافة نابلسية، وجاتوهات شرقية وغربية',
+    category: 'حلويات شرقية وغربية وتورتات',
+    statusBadge: '● مفتوح الآن',
+    featureBadge: '🍰 حلويات فاخرة',
+    rating: '★ 4.9',
+    reviewsCount: '(+1,150 تقييم)',
+    deliveryTime: '15 - 25 دقيقة',
+    address: 'شارع المركز بجوار بنك مصر، الحسينية',
+    deliveryFee: '10 ج.م',
+    minOrder: '50 ج.م',
+    paymentMethods: 'كاش • محافظ إلكترونية • إنستاباي',
+    avatar: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=300&q=80',
+    cover: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80',
+    themeGradient: 'linear-gradient(135deg, #2c0e3a 0%, #46165c 50%, #190524 100%)',
+    categories: [
+      { id: 'all', name: '🌟 كامل المعروضات' },
+      { id: 'eastern', name: '🍯 حلويات شرقية بالسمن البلدي' },
+      { id: 'cakes', name: '🎂 تورتات ومناسبات' },
+      { id: 'gateau', name: '🧁 جاتوهات فاخرة' },
+      { id: 'cookies', name: '🍪 نواشف وسابليه' },
+      { id: 'reviews', name: '⭐ آراء الزبائن' }
+    ],
+    items: [
+      {
+        id: 'shn-1',
+        title: 'كيلو بسبوسة مرملة بالسمن البلدي واللوز',
+        price: 140,
+        desc: 'بسبوسة شندل الشهيرة بالسمن الفلاحي الطبيعي مرملة ودايبة مع اللوز المحمص وشربات العسل الخفيف.',
+        image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80',
+        badge: '🔥 سمن بلدي',
+        badgeColor: 'bg-amber-500 text-black',
+        cat: 'eastern',
+        icon: '🍯'
+      },
+      {
+        id: 'shn-2',
+        title: 'صينية كنافة نابلسية بالجبنة العكاوي',
+        price: 160,
+        desc: 'كنافة شعر برتقالية مقرمشة محشوة جبنة عكاوي مطاطية تذوب في الفم مع الفستق الحلبي والشربات.',
+        image: 'https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=600&q=80',
+        badge: 'ساخنة وطازجة',
+        badgeColor: 'bg-emerald-500 text-black',
+        cat: 'eastern',
+        icon: '🧀'
+      },
+      {
+        id: 'shn-3',
+        title: 'طبق مشكل شرقي سوبر لوكس (كيلو)',
+        price: 180,
+        desc: 'تشكيلة ملكية من بقلاوة تركية، أصابع كنافة بالمكسرات، بورمة فستق، وبسبوسة قشطة وبلح الشام.',
+        image: 'https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=600&q=80',
+        badge: 'ملوكي',
+        badgeColor: 'bg-amber-500 text-black',
+        cat: 'eastern',
+        icon: '🥮'
+      },
+      {
+        id: 'shn-4',
+        title: 'تورتة شوكولاتة فادج نوتيلا كينج',
+        price: 220,
+        desc: 'كيك فادج شوكولاتة طري غني بطبقات كريمة النوتيلا، ومزينة بقطع فيريرو روشيه وشوكولاتة كيت كات.',
+        image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80',
+        badge: 'وسط مقاس 24',
+        badgeColor: 'bg-pink-500 text-white',
+        cat: 'cakes',
+        icon: '🎂'
+      },
+      {
+        id: 'shn-5',
+        title: 'تورتة فواكه طبيعية فريش',
+        price: 240,
+        desc: 'كيك فانيليا إسفنجي هش مع طبقات كريمة خفق فرنسية ومغطاة بفراولة وكيوي ومانجو وكمبوت خوخ.',
+        image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600&q=80',
+        badge: 'طازجة اليوم',
+        badgeColor: 'bg-amber-500 text-black',
+        cat: 'cakes',
+        icon: '🍓'
+      },
+      {
+        id: 'shn-6',
+        title: 'دستة جاتوه مشكل سوبر لوكس (12 قطعة)',
+        price: 150,
+        desc: '12 قطعة جاتوه منوعة (بلاك فورست، ميلفاي سكر ومربى، اكلير شوكولاتة، تارت فواكه، وتشيز كيك توت).',
+        image: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80',
+        badge: '12 قطعة',
+        badgeColor: 'bg-purple-500 text-white',
+        cat: 'gateau',
+        icon: '🧁'
+      },
+      {
+        id: 'shn-7',
+        title: 'علبة بتي فور وسابليه بالمربى والمكسرات',
+        price: 130,
+        desc: 'بتي فور ناعم يذوب بالسمن النيوزيلندي مع صوص الشوكولاتة والفستق والمربى الطبيعية.',
+        image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80',
+        badge: 'فاخر',
+        badgeColor: 'bg-amber-500 text-black',
+        cat: 'cookies',
+        icon: '🍪'
+      },
+      {
+        id: 'shn-8',
+        title: '4 قطع اكلير شوكولاتة بلجيكي فرنسي',
+        price: 60,
+        desc: 'عجينة شو فرنسية هشة محشوة كريمة كاسترد غنية ومغطاة بشوكولاتة بلجيكية داكنة.',
+        image: 'https://images.unsplash.com/photo-1612203985729-70726954388c?auto=format&fit=crop&w=600&q=80',
+        badge: 'بلجيكي',
+        badgeColor: 'bg-pink-500 text-white',
+        cat: 'gateau',
+        icon: '🍫'
+      }
+    ],
+    reviews: [
+      { author: 'مدام نادية العوضي', text: 'بسبوسة شندل ملهاش حل، ريحة السمن البلدي طاغية وتذوب في البق.', rating: '★★★★★', time: 'منذ يومين' },
+      { author: 'المهندس تامر سمير', text: 'أخدت تورتة الفادج لعيد ميلاد بنتي وكانت تحفة وأبهرت كل المعازيم.', rating: '★★★★★', time: 'منذ 5 أيام' }
+    ]
+  },
+
+  // ── 5. فول وفلافل البرنس ──
+  'falafel': {
+    id: 'falafel',
+    name: 'فول وفلافل البرنس — شارع ترعة سراج',
+    tagline: 'أشهى فلافل مقرمشة محشية، فول مدمس فلاحي بالزيت الحار والطحينة، مسقعة بلدي، وباذنجان مخلل',
+    category: 'فطور شعبي ومأكولات صباحية',
+    statusBadge: '● مفتوح الآن',
+    featureBadge: '🧆 فطار الحسينية الأصيل',
+    rating: '★ 4.9',
+    reviewsCount: '(+1,320 تقييم)',
+    deliveryTime: '10 - 20 دقيقة',
+    address: 'شارع ترعة سراج أمام المعهد الديني، الحسينية',
+    deliveryFee: '10 ج.م',
+    minOrder: '25 ج.م',
+    paymentMethods: 'كاش • محافظ إلكترونية • إنستاباي',
+    avatar: 'https://images.unsplash.com/photo-1593001874117-c99c800e3eb7?auto=format&fit=crop&w=300&q=80',
+    cover: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=1200&q=80',
+    themeGradient: 'linear-gradient(135deg, #1b3820 0%, #28542f 50%, #112415 100%)',
+    categories: [
+      { id: 'all', name: '🌟 كامل المنيو' },
+      { id: 'sandwiches', name: '🥪 ساندوتشات شعبية' },
+      { id: 'plates', name: '🥘 علب وأطباق عائلية' },
+      { id: 'falafel', name: '🧆 طعمية سخنة وعجينة' },
+      { id: 'pickles', name: '🥗 مقبلات ومخللات' },
+      { id: 'reviews', name: '⭐ آراء الزبائن' }
+    ],
+    items: [
+      {
+        id: 'fal-1',
+        title: 'ساندوتش فلافل محشية كيري وشطة',
+        price: 8,
+        desc: 'قرص فلافل مقرمش بالسمسم محشو جبنة كيري سايحة ودقة بصل وشطة مع سلطة خضراء وطحينة سمسم.',
+        image: 'https://images.unsplash.com/photo-1593001874117-c99c800e3eb7?auto=format&fit=crop&w=600&q=80',
+        badge: '🔥 الأكثر طلباً',
+        badgeColor: 'bg-emerald-500 text-black',
+        cat: 'sandwiches',
+        icon: '🧆'
+      },
+      {
+        id: 'fal-2',
+        title: 'ساندوتش فول بلدي بالزيت الحار والليمون',
+        price: 8,
+        desc: 'فول مدمس فلاحي زبدة مع زيت حار بذر كتان أصلي، طحينة بيضاء، كمون، وليمون في عيش بلدي سخن.',
+        image: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=600&q=80',
+        badge: 'فول زبدة',
+        badgeColor: 'bg-amber-500 text-black',
+        cat: 'sandwiches',
+        icon: '🥖'
+      },
+      {
+        id: 'fal-3',
+        title: 'ساندوتش بطاطس بانيه بالكاتشب والمايونيز',
+        price: 10,
+        desc: 'أصابع بطاطس بانيه مقرمشة مع خلطة البرنس الخاصة وصوص كاتشب ومايونيز وسلطة كول سلو.',
+        image: 'https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=600&q=80',
+        badge: 'مقرمش',
+        badgeColor: 'bg-yellow-500 text-black',
+        cat: 'sandwiches',
+        icon: '🍟'
+      },
+      {
+        id: 'fal-4',
+        title: 'علبة فول مدمس فلاحي متبل كبير',
+        price: 20,
+        desc: 'علبة فول كاملة متبلة بالطحينة والزيت والكمون والليمون والطماطم، تأتي مع 5 أرغفة عيش بلدي ساخن.',
+        image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80',
+        badge: 'تكفي 3 أفراد',
+        badgeColor: 'bg-amber-500 text-black',
+        cat: 'plates',
+        icon: '🍲'
+      },
+      {
+        id: 'fal-5',
+        title: 'طبق مسقعة بلدي بالصلصة المسبكة',
+        price: 25,
+        desc: 'باذنجان رومي مقلي مع فلفل رومي وحار في صلصة طماطم مسبكة بالثوم والخل والبهارات الشرقية.',
+        image: 'https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?auto=format&fit=crop&w=600&q=80',
+        badge: 'طاجن بلدي',
+        badgeColor: 'bg-red-500 text-white',
+        cat: 'plates',
+        icon: '🥘'
+      },
+      {
+        id: 'fal-6',
+        title: 'طبق باذنجان مخلل بالدقة والليمون',
+        price: 15,
+        desc: 'باذنجان عروس مسلوق ومخلل بتتبيلة الثوم المفروم، الفلفل الأحمر الحار، الكمون، وعصير الليمون والخل.',
+        image: 'https://images.unsplash.com/photo-1592417817098-8f3d69102353?auto=format&fit=crop&w=600&q=80',
+        badge: 'مخلل مخصوص',
+        badgeColor: 'bg-purple-500 text-white',
+        cat: 'pickles',
+        icon: '🍆'
+      },
+      {
+        id: 'fal-7',
+        title: '10 أقراص فلافل سخنة مقرمشة بالسمسم',
+        price: 15,
+        desc: 'طعمية مقلية طازجة في زيت نظيف مع رشة كزبرة ناشفة وسمسم محمص ذهبي.',
+        image: 'https://images.unsplash.com/photo-1593001874117-c99c800e3eb7?auto=format&fit=crop&w=600&q=80',
+        badge: '10 أقراص',
+        badgeColor: 'bg-emerald-500 text-black',
+        cat: 'falafel',
+        icon: '🟢'
+      },
+      {
+        id: 'fal-8',
+        title: 'كيس عجينة فلافل متبلة (نصف كيلو)',
+        price: 20,
+        desc: 'عجينة طعمية فريش مفرومة ناعم مع الخضرة والبهارات والسمسم للقلي السريع في المنزل.',
+        image: 'https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?auto=format&fit=crop&w=600&q=80',
+        badge: 'نصف كيلو',
+        badgeColor: 'bg-teal-500 text-black',
+        cat: 'falafel',
+        icon: '📦'
+      }
+    ],
+    reviews: [
+      { author: 'الحاج عاطف عبد الحميد (سراج)', text: 'أحسن فلافل بالجبنة الكيري ممكن تاكلها في حياتك، فول البرنس رقم واحد في الحسينية.', rating: '★★★★★', time: 'اليوم' },
+      { author: 'أحمد بدوي', text: 'سرعة توصيل الفطار في الصبح ممتازة، الأكل بيوصل سخن والعيش طازة.', rating: '★★★★★', time: 'منذ يومين' }
+    ]
+  }
 };
 
-let cart = {};
-let currentItem = { id: '', title: '', basePrice: 0.00 };
+/**
+ * ── CART STATE MANAGEMENT ──
+ */
+function getCart() {
+  try {
+    return JSON.parse(localStorage.getItem('husayniya_cart')) || [];
+  } catch (e) {
+    return [];
+  }
+}
 
-// ── Switch Menu Category Tabs ──
-function switchCategory(cat, btn) {
-  document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
+function saveCart(cart) {
+  try {
+    localStorage.setItem('husayniya_cart', JSON.stringify(cart));
+  } catch (e) {}
+}
+
+function getCartItem(id) {
+  const cart = getCart();
+  return cart.find(item => item.id === id);
+}
+
+// Global active store holder
+let ACTIVE_STORE = null;
+let ACTIVE_CATEGORY = 'all';
+
+/**
+ * ── INITIALIZATION & RESOLUTION ──
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const storeKey = params.get('store') || params.get('id') || 'baz';
+  
+  ACTIVE_STORE = STORES_DATABASE[storeKey] || STORES_DATABASE['baz'];
+  renderStore(ACTIVE_STORE);
+  updateCartUI();
+
+  // Close dropdown on outside click
+  document.addEventListener('click', (e) => {
+    const dropdown = document.getElementById('store-selector-dropdown');
+    const btn = document.getElementById('store-selector-btn');
+    if (dropdown && !dropdown.contains(e.target) && !btn.contains(e.target)) {
+      dropdown.classList.add('hidden');
+    }
+  });
+});
+
+function toggleStoreMenu(event) {
+  if (event) event.stopPropagation();
+  const dropdown = document.getElementById('store-selector-dropdown');
+  if (dropdown) dropdown.classList.toggle('hidden');
+}
+
+/**
+ * ── RENDER STORE ENGINE ──
+ */
+function renderStore(store) {
+  // 1. Meta & Document Title
+  document.title = `${store.name} — خدمات الحسينية`;
+
+  // 2. Hero Section Info
+  const heroBanner = document.getElementById('store-hero-banner');
+  if (heroBanner) {
+    heroBanner.style.background = `${store.themeGradient}, url('${store.cover}') center/cover`;
+  }
+
+  document.getElementById('store-name').innerText = store.name;
+  document.getElementById('store-tagline').innerText = store.tagline;
+  document.getElementById('store-status').innerText = store.statusBadge;
+  document.getElementById('store-badge').innerText = store.featureBadge;
+  document.getElementById('store-rating').innerText = store.rating;
+  document.getElementById('store-reviews-count').innerText = store.reviewsCount;
+  document.getElementById('store-time-desktop').innerText = `⏱️ ${store.deliveryTime}`;
+  document.getElementById('store-time-mobile').innerText = `⏱️ ${store.deliveryTime}`;
+  document.getElementById('store-address').innerText = `📍 ${store.address}`;
+  document.getElementById('store-delivery-fee').innerText = `توصيل ${store.deliveryFee}`;
+  document.getElementById('store-min-order').innerText = store.minOrder;
+  document.getElementById('store-payments').innerText = store.paymentMethods;
+  
+  const avatar = document.getElementById('store-avatar');
+  avatar.src = store.avatar;
+  avatar.alt = store.name;
+
+  // 3. Category Tabs
+  renderCategoryTabs(store.categories);
+
+  // 4. Menu Items
+  renderMenuItems(store.items);
+
+  // 5. Reviews Section
+  renderReviews(store.reviews, store.rating);
+}
+
+function renderCategoryTabs(categories) {
+  const container = document.getElementById('category-tabs-container');
+  if (!container) return;
+
+  container.innerHTML = categories.map((cat, index) => {
+    const activeClass = index === 0 ? 'active' : '';
+    return `<button onclick="switchCategory('${cat.id}', this)" class="menu-tab ${activeClass}">${cat.name}</button>`;
+  }).join('');
+}
+
+function switchCategory(catId, btnElement) {
+  ACTIVE_CATEGORY = catId;
+  
+  // Highlight active tab
+  document.querySelectorAll('.menu-tab').forEach(b => b.classList.remove('active'));
+  if (btnElement) btnElement.classList.add('active');
 
   const menuContainer = document.getElementById('menu-container');
   const reviewsSection = document.getElementById('reviews-section');
 
-  if (cat === 'reviews') {
-    menuContainer.classList.add('hidden');
-    reviewsSection.classList.remove('hidden');
+  if (catId === 'reviews') {
+    if (menuContainer) menuContainer.classList.add('hidden');
+    if (reviewsSection) reviewsSection.classList.remove('hidden');
     return;
   }
 
-  menuContainer.classList.remove('hidden');
-  reviewsSection.classList.add('hidden');
+  if (menuContainer) menuContainer.classList.remove('hidden');
+  if (reviewsSection) reviewsSection.classList.add('hidden');
 
-  document.querySelectorAll('.menu-card').forEach(card => {
-    if (cat === 'all' || card.dataset.category === cat) {
-      card.style.display = 'flex';
-    } else {
-      card.style.display = 'none';
-    }
-  });
+  filterMenuItems();
 }
 
-// ── Filter Menu via Search ──
-function filterMenuItems() {
-  const query = document.getElementById('menu-search').value.toLowerCase().trim();
-  document.querySelectorAll('.menu-card').forEach(card => {
-    const title = card.dataset.title.toLowerCase();
-    if (title.includes(query)) {
-      card.style.display = 'flex';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}
+function renderMenuItems(items) {
+  const container = document.getElementById('menu-container');
+  if (!container) return;
 
-function loadCart() {
-  try {
-    const saved = localStorage.getItem('husayniya_cart');
-    if (saved) {
-      const data = JSON.parse(saved);
-      if (data && data.storeKey === STORE_KEY && data.items) {
-        cart = data.items;
-        for (let id in cart) {
-          renderCtrl(id);
-        }
-        updateSummary();
-      }
-    }
-  } catch(e) { console.warn(e); }
-}
-
-function saveCart() {
-  try {
-    localStorage.setItem('husayniya_cart', JSON.stringify({
-      storeName: STORE_NAME,
-      storeKey: STORE_KEY,
-      items: cart,
-      updatedAt: Date.now()
-    }));
-  } catch(e) { console.warn(e); }
-}
-
-function changeQty(id, title, price, icon, delta) {
-  if (!cart[id]) {
-    if (delta > 0) {
-      cart[id] = { id, title: title || itemCatalog[id].title, price: price || itemCatalog[id].price, icon: icon || itemCatalog[id].icon, qty: delta };
-      showToast(`تمت إضافة "${cart[id].title}" إلى السلة! 🛍️`);
-    }
-  } else {
-    cart[id].qty += delta;
-    if (cart[id].qty <= 0) {
-      const oldTitle = cart[id].title;
-      delete cart[id];
-      showToast(`تم حذف "${oldTitle}" من السلة 🗑️`);
-    } else if (delta > 0) {
-      showToast(`تمت زيادة كمية "${cart[id].title}" (${cart[id].qty} بالطلب)`);
-    } else {
-      showToast(`تم تقليل كمية "${cart[id].title}" (${cart[id].qty} بالطلب)`);
-    }
-  }
-
-  renderCtrl(id);
-  updateSummary();
-  saveCart();
-}
-
-function renderCtrl(id) {
-  const container = document.getElementById(`ctrl-${id}`);
-  if (!container || !itemCatalog[id]) return;
-
-  const meta = itemCatalog[id];
-  const item = cart[id];
-
-  if (!item || item.qty <= 0) {
-    container.innerHTML = `
-      <button onclick="changeQty('${id}', '${meta.title}', ${meta.price}, '${meta.icon}', 1)" class="btn-add">
-        <span>+ إضافة</span>
-      </button>
-    `;
-  } else {
-    const qty = item.qty;
-    const minusBtn = qty === 1
-      ? `<button onclick="changeQty('${id}', '${meta.title}', ${meta.price}, '${meta.icon}', -1)" class="qty-btn qty-btn-delete" title="حذف من السلة">🗑️</button>`
-      : `<button onclick="changeQty('${id}', '${meta.title}', ${meta.price}, '${meta.icon}', -1)" class="qty-btn qty-btn-minus" title="تقليل الكمية">−</button>`;
-
-    container.innerHTML = `
-      <div class="qty-stepper">
-        ${minusBtn}
-        <div class="qty-count-wrap">
-          <span class="qty-count">${qty}</span>
-          <span class="qty-unit">بالطلب</span>
+  container.innerHTML = items.map(item => {
+    return `
+      <div class="menu-card glass-card rounded-3xl p-4 sm:p-5 flex flex-col justify-between" data-category="${item.cat}" data-title="${item.title.toLowerCase()}">
+        <div>
+          <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
+            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full ${item.badgeColor || 'bg-emerald-500 text-black'} text-[10px] font-black shadow-lg">${item.badge}</span>
+          </div>
+          <div class="flex items-start justify-between gap-2 mb-1.5">
+            <h3 class="font-bold text-sm sm:text-base text-white leading-snug">${item.title}</h3>
+            <span class="text-sm font-extrabold text-emerald-400 whitespace-nowrap">${item.price} ج.م</span>
+          </div>
+          <p class="text-xs text-white/60 mb-4 leading-relaxed">${item.desc}</p>
         </div>
-        <button onclick="changeQty('${id}', '${meta.title}', ${meta.price}, '${meta.icon}', 1)" class="qty-btn qty-btn-plus" title="زيادة الكمية">+</button>
+        <div id="ctrl-${item.id}">
+          <!-- Controlled dynamically by updateItemControl -->
+        </div>
       </div>
     `;
+  }).join('');
+
+  items.forEach(item => updateItemControl(item.id));
+}
+
+function renderReviews(reviews, avgRating) {
+  const listContainer = document.getElementById('reviews-list-container');
+  const avgRatingEl = document.getElementById('reviews-avg-rating');
+  if (avgRatingEl) avgRatingEl.innerText = avgRating.replace('★', '').trim();
+
+  if (!listContainer) return;
+  listContainer.innerHTML = reviews.map(rev => `
+    <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/5">
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">${rev.author.charAt(0)}</div>
+          <span class="font-bold text-sm">${rev.author}</span>
+          <span class="text-[10px] text-white/40">• ${rev.time}</span>
+        </div>
+        <div class="text-amber-400 text-xs">${rev.rating}</div>
+      </div>
+      <p class="text-xs text-white/70 leading-relaxed pr-10">${rev.text}</p>
+    </div>
+  `).join('');
+}
+
+function filterMenuItems() {
+  const searchInput = document.getElementById('menu-search');
+  const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+  const cards = document.querySelectorAll('.menu-card');
+
+  cards.forEach(card => {
+    const cardCat = card.getAttribute('data-category');
+    const cardTitle = card.getAttribute('data-title');
+
+    const matchesCat = (ACTIVE_CATEGORY === 'all') || (cardCat === ACTIVE_CATEGORY);
+    const matchesSearch = !query || cardTitle.includes(query);
+
+    if (matchesCat && matchesSearch) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+/**
+ * ── ITEM STEPPER CONTROLLER ──
+ */
+function updateItemControl(itemId) {
+  const ctrl = document.getElementById(`ctrl-${itemId}`);
+  if (!ctrl) return;
+
+  const itemInCart = getCartItem(itemId);
+  const qty = itemInCart ? itemInCart.qty : 0;
+
+  if (qty > 0) {
+    const isSingle = (qty === 1);
+    const minusBtnClass = isSingle ? 'qty-btn qty-btn-delete' : 'qty-btn qty-btn-minus';
+    const minusBtnContent = isSingle ? '🗑️' : '−';
+
+    ctrl.innerHTML = `
+      <div class="qty-stepper">
+        <button onclick="changeQty('${itemId}', '', 0, '', -1)" class="${minusBtnClass}" title="${isSingle ? 'حذف من السلة' : 'تقليل الكمية'}">
+          ${minusBtnContent}
+        </button>
+        <div class="qty-count-wrap">
+          <span class="qty-count">${qty}</span>
+          <span class="qty-unit">طلب</span>
+        </div>
+        <button onclick="changeQty('${itemId}', '', 0, '', 1)" class="qty-btn qty-btn-plus" title="زيادة الكمية">
+          +
+        </button>
+      </div>
+    `;
+  } else {
+    // Find item details from ACTIVE_STORE
+    const itemData = ACTIVE_STORE ? ACTIVE_STORE.items.find(i => i.id === itemId) : null;
+    const safeTitle = itemData ? itemData.title.replace(/'/g, "\\'") : '';
+    const safePrice = itemData ? itemData.price : 0;
+    const safeIcon = itemData ? itemData.icon : '🍽️';
+
+    ctrl.innerHTML = `
+      <button onclick="changeQty('${itemId}', '${safeTitle}', ${safePrice}, '${safeIcon}', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    `;
   }
 }
 
-function updateSummary() {
-  let totalCount = 0;
-  let totalPrice = 0;
+function changeQty(itemId, title, price, icon, delta) {
+  let cart = getCart();
+  const existingIdx = cart.findIndex(i => i.id === itemId);
 
-  for (let id in cart) {
-    totalCount += cart[id].qty;
-    totalPrice += cart[id].qty * cart[id].price;
+  if (existingIdx > -1) {
+    cart[existingIdx].qty += delta;
+    if (cart[existingIdx].qty <= 0) {
+      const removedTitle = cart[existingIdx].name;
+      cart.splice(existingIdx, 1);
+      showToast(`تم حذف ${removedTitle} من السلة`);
+    } else {
+      if (delta > 0) {
+        showToast(`تمت إضافة طلب إضافي (${cart[existingIdx].qty})`);
+      }
+    }
+  } else if (delta > 0) {
+    // If details are empty, lookup from active store
+    if (!title && ACTIVE_STORE) {
+      const itm = ACTIVE_STORE.items.find(i => i.id === itemId);
+      if (itm) {
+        title = itm.title;
+        price = itm.price;
+        icon = itm.icon;
+      }
+    }
+    cart.push({
+      id: itemId,
+      name: title || 'وجبة مخصوصة',
+      price: price || 0,
+      icon: icon || '🍽️',
+      qty: 1,
+      store: ACTIVE_STORE ? ACTIVE_STORE.name : 'مطاعم الحسينية'
+    });
+    showToast(`تمت إضافة "${title}" للسلة بنجاح!`);
   }
 
-  const badge = document.getElementById('nav-cart-badge');
-  const itemsCount = document.getElementById('cart-items-count');
+  saveCart(cart);
+  updateItemControl(itemId);
+  updateCartUI();
+}
+
+/**
+ * ── GLOBAL CART & FLOATING BAR UI ──
+ */
+function updateCartUI() {
+  const cart = getCart();
+  const totalCount = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+  const totalPrice = cart.reduce((sum, item) => sum + ((item.price || 0) * (item.qty || 1)), 0);
+
+  // Top Nav Badge
+  const navBadge = document.getElementById('nav-cart-badge');
+  if (navBadge) navBadge.innerText = totalCount;
+
+  // Floating Cart Bar
+  const floatingCart = document.getElementById('floating-cart');
+  const countEl = document.getElementById('cart-item-count');
   const priceEl = document.getElementById('cart-total-price');
-  const bar = document.getElementById('floating-cart-bar');
 
-  if (badge) badge.textContent = totalCount;
-  if (itemsCount) itemsCount.textContent = totalCount;
-  if (priceEl) priceEl.textContent = totalPrice.toFixed(2) + ' ج.م';
-
-  if (bar) {
+  if (floatingCart) {
     if (totalCount > 0) {
-      bar.classList.remove('hidden');
+      if (countEl) countEl.innerText = `${totalCount} ${totalCount === 1 ? 'عنصر' : 'عناصر'}`;
+      if (priceEl) priceEl.innerText = `${totalPrice} ج.م`;
+      floatingCart.classList.remove('hidden');
     } else {
-      bar.classList.add('hidden');
+      floatingCart.classList.add('hidden');
     }
   }
 }
 
-// ── Product Customizer Modal ──
-function openCustomizer(title, price, icon) {
-  let matchedId = 'baz-1';
-  for (let id in itemCatalog) {
-    if (itemCatalog[id].title === title) { matchedId = id; break; }
-  }
-  currentItem = { id: matchedId, title, basePrice: price };
-  document.getElementById('modal-title').textContent = title;
-  document.getElementById('modal-icon').textContent = icon;
-  document.getElementById('modal-base-price').textContent = price.toFixed(2) + ' ج.م';
-  document.getElementById('modal-notes').value = '';
-  document.querySelectorAll('.extra-check').forEach(c => c.checked = false);
-  calcModalTotal();
-  document.getElementById('item-modal').classList.add('show');
-}
+let toastTimer = null;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  const txt = document.getElementById('toast-text');
+  if (!t || !txt) return;
 
-function closeCustomizer() {
-  document.getElementById('item-modal').classList.remove('show');
+  txt.innerText = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
 }
-
-function calcModalTotal() {
-  let total = currentItem.basePrice;
-  document.querySelectorAll('.extra-check:checked').forEach(c => {
-    total += parseFloat(c.dataset.price);
-  });
-  document.getElementById('modal-total-price').textContent = total.toFixed(2) + ' ج.م';
-  return total;
-}
-
-// ── Add Item to Cart from Modal ──
-function confirmAddToCart() {
-  changeQty(currentItem.id, currentItem.title, currentItem.basePrice, '🍢', 1);
-  closeCustomizer();
-}
-
-// ── Toast System ──
-function showToast(text) {
-  const toast = document.getElementById('toast-msg');
-  if (!toast) return;
-  document.getElementById('toast-text').textContent = text;
-  toast.classList.add('show');
-  clearTimeout(window.__toastTimer);
-  window.__toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
-}
-
-document.addEventListener('DOMContentLoaded', loadCart);
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-client.js"></script>
 
 </body>
 </html>
-
-
-
