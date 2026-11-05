@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>بوابة الكباتن والتوصيل | خدمات الحسينية</title>
+  <title>تطبيق ومساعد الكابتن | دليفري الحسينية (الشرقية)</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,424 +11,1317 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    * { font-family: 'Cairo', sans-serif; box-sizing: border-box; }
+    * { font-family: 'Cairo', sans-serif; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body {
-      background: radial-gradient(circle at 15% 20%, #0d1e38 0%, #06091a 65%, #02040a 100%);
+      background: radial-gradient(circle at 15% 15%, #0f2347 0%, #06091a 60%, #020409 100%);
       color: #fff;
       min-height: 100vh;
       margin: 0;
       overflow-x: hidden;
+      padding-bottom: 80px; /* For mobile bottom nav */
     }
+    
+    /* ── Liquid Glassmorphism Core ── */
     .glass {
-      background: rgba(13, 27, 49, 0.65);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(13, 27, 49, 0.72);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     .glass-card {
-      background: rgba(18, 32, 60, 0.5);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+      background: rgba(18, 33, 62, 0.55);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
     }
     .glass-glow-emerald {
       box-shadow: 0 0 25px rgba(6, 214, 160, 0.25);
-      border-color: rgba(6, 214, 160, 0.4);
+      border-color: rgba(6, 214, 160, 0.45);
     }
+    .glass-glow-amber {
+      box-shadow: 0 0 25px rgba(247, 201, 72, 0.25);
+      border-color: rgba(247, 201, 72, 0.45);
+    }
+    
     .gt {
       background: linear-gradient(135deg, #00b09b, #06d6a0);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    .gt-gold {
+      background: linear-gradient(135deg, #f7c948, #f7971e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    /* Buttons */
     .btn-primary {
       background: linear-gradient(135deg, #00b09b, #06d6a0);
-      color: #03150d;
+      color: #021a11;
       font-weight: 800;
       box-shadow: 0 8px 24px rgba(6, 214, 160, 0.35);
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .btn-primary:active { transform: scale(0.97); }
+    
+    .btn-amber {
+      background: linear-gradient(135deg, #f7c948, #f7971e);
+      color: #1a1102;
+      font-weight: 800;
+      box-shadow: 0 8px 24px rgba(247, 201, 72, 0.35);
+    }
+    .btn-amber:active { transform: scale(0.97); }
 
+    /* Radar Animations */
+    .radar-container {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      border-radius: 24px;
+      background: radial-gradient(circle, #0b253f 0%, #051020 80%, #02070f 100%);
+      border: 1px solid rgba(6, 214, 160, 0.2);
+    }
+    .radar-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px solid rgba(6, 214, 160, 0.25);
+    }
+    .radar-sweep {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      transform-origin: top left;
+      background: conic-gradient(from 0deg, rgba(6, 214, 160, 0.35) 0deg, transparent 60deg);
+      border-radius: 50%;
+      animation: rotateSweep 4s linear infinite;
+    }
+    @keyframes rotateSweep {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Pulse effect */
     .pulse-ring {
       position: relative;
     }
     .pulse-ring::before {
       content: '';
       position: absolute;
-      top: -4px; left: -4px; right: -4px; bottom: -4px;
+      top: -6px; left: -6px; right: -6px; bottom: -6px;
       border-radius: 9999px;
       border: 2px solid #06d6a0;
-      animation: pulseAnim 2s infinite;
-      opacity: 0.8;
+      animation: pulseRing 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
     }
-    @keyframes pulseAnim {
-      0% { transform: scale(0.95); opacity: 1; }
-      100% { transform: scale(1.35); opacity: 0; }
+    @keyframes pulseRing {
+      0% { transform: scale(0.9); opacity: 1; }
+      100% { transform: scale(1.4); opacity: 0; }
     }
-    .radar-scan {
-      position: relative;
-      overflow: hidden;
+
+    /* Interactive Map SVG styling */
+    .map-road { stroke: rgba(255, 255, 255, 0.15); stroke-width: 6; stroke-linecap: round; }
+    .map-main-road { stroke: rgba(6, 214, 160, 0.35); stroke-width: 9; stroke-linecap: round; }
+    .map-route-active { stroke: #06d6a0; stroke-width: 7; stroke-dasharray: 8 6; animation: dashMove 1.5s linear infinite; }
+    @keyframes dashMove {
+      to { stroke-dashoffset: -28; }
     }
-    .radar-scan::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
+    .landmark-label { font-size: 10px; fill: rgba(255, 255, 255, 0.7); font-weight: bold; }
+
+    /* Tab switcher */
+    .tab-content { display: none; animation: tabFadeIn 0.25s ease-out; }
+    .tab-content.active { display: block; }
+    @keyframes tabFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Bottom mobile navigation */
+    .bottom-driver-nav {
+      position: fixed;
+      bottom: 0;
       left: 0;
-      background: linear-gradient(180deg, transparent 40%, rgba(6, 214, 160, 0.15) 50%, transparent 60%);
-      animation: scanLines 3s linear infinite;
+      right: 0;
+      z-index: 90;
+      background: rgba(5, 12, 26, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 10px;
     }
-    @keyframes scanLines {
-      0% { transform: translateY(-100%); }
-      100% { transform: translateY(100%); }
+    .driver-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 4px 12px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+    .driver-nav-item.active {
+      color: #06d6a0;
+      background: rgba(6, 214, 160, 0.12);
     }
   </style>
 </head>
 <body class="p-3 sm:p-5 md:p-8">
 
-  <!-- TOP HEADER -->
-  <header class="max-w-6xl mx-auto flex items-center justify-between pb-6 border-b border-white/10">
+  <!-- ══════════════ TOP DRIVER STATUS BAR ══════════════ -->
+  <header class="max-w-6xl mx-auto glass rounded-2xl p-3.5 mb-6 flex items-center justify-between gap-3">
+    
+    <!-- Right side: Driver Profile & Back -->
     <div class="flex items-center gap-3">
-      <a href="index.html" class="glass w-10 h-10 rounded-2xl flex items-center justify-center text-white/80 hover:text-white hover:bg-white/10 transition">
+      <a href="index.html" class="glass w-10 h-10 rounded-xl flex items-center justify-center text-white/80 hover:text-white hover:bg-white/10 transition" title="العودة للرئيسية">
         ←
       </a>
-      <div>
-        <div class="flex items-center gap-2">
-          <span class="text-2xl">🛵</span>
-          <h1 class="text-lg md:text-xl font-black">بوابة كباتن توصيل الحسينية</h1>
+      <div class="flex items-center gap-2.5">
+        <div class="relative">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-xl font-bold shadow-md">
+            🛵
+          </div>
+          <span id="live-dot" class="w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#06091a] absolute -top-1 -right-1"></span>
         </div>
-        <p class="text-[11px] text-emerald-400 font-semibold">شبكة دليفري وسائقي مركز ومدينة الحسينية، الشرقية</p>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <h1 class="text-sm md:text-base font-extrabold text-white">الكابتن عمر السعيد</h1>
+            <span class="text-emerald-400 text-xs" title="كابتن معتمد">✓</span>
+          </div>
+          <p class="text-[10px] md:text-[11px] text-white/60">سكوتر هوندا دايو • #DRV-104 (الحسينية)</p>
+        </div>
       </div>
     </div>
 
-    <!-- ONLINE STATUS TOGGLE -->
-    <div class="flex items-center gap-3">
-      <div id="status-badge" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-        <span id="status-text">متصل • جاهز لاستلام طلبات</span>
+    <!-- Center: Shift Status Pill -->
+    <div class="hidden sm:flex items-center gap-2">
+      <div id="status-pill" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span id="status-title">متصل • استقبال المشاوير نشط</span>
       </div>
-      <button onclick="toggleOnlineStatus()" id="duty-toggle-btn" class="glass px-3.5 py-2 rounded-xl text-xs font-bold hover:bg-white/10 transition flex items-center gap-1.5">
+    </div>
+
+    <!-- Left side: Online Toggle & Audio -->
+    <div class="flex items-center gap-2">
+      <button onclick="toggleAudio()" id="audio-toggle-btn" class="glass p-2.5 rounded-xl text-xs font-bold hover:bg-white/10 transition text-amber-300" title="تفعيل/كتم التنبيهات الصوتية">
+        🔊
+      </button>
+
+      <button onclick="toggleOnlineStatus()" id="duty-toggle-btn" class="btn-primary px-3 sm:px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5">
         <span>⏸️</span>
-        <span class="hidden sm:inline">أخذ استراحة</span>
+        <span id="duty-btn-label">استراحة</span>
       </button>
     </div>
+
   </header>
 
-  <!-- MAIN CONTAINER -->
-  <main class="max-w-6xl mx-auto mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <!-- ══════════════ TOP DESKTOP TAB NAVIGATION ══════════════ -->
+  <div class="max-w-6xl mx-auto hidden md:flex items-center justify-between mb-6 pb-2 border-b border-white/10">
+    <div class="flex items-center gap-2">
+      <button onclick="switchTab('shift')" id="dtab-shift" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 transition">
+        🛵 الوردية والملاحة الحية
+      </button>
+      <button onclick="switchTab('radar')" id="dtab-radar" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold text-white/70 hover:bg-white/5 transition flex items-center gap-1.5">
+        <span>📡 رادار الطلبات</span>
+        <span id="offers-count-badge" class="px-1.5 py-0.2 rounded-full bg-amber-400 text-black text-[10px] font-black">2</span>
+      </button>
+      <button onclick="switchTab('wallet')" id="dtab-wallet" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold text-white/70 hover:bg-white/5 transition">
+        💰 الأرباح وسحب كاش
+      </button>
+      <button onclick="switchTab('history')" id="dtab-history" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold text-white/70 hover:bg-white/5 transition">
+        📋 سجل الرحلات (11)
+      </button>
+      <button onclick="switchTab('profile')" id="dtab-profile" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold text-white/70 hover:bg-white/5 transition">
+        ⚙️ نطاق العمل والقرى
+      </button>
+    </div>
 
-    <!-- LEFT / MAIN COLUMN: ACTIVE MISSION & RADAR -->
-    <div class="lg:col-span-2 space-y-6">
+    <!-- Quick shift earnings pill -->
+    <div class="text-xs font-bold text-white/70">
+      أرباح اليوم: <span class="text-amber-300 font-black text-sm" id="top-earnings">285 ج.م</span>
+    </div>
+  </div>
 
-      <!-- CAPTAIN QUICK METRICS -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div class="glass-card rounded-2xl p-4 text-center">
-          <span class="text-xs text-white/60 block mb-1">أرباح الوردية</span>
-          <span class="text-xl sm:text-2xl font-black text-amber-300">265 <span class="text-xs">ج.م</span></span>
-          <span class="text-[10px] text-emerald-400 block mt-1">+15% عن الأمس</span>
+  <!-- ════════════════════════════════════════════════════════════════
+       TAB 1: SHIFT & LIVE GPS NAVIGATION (الوردية والملاحة)
+  ════════════════════════════════════════════════════════════════ -->
+  <div id="tab-shift" class="tab-content active max-w-6xl mx-auto space-y-6">
+
+    <!-- SHIFT STATS TILES -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div class="glass-card rounded-2xl p-4 text-center">
+        <span class="text-xs text-white/60 block mb-1">أرباح وردية اليوم</span>
+        <span class="text-2xl font-black text-amber-300" id="stat-earnings">285 <span class="text-xs font-normal">ج.م</span></span>
+        <span class="text-[10px] text-emerald-400 block mt-1">+18% عن الأمس 🚀</span>
+      </div>
+      <div class="glass-card rounded-2xl p-4 text-center">
+        <span class="text-xs text-white/60 block mb-1">الرحلات المنفذة</span>
+        <span class="text-2xl font-black text-white" id="stat-trips">11 <span class="text-xs font-normal">مشوار</span></span>
+        <span class="text-[10px] text-white/50 block mt-1">معدل قبول 98%</span>
+      </div>
+      <div class="glass-card rounded-2xl p-4 text-center">
+        <span class="text-xs text-white/60 block mb-1">المسافة المقطوعة</span>
+        <span class="text-2xl font-black text-white" id="stat-km">34.2 <span class="text-xs font-normal">كم</span></span>
+        <span class="text-[10px] text-white/50 block mt-1">داخل شوارع الحسينية</span>
+      </div>
+      <div class="glass-card rounded-2xl p-4 text-center">
+        <span class="text-xs text-white/60 block mb-1">التقييم وسرعة التسليم</span>
+        <span class="text-2xl font-black text-emerald-400">4.9 ★</span>
+        <span class="text-[10px] text-white/50 block mt-1">متوسط التوصيل 18 دقيقة</span>
+      </div>
+    </div>
+
+    <!-- ACTIVE MISSION CONTAINER (4-STAGE FLOW) -->
+    <div id="active-mission-card" class="glass-card rounded-3xl p-5 sm:p-7 relative overflow-hidden border border-emerald-500/35 glass-glow-emerald">
+      
+      <!-- Mission Header -->
+      <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-5 border-b border-white/10">
+        <div class="flex items-center gap-2.5">
+          <span class="w-3.5 h-3.5 rounded-full bg-emerald-400 pulse-ring"></span>
+          <div>
+            <h3 class="text-sm sm:text-base font-extrabold text-white">مشوار توصيل نشط جاري تنفيذه</h3>
+            <p class="text-[11px] text-emerald-400" id="mission-step-desc">المرحلة الحالية: التوجه لشارع المدارس لتسليم العميل</p>
+          </div>
         </div>
-        <div class="glass-card rounded-2xl p-4 text-center">
-          <span class="text-xs text-white/60 block mb-1">الطلبات المكتملة</span>
-          <span class="text-xl sm:text-2xl font-black text-white">11 <span class="text-xs">مشوار</span></span>
-          <span class="text-[10px] text-white/50 block mt-1">اليوم</span>
-        </div>
-        <div class="glass-card rounded-2xl p-4 text-center">
-          <span class="text-xs text-white/60 block mb-1">المسافة المقطوعة</span>
-          <span class="text-xl sm:text-2xl font-black text-white">32.4 <span class="text-xs">كم</span></span>
-          <span class="text-[10px] text-white/50 block mt-1">داخل الحسينية</span>
-        </div>
-        <div class="glass-card rounded-2xl p-4 text-center">
-          <span class="text-xs text-white/60 block mb-1">تقييم العملاء</span>
-          <span class="text-xl sm:text-2xl font-black text-emerald-400">4.9 ★</span>
-          <span class="text-[10px] text-white/50 block mt-1">ممتاز (210 تقييم)</span>
+        <div class="flex items-center gap-2">
+          <span class="px-3 py-1 rounded-xl bg-white/10 text-xs font-mono font-bold text-amber-300">#ORD-9024</span>
+          <span class="px-2.5 py-1 rounded-xl bg-emerald-500/20 text-emerald-300 text-xs font-bold">أجرة المشوار: 25 ج.م</span>
         </div>
       </div>
 
-      <!-- ACTIVE DELIVERY MISSION CARD -->
-      <div id="active-mission-box" class="glass-card rounded-3xl p-6 relative overflow-hidden border border-emerald-500/40 glass-glow-emerald">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-emerald-400 pulse-ring"></span>
-            <span class="text-xs font-bold text-emerald-400 tracking-wider">مشوار توصيل نشط جاري تنفيذه</span>
-          </div>
-          <span class="px-2.5 py-1 rounded-xl bg-white/10 text-xs font-mono font-bold">#ORD-9024</span>
+      <!-- PROGRESS TRACKER (4 STEPS) -->
+      <div class="grid grid-cols-4 gap-2 mb-6 text-center text-[10px] sm:text-xs font-bold">
+        <div class="p-2 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40" id="prog-step-1">
+          <span>✓ قبول الطلب</span>
         </div>
-
-        <!-- ROUTE TRACK -->
-        <div class="bg-black/40 rounded-2xl p-4 border border-white/5 mb-5 space-y-4">
-          <!-- Step 1: Pickup -->
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm shrink-0">
-              🏪
-            </div>
-            <div class="flex-1">
-              <div class="flex items-center justify-between">
-                <h4 class="text-sm font-bold text-white">مشويات الباز (استلام الطلب)</h4>
-                <a href="tel:01099887766" class="text-xs text-amber-400 hover:underline">📞 اتصال بالمطعم</a>
-              </div>
-              <p class="text-xs text-white/60">شارع المركز بجوار بنك مصر، الحسينية</p>
-              <div class="mt-1 flex items-center gap-2 text-[11px] text-emerald-400 font-semibold">
-                <span>✓ تم استلام وتأكيد الكيس الحراري</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="h-6 border-r-2 border-dashed border-white/20 mr-4"></div>
-
-          <!-- Step 2: Dropoff -->
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm shrink-0">
-              📍
-            </div>
-            <div class="flex-1">
-              <div class="flex items-center justify-between">
-                <h4 class="text-sm font-bold text-white">العميل: أحمد السيد</h4>
-                <div class="flex items-center gap-2">
-                  <a href="tel:01012345678" class="text-xs text-emerald-400 hover:underline">📞 هاتف</a>
-                  <a href="https://wa.me/201012345678" target="_blank" class="text-xs text-emerald-400 hover:underline">💬 واتساب</a>
-                </div>
-              </div>
-              <p class="text-xs text-white/60">حي المعاشات، شارع المدارس أمام مدرسة التجارة، الدور الثالث</p>
-              <div class="mt-2 flex items-center justify-between p-2 rounded-xl bg-white/5 text-xs">
-                <span class="text-white/70">طريقة الدفع للمندوب:</span>
-                <span class="font-bold text-amber-400">كاش عند الاستلام (240 ج.م)</span>
-              </div>
-            </div>
-          </div>
+        <div class="p-2 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40" id="prog-step-2">
+          <span>✓ استلام المتجر</span>
         </div>
-
-        <!-- ORDER CONTENTS SUMMARY -->
-        <div class="text-xs text-white/70 bg-white/[0.03] p-3 rounded-xl mb-5 flex items-center justify-between">
-          <span>📦 محتوى الشحنة: 1× كباب وكفتة حاتي مكس + 1× طرب مشوي + طحينة وعيش</span>
-          <span class="font-bold text-white">أجرة التوصيل لك: <span class="text-emerald-400 font-bold">25 ج.م</span></span>
+        <div class="p-2 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/40 animate-pulse" id="prog-step-3">
+          <span>🛵 في الطريق للعميل</span>
         </div>
-
-        <!-- MISSION ACTION BUTTONS -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <button onclick="openNavigationMap()" class="glass py-3 rounded-xl text-xs font-bold hover:bg-white/10 flex items-center justify-center gap-2">
-            <span>🗺️</span>
-            <span>فتح الخريطة والملاحة GPS</span>
-          </button>
-          <button onclick="confirmOrderDelivered()" class="btn-primary py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-            <span>✓</span>
-            <span>تم تسليم الطلب وتحصيل المبلغ</span>
-          </button>
+        <div class="p-2 rounded-xl bg-white/5 text-white/40 border border-white/5" id="prog-step-4">
+          <span>🏁 تسليم وكود OTP</span>
         </div>
       </div>
 
-      <!-- RADAR / SEARCHING FOR NEW ORDERS (RADAR ANIMATION) -->
-      <div id="radar-box" class="glass-card rounded-3xl p-8 text-center radar-scan relative">
-        <div class="w-20 h-20 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/40 flex items-center justify-center text-3xl mb-4 pulse-ring">
-          📡
+      <!-- INTERACTIVE GPS SIMULATOR MAP (SVG AL-HUSAYNIYA ROADS) -->
+      <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-[#071322] p-4 mb-6">
+        
+        <!-- Turn by turn HUD Overlay -->
+        <div class="absolute top-4 right-4 left-4 z-10 glass p-3 rounded-xl flex items-center justify-between border border-white/15">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold">
+              ↱
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white">بعد 120 متر انعطف يميناً عند المعهد الديني</div>
+              <div class="text-[10px] text-white/60">شارع ترعة سراج باتجاه مدرسة التجارة، حي المعاشات</div>
+            </div>
+          </div>
+          <div class="text-left shrink-0">
+            <span class="text-xs font-black text-amber-300">4 دقائق</span>
+            <span class="block text-[10px] text-white/50">850 متر متبقية</span>
+          </div>
         </div>
-        <h3 class="text-base font-bold text-white mb-1">الرادار نشط وجاري البحث عن طلبات جديدة</h3>
-        <p class="text-xs text-white/60 max-w-md mx-auto mb-5">
-          أنت الآن متواجد في محيط شارع بورسعيد وترعة سراج. سيتم إشعارك فور قيام أي مطعم أو متجر بالحسينية بتجهيز شحنة جديدة.
-        </p>
-        <button onclick="simulateIncomingDelivery()" class="glass px-5 py-2.5 rounded-xl text-xs font-bold text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/10 transition">
-          🔔 محاكاة وصول طلب دليفري الآن
+
+        <!-- SVG Map Vector -->
+        <svg viewBox="0 0 800 360" class="w-full h-56 sm:h-72 select-none">
+          <defs>
+            <linearGradient id="roadGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00b09b" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#06d6a0" stop-opacity="0.5"/>
+            </linearGradient>
+            <filter id="glowScooter">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- Background Grid Lines -->
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+          </pattern>
+          <rect width="800" height="360" fill="url(#grid)" />
+
+          <!-- Real Streets of Al-Husayniya -->
+          <!-- Sharia Al-Markaz (Main horizontal) -->
+          <line x1="50" y1="180" x2="750" y2="180" class="map-main-road" />
+          <text x="740" y="170" text-anchor="end" class="landmark-label">شارع المركز الرئيسي (بنك مصر)</text>
+
+          <!-- Sharia Ter'et Serag -->
+          <line x1="200" y1="50" x2="200" y2="320" class="map-road" />
+          <text x="210" y="70" class="landmark-label">ترعة سراج والمعهد الديني</text>
+
+          <!-- Sharia Port Said -->
+          <line x1="400" y1="40" x2="400" y2="330" class="map-road" />
+          <text x="410" y="60" class="landmark-label">شارع بورسعيد</text>
+
+          <!-- Sharia Al-Madares & Hayy Al-Maashat -->
+          <line x1="620" y1="50" x2="620" y2="320" class="map-road" />
+          <text x="630" y="80" class="landmark-label">شارع المدارس وحي المعاشات</text>
+
+          <!-- Diagonal connector road -->
+          <line x1="200" y1="180" x2="620" y2="280" class="map-road" />
+
+          <!-- Active Route Dash Line (From Store to Customer) -->
+          <path id="active-path" d="M 180 180 L 400 180 L 400 240 L 620 280" fill="none" class="map-route-active" />
+
+          <!-- Store Pin (مشويات الباز) -->
+          <g transform="translate(180, 180)">
+            <circle r="14" fill="#f7971e" opacity="0.3" />
+            <circle r="7" fill="#f7c948" />
+            <text x="0" y="-14" text-anchor="middle" font-size="11" font-weight="bold" fill="#f7c948">🏪 مشويات الباز</text>
+          </g>
+
+          <!-- Customer Dropoff Pin (حي المعاشات) -->
+          <g transform="translate(620, 280)">
+            <circle r="16" fill="#00b09b" opacity="0.3" class="animate-ping" />
+            <circle r="8" fill="#06d6a0" />
+            <text x="0" y="24" text-anchor="middle" font-size="11" font-weight="bold" fill="#06d6a0">📍 العميل: أحمد السيد</text>
+          </g>
+
+          <!-- Moving Scooter Marker -->
+          <g id="scooter-marker" transform="translate(380, 180)" filter="url(#glowScooter)">
+            <circle r="18" fill="#06d6a0" opacity="0.3" />
+            <circle r="10" fill="#ffffff" />
+            <text x="0" y="4" text-anchor="middle" font-size="11">🛵</text>
+            <text x="0" y="-14" text-anchor="middle" font-size="9" font-weight="bold" fill="#06d6a0">الكابتن عمر (32 كم/س)</text>
+          </g>
+        </svg>
+
+        <!-- Speed & Distance HUD -->
+        <div class="flex items-center justify-between text-xs text-white/70 pt-2 border-t border-white/5">
+          <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> نظام تحديد المواقع GPS نشط (دقة 2 متر)</span>
+          <button onclick="openExternalGoogleMaps()" class="text-emerald-400 hover:underline flex items-center gap-1">
+            <span>🗺️ فتح Google Maps الخارجي</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- TWO-COLUMN MISSION DETAILS -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        
+        <!-- Store Pickup Details -->
+        <div class="bg-black/30 p-4 rounded-2xl border border-white/5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-amber-300 font-bold flex items-center gap-1.5">
+              <span>🏪</span> نقطة الاستلام (المتجر)
+            </span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">تم الاستلام بنجاح ✓</span>
+          </div>
+          <h4 class="text-sm font-extrabold text-white">مشويات الباز — الحسينية</h4>
+          <p class="text-xs text-white/60">شارع المركز الرئيسي بجوار بنك مصر، أمام محكمة الحسينية</p>
+          <div class="flex items-center gap-3 pt-2">
+            <a href="tel:01099887766" class="glass px-3 py-1.5 rounded-xl text-xs font-bold text-amber-300 hover:bg-white/10 flex items-center gap-1.5">
+              <span>📞</span> اتصال بالمطعم
+            </a>
+          </div>
+        </div>
+
+        <!-- Customer Dropoff Details -->
+        <div class="bg-black/30 p-4 rounded-2xl border border-white/5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-emerald-400 font-bold flex items-center gap-1.5">
+              <span>📍</span> نقطة التسليم (العميل)
+            </span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300">جاري التوجه 🛵</span>
+          </div>
+          <h4 class="text-sm font-extrabold text-white">العميل: أحمد السيد</h4>
+          <p class="text-xs text-white/60">حي المعاشات، شارع المدارس أمام مدرسة التجارة، عمارة التقوى الدور 3</p>
+          <div class="flex items-center gap-2 pt-2">
+            <a href="tel:01012345678" class="glass px-3 py-1.5 rounded-xl text-xs font-bold text-emerald-400 hover:bg-white/10 flex items-center gap-1.5">
+              <span>📞</span> هاتف العميل
+            </a>
+            <a href="https://wa.me/201012345678?text=%D8%A3%D9%87%D9%84%D8%A7%D9%8B%20%D9%8A%D8%A7%20%D9%81%D9%86%D8%AF%D9%85%20%D9%85%D8%B9%D8%A7%D9%83%20%D9%83%D8%A7%D8%A8%D8%AA%D9%86%20%D8%AF%D9%84%D9%8A%D9%81%D8%B1%D9%8A%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AD%D8%B3%D9%8A%D9%86%D9%8A%D8%A9%D8%8C%20%D8%A3%D9%86%D8%A7%20%D9%82%D8%B1%D8%A8%D8%AA%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D8%B9%D9%86%D9%88%D8%A7%D9%86" target="_blank" class="glass px-3 py-1.5 rounded-xl text-xs font-bold text-emerald-400 hover:bg-white/10 flex items-center gap-1.5">
+              <span>💬</span> شات واتساب
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ORDER PACKAGE CONTENTS & CASH TO COLLECT -->
+      <div class="glass p-4 rounded-2xl mb-6 flex flex-wrap items-center justify-between gap-3 border border-white/10">
+        <div>
+          <span class="text-xs text-white/50 block">محتويات الشحنة والفاتورة:</span>
+          <span class="text-xs font-bold text-white">📦 1× كباب وكفتة حاتي مكس + 1× ربع طرب مشوي + طحينة وعيش ساخن + لتر كوكاكولا</span>
+        </div>
+        <div class="bg-amber-400/10 px-4 py-2 rounded-xl border border-amber-400/30 text-left">
+          <span class="text-[11px] text-amber-300 block">المبلغ المطلوب تحصيله كاش من العميل:</span>
+          <span class="text-base sm:text-lg font-black text-amber-300">240 ج.م <span class="text-xs font-normal text-white/70">(شامل أجر التوصيل)</span></span>
+        </div>
+      </div>
+
+      <!-- MAIN ACTION BUTTON: COMPLETE & OTP -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <button onclick="reportIssuePrompt()" class="glass py-3.5 rounded-2xl text-xs font-bold text-red-400 hover:bg-red-500/10 transition flex items-center justify-center gap-2">
+          <span>⚠️</span>
+          <span>الإبلاغ عن مشكلة (العميل لا يرد / العنوان خطأ)</span>
+        </button>
+        <button onclick="openOtpModal()" class="btn-primary py-3.5 rounded-2xl text-xs sm:text-sm font-black flex items-center justify-center gap-2">
+          <span>✓</span>
+          <span>وصلت للعميل وتأكيد كود الاستلام (OTP)</span>
         </button>
       </div>
 
     </div>
 
-    <!-- RIGHT COLUMN: CAPTAIN PROFILE & SETTINGS -->
-    <div class="space-y-6">
+  </div>
 
-      <!-- CAPTAIN INFO CARD -->
-      <div class="glass-card rounded-3xl p-6">
-        <div class="flex items-center gap-4 mb-5 pb-5 border-b border-white/10">
-          <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-3xl shadow-lg">
-            🛵
-          </div>
-          <div>
-            <div class="flex items-center gap-1.5">
-              <h3 class="font-extrabold text-white text-base">الكابتن عمر السعيد</h3>
-              <span class="text-emerald-400 text-xs" title="موثق">✓</span>
-            </div>
-            <p class="text-xs text-white/60">كابتن معتمد — الحسينية</p>
-            <div class="flex items-center gap-2 mt-1">
-              <span class="text-[11px] text-amber-300 font-bold">★ 4.9 (210 رحلة)</span>
-              <span class="text-white/30">•</span>
-              <span class="text-[11px] text-emerald-400 font-semibold">سكوتر هوندا دايو</span>
-            </div>
-          </div>
-        </div>
+  <!-- ════════════════════════════════════════════════════════════════
+       TAB 2: RADAR & AVAILABLE DELIVERY OFFERS (الرادار والطلبات)
+  ════════════════════════════════════════════════════════════════ -->
+  <div id="tab-radar" class="tab-content max-w-6xl mx-auto space-y-6">
 
-        <!-- WALLET CASH OUT -->
-        <div class="bg-black/30 rounded-2xl p-4 border border-white/5 mb-5">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs text-white/60">رصيد محفظتك المتاح للسحب:</span>
-            <span class="text-lg font-black text-emerald-400">1,240 <span class="text-xs">ج.م</span></span>
-          </div>
-          <p class="text-[11px] text-white/50 mb-3">يتم تحويل الأرباح يومياً أو أسبوعياً إلى فودافون كاش أو إنستاباي</p>
-          <button onclick="requestPayout()" class="w-full glass py-2.5 rounded-xl text-xs font-bold text-amber-400 border border-amber-400/30 hover:bg-amber-400/10 transition">
-            💸 طلب سحب فوري عبر إنستاباي / كاش
-          </button>
-        </div>
+    <!-- RADAR VISUAL SCANNER -->
+    <div class="radar-container relative flex items-center justify-center text-center">
+      <div class="radar-circle" style="width: 80px; height: 80px;"></div>
+      <div class="radar-circle" style="width: 160px; height: 160px;"></div>
+      <div class="radar-circle" style="width: 240px; height: 240px;"></div>
+      <div class="radar-circle" style="width: 320px; height: 320px;"></div>
+      
+      <!-- Sweep animation -->
+      <div class="radar-sweep"></div>
 
-        <!-- QUICK SHORTCUTS -->
-        <div class="space-y-2">
-          <a href="husayniya-tracking.html" class="w-full glass p-3 rounded-xl text-xs font-semibold flex items-center justify-between hover:bg-white/10 transition">
-            <span class="flex items-center gap-2"><span>🗺️</span><span>معاينة خريطة التتبع للعميل</span></span>
-            <span>←</span>
-          </a>
-          <a href="husayniya-merchant.html" class="w-full glass p-3 rounded-xl text-xs font-semibold flex items-center justify-between hover:bg-white/10 transition">
-            <span class="flex items-center gap-2"><span>🏪</span><span>بوابة التجار والمحلات</span></span>
-            <span>←</span>
-          </a>
-          <a href="husayniya-dashboard.html" class="w-full glass p-3 rounded-xl text-xs font-semibold flex items-center justify-between hover:bg-white/10 transition">
-            <span class="flex items-center gap-2"><span>📊</span><span>لوحة الإدارة والإحصائيات</span></span>
-            <span>←</span>
-          </a>
-          <a href="index.html" class="w-full glass p-3 rounded-xl text-xs font-semibold flex items-center justify-between hover:bg-white/10 transition">
-            <span class="flex items-center gap-2"><span>🏠</span><span>العودة للصفحة الرئيسية</span></span>
-            <span>←</span>
-          </a>
+      <!-- Center Driver Location Marker -->
+      <div class="relative z-10 text-center">
+        <div class="w-14 h-14 rounded-full bg-emerald-500/20 border-2 border-emerald-400 flex items-center justify-center text-2xl mx-auto mb-1 pulse-ring">
+          🛵
         </div>
+        <span class="text-xs font-bold text-white block">موقعك الحالي</span>
+        <span class="text-[11px] text-emerald-400 font-semibold">شارع بورسعيد، الحسينية</span>
       </div>
 
-      <!-- DISPATCH & HOTLINE -->
-      <div class="glass-card rounded-3xl p-5 border border-white/10">
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">
-            🎧
+      <!-- Floating store blips -->
+      <div class="absolute top-12 right-20 text-[10px] font-bold text-amber-300 bg-black/60 px-2 py-0.5 rounded-full border border-amber-400/40 animate-bounce">
+        ● مشويات الباز (400م)
+      </div>
+      <div class="absolute bottom-12 left-16 text-[10px] font-bold text-emerald-300 bg-black/60 px-2 py-0.5 rounded-full border border-emerald-400/40">
+        ● كشري الزعيم (750م)
+      </div>
+      <div class="absolute top-20 left-24 text-[10px] font-bold text-cyan-300 bg-black/60 px-2 py-0.5 rounded-full border border-cyan-400/40">
+        ● صيدلية العزازي (1.1كم)
+      </div>
+    </div>
+
+    <!-- LIVE OFFERS LIST -->
+    <div>
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h3 class="text-base font-extrabold text-white">طلبات متاحة للتوصيل الفوري بالحسينية</h3>
+          <p class="text-xs text-white/60">اختر المشوار الأنسب لمسارك لزيادة أرباح ورديتك</p>
+        </div>
+        <button onclick="simulateIncomingAudioAlert()" class="glass px-3 py-1.5 rounded-xl text-xs font-bold text-emerald-400 hover:bg-emerald-500/10">
+          🔔 إشعار طلب جديد
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="available-offers-grid">
+
+        <!-- Offer 1 -->
+        <div class="glass-card rounded-3xl p-5 border border-white/10 hover:border-emerald-500/40 transition">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-xl bg-amber-400/15 text-amber-300 text-xs font-bold">🍔 وجبات سريعة</span>
+            <span class="text-xs font-mono text-white/50">منذ دقيقتين</span>
           </div>
-          <div>
-            <h4 class="text-xs font-bold text-white">غرفة عمليات دليفري الحسينية</h4>
-            <p class="text-[10px] text-white/50">دعم فني ومساعدات الطوارئ 24 ساعة</p>
+          <h4 class="text-sm font-extrabold text-white mb-1">كشري الزعيم والتحرير — شارع المركز</h4>
+          <p class="text-xs text-white/60 mb-3">التوصيل إلى: حي المحجوب بجوار المسجد الكبير (الدور الثاني)</p>
+          
+          <div class="grid grid-cols-3 gap-2 bg-black/30 p-2.5 rounded-xl text-center text-xs mb-4">
+            <div>
+              <span class="text-white/40 block text-[10px]">المسافة</span>
+              <span class="font-bold text-white">1.8 كم</span>
+            </div>
+            <div>
+              <span class="text-white/40 block text-[10px]">الوقت المتوقع</span>
+              <span class="font-bold text-white">10 دقائق</span>
+            </div>
+            <div>
+              <span class="text-white/40 block text-[10px]">أجرة الكابتن</span>
+              <span class="font-black text-emerald-400 text-sm">20 ج.م</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="acceptSpecificOffer('كشري الزعيم', 'حي المحجوب', 20)" class="btn-primary flex-1 py-2.5 rounded-xl text-xs font-bold">
+              قبول واستلام المشوار 🛵
+            </button>
           </div>
         </div>
-        <a href="tel:01023456789" class="block w-full text-center py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold text-white transition">
-          📞 اتصال مباشر بمشرف العمليات
+
+        <!-- Offer 2 -->
+        <div class="glass-card rounded-3xl p-5 border border-white/10 hover:border-emerald-500/40 transition">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-xl bg-cyan-400/15 text-cyan-300 text-xs font-bold">💊 صيدلية وعلاج</span>
+            <span class="text-xs font-mono text-emerald-400 font-bold">+ بونص قرية 15 ج.م</span>
+          </div>
+          <h4 class="text-sm font-extrabold text-white mb-1">صيدلية الشفاء والعزازي — شارع بورسعيد</h4>
+          <p class="text-xs text-white/60 mb-3">التوصيل إلى: قرية جزيرة سعود، بجوار المستوصف الطبي</p>
+          
+          <div class="grid grid-cols-3 gap-2 bg-black/30 p-2.5 rounded-xl text-center text-xs mb-4">
+            <div>
+              <span class="text-white/40 block text-[10px]">المسافة</span>
+              <span class="font-bold text-white">6.5 كم</span>
+            </div>
+            <div>
+              <span class="text-white/40 block text-[10px]">الوقت المتوقع</span>
+              <span class="font-bold text-white">18 دقيقة</span>
+            </div>
+            <div>
+              <span class="text-white/40 block text-[10px]">أجرة الكابتن</span>
+              <span class="font-black text-emerald-400 text-sm">45 ج.م</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="acceptSpecificOffer('صيدلية العزازي', 'جزيرة سعود', 45)" class="btn-primary flex-1 py-2.5 rounded-xl text-xs font-bold">
+              قبول واستلام المشوار 🛵
+            </button>
+          </div>
+        </div>
+
+        <!-- Offer 3 -->
+        <div class="glass-card rounded-3xl p-5 border border-white/10 hover:border-emerald-500/40 transition">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-xl bg-purple-400/15 text-purple-300 text-xs font-bold">🛒 هايبر وسوبرماركت</span>
+            <span class="text-xs font-mono text-white/50">منذ 5 دقائق</span>
+          </div>
+          <h4 class="text-sm font-extrabold text-white mb-1">هايبر الفرسان — شارع ترعة سراج</h4>
+          <p class="text-xs text-white/60 mb-3">التوصيل إلى: حي المعاشات، برج النور خلف مدرسة الصنايع</p>
+          
+          <div class="grid grid-cols-3 gap-2 bg-black/30 p-2.5 rounded-xl text-center text-xs mb-4">
+            <div>
+              <span class="text-white/40 block text-[10px]">المسافة</span>
+              <span class="font-bold text-white">1.2 كم</span>
+            </div>
+            <div>
+              <span class="text-white/40 block text-[10px]">الوقت المتوقع</span>
+              <span class="font-bold text-white">7 دقائق</span>
+            </div>
+            <div>
+              <span class="text-white/40 block text-[10px]">أجرة الكابتن</span>
+              <span class="font-black text-emerald-400 text-sm">18 ج.م</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="acceptSpecificOffer('هايبر الفرسان', 'حي المعاشات', 18)" class="btn-primary flex-1 py-2.5 rounded-xl text-xs font-bold">
+              قبول واستلام المشوار 🛵
+            </button>
+          </div>
+        </div>
+
+        <!-- Offer 4 -->
+        <div class="glass-card rounded-3xl p-5 border border-white/10 hover:border-emerald-500/40 transition">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-xl bg-emerald-400/15 text-emerald-300 text-xs font-bold">🍰 حلويات ومخبوزات</span>
+            <span class="text-xs font-mono text-white/50">جديد الآن</span>
+          </div>
+          <h4 class="text-sm font-extrabold text-white mb-1">حلواني شندل والبارون — شارع المدارس</h4>
+          <p class="text-xs text-white/60 mb-3">التوصيل إلى: عزبة التل الأخضر، طريق سعود الحسينية</p>
+          
+          <div class="grid grid-cols-3 gap-2 bg-black/30 p-2.5 rounded-xl text-center text-xs mb-4">
+            <div>
+              <span class="text-white/40 block text-[10px]">المسافة</span>
+              <span class="font-bold text-white">4.1 كم</span>
+            </div>
+            <div>
+              <span class="text-white/40 block text-[10px]">الوقت المتوقع</span>
+              <span class="font-bold text-white">14 دقيقة</span>
+            </div>
+            <div>
+              <span class="text-white/40 block text-[10px]">أجرة الكابتن</span>
+              <span class="font-black text-emerald-400 text-sm">30 ج.م</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="acceptSpecificOffer('حلواني شندل', 'عزبة التل', 30)" class="btn-primary flex-1 py-2.5 rounded-xl text-xs font-bold">
+              قبول واستلام المشوار 🛵
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       TAB 3: WALLET & EARNINGS CASHOUT (المحفظة وسحب الأرباح)
+  ════════════════════════════════════════════════════════════════ -->
+  <div id="tab-wallet" class="tab-content max-w-6xl mx-auto space-y-6">
+
+    <!-- WALLET SUMMARY HERO -->
+    <div class="glass-card rounded-3xl p-6 md:p-8 relative overflow-hidden border border-amber-400/30 glass-glow-amber">
+      <div class="max-w-xl">
+        <span class="text-xs font-bold text-amber-300 block mb-1">المحفظة الإلكترونية للكابتن عمر</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white mb-2">
+          <span id="wallet-balance">1,480</span> <span class="text-lg font-bold text-amber-300">ج.م</span>
+        </h2>
+        <p class="text-xs text-white/70 mb-6">
+          الرصيد المتاح للسحب الفوري إلى محفظة فودافون كاش، أورنج كاش، أو حسابك البنكي عبر إنستاباي لحظياً.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <button onclick="openCashoutModal()" class="btn-amber px-6 py-3 rounded-2xl text-xs sm:text-sm font-black flex items-center gap-2">
+            <span>💸</span>
+            <span>طلب سحب فوري (فودافون كاش / إنستاباي)</span>
+          </button>
+          <button onclick="showBonusPolicy()" class="glass px-4 py-3 rounded-2xl text-xs font-bold text-white/80 hover:bg-white/10 transition">
+            🎁 شروط بونص مشاوير القرى
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EARNINGS BREAKDOWN -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="glass-card rounded-2xl p-5">
+        <span class="text-xs text-white/60 block mb-1">أجر التوصيل الأساسي</span>
+        <h4 class="text-xl font-black text-white">1,120 ج.م</h4>
+        <span class="text-[10px] text-white/40 block mt-1">عن 48 مشوار هذا الأسبوع</span>
+      </div>
+      <div class="glass-card rounded-2xl p-5">
+        <span class="text-xs text-white/60 block mb-1">بونص المسافات الطويلة (سعود وبحر البقر)</span>
+        <h4 class="text-xl font-black text-emerald-400">260 ج.م</h4>
+        <span class="text-[10px] text-emerald-400/70 block mt-1">حوافز تغطية أطراف المركز</span>
+      </div>
+      <div class="glass-card rounded-2xl p-5">
+        <span class="text-xs text-white/60 block mb-1">إكراميات العملاء (Tips)</span>
+        <h4 class="text-xl font-black text-amber-300">100 ج.م</h4>
+        <span class="text-[10px] text-amber-300/70 block mt-1">كاش مباشر من الزبائن</span>
+      </div>
+    </div>
+
+    <!-- RECENT PAYOUTS TABLE -->
+    <div class="glass-card rounded-3xl p-6">
+      <h3 class="text-sm font-bold text-white mb-4">سجل عمليات السحب السابقة</h3>
+      <div class="space-y-2.5">
+        <div class="flex items-center justify-between p-3 rounded-xl bg-black/20 text-xs">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center font-bold">VF</span>
+            <div>
+              <span class="font-bold text-white block">سحب إلى فودافون كاش (01098***765)</span>
+              <span class="text-[10px] text-white/50">أمس 11:30 م</span>
+            </div>
+          </div>
+          <div class="text-left">
+            <span class="font-black text-white block">500 ج.م</span>
+            <span class="text-[10px] text-emerald-400 font-bold">مكتمل ومحول ✓</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between p-3 rounded-xl bg-black/20 text-xs">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">IP</span>
+            <div>
+              <span class="font-bold text-white block">سحب عبر إنستاباي InstaPay (omar@instapay)</span>
+              <span class="text-[10px] text-white/50">منذ 3 أيام</span>
+            </div>
+          </div>
+          <div class="text-left">
+            <span class="font-black text-white block">750 ج.م</span>
+            <span class="text-[10px] text-emerald-400 font-bold">مكتمل ومحول ✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       TAB 4: SHIFT TRIP HISTORY (سجل الرحلات اليومية)
+  ════════════════════════════════════════════════════════════════ -->
+  <div id="tab-history" class="tab-content max-w-6xl mx-auto space-y-4">
+    
+    <div class="flex items-center justify-between">
+      <h3 class="text-base font-extrabold text-white">سجل رحلات الوردية (اليوم)</h3>
+      <span class="text-xs text-white/60">إجمالي 11 مشوار مكتمل</span>
+    </div>
+
+    <!-- Trip Item 1 -->
+    <div class="glass-card rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+          ✓
+        </div>
+        <div>
+          <h4 class="text-xs sm:text-sm font-bold text-white">مشويات الباز ➔ حي المعاشات (شارع المدارس)</h4>
+          <span class="text-[10px] text-white/50">العميل: أحمد السيد • تم الاستلام كاش • منذ 12 دقيقة</span>
+        </div>
+      </div>
+      <div class="text-left">
+        <span class="text-sm font-black text-emerald-400 block">+25 ج.م</span>
+        <span class="text-[10px] text-amber-300 font-bold">تقييم 5 نجوم ★</span>
+      </div>
+    </div>
+
+    <!-- Trip Item 2 -->
+    <div class="glass-card rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+          ✓
+        </div>
+        <div>
+          <h4 class="text-xs sm:text-sm font-bold text-white">صيدلية العزازي ➔ شارع المركز أمام البريد</h4>
+          <span class="text-[10px] text-white/50">العميل: د. محمود خالد • دفع إلكتروني • 01:15 م</span>
+        </div>
+      </div>
+      <div class="text-left">
+        <span class="text-sm font-black text-emerald-400 block">+15 ج.م</span>
+        <span class="text-[10px] text-amber-300 font-bold">تقييم 5 نجوم ★</span>
+      </div>
+    </div>
+
+    <!-- Trip Item 3 -->
+    <div class="glass-card rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+          ✓
+        </div>
+        <div>
+          <h4 class="text-xs sm:text-sm font-bold text-white">كشري الزعيم ➔ حي المحجوب بجوار محطة المياه</h4>
+          <span class="text-[10px] text-white/50">العميلة: أم محمد • كاش 95 ج.م • 12:30 م</span>
+        </div>
+      </div>
+      <div class="text-left">
+        <span class="text-sm font-black text-emerald-400 block">+20 ج.م</span>
+        <span class="text-[10px] text-amber-300 font-bold">تقييم 5 نجوم ★</span>
+      </div>
+    </div>
+
+    <!-- Trip Item 4 -->
+    <div class="glass-card rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+          ✓
+        </div>
+        <div>
+          <h4 class="text-xs sm:text-sm font-bold text-white">حلواني شندل ➔ جزيرة سعود (مشوار قرية)</h4>
+          <span class="text-[10px] text-white/50">العميل: إبراهيم الدسوقي • كاش + بونص • 11:10 ص</span>
+        </div>
+      </div>
+      <div class="text-left">
+        <span class="text-sm font-black text-emerald-400 block">+45 ج.م</span>
+        <span class="text-[10px] text-amber-300 font-bold">تقييم 5 نجوم ★</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       TAB 5: CAPTAIN PROFILE & SETTINGS (الملف والإعدادات والقرى)
+  ════════════════════════════════════════════════════════════════ -->
+  <div id="tab-profile" class="tab-content max-w-6xl mx-auto space-y-6">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- CAPTAIN INFO & BADGES -->
+      <div class="glass-card rounded-3xl p-6 text-center space-y-4">
+        <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 mx-auto flex items-center justify-center text-5xl shadow-xl">
+          🛵
+        </div>
+        <div>
+          <h3 class="text-lg font-black text-white">الكابتن عمر السعيد</h3>
+          <p class="text-xs text-emerald-400 font-semibold">كابتن معتمد — دليفري الحسينية</p>
+          <span class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold mt-2">
+            ✓ فيش وتشبيه ورخصة قيادة سارية
+          </span>
+        </div>
+
+        <div class="bg-black/30 p-3 rounded-2xl text-xs text-right space-y-2 border border-white/5">
+          <div class="flex justify-between text-white/70">
+            <span>نوع المركبة:</span>
+            <span class="font-bold text-white">سكوتر دايو كلاسيك</span>
+          </div>
+          <div class="flex justify-between text-white/70">
+            <span>رقم اللوحة:</span>
+            <span class="font-bold text-white">أ ج د 5821 (الشرقية)</span>
+          </div>
+          <div class="flex justify-between text-white/70">
+            <span>تاريخ الانضمام:</span>
+            <span class="font-bold text-white">يناير 2024</span>
+          </div>
+        </div>
+
+        <!-- Emergency Support Button -->
+        <a href="tel:01023456789" class="w-full glass py-3 rounded-xl text-xs font-bold text-red-400 hover:bg-red-500/10 transition block text-center">
+          🚨 طوارئ وعمليات دليفري الحسينية (24/7)
         </a>
       </div>
 
+      <!-- WORK RADIUS & VILLAGES TOGGLE -->
+      <div class="md:col-span-2 glass-card rounded-3xl p-6 space-y-5">
+        <div>
+          <h3 class="text-base font-extrabold text-white">تحديد نطاق العمل والقرى التابعة للمركز</h3>
+          <p class="text-xs text-white/60">اختر المناطق التي ترغب في تلقي إشعارات التوصيل إليها:</p>
+        </div>
+
+        <div class="space-y-3">
+          <!-- Area 1 -->
+          <label class="flex items-center justify-between p-3.5 rounded-2xl bg-black/30 border border-white/5 cursor-pointer">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">🏙️</span>
+              <div>
+                <span class="text-xs font-bold text-white block">مدينة الحسينية الرئيسية</span>
+                <span class="text-[10px] text-white/50">شارع المركز، بورسعيد، ترعة سراج، حي المعاشات والمحجوب</span>
+              </div>
+            </div>
+            <input type="checkbox" checked class="w-5 h-5 accent-emerald-500 rounded cursor-pointer">
+          </label>
+
+          <!-- Area 2 -->
+          <label class="flex items-center justify-between p-3.5 rounded-2xl bg-black/30 border border-white/5 cursor-pointer">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">🌴</span>
+              <div>
+                <span class="text-xs font-bold text-white block">قرية جزيرة سعود وقراها</span>
+                <span class="text-[10px] text-amber-300 font-semibold">+15 ج.م حافز مسافة لكل طلب</span>
+              </div>
+            </div>
+            <input type="checkbox" checked class="w-5 h-5 accent-emerald-500 rounded cursor-pointer">
+          </label>
+
+          <!-- Area 3 -->
+          <label class="flex items-center justify-between p-3.5 rounded-2xl bg-black/30 border border-white/5 cursor-pointer">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">🌾</span>
+              <div>
+                <span class="text-xs font-bold text-white block">الأخيوة وتلراك والظواهرية</span>
+                <span class="text-[10px] text-amber-300 font-semibold">+20 ج.م حافز مسافة لكل طلب</span>
+              </div>
+            </div>
+            <input type="checkbox" checked class="w-5 h-5 accent-emerald-500 rounded cursor-pointer">
+          </label>
+
+          <!-- Area 4 -->
+          <label class="flex items-center justify-between p-3.5 rounded-2xl bg-black/30 border border-white/5 cursor-pointer">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">🚜</span>
+              <div>
+                <span class="text-xs font-bold text-white block">قرى بحر البقر والصالحية القديمة</span>
+                <span class="text-[10px] text-amber-300 font-semibold">+30 ج.م حافز مسافة طويلة</span>
+              </div>
+            </div>
+            <input type="checkbox" class="w-5 h-5 accent-emerald-500 rounded cursor-pointer">
+          </label>
+        </div>
+
+        <button onclick="saveSettings()" class="btn-primary w-full py-3 rounded-2xl text-xs font-bold">
+          حفظ تفضيلات نطاق التوصيل ✓
+        </button>
+      </div>
+
     </div>
 
-  </main>
+  </div>
 
-  <!-- ══════════════ INCOMING ORDER POPUP MODAL ══════════════ -->
-  <div id="incoming-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="glass-card max-w-md w-full rounded-3xl p-6 border-2 border-emerald-400/60 glass-glow-emerald animate-bounce-once">
+  <!-- ══════════════ MOBILE BOTTOM NAVIGATION ══════════════ -->
+  <nav class="bottom-driver-nav md:hidden">
+    <div onclick="switchTab('shift')" id="mob-shift" class="driver-nav-item active">
+      <span class="text-lg">🛵</span>
+      <span>الوردية</span>
+    </div>
+    <div onclick="switchTab('radar')" id="mob-radar" class="driver-nav-item relative">
+      <span class="text-lg">📡</span>
+      <span>الرادار</span>
+      <span class="w-2 h-2 rounded-full bg-amber-400 absolute top-1 left-2"></span>
+    </div>
+    <div onclick="switchTab('wallet')" id="mob-wallet" class="driver-nav-item">
+      <span class="text-lg">💰</span>
+      <span>المحفظة</span>
+    </div>
+    <div onclick="switchTab('history')" id="mob-history" class="driver-nav-item">
+      <span class="text-lg">📋</span>
+      <span>الرحلات</span>
+    </div>
+    <div onclick="switchTab('profile')" id="mob-profile" class="driver-nav-item">
+      <span class="text-lg">⚙️</span>
+      <span>إعداداتي</span>
+    </div>
+  </nav>
+
+  <!-- ══════════════ MODAL 1: OTP DELIVERY CONFIRMATION ══════════════ -->
+  <div id="otp-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="glass-card max-w-sm w-full rounded-3xl p-6 border border-emerald-400/50 glass-glow-emerald text-center">
       
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-2">
-          <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
-          <span class="text-xs font-extrabold text-emerald-400">طلب توصيل جديد في محيطك!</span>
-        </div>
-        <div class="w-8 h-8 rounded-full bg-amber-400/20 text-amber-300 font-mono text-xs flex items-center justify-center font-bold" id="countdown-timer">
-          25s
-        </div>
+      <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center text-2xl font-bold mb-3">
+        🔐
+      </div>
+      <h3 class="text-base font-extrabold text-white mb-1">تأكيد كود الاستلام من العميل</h3>
+      <p class="text-xs text-white/60 mb-5">
+        اطلب من العميل (أحمد السيد) كود الـ OTP المكون من 4 أرقام من شاشة هاتفه لإتمام الرحلة.
+      </p>
+
+      <!-- 4 PIN DIGIT INPUTS -->
+      <div class="flex justify-center gap-3 mb-4" dir="ltr">
+        <input type="text" maxlength="1" id="pin-1" class="w-12 h-14 text-center text-xl font-black rounded-xl bg-black/50 border border-emerald-400/40 text-emerald-300 focus:outline-none focus:border-emerald-400" value="9" oninput="focusNext(this, 'pin-2')">
+        <input type="text" maxlength="1" id="pin-2" class="w-12 h-14 text-center text-xl font-black rounded-xl bg-black/50 border border-emerald-400/40 text-emerald-300 focus:outline-none focus:border-emerald-400" value="0" oninput="focusNext(this, 'pin-3')">
+        <input type="text" maxlength="1" id="pin-3" class="w-12 h-14 text-center text-xl font-black rounded-xl bg-black/50 border border-emerald-400/40 text-emerald-300 focus:outline-none focus:border-emerald-400" value="2" oninput="focusNext(this, 'pin-4')">
+        <input type="text" maxlength="1" id="pin-4" class="w-12 h-14 text-center text-xl font-black rounded-xl bg-black/50 border border-emerald-400/40 text-emerald-300 focus:outline-none focus:border-emerald-400" value="4">
       </div>
 
-      <div class="text-center py-3">
-        <div class="text-4xl mb-2">🍗</div>
-        <h3 class="text-lg font-black text-white mb-1">كشري الزعيم والتحرير — شارع المركز</h3>
-        <p class="text-xs text-white/60">توصيل إلى: حي المحجوب بجوار المسجد الكبير</p>
+      <div class="bg-amber-400/10 p-3 rounded-xl border border-amber-400/30 text-xs text-amber-300 mb-5 font-bold">
+        💵 تأكد من تحصيل 240 ج.م كاش من العميل الآن
       </div>
 
-      <div class="grid grid-cols-2 gap-3 my-4 bg-black/30 p-3 rounded-2xl border border-white/5 text-center text-xs">
-        <div>
-          <span class="text-white/50 block">المسافة المقدرة</span>
-          <span class="font-bold text-white text-sm">1.8 كم (8 دقائق)</span>
-        </div>
-        <div>
-          <span class="text-white/50 block">أجرة التوصيل لك</span>
-          <span class="font-extrabold text-emerald-400 text-sm">20 ج.م كاش</span>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-2 gap-3 mt-6">
-        <button onclick="declineIncomingDelivery()" class="glass py-3 rounded-2xl text-xs font-bold text-red-400 hover:bg-red-500/10 transition">
-          رفض المشوار
+      <div class="grid grid-cols-2 gap-2">
+        <button onclick="closeOtpModal()" class="glass py-3 rounded-xl text-xs font-bold text-white/70">
+          إلغاء
         </button>
-        <button onclick="acceptIncomingDelivery()" class="btn-primary py-3 rounded-2xl text-xs font-bold">
-          قبول والتحرك للمتجر 🛵
+        <button onclick="verifyOtpAndFinish()" class="btn-primary py-3 rounded-xl text-xs font-bold">
+          تأكيد التسليم والمبلغ ✓
         </button>
       </div>
 
     </div>
   </div>
 
+  <!-- ══════════════ MODAL 2: INSTANT CASHOUT (INSTAPAY / CASH) ══════════════ -->
+  <div id="cashout-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="glass-card max-w-md w-full rounded-3xl p-6 border border-amber-400/50 glass-glow-amber">
+      
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">💸</span>
+          <h3 class="text-sm font-extrabold text-white">طلب سحب أرباح فوري</h3>
+        </div>
+        <button onclick="closeCashoutModal()" class="text-white/40 hover:text-white text-lg">✕</button>
+      </div>
+
+      <div class="mb-4">
+        <span class="text-xs text-white/60 block mb-1">المبلغ المطلوب سحبه (ج.م):</span>
+        <div class="relative">
+          <input type="number" id="cashout-amount" value="500" max="1480" class="w-full bg-black/40 border border-white/15 rounded-xl px-4 py-3 text-lg font-black text-amber-300 focus:outline-none focus:border-amber-400">
+          <button onclick="document.getElementById('cashout-amount').value = 1480" class="absolute left-3 top-3 text-xs font-bold text-emerald-400">سحب الكل (1,480)</button>
+        </div>
+      </div>
+
+      <!-- Payout Method Selection -->
+      <div class="space-y-2 mb-4">
+        <span class="text-xs text-white/60 block">وسيلة استلام المبلغ:</span>
+        
+        <label class="flex items-center justify-between p-3 rounded-xl bg-black/30 border border-white/10 cursor-pointer">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded-md bg-red-600 text-white font-black text-[9px] flex items-center justify-center">VF</span>
+            <span class="text-xs font-bold text-white">محفظة فودافون كاش</span>
+          </div>
+          <input type="radio" name="payout_method" value="vodafone" checked class="accent-emerald-400">
+        </label>
+
+        <label class="flex items-center justify-between p-3 rounded-xl bg-black/30 border border-white/10 cursor-pointer">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded-md bg-purple-700 text-white font-black text-[9px] flex items-center justify-center">IP</span>
+            <span class="text-xs font-bold text-white">إنستاباي (InstaPay لحظي)</span>
+          </div>
+          <input type="radio" name="payout_method" value="instapay" class="accent-emerald-400">
+        </label>
+      </div>
+
+      <div class="mb-6">
+        <label class="text-xs text-white/60 block mb-1">رقم المحفظة / معرف إنستاباي IPA:</label>
+        <input type="text" id="payout-account" value="01098765432" class="w-full bg-black/40 border border-white/15 rounded-xl px-4 py-2.5 text-xs font-bold text-white focus:outline-none focus:border-emerald-400">
+      </div>
+
+      <button onclick="submitCashoutRequest()" class="btn-amber w-full py-3.5 rounded-2xl text-xs sm:text-sm font-black">
+        تأكيد التحويل الآن ⚡
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ══════════════ MODAL 3: INCOMING DISPATCH ALERT ══════════════ -->
+  <div id="incoming-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="glass-card max-w-sm w-full rounded-3xl p-6 border-2 border-emerald-400/80 glass-glow-emerald text-center animate-bounce-once">
+      
+      <div class="flex items-center justify-between mb-3">
+        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[11px] font-bold">⚡ طلب توصيل مباشر</span>
+        <div class="w-8 h-8 rounded-full bg-amber-400/20 text-amber-300 font-mono text-xs flex items-center justify-center font-bold" id="countdown-val">
+          28s
+        </div>
+      </div>
+
+      <div class="text-4xl my-2">🍗</div>
+      <h3 class="text-base font-black text-white" id="incoming-store-title">مشويات الباز والحسينية</h3>
+      <p class="text-xs text-white/60 mb-4" id="incoming-drop-title">شارع المركز ➔ حي المعاشات (1.8 كم)</p>
+
+      <div class="bg-black/40 p-3 rounded-2xl border border-white/5 mb-5 text-center">
+        <span class="text-[11px] text-white/50 block">صافي أجر الكابتن من المشوار:</span>
+        <span class="text-2xl font-black text-emerald-400" id="incoming-fare">25 ج.م كاش</span>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2">
+        <button onclick="declineIncomingAlert()" class="glass py-3 rounded-xl text-xs font-bold text-red-400 hover:bg-red-500/10">
+          تخطي المشوار
+        </button>
+        <button onclick="acceptIncomingAlert()" class="btn-primary py-3 rounded-xl text-xs font-bold">
+          قبول المشوار 🛵
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════ AUDIO SYNTHESIZER & SCRIPT ENGINE ══════════════ -->
   <script>
     let isOnline = true;
-    let countdownInterval = null;
+    let audioEnabled = true;
+    let audioCtx = null;
+    let countdownTimer = null;
+    let activeEarnings = 285;
+    let activeTrips = 11;
+    let walletBal = 1480;
 
-    function toggleOnlineStatus() {
-      isOnline = !isOnline;
-      const statusBadge = document.getElementById('status-badge');
-      const statusText = document.getElementById('status-text');
-      const toggleBtn = document.getElementById('duty-toggle-btn');
+    // Web Audio Synthesizer (Realistic Sound FX without external files)
+    function playBeep(freq = 880, type = 'sine', duration = 0.15) {
+      if (!audioEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
 
-      if (isOnline) {
-        statusBadge.className = 'flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold';
-        statusText.innerText = 'متصل • جاهز لاستلام طلبات';
-        toggleBtn.innerHTML = '<span>⏸️</span><span class="hidden sm:inline">أخذ استراحة</span>';
-        alert('أنت الآن متصل 🟢 يمكنك استلام إشعارات التوصيل الفورية داخل الحسينية.');
+    function playDispatchAlarm() {
+      playBeep(800, 'square', 0.12);
+      setTimeout(() => playBeep(1200, 'square', 0.2), 150);
+    }
+
+    function playCashSound() {
+      playBeep(987.77, 'triangle', 0.1);
+      setTimeout(() => playBeep(1318.51, 'triangle', 0.3), 120);
+    }
+
+    function toggleAudio() {
+      audioEnabled = !audioEnabled;
+      const btn = document.getElementById('audio-toggle-btn');
+      if (audioEnabled) {
+        btn.innerText = '🔊';
+        btn.className = 'glass p-2.5 rounded-xl text-xs font-bold hover:bg-white/10 transition text-amber-300';
+        playBeep(1000);
       } else {
-        statusBadge.className = 'flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-xs font-bold';
-        statusText.innerText = 'غير متاح • في استراحة مؤقتة';
-        toggleBtn.innerHTML = '<span>▶️</span><span class="hidden sm:inline">بدء الوردية</span>';
-        alert('تم إيقاف استقبال الطلبات مؤقتاً 🔴 لن تتلقى إشعارات حتى تعود للاتصال.');
+        btn.innerText = '🔇';
+        btn.className = 'glass p-2.5 rounded-xl text-xs font-bold hover:bg-white/10 transition text-white/40';
       }
     }
 
-    function simulateIncomingDelivery() {
+    // Tab Navigation Switcher
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById('tab-' + tabId);
+      if (target) target.classList.add('active');
+
+      // Update Desktop Tabs
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-emerald-500/20', 'text-emerald-400', 'border', 'border-emerald-500/30');
+        btn.classList.add('text-white/70');
+      });
+      const dtab = document.getElementById('dtab-' + tabId);
+      if (dtab) {
+        dtab.classList.add('bg-emerald-500/20', 'text-emerald-400', 'border', 'border-emerald-500/30');
+        dtab.classList.remove('text-white/70');
+      }
+
+      // Update Mobile Nav
+      document.querySelectorAll('.driver-nav-item').forEach(m => m.classList.remove('active'));
+      const mob = document.getElementById('mob-' + tabId);
+      if (mob) mob.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Toggle Online / Offline Status
+    function toggleOnlineStatus() {
+      isOnline = !isOnline;
+      const statusPill = document.getElementById('status-pill');
+      const statusTitle = document.getElementById('status-title');
+      const dutyBtn = document.getElementById('duty-btn-label');
+      const liveDot = document.getElementById('live-dot');
+
+      if (isOnline) {
+        statusPill.className = 'flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold';
+        statusTitle.innerText = 'متصل • استقبال المشاوير نشط';
+        dutyBtn.innerText = 'استراحة';
+        liveDot.className = 'w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#06091a] absolute -top-1 -right-1';
+        playBeep(900);
+        alert('أنت الآن متصل 🟢 ومستعد لتلقي إشعارات طلبات التوصيل بالحسينية.');
+      } else {
+        statusPill.className = 'flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-xs font-bold';
+        statusTitle.innerText = 'غير متاح • في استراحة مؤقتة';
+        dutyBtn.innerText = 'بدء الوردية';
+        liveDot.className = 'w-3 h-3 rounded-full bg-red-500 border-2 border-[#06091a] absolute -top-1 -right-1';
+        alert('أنت الآن في استراحة مؤقتة 🔴 تم إيقاف الرادار وإرسال المشاوير.');
+      }
+    }
+
+    // Simulation of Incoming Delivery Alert
+    function simulateIncomingAudioAlert() {
       if (!isOnline) {
-        alert('يرجى التحويل إلى وضع "متصل" أولاً لتتمكن من استلام المشاوير.');
+        alert('يرجى بدء الوردية والاتصال أولاً لتفعيل استقبال المشاوير.');
         return;
       }
+      playDispatchAlarm();
       const modal = document.getElementById('incoming-modal');
       modal.classList.remove('hidden');
       modal.classList.add('flex');
 
-      let seconds = 25;
-      const timerEl = document.getElementById('countdown-timer');
+      let seconds = 28;
+      const timerEl = document.getElementById('countdown-val');
       timerEl.innerText = seconds + 's';
-      clearInterval(countdownInterval);
-      countdownInterval = setInterval(() => {
+      clearInterval(countdownTimer);
+      countdownTimer = setInterval(() => {
         seconds--;
         timerEl.innerText = seconds + 's';
+        if (seconds % 3 === 0) playDispatchAlarm();
         if (seconds <= 0) {
-          clearInterval(countdownInterval);
-          declineIncomingDelivery();
+          clearInterval(countdownTimer);
+          declineIncomingAlert();
         }
       }, 1000);
     }
 
-    function acceptIncomingDelivery() {
-      clearInterval(countdownInterval);
+    function acceptIncomingAlert() {
+      clearInterval(countdownTimer);
       document.getElementById('incoming-modal').classList.add('hidden');
       document.getElementById('incoming-modal').classList.remove('flex');
-      alert('تم قبول المشوار بنجاح! 🚀 تم تزويدك بموقع المطعم على الخريطة للبدء في الاستلام.');
+      playCashSound();
+      switchTab('shift');
+      alert('تم قبول المشوار بنجاح! 🚀 تم توجيهك إلى خريطة الملاحة الحية.');
     }
 
-    function declineIncomingDelivery() {
-      clearInterval(countdownInterval);
+    function declineIncomingAlert() {
+      clearInterval(countdownTimer);
       document.getElementById('incoming-modal').classList.add('hidden');
       document.getElementById('incoming-modal').classList.remove('flex');
     }
 
-    function confirmOrderDelivered() {
-      const otp = prompt('يرجى إدخال كود استلام العميل المكون من 4 أرقام لتأكيد التسليم: (اكتب 1234 للتجربة)');
-      if (otp) {
-        alert('تم تأكيد التسليم بنجاح! 🎉 أضيفت 25 ج.م إلى رصيد محفظتك.');
+    function acceptSpecificOffer(store, dest, fare) {
+      if (!confirm(`هل ترغب في قبول مشوار (${store} ➔ ${dest}) بأجرة ${fare} ج.م؟`)) return;
+      playCashSound();
+      switchTab('shift');
+      alert(`تم قبول مشوار ${store}! تحرك الآن لنقطة الاستلام.`);
+    }
+
+    // Modal OTP Handlers
+    function openOtpModal() {
+      document.getElementById('otp-modal').classList.remove('hidden');
+      document.getElementById('otp-modal').classList.add('flex');
+    }
+
+    function closeOtpModal() {
+      document.getElementById('otp-modal').classList.add('hidden');
+      document.getElementById('otp-modal').classList.remove('flex');
+    }
+
+    function focusNext(current, nextId) {
+      if (current.value.length === 1 && nextId) {
+        const next = document.getElementById(nextId);
+        if (next) next.focus();
       }
     }
 
-    function openNavigationMap() {
+    function verifyOtpAndFinish() {
+      closeOtpModal();
+      playCashSound();
+
+      // Update counters
+      activeEarnings += 25;
+      activeTrips += 1;
+      walletBal += 25;
+
+      document.getElementById('stat-earnings').innerHTML = activeEarnings + ' <span class="text-xs font-normal">ج.م</span>';
+      document.getElementById('top-earnings').innerText = activeEarnings + ' ج.م';
+      document.getElementById('stat-trips').innerHTML = activeTrips + ' <span class="text-xs font-normal">مشوار</span>';
+      document.getElementById('wallet-balance').innerText = walletBal.toLocaleString();
+
+      alert('تم تأكيد التسليم بنجاح! 🎉 أضيفت 25 ج.م كاش إلى محفظتك. شكراً لك يا كابتن عمر!');
+      
+      // Update mission to finished view or show waiting
+      document.getElementById('prog-step-3').className = 'p-2 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40';
+      document.getElementById('prog-step-4').className = 'p-2 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40';
+      document.getElementById('mission-step-desc').innerText = 'تم إنهاء وتسليم الطلب بالكامل ✓ في انتظار مشوار جديد';
+    }
+
+    // Cashout Modal Handlers
+    function openCashoutModal() {
+      document.getElementById('cashout-modal').classList.remove('hidden');
+      document.getElementById('cashout-modal').classList.add('flex');
+    }
+
+    function closeCashoutModal() {
+      document.getElementById('cashout-modal').classList.add('hidden');
+      document.getElementById('cashout-modal').classList.remove('flex');
+    }
+
+    function submitCashoutRequest() {
+      const amount = parseFloat(document.getElementById('cashout-amount').value) || 0;
+      const account = document.getElementById('payout-account').value;
+      if (amount <= 0 || amount > walletBal) {
+        alert('يرجى إدخال مبلغ سحب صحيح ضمن الرصيد المتاح.');
+        return;
+      }
+      walletBal -= amount;
+      document.getElementById('wallet-balance').innerText = walletBal.toLocaleString();
+      closeCashoutModal();
+      playCashSound();
+      alert(`تم إرسال طلب سحب ${amount} ج.م إلى (${account}) بنجاح! 💸 سيتم التحويل خلال دقائق.`);
+    }
+
+    function openExternalGoogleMaps() {
       window.open('https://www.google.com/maps/search/%D9%85%D8%B1%D9%83%D8%B2+%D8%A7%D9%84%D8%AD%D8%B3%D9%8A%D9%86%D9%8A%D8%A9+%D8%A7%D9%84%D8%B4%D8%B1%D9%82%D9%8A%D8%A9', '_blank');
     }
 
-    function requestPayout() {
-      const method = prompt('اختر وسيلة استلام الأرباح:\n1. محفظة فودافون كاش\n2. إنستاباي InstaPay IPA\n\nأدخل الرقم أو المعرف:');
-      if (method) {
-        alert('تم إرسال طلب السحب بنجاح! سيتم التحويل لرقمك خلال 15 دقيقة.');
+    function reportIssuePrompt() {
+      const issue = prompt('يرجى تحديد سبب المشكلة لتبليغ غرفة العمليات:\n1. العميل لا يجيب على الهاتف\n2. خطأ في عنوان التوصيل\n3. تلف بالمركبة\n\nاكتب رقم أو تفاصيل المشكلة:');
+      if (issue) {
+        alert('تم إخطار مشرف الدعم الفني بالحسينية. سيتواصل معك أحد ممثلي الدعم خلال دقيقة واحدة.');
       }
     }
+
+    function showBonusPolicy() {
+      alert('سياسة بونص قرى الحسينية:\n• جزيرة سعود: +15 ج.م إضافية على كل مشوار.\n• الأخيوة وتلراك: +20 ج.م إضافية.\n• بحر البقر والصالحية: +30 ج.م إضافية.\nيتم إضافة البونص تلقائياً لمشوارك فور تسليم العميل.');
+    }
+
+    function saveSettings() {
+      playBeep(880);
+      alert('تم حفظ إعدادات نطاق العمل والقرى بنجاح! ستتلقى المشاوير وفقاً للمناطق المحددة.');
+    }
+
+    // Animate scooter position slightly to simulate GPS tracking
+    let step = 0;
+    setInterval(() => {
+      const marker = document.getElementById('scooter-marker');
+      if (marker) {
+        step = (step + 1) % 40;
+        const x = 380 + (step * 2);
+        const y = 180 + (step > 20 ? (step - 20) * 2 : 0);
+        marker.setAttribute('transform', `translate(${x}, ${y})`);
+      }
+    }, 800);
   </script>
 
 </body>
