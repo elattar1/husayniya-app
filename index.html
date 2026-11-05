@@ -319,7 +319,7 @@ body {
           <button onclick="filterCategory('grocery', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🛒 سوبر ماركت</button>
           <button onclick="filterCategory('pharmacy', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">💊 صيدليات 24h</button>
           <button onclick="filterCategory('ride', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🚖 تكسي وتوصيل</button>
-          <button onclick="filterCategory('medical', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🏥 دليل الأطباء</button>
+          <button onclick="navigateTo('medical')" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🏥 دليل الأطباء</button>
           <button onclick="filterCategory('realty', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🏠 عقارات المنطقة</button>
         </div>
       </div>
@@ -419,7 +419,7 @@ body {
         </div>
 
         <!-- Store 7: حجز الأطباء بمستشفى الحسينية المركزي -->
-        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="medical" data-name="عيادات أطباء الحسينية">
+        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="medical" data-name="عيادات أطباء الحسينية" onclick="navigateTo('medical')">
           <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#1f3d3a,#113333)">
             🩺
             <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● حجز فوري</span>
@@ -506,6 +506,7 @@ const PAGE_ROUTES = {
   'account': 'husayniya-account.html',
   'dashboard': 'husayniya-dashboard.html',
   'merchant': 'husayniya-merchant.html',
+  'medical': 'husayniya-medical.html',
   'login': 'husayniya-login.html'
 };
 
@@ -573,6 +574,7 @@ if ('serviceWorker' in navigator) {
 
 </body>
 </html>
+
 
 
 

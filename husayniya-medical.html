@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>الدليل الطبي وحجز العيادات — خدمات الحسينية (الشرقية)</title>
+<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+
+/* ── Background Scene ── */
+.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35;animation:drift 18s ease-in-out infinite alternate}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#00b09b,#045353);top:-150px;right:-150px}
+.o2{width:500px;height:500px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-150px;left:-150px;animation-delay:-6s}
+.o3{width:400px;height:400px;background:radial-gradient(circle,#667eea,#764ba2);top:40%;left:30%;animation-delay:-10s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-15px) scale(1.05)}100%{transform:translate(-20px,20px) scale(.95)}}
+
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+
+/* ── Liquid Glass Utilities ── */
+.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,.14)}
+.glass-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.12);transition:all .3s ease}
+.glass-card:hover{border-color:rgba(0,176,155,.45);box-shadow:0 14px 40px rgba(0,176,155,.15);transform:translateY(-3px)}
+
+/* ── Gradients ── */
+.gt{background:linear-gradient(135deg,#00e5c8 0%,#43cea2 45%,#f7c948 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt-gold{background:linear-gradient(135deg,#f7c948,#f7971e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── Buttons ── */
+.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-primary:hover{transform:scale(1.02);box-shadow:0 0 25px rgba(0,176,155,.45)}
+
+.btn-book{background:rgba(0,176,155,.18);border:1px solid rgba(0,176,155,.5);color:#00e5c8;font-weight:700;border-radius:12px;padding:8px 16px;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:6px}
+.btn-book:hover{background:linear-gradient(135deg,#00b09b,#06d6a0);color:#fff;box-shadow:0 0 16px rgba(0,176,155,.4);transform:scale(1.04)}
+
+/* ── Filter Chips ── */
+.med-chip{padding:9px 18px;border-radius:14px;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .25s;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);white-space:nowrap}
+.med-chip:hover,.med-chip.active{background:rgba(0,176,155,.22);color:#00e5c8;border-color:rgba(0,176,155,.6);box-shadow:0 0 16px rgba(0,176,155,.2)}
+
+/* ── Form Inputs ── */
+.input-glass{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.16);color:#fff;transition:all .3s;font-size:.88rem}
+.input-glass:focus{outline:none;background:rgba(255,255,255,.12);border-color:rgba(0,176,155,.7);box-shadow:0 0 0 3px rgba(0,176,155,.15)}
+
+/* ── Time Slot Buttons ── */
+.time-slot{padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:.78rem;cursor:pointer;transition:.2s;text-align:center}
+.time-slot:hover,.time-slot.selected{background:rgba(0,176,155,.25);border-color:#00e5c8;color:#00e5c8;font-weight:700}
+
+/* ── Modal overlay ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(4,8,20,.85);backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+
+.stars{color:#f7c948;letter-spacing:1.5px}
+.scroll-touch{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.scroll-touch::-webkit-scrollbar{display:none}
+</style>
+</head>
+<body>
+
+<!-- Animated Orbs -->
+<div class="bg-scene">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<div class="page">
+
+<!-- ══════════════════ NAVBAR ══════════════════ -->
+<nav class="glass sticky top-0 z-50 px-6 py-4" style="background:rgba(4,14,30,.7);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
+      <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">←</div>
+      <div>
+        <span class="text-xs text-emerald-400 font-semibold">الرئيسية</span>
+        <div class="text-sm font-bold">خدمات الحسينية (الشرقية)</div>
+      </div>
+    </a>
+
+    <div class="flex items-center gap-3">
+      <a href="tel:123" class="px-3.5 py-1.5 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-bold flex items-center gap-1.5 hover:bg-rose-500/30 transition" style="text-decoration:none">
+        <span>🚨</span>
+        <span>طوارئ الإسعاف: 123</span>
+      </a>
+      <a href="index.html" class="hidden sm:inline glass px-3.5 py-1.5 rounded-full text-xs font-semibold text-white/80 hover:text-white transition" style="text-decoration:none">
+        باقي الخدمات ↗
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════ MAIN MEDICAL DIRECTORY ══════════════════ -->
+<main class="max-w-7xl mx-auto px-6 py-8 flex-1">
+
+  <!-- Header Banner -->
+  <div class="glass-card rounded-3xl p-6 md:p-10 mb-8 relative overflow-hidden">
+    <div class="max-w-2xl relative z-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold mb-4">
+        <span>🩺</span>
+        <span>دليل الأطباء والعيادات التخصصية بمركز الحسينية</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-black leading-tight mb-3">
+        احجز كشفك الطبي بسهولة<br/><span class="gt">مع نخبة أطباء الحسينية والشرقية</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-white/60 mb-6 leading-relaxed">
+        تصفح مواعيد الأطباء، العيادات الخاصة، مراكز الأشعة، والتحاليل بشارع المستشفى، شارع بورسعيد، وشارع المركز، واحجز موعدك فوراً بدون انتظار.
+      </p>
+
+      <div class="glass p-1.5 rounded-2xl flex items-center gap-2 max-w-lg border border-white/20">
+        <input id="doctor-search" oninput="filterDoctors()" type="text" placeholder="ابحث باسم الطبيب، التخصص، أو الشارع..." class="flex-1 bg-transparent px-3 text-xs sm:text-sm text-white focus:outline-none"/>
+        <button class="btn-primary px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap">
+          بحث 🔍
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Specialties Horizontal Chips -->
+  <div class="mb-8">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-base font-bold">التخصصات الطبية الأكثر طلباً</h2>
+      <span class="text-xs text-emerald-400">اسحب للتصفح ←</span>
+    </div>
+    <div class="flex items-center gap-2 scroll-touch pb-2">
+      <button onclick="filterSpecialty('all', this)" class="med-chip active">🌟 جميع التخصصات</button>
+      <button onclick="filterSpecialty('internal', this)" class="med-chip">🩺 باطنة وجهاز هضمي</button>
+      <button onclick="filterSpecialty('pediatric', this)" class="med-chip">👶 أطفال وحديثي ولادة</button>
+      <button onclick="filterSpecialty('orthopedic', this)" class="med-chip">🦴 عظام ومفاصل</button>
+      <button onclick="filterSpecialty('dental', this)" class="med-chip">🦷 طب وجراحة الأسنان</button>
+      <button onclick="filterSpecialty('gynecology', this)" class="med-chip">🤰 نساء وتوليد</button>
+      <button onclick="filterSpecialty('ophthalmology', this)" class="med-chip">👁️ عيون ورمد</button>
+      <button onclick="filterSpecialty('labs', this)" class="med-chip">🔬 معامل تحاليل وأشعة</button>
+    </div>
+  </div>
+
+  <!-- Doctors & Clinics Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="doctors-grid">
+
+    <!-- Doctor 1: باطنة -->
+    <div class="doctor-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-specialty="internal" data-name="د. محمد عبد المنعم الباز">
+      <div>
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0" style="background:linear-gradient(135deg,#00b09b,#045353)">
+            👨‍⚕️
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-bold text-base text-white">د. محمد عبد المنعم</h3>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-bold">استشاري</span>
+            </div>
+            <p class="text-xs text-emerald-400 font-semibold mt-0.5">استشاري الباطنة والكبد والجهاز الهضمي</p>
+            <div class="flex items-center gap-2 mt-1.5 text-xs text-white/50">
+              <span class="stars text-[10px]">★★★★★</span>
+              <span>4.9 (240 كشف)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3 rounded-2xl">
+          <div class="flex items-center gap-2">
+            <span>📍</span>
+            <span>الحسينية — شارع المركز أمام مجلس المدينة</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span>⏱️</span>
+            <span>المواعيد: يومياً من 4 عصراً إلى 9 مساءً (عدا الجمعة)</span>
+          </div>
+          <div class="flex items-center gap-2 text-emerald-300 font-bold">
+            <span>💵</span>
+            <span>سعر الكشف: 150 ج.م</span>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="openBookingModal('د. محمد عبد المنعم', 'استشاري الباطنة والجهاز الهضمي', '150 ج.م', 'شارع المركز أمام مجلس المدينة')" class="btn-book w-full justify-center py-2.5">
+        <span>📅 حجز موعد كشف</span>
+      </button>
+    </div>
+
+    <!-- Doctor 2: أطفال -->
+    <div class="doctor-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-specialty="pediatric" data-name="د. سارة عثمان الشافعي">
+      <div>
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0" style="background:linear-gradient(135deg,#667eea,#764ba2)">
+            👩‍⚕️
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-bold text-base text-white">د. سارة عثمان</h3>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-bold">أخصائي</span>
+            </div>
+            <p class="text-xs text-emerald-400 font-semibold mt-0.5">أخصائي طب الأطفال وحديثي الولادة</p>
+            <div class="flex items-center gap-2 mt-1.5 text-xs text-white/50">
+              <span class="stars text-[10px]">★★★★★</span>
+              <span>4.95 (380 كشف)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3 rounded-2xl">
+          <div class="flex items-center gap-2">
+            <span>📍</span>
+            <span>الحسينية — شارع المستشفى المركزي</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span>⏱️</span>
+            <span>المواعيد: السبت، الإثنين، الأربعاء من 2 ظهراً لـ 7 مساءً</span>
+          </div>
+          <div class="flex items-center gap-2 text-emerald-300 font-bold">
+            <span>💵</span>
+            <span>سعر الكشف: 120 ج.م</span>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="openBookingModal('د. سارة عثمان', 'أخصائي طب الأطفال وحديثي الولادة', '120 ج.م', 'شارع المستشفى المركزي')" class="btn-book w-full justify-center py-2.5">
+        <span>📅 حجز موعد كشف</span>
+      </button>
+    </div>
+
+    <!-- Doctor 3: عظام -->
+    <div class="doctor-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-specialty="orthopedic" data-name="د. أحمد جمال الدين النجار">
+      <div>
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0" style="background:linear-gradient(135deg,#f7971e,#e4a832)">
+            👨‍⚕️
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-bold text-base text-white">د. أحمد جمال الدين</h3>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">استشاري</span>
+            </div>
+            <p class="text-xs text-emerald-400 font-semibold mt-0.5">استشاري جراحة العظام والمفاصل والعمود الفقري</p>
+            <div class="flex items-center gap-2 mt-1.5 text-xs text-white/50">
+              <span class="stars text-[10px]">★★★★★</span>
+              <span>4.85 (190 كشف)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3 rounded-2xl">
+          <div class="flex items-center gap-2">
+            <span>📍</span>
+            <span>الحسينية — شارع بورسعيد فوق صيدلية العزازي</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span>⏱️</span>
+            <span>المواعيد: يومياً من 5 مساءً حتى 10 مساءً</span>
+          </div>
+          <div class="flex items-center gap-2 text-emerald-300 font-bold">
+            <span>💵</span>
+            <span>سعر الكشف: 160 ج.م</span>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="openBookingModal('د. أحمد جمال الدين', 'استشاري جراحة العظام والمفاصل', '160 ج.م', 'شارع بورسعيد فوق صيدلية العزازي')" class="btn-book w-full justify-center py-2.5">
+        <span>📅 حجز موعد كشف</span>
+      </button>
+    </div>
+
+    <!-- Doctor 4: أسنان -->
+    <div class="doctor-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-specialty="dental" data-name="د. حسام الشبراوي لطب الأسنان">
+      <div>
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0" style="background:linear-gradient(135deg,#00b09b,#06d6a0)">
+            🦷
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-bold text-base text-white">د. حسام الشبراوي</h3>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">عيادة متخصصة</span>
+            </div>
+            <p class="text-xs text-emerald-400 font-semibold mt-0.5">زراعة وتقويم وتجميل الأسنان وعلاج الجذور</p>
+            <div class="flex items-center gap-2 mt-1.5 text-xs text-white/50">
+              <span class="stars text-[10px]">★★★★★</span>
+              <span>4.9 (310 كشف)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3 rounded-2xl">
+          <div class="flex items-center gap-2">
+            <span>📍</span>
+            <span>الحسينية — شارع المدارس بجوار بنك القاهرة</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span>⏱️</span>
+            <span>المواعيد: من 3 عصراً إلى 10 مساءً</span>
+          </div>
+          <div class="flex items-center gap-2 text-emerald-300 font-bold">
+            <span>💵</span>
+            <span>سعر الكشف: 100 ج.م (شامل الفحص بالكاميرا)</span>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="openBookingModal('د. حسام الشبراوي', 'زراعة وتقويم وتجميل الأسنان', '100 ج.م', 'شارع المدارس بجوار بنك القاهرة')" class="btn-book w-full justify-center py-2.5">
+        <span>📅 حجز موعد كشف</span>
+      </button>
+    </div>
+
+    <!-- Facility 5: مركز أشعة وتحاليل -->
+    <div class="doctor-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-specialty="labs" data-name="مركز الحسينية للأشعة ومعامل البرج">
+      <div>
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0" style="background:linear-gradient(135deg,#3d1a3a,#5e1a4d)">
+            🔬
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-bold text-base text-white">مركز الحسينية للأشعة والتحاليل</h3>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-pink-500/20 text-pink-300 font-bold">معمل ومركز أشعة</span>
+            </div>
+            <p class="text-xs text-emerald-400 font-semibold mt-0.5">أشعة مقطعية، موجات صوتية، دوبلر، وسحب عينات منزلي</p>
+            <div class="flex items-center gap-2 mt-1.5 text-xs text-white/50">
+              <span class="stars text-[10px]">★★★★★</span>
+              <span>4.8 (520 مريض)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3 rounded-2xl">
+          <div class="flex items-center gap-2">
+            <span>📍</span>
+            <span>الحسينية — شارع بورسعيد بجوار بنك مصر</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span>⏱️</span>
+            <span>العمل: يومياً من 8 صباحاً حتى 11 مساءً</span>
+          </div>
+          <div class="flex items-center gap-2 text-emerald-300 font-bold">
+            <span>🚗</span>
+            <span>متوفر خدمة إرسال فني لسحب العينات من المنزل بالحسينية</span>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="openBookingModal('مركز الحسينية للأشعة', 'فحوصات وأشعة وسحب عينات', 'حسب التحليل', 'شارع بورسعيد بجوار بنك مصر')" class="btn-book w-full justify-center py-2.5">
+        <span>📅 حجز فحص أو سحب عينة</span>
+      </button>
+    </div>
+
+    <!-- Facility 6: مستشفى الحسينية المركزي -->
+    <div class="doctor-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-specialty="internal" data-name="مستشفى الحسينية المركزي">
+      <div>
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0" style="background:linear-gradient(135deg,#1f3d3a,#113333)">
+            🏥
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-bold text-base text-white">مستشفى الحسينية المركزي</h3>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">طوارئ 24/7</span>
+            </div>
+            <p class="text-xs text-emerald-400 font-semibold mt-0.5">طوارئ عامة، حضانات، بنك دم، غسيل كلوي، وعيادات خارجية</p>
+            <div class="flex items-center gap-2 mt-1.5 text-xs text-white/50">
+              <span class="stars text-[10px]">★★★★★</span>
+              <span>خدمة المركز والقرى التابعة</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3 rounded-2xl">
+          <div class="flex items-center gap-2">
+            <span>📍</span>
+            <span>الحسينية — شارع المستشفى والمعهد الديني</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span>⏱️</span>
+            <span>استقبال الطوارئ: مفتوح على مدار 24 ساعة يومياً</span>
+          </div>
+          <div class="flex items-center gap-2 text-rose-400 font-bold">
+            <span>📞</span>
+            <span>طوارئ المستشفى والشكاوى متاحة مباشرة</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="tel:0557800000" class="btn-primary w-full justify-center py-2.5 text-xs font-bold flex items-center gap-2" style="text-decoration:none">
+        <span>📞 اتصال فوري بالطوارئ والاستقبال</span>
+      </a>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- ══════════════════ DOCTOR BOOKING MODAL ══════════════════ -->
+<div id="booking-modal" class="modal-overlay">
+  <div class="glass-card rounded-3xl p-6 md:p-8 max-w-md w-full relative border border-white/20">
+    <button onclick="closeBookingModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg">✕</button>
+
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center text-2xl">👨‍⚕️</div>
+      <div>
+        <h3 id="modal-doc-name" class="font-bold text-base text-white">اسم الطبيب</h3>
+        <p id="modal-doc-spec" class="text-xs text-emerald-400">التخصص</p>
+        <div id="modal-doc-fee" class="text-xs font-bold text-amber-300 mt-0.5">150 ج.م</div>
+      </div>
+    </div>
+
+    <!-- Booking Form -->
+    <div class="space-y-3.5 text-xs mb-5">
+      <div>
+        <label class="block font-semibold mb-1 text-white/70">اسم المريض ثلاثي</label>
+        <input id="patient-name" type="text" placeholder="مثلاً: أحمد محمود علي" class="input-glass w-full rounded-xl px-3 py-2 text-white"/>
+      </div>
+      <div>
+        <label class="block font-semibold mb-1 text-white/70">رقم الموبايل (للتأكيد برمز الحجز)</label>
+        <input id="patient-phone" type="tel" placeholder="01X XXXX XXXX" class="input-glass w-full rounded-xl px-3 py-2 text-white" maxlength="11"/>
+      </div>
+      <div>
+        <label class="block font-semibold mb-1 text-white/70">تاريخ الكشف المطلوب</label>
+        <input id="booking-date" type="date" class="input-glass w-full rounded-xl px-3 py-2 text-white bg-slate-900"/>
+      </div>
+      <div>
+        <label class="block font-semibold mb-1 text-white/70">اختر موعد الكشف التقديري</label>
+        <div class="grid grid-cols-3 gap-2">
+          <div onclick="selectSlot(this)" class="time-slot selected">05:00 م</div>
+          <div onclick="selectSlot(this)" class="time-slot">06:00 م</div>
+          <div onclick="selectSlot(this)" class="time-slot">07:00 م</div>
+          <div onclick="selectSlot(this)" class="time-slot">08:00 م</div>
+          <div onclick="selectSlot(this)" class="time-slot">09:00 م</div>
+          <div onclick="selectSlot(this)" class="time-slot">09:30 م</div>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="confirmAppointment()" class="btn-primary w-full py-3 rounded-2xl text-xs font-bold flex items-center justify-center gap-2">
+      <span>تأكيد حجز الموعد الآن ✓</span>
+    </button>
+  </div>
+</div>
+
+</div><!-- .page -->
+
+<script>
+// ── Filter by Specialty ──
+function filterSpecialty(spec, btn) {
+  document.querySelectorAll('.med-chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.doctor-card').forEach(card => {
+    if (spec === 'all' || card.dataset.specialty === spec) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// ── Search in Doctors ──
+function filterDoctors() {
+  const query = document.getElementById('doctor-search').value.toLowerCase().trim();
+  document.querySelectorAll('.doctor-card').forEach(card => {
+    const text = card.textContent.toLowerCase();
+    if (text.includes(query)) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// ── Booking Modal Logic ──
+let currentDoc = {};
+function openBookingModal(name, spec, fee, loc) {
+  currentDoc = { name, spec, fee, loc };
+  document.getElementById('modal-doc-name').textContent = name;
+  document.getElementById('modal-doc-spec').textContent = spec;
+  document.getElementById('modal-doc-fee').textContent = 'قيمة الكشف: ' + fee;
+  
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('booking-date').value = today;
+  
+  document.getElementById('booking-modal').classList.add('show');
+}
+
+function closeBookingModal() {
+  document.getElementById('booking-modal').classList.remove('show');
+}
+
+function selectSlot(el) {
+  document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function confirmAppointment() {
+  const name = document.getElementById('patient-name').value.trim();
+  const phone = document.getElementById('patient-phone').value.trim();
+  const date = document.getElementById('booking-date').value;
+  const time = document.querySelector('.time-slot.selected')?.textContent || '05:00 م';
+
+  if (!name || phone.length < 11) {
+    alert('يرجى إدخال اسم المريض ورقم هاتف مصري صحيح (11 رقماً)');
+    return;
+  }
+
+  closeBookingModal();
+  alert(`تم تأكيد الحجز بنجاح! 🎉\n\nالمريض: ${name}\nالطبيب: ${currentDoc.name}\nالموعد: ${date} الساعة ${time}\nالعنوان: ${currentDoc.loc}\n\nتم إرسال رسالة نصية SMS برقم وتفاصيل الحجز لهاتفك.`);
+}
+</script>
+
+</body>
+</html>
