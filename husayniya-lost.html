@@ -64,31 +64,32 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <div class="page">
 
 <!-- ══════════════════ NAVBAR ══════════════════ -->
-<nav class="glass sticky top-0 z-50 px-6 py-4" style="background:rgba(4,14,30,.7);border-bottom:1px solid rgba(255,255,255,.08)">
-  <div class="max-w-7xl mx-auto flex items-center justify-between">
+<nav class="glass sticky top-0 z-50 px-3 sm:px-6 py-3 sm:py-4" style="background:rgba(4,14,30,.85);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
     <!-- Back to Home -->
-    <a href="index.html" class="flex items-center gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
-      <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">←</div>
-      <div>
-        <span class="text-xs text-emerald-400 font-semibold">الرئيسية</span>
-        <div class="text-sm font-bold">خدمات الحسينية (الشرقية)</div>
+    <a href="index.html" class="flex items-center gap-2 sm:gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
+      <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl glass flex items-center justify-center font-bold text-sm flex-shrink-0">←</div>
+      <div class="min-w-0">
+        <span class="text-[10px] sm:text-xs text-emerald-400 font-semibold block leading-tight">الرئيسية</span>
+        <div class="text-xs sm:text-sm font-bold truncate max-w-[140px] sm:max-w-none">خدمات الحسينية (الشرقية)</div>
       </div>
     </a>
 
     <!-- Add Report Action -->
-    <div class="flex items-center gap-3">
-      <button onclick="openReportModal()" class="btn-primary px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2">
-        <span>+ أضف إعلان (مفقود / معثور عليه)</span>
+    <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+      <button onclick="openReportModal()" class="btn-primary px-3 sm:px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 flex-shrink-0">
+        <span>+</span>
+        <span>أضف إعلان<span class="hidden sm:inline"> (مفقود / معثور عليه)</span></span>
       </button>
     </div>
   </div>
 </nav>
 
 <!-- ══════════════════ MAIN LOST & FOUND ══════════════════ -->
-<main class="max-w-7xl mx-auto px-6 py-8 flex-1">
+<main class="max-w-7xl mx-auto px-3 sm:px-6 py-4 sm:py-8 flex-1 w-full overflow-hidden">
 
   <!-- Header Banner -->
-  <div class="glass-card rounded-3xl p-6 md:p-10 mb-8 relative overflow-hidden">
+  <div class="glass-card rounded-3xl p-4 sm:p-6 md:p-10 mb-6 sm:mb-8 relative overflow-hidden">
     <div class="max-w-2xl relative z-10">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold mb-4">
         <span>🤝</span>
@@ -295,7 +296,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
 <!-- ══════════════════ ADD REPORT MODAL ══════════════════ -->
 <div id="report-modal" class="modal-overlay">
-  <div class="glass-card rounded-3xl p-6 md:p-8 max-w-md w-full relative border border-white/20">
+  <div class="glass-card rounded-3xl p-5 sm:p-8 max-w-md w-full max-h-[90vh] overflow-y-auto relative border border-white/20">
     <button onclick="closeReportModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg">✕</button>
 
     <h3 class="font-bold text-base text-white mb-1">إضافة إعلان مفقودات أو أمانة جديدة</h3>

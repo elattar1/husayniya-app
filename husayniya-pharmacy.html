@@ -57,32 +57,32 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <div class="page">
 
 <!-- ══════════════════ NAVBAR ══════════════════ -->
-<nav class="glass sticky top-0 z-50 px-6 py-4" style="background:rgba(4,14,30,.7);border-bottom:1px solid rgba(255,255,255,.08)">
-  <div class="max-w-7xl mx-auto flex items-center justify-between">
+<nav class="glass sticky top-0 z-50 px-3 sm:px-6 py-3 sm:py-4" style="background:rgba(4,14,30,.85);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
     <!-- Back to Home -->
-    <a href="index.html" class="flex items-center gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
-      <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">←</div>
-      <div>
-        <span class="text-xs text-emerald-400 font-semibold">الرئيسية</span>
-        <div class="text-sm font-bold">خدمات الحسينية (الشرقية)</div>
+    <a href="index.html" class="flex items-center gap-2 sm:gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
+      <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl glass flex items-center justify-center font-bold text-sm flex-shrink-0">←</div>
+      <div class="min-w-0">
+        <span class="text-[10px] sm:text-xs text-emerald-400 font-semibold block leading-tight">الرئيسية</span>
+        <div class="text-xs sm:text-sm font-bold truncate max-w-[140px] sm:max-w-none">خدمات الحسينية (الشرقية)</div>
       </div>
     </a>
 
     <!-- Emergency Call -->
-    <div class="flex items-center gap-3">
-      <a href="tel:123" class="px-3.5 py-1.5 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-bold flex items-center gap-1.5 hover:bg-rose-500/30 transition" style="text-decoration:none">
+    <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+      <a href="tel:123" class="px-3 py-1.5 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-bold flex items-center gap-1.5 hover:bg-rose-500/30 transition" style="text-decoration:none">
         <span>🚨</span>
-        <span>طوارئ الإسعاف: 123</span>
+        <span class="hidden sm:inline">طوارئ الإسعاف: </span><span>123</span>
       </a>
     </div>
   </div>
 </nav>
 
 <!-- ══════════════════ MAIN PHARMACY PORTAL ══════════════════ -->
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
+<main class="max-w-7xl mx-auto px-3 sm:px-6 py-4 sm:py-8 flex-1 w-full overflow-hidden">
 
   <!-- Header Banner -->
-  <div class="glass-card rounded-3xl p-6 md:p-10 mb-8 relative overflow-hidden">
+  <div class="glass-card rounded-3xl p-4 sm:p-6 md:p-10 mb-6 sm:mb-8 relative overflow-hidden">
     <div class="max-w-3xl relative z-10">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold mb-4">
         <span>💊</span>
@@ -101,7 +101,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
     <!-- ── LEFT: PRESCRIPTION UPLOAD FORM (7 COLS) ── -->
     <div class="lg:col-span-7 space-y-6">
-      <div class="glass-card rounded-3xl p-6 sm:p-8">
+      <div class="glass-card rounded-3xl p-4 sm:p-8">
         <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-xl">📸</div>
