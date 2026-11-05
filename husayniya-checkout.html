@@ -67,6 +67,47 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 /* ── Modal overlay ── */
 .modal-overlay{position:fixed;inset:0;background:rgba(4,8,20,.85);backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.show{display:flex}
+
+/* ── Mobile Nav Bar (Bottom) ── */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: calc(64px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: rgba(4, 14, 30, 0.95);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 8px;
+  padding-right: 8px;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+}
+@media (min-width: 768px) {
+  .mobile-nav { display: none; }
+}
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .2s;
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+.mobile-nav-item.active {
+  color: #00e5c8;
+}
 </style>
 </head>
 <body>
@@ -154,64 +195,14 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         </div>
 
         <div id="cart-list" class="space-y-4">
-          <!-- Item 1 -->
-          <div class="cart-item flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.04] border border-white/5" data-id="1" data-price="18.50">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 rounded-xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#1a3a2a,#0d6640)">
-                🍢
-              </div>
-              <div>
-                <h3 class="font-bold text-sm">كيلو مشكل كباب وكفتة حاتي بلدي</h3>
-                <p class="text-xs text-white/40 mb-1">مع طحينة، سلطة خضراء، وعيش بلدي ساخن</p>
-                <div class="text-sm font-extrabold text-emerald-400"><span class="item-total-price">18.50</span> ج.م</div>
-              </div>
-            </div>
-            <!-- Qty control -->
-            <div class="flex items-center gap-2">
-              <button onclick="updateQty(1, -1)" class="btn-icon text-lg font-bold">−</button>
-              <span id="qty-1" class="qty-display">1</span>
-              <button onclick="updateQty(1, 1)" class="btn-icon text-lg font-bold">+</button>
-            </div>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="cart-item flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.04] border border-white/5" data-id="2" data-price="12.00">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 rounded-xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#3a2a1a,#663a0d)">
-                🍗
-              </div>
-              <div>
-                <h3 class="font-bold text-sm">فرخة مشوية على الفحم مع أرز</h3>
-                <p class="text-xs text-white/40 mb-1">مع تومية وبطاطس وسلطة</p>
-                <div class="text-sm font-extrabold text-emerald-400"><span class="item-total-price">24.00</span> ج.م</div>
-              </div>
-            </div>
-            <!-- Qty control -->
-            <div class="flex items-center gap-2">
-              <button onclick="updateQty(2, -1)" class="btn-icon text-lg font-bold">−</button>
-              <span id="qty-2" class="qty-display">2</span>
-              <button onclick="updateQty(2, 1)" class="btn-icon text-lg font-bold">+</button>
-            </div>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="cart-item flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.04] border border-white/5" data-id="3" data-price="2.50">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 rounded-xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#1a2a3e,#0d3d6e)">
-                🥤
-              </div>
-              <div>
-                <h3 class="font-bold text-sm">بيبسي / كوكاكولا عائلي بارد</h3>
-                <p class="text-xs text-white/40 mb-1">بارد جداً</p>
-                <div class="text-sm font-extrabold text-emerald-400"><span class="item-total-price">2.50</span> ج.م</div>
-              </div>
-            </div>
-            <!-- Qty control -->
-            <div class="flex items-center gap-2">
-              <button onclick="updateQty(3, -1)" class="btn-icon text-lg font-bold">−</button>
-              <span id="qty-3" class="qty-display">1</span>
-              <button onclick="updateQty(3, 1)" class="btn-icon text-lg font-bold">+</button>
-            </div>
+          <div class="text-center py-12 px-4 rounded-2xl glass border border-white/5">
+            <div class="text-4xl mb-3">🛒</div>
+            <h4 class="text-base font-bold text-white mb-1">سلتك فارغة تماماً</h4>
+            <p class="text-xs text-white/50 mb-5 leading-relaxed">لم تقم بإضافة أي وجبة أو منتج إلى السلة بعد. اختر مطعمك المفضل وتصفح المنيو لإضافة طلباتك.</p>
+            <a href="husayniya-restaurants.html" class="btn-primary inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold no-underline">
+              <span>تصفح مطاعم وعروض الحسينية</span>
+              <span>←</span>
+            </a>
           </div>
         </div>
       </section>
@@ -249,22 +240,33 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <!-- Address inputs -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-semibold text-white/70 mb-2">المنطقة والحي</label>
-            <select class="input-glass w-full rounded-2xl px-4 py-3">
-              <option class="bg-slate-900" selected>الحسينية — شارع المركز</option>
-              <option class="bg-slate-900">الحسينية — شارع بورسعيد</option>
-              <option class="bg-slate-900">الحسينية — ترعة سراج والمعهد الديني</option>
-              <option class="bg-slate-900">الحسينية — شارع المدارس</option>
-              <option class="bg-slate-900">الحسينية — حي المعاشات والمحجوب</option>
+            <label class="block text-xs font-semibold text-white/70 mb-2">اسم العميل ثلاثي *</label>
+            <input id="checkout-customer-name" type="text" placeholder="مثلاً: محمد أحمد إبراهيم" class="input-glass w-full rounded-2xl px-4 py-3 text-sm"/>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-white/70 mb-2">رقم الهاتف (مصر) *</label>
+            <input id="checkout-customer-phone" type="tel" placeholder="010XXXXXXXX" maxlength="11" class="input-glass w-full rounded-2xl px-4 py-3 text-sm"/>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-white/70 mb-2">المنطقة والحي بالحسينية *</label>
+            <select id="checkout-area" class="input-glass w-full rounded-2xl px-4 py-3 bg-slate-900 text-white">
+              <option value="الحسينية — شارع المركز" selected>الحسينية — شارع المركز أمام بنك مصر</option>
+              <option value="الحسينية — شارع بورسعيد">الحسينية — شارع بورسعيد بجوار المحطة</option>
+              <option value="الحسينية — ترعة سراج">الحسينية — ترعة سراج والمعهد الديني</option>
+              <option value="الحسينية — شارع المدارس">الحسينية — شارع المدارس والمستشفى</option>
+              <option value="الحسينية — حي المعاشات والمحجوب">الحسينية — حي المعاشات والمحجوب</option>
+              <option value="جزيرة سعود">جزيرة سعود — مركز الحسينية</option>
+              <option value="الأخيوة وتلراك">الأخيوة وتلراك — مركز الحسينية</option>
+              <option value="بحر البقر والصالحية">بحر البقر والصالحية — مركز الحسينية</option>
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-white/70 mb-2">رقم الزقاق / الدار أو أقرب نقطة دالة</label>
-            <input type="text" placeholder="مثلاً: زقاق 14، قرب مدرسة النور" value="بجوار صيدلية الشفاء، أمام مستشفى الحسينية المركزي" class="input-glass w-full rounded-2xl px-4 py-3 text-sm"/>
+            <label class="block text-xs font-semibold text-white/70 mb-2">تفاصيل العنوان أو أقرب علامة دالة *</label>
+            <input id="checkout-address-detail" type="text" placeholder="مثلاً: بجوار صيدلية العطار، عمارة النور الدور الثاني" class="input-glass w-full rounded-2xl px-4 py-3 text-sm"/>
           </div>
           <div class="md:col-span-2">
-            <label class="block text-xs font-semibold text-white/70 mb-2">ملاحظات إضافية للسائق (اختياري)</label>
-            <input type="text" placeholder="مثال: يرجى الاتصال عند الوصول، الباب الأزرق" class="input-glass w-full rounded-2xl px-4 py-3 text-sm"/>
+            <label class="block text-xs font-semibold text-white/70 mb-2">ملاحظات إضافية للمطعم والمندوب (اختياري)</label>
+            <input id="checkout-notes" type="text" placeholder="مثال: يرجى الاتصال عند الوصول، زيادة سلطة وعيش ساخن" class="input-glass w-full rounded-2xl px-4 py-3 text-sm"/>
           </div>
         </div>
       </section>
@@ -289,15 +291,15 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
             </div>
           </div>
 
-          <!-- Zain Cash -->
-          <div class="pay-option" onclick="selectPayment(this, 'zaincash')">
+          <!-- Vodafone Cash -->
+          <div class="pay-option" onclick="selectPayment(this, 'vodafone')">
             <div class="pay-radio"></div>
             <div class="flex-1">
               <div class="font-bold text-sm flex items-center justify-between">
                 <span>فودافون كاش (Vodafone Cash)</span>
                 <span class="text-xs px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 font-extrabold">سريع</span>
               </div>
-              <p class="text-xs text-white/40 mt-0.5">الدفع الآمن عبر محفظة فودافون كاش العراق</p>
+              <p class="text-xs text-white/40 mt-0.5">تحويل آمن عبر محافظ الكاش بمصر</p>
             </div>
           </div>
 
@@ -420,14 +422,14 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
     <h3 class="text-2xl font-black mb-2">تم تأكيد طلبك بنجاح! 🎉</h3>
     <p class="text-sm text-white/60 mb-6 leading-relaxed">
-      رقم الطلب الخاص بك هو <span class="font-extrabold text-emerald-400">#HS-9482</span>.<br/>
+      رقم الطلب الخاص بك هو <span id="confirmed-order-code" class="font-extrabold text-emerald-400">#HS-9482</span>.<br/>
       تم إرسال الطلب للمتجر والمندوب في طريقه للتحضير.
     </p>
 
     <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 text-right text-xs space-y-2 mb-6">
       <div class="flex justify-between">
         <span class="text-white/50">المتجر:</span>
-        <span class="font-bold">مطعم السلام</span>
+        <span class="font-bold text-white" id="confirmed-store-name">سلة الطلبات</span>
       </div>
       <div class="flex justify-between">
         <span class="text-white/50">طريقة الدفع:</span>
@@ -435,12 +437,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       </div>
       <div class="flex justify-between">
         <span class="text-white/50">وقت الوصول المتوقع:</span>
-        <span class="font-bold text-emerald-400">30 - 40 دقيقة</span>
+        <span class="font-bold text-emerald-400">25 - 35 دقيقة</span>
       </div>
     </div>
 
     <div class="flex gap-3">
-      <button onclick="window.location.href='husayniya-tracking.html'" class="btn-primary flex-1 py-3.5 rounded-2xl text-sm font-bold">
+      <button onclick="goToTracking()" class="btn-primary flex-1 py-3.5 rounded-2xl text-sm font-bold">
         تتبع مسار الطلب 🗺️
       </button>
       <button onclick="window.location.href='index.html'" class="px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-xs font-bold transition">
@@ -449,6 +451,30 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
   </div>
 </div>
+
+<!-- ══════════════ MOBILE BOTTOM NAVIGATION ══════════════ -->
+<nav class="mobile-nav">
+  <a href="index.html" class="mobile-nav-item">
+    <span class="text-lg">🏠</span>
+    <span>الرئيسية</span>
+  </a>
+  <a href="husayniya-restaurants.html" class="mobile-nav-item">
+    <span class="text-lg">🍖</span>
+    <span>المطاعم</span>
+  </a>
+  <a href="husayniya-checkout.html" class="mobile-nav-item active relative">
+    <span class="text-lg">🛒</span>
+    <span>السلة</span>
+  </a>
+  <a href="husayniya-tracking.html" class="mobile-nav-item">
+    <span class="text-lg">🛵</span>
+    <span>تتبّع</span>
+  </a>
+  <a href="husayniya-account.html" class="mobile-nav-item">
+    <span class="text-lg">👤</span>
+    <span>حسابي</span>
+  </a>
+</nav>
 
 </div><!-- .page -->
 
@@ -684,12 +710,22 @@ async function submitOrder() {
   }
 
   const grandTotal = Math.max(0, subtotal + deliveryFee - discount);
-  const address = 'الحسينية — شارع المركز أمام بنك مصر';
 
-  // Read logged in user
+  // Read customer inputs & authenticated session
+  const nameInput = document.getElementById('checkout-customer-name');
+  const phoneInput = document.getElementById('checkout-customer-phone');
+  const areaSelect = document.getElementById('checkout-area');
+  const detailInput = document.getElementById('checkout-address-detail');
+  const notesInput = document.getElementById('checkout-notes');
+
   const user = window.HusayniyaCloud ? await window.HusayniyaCloud.getCurrentUser() : null;
-  const customerName = user ? (user.name || user.email.split('@')[0]) : 'عميل الحسينية';
-  const customerPhone = user ? (user.phone || '01012345678') : '01012345678';
+  const customerName = (nameInput && nameInput.value.trim()) || (user ? (user.name || user.email.split('@')[0]) : 'عميل الحسينية');
+  const customerPhone = (phoneInput && phoneInput.value.trim()) || (user ? (user.phone || '01012345678') : '01012345678');
+  
+  const area = areaSelect ? areaSelect.value : 'الحسينية — شارع المركز';
+  const detail = detailInput ? detailInput.value.trim() : '';
+  const fullAddress = detail ? `${area} (${detail})` : area;
+  const orderNotes = notesInput ? notesInput.value.trim() : '';
 
   // Realtime Cloud Insertion
   let createdOrderCode = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
@@ -702,23 +738,46 @@ async function submitOrder() {
       total_amount: grandTotal,
       delivery_fee: deliveryFee,
       payment_method: selectedPaymentMethod,
-      delivery_address: address
+      delivery_address: fullAddress,
+      notes: orderNotes
     });
     if (res && res.order) {
       createdOrderCode = res.order.order_code;
-      const codeEl = document.querySelector('#success-modal .text-emerald-400');
-      if (codeEl) codeEl.textContent = '#' + res.order.order_code;
     }
   }
+
+  window.lastCreatedOrderCode = createdOrderCode;
+  localStorage.setItem('last_order_code', createdOrderCode);
+
+  const codeEl = document.getElementById('confirmed-order-code');
+  if (codeEl) codeEl.textContent = '#' + createdOrderCode;
+  const storeEl = document.getElementById('confirmed-store-name');
+  if (storeEl) storeEl.textContent = activeStoreName;
 
   // Clear cart upon successful order
   localStorage.removeItem('husayniya_cart');
 
   document.getElementById('confirmed-payment').textContent = selectedPaymentMethod;
-  const trackBtn = document.querySelector('#success-modal a[href*="tracking"]');
-  if (trackBtn) trackBtn.href = `husayniya-tracking.html?order=${createdOrderCode}`;
   document.getElementById('success-modal').classList.add('show');
 }
+
+function goToTracking() {
+  const code = window.lastCreatedOrderCode || localStorage.getItem('last_order_code') || '';
+  window.location.href = code ? `husayniya-tracking.html?order=${code}` : 'husayniya-tracking.html';
+}
+
+// Prefill customer name/phone if logged in
+window.addEventListener('load', async () => {
+  if (window.HusayniyaCloud) {
+    const u = await window.HusayniyaCloud.getCurrentUser();
+    if (u) {
+      const nameInput = document.getElementById('checkout-customer-name');
+      const phoneInput = document.getElementById('checkout-customer-phone');
+      if (nameInput && !nameInput.value && u.name) nameInput.value = u.name;
+      if (phoneInput && !phoneInput.value && u.phone) phoneInput.value = u.phone;
+    }
+  }
+});
 
 document.addEventListener('DOMContentLoaded', initCheckoutCart);
 </script>

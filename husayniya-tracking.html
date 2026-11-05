@@ -70,6 +70,47 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 /* ── Modals & Drawers ── */
 .modal-overlay{position:fixed;inset:0;background:rgba(4,8,20,.85);backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.show{display:flex}
+
+/* ── Mobile Nav Bar (Bottom) ── */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: calc(64px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: rgba(4, 14, 30, 0.95);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 8px;
+  padding-right: 8px;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+}
+@media (min-width: 768px) {
+  .mobile-nav { display: none; }
+}
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .2s;
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+.mobile-nav-item.active {
+  color: #00e5c8;
+}
 </style>
 </head>
 <body>
@@ -101,7 +142,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
       <div class="glass px-3 py-1.5 rounded-full text-xs font-bold text-emerald-300 flex items-center gap-1.5">
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span>#HS-9482</span>
+        <span id="tracking-order-badge">#ORD-LIVE</span>
       </div>
       <button onclick="openOrderDetails()" class="hidden sm:flex glass px-3.5 py-1.5 rounded-full text-xs font-semibold text-white/80 hover:bg-white/20 transition">
         📄 تفاصيل الطلب
@@ -152,7 +193,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
         <!-- Restaurant Pin (Origin) -->
         <div class="static-pin" style="bottom:70px;right:70px">
-          <div class="px-2.5 py-1 rounded-full bg-slate-900/90 border border-white/20 text-[10px] font-bold text-white mb-1 shadow-lg">
+          <div id="map-store-name" class="px-2.5 py-1 rounded-full bg-slate-900/90 border border-white/20 text-[10px] font-bold text-white mb-1 shadow-lg">
             مشويات الباز 🍖
           </div>
           <div class="w-10 h-10 rounded-2xl bg-emerald-600 flex items-center justify-center text-xl shadow-lg border border-white/30">
@@ -162,7 +203,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
         <!-- Customer Pin (Destination) -->
         <div class="static-pin" style="top:50px;left:70px">
-          <div class="px-2.5 py-1 rounded-full bg-slate-900/90 border border-white/20 text-[10px] font-bold text-white mb-1 shadow-lg">
+          <div id="map-address" class="px-2.5 py-1 rounded-full bg-slate-900/90 border border-white/20 text-[10px] font-bold text-white mb-1 shadow-lg">
             دارك — شارع المركز 🏠
           </div>
           <div class="w-10 h-10 rounded-2xl bg-amber-500 flex items-center justify-center text-xl shadow-lg border border-white/30">
@@ -237,47 +278,47 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="space-y-6">
 
           <!-- Step 1: Confirmed -->
-          <div class="stepper-step completed">
+          <div id="step-1" class="stepper-step completed">
             <div class="step-circle">✓</div>
             <div>
               <div class="text-sm font-bold text-white">تم استلام وتأكيد الطلب</div>
-              <div class="text-xs text-white/40">12:15 م — استلمه مشويات الباز</div>
+              <div id="step-1-desc" class="text-xs text-white/40">استلمه المتجر بنجاح</div>
             </div>
           </div>
 
           <!-- Step 2: Preparing -->
-          <div class="stepper-step completed">
-            <div class="step-circle">✓</div>
+          <div id="step-2" class="stepper-step active">
+            <div class="step-circle">🍳</div>
             <div>
-              <div class="text-sm font-bold text-white">تجهيز وشواء الوجبة</div>
-              <div class="text-xs text-white/40">12:22 م — تم الانتهاء والتغليف الحراري</div>
+              <div class="text-sm font-bold text-emerald-300">تجهيز وتحضير الوجبة</div>
+              <div id="step-2-desc" class="text-xs text-white/40">جاري الإعداد والتغليف الحراري</div>
             </div>
           </div>
 
           <!-- Step 3: Driver Picked Up -->
-          <div class="stepper-step completed">
-            <div class="step-circle">✓</div>
+          <div id="step-3" class="stepper-step">
+            <div class="step-circle">📦</div>
             <div>
-              <div class="text-sm font-bold text-white">استلم السائق الطلب</div>
-              <div class="text-xs text-white/40">12:28 م — استلمه الكابتن عمر</div>
+              <div class="text-sm font-bold text-white/50">استلم السائق الطلب</div>
+              <div id="step-3-desc" class="text-xs text-white/30">في انتظار استلام المندوب</div>
             </div>
           </div>
 
-          <!-- Step 4: On the way (Active) -->
-          <div class="stepper-step active">
+          <!-- Step 4: On the way -->
+          <div id="step-4" class="stepper-step">
             <div class="step-circle">🛵</div>
             <div>
-              <div class="text-sm font-bold text-emerald-300">السائق في الطريق إليك الآن</div>
-              <div class="text-xs text-white/50">شارع ترعة سراج — يبعد 1.2 كم</div>
+              <div class="text-sm font-bold text-white/50">السائق في الطريق إليك</div>
+              <div id="step-4-desc" class="text-xs text-white/30">خط السير بالحسينية</div>
             </div>
           </div>
 
-          <!-- Step 5: Delivered (Pending) -->
-          <div class="stepper-step">
+          <!-- Step 5: Delivered -->
+          <div id="step-5" class="stepper-step">
             <div class="step-circle">🏠</div>
             <div>
               <div class="text-sm font-bold text-white/40">تم التسليم واستلام المبلغ</div>
-              <div class="text-xs text-white/30">المتوقع خلال دقائق</div>
+              <div id="step-5-desc" class="text-xs text-white/30">المتوقع خلال دقائق</div>
             </div>
           </div>
 
@@ -286,7 +327,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <!-- Quick Summary Link -->
         <div class="mt-8 pt-4 border-t border-white/10 text-center">
           <button onclick="openOrderDetails()" class="text-xs text-emerald-400 font-bold hover:underline">
-            عرض فاتورة ومحتويات الوجبة (610 ج.م) 📋
+            عرض فاتورة ومحتويات الوجبة (<span id="total-summary-label">0.00 ج.م</span>) 📋
           </button>
         </div>
       </div>
@@ -315,44 +356,24 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
   <div class="glass-card rounded-3xl p-6 md:p-8 max-w-md w-full relative border border-white/20">
     <button onclick="closeOrderDetails()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg">✕</button>
 
-    <h3 class="text-lg font-bold mb-4">تفاصيل الطلب #HS-9482</h3>
+    <h3 class="text-lg font-bold mb-4">تفاصيل الطلب <span id="modal-order-code">#ORD-LIVE</span></h3>
 
-    <div class="space-y-3 text-xs mb-6 max-h-60 overflow-y-auto">
-      <div class="flex justify-between items-center p-2.5 rounded-xl bg-white/[0.04]">
-        <div>
-          <div class="font-bold text-white">وجبة كباب عراقي مشكل × 1</div>
-          <div class="text-[10px] text-white/40">مع خبز تنور ومقبلات</div>
-        </div>
-        <span class="font-bold text-emerald-400">18.50 ج.م</span>
-      </div>
-      <div class="flex justify-between items-center p-2.5 rounded-xl bg-white/[0.04]">
-        <div>
-          <div class="font-bold text-white">نصف دجاجة شواية مع أرز × 2</div>
-          <div class="text-[10px] text-white/40">شوربة وصلصات</div>
-        </div>
-        <span class="font-bold text-emerald-400">24.00 ج.م</span>
-      </div>
-      <div class="flex justify-between items-center p-2.5 rounded-xl bg-white/[0.04]">
-        <div>
-          <div class="font-bold text-white">مشروب غازي عائلي × 1</div>
-          <div class="text-[10px] text-white/40">1 لتر بارد</div>
-        </div>
-        <span class="font-bold text-emerald-400">2.50 ج.م</span>
-      </div>
+    <div id="order-items-list" class="space-y-3 text-xs mb-6 max-h-60 overflow-y-auto">
+      <div class="text-center py-6 text-white/40">جاري تحميل عناصر الطلب...</div>
     </div>
 
     <div class="space-y-2 text-xs pt-3 border-t border-white/10 mb-6">
       <div class="flex justify-between text-white/60">
         <span>رسوم التوصيل:</span>
-        <span class="text-white font-bold">2.50 ج.م</span>
+        <span id="modal-delivery-fee" class="text-white font-bold">15.00 ج.م</span>
       </div>
       <div class="flex justify-between text-white/60">
         <span>طريقة الدفع:</span>
-        <span class="text-amber-300 font-bold">نقدياً عند الاستلام (كاش)</span>
+        <span id="modal-payment-method" class="text-amber-300 font-bold">نقدياً عند الاستلام (كاش)</span>
       </div>
       <div class="flex justify-between text-sm font-black pt-2 border-t border-white/10">
         <span>المبلغ الإجمالي:</span>
-        <span class="gt text-base">610 ج.م</span>
+        <span id="modal-total-amount" class="gt text-base">0.00 ج.م</span>
       </div>
     </div>
 
@@ -387,6 +408,30 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
   </div>
 </div>
+
+<!-- ══════════════ MOBILE BOTTOM NAVIGATION ══════════════ -->
+<nav class="mobile-nav">
+  <a href="index.html" class="mobile-nav-item">
+    <span class="text-lg">🏠</span>
+    <span>الرئيسية</span>
+  </a>
+  <a href="husayniya-restaurants.html" class="mobile-nav-item">
+    <span class="text-lg">🍖</span>
+    <span>المطاعم</span>
+  </a>
+  <a href="husayniya-checkout.html" class="mobile-nav-item relative">
+    <span class="text-lg">🛒</span>
+    <span>السلة</span>
+  </a>
+  <a href="husayniya-tracking.html" class="mobile-nav-item active">
+    <span class="text-lg">🛵</span>
+    <span>تتبّع</span>
+  </a>
+  <a href="husayniya-account.html" class="mobile-nav-item">
+    <span class="text-lg">👤</span>
+    <span>حسابي</span>
+  </a>
+</nav>
 
 </div><!-- .page -->
 
@@ -472,14 +517,167 @@ function sendChatMessage() {
   }, 1800);
 }
 
+// Dynamic Order Tracking Engine
+let currentTrackingOrder = null;
+
+function setStepState(stepId, state, activeText) {
+  const el = document.getElementById(stepId);
+  if (!el) return;
+  el.classList.remove('completed', 'active');
+  const circle = el.querySelector('.step-circle');
+  if (state === 'completed') {
+    el.classList.add('completed');
+    if (circle) circle.textContent = '✓';
+  } else if (state === 'active') {
+    el.classList.add('active');
+    if (circle && activeText) circle.textContent = activeText;
+  } else {
+    // Inactive
+  }
+}
+
+function updateTrackingUI(order) {
+  if (!order) return;
+  currentTrackingOrder = order;
+
+  // 1. Order Code
+  const displayCode = '#' + (order.order_code || 'ORD');
+  const badgeEl = document.getElementById('tracking-order-badge');
+  if (badgeEl) badgeEl.textContent = displayCode;
+  const modalCodeEl = document.getElementById('modal-order-code');
+  if (modalCodeEl) modalCodeEl.textContent = displayCode;
+
+  // 2. Store & Destination Pins
+  const storeName = order.store_name || 'مطعم بالحسينية';
+  const mapStoreEl = document.getElementById('map-store-name');
+  if (mapStoreEl) mapStoreEl.textContent = `${storeName} 🏪`;
+
+  const mapAddrEl = document.getElementById('map-address');
+  if (mapAddrEl) mapAddrEl.textContent = `${order.delivery_address || 'الحسينية'} 📍`;
+
+  const step1Desc = document.getElementById('step-1-desc');
+  if (step1Desc) step1Desc.textContent = `استلمه ${storeName} بنجاح`;
+
+  // 3. Totals & Payment
+  const totalStr = (order.total_amount ? Number(order.total_amount).toFixed(2) : '0.00') + ' ج.م';
+  const totalSummaryEl = document.getElementById('total-summary-label');
+  if (totalSummaryEl) totalSummaryEl.textContent = totalStr;
+
+  const modalTotalEl = document.getElementById('modal-total-amount');
+  if (modalTotalEl) modalTotalEl.textContent = totalStr;
+
+  const modalFeeEl = document.getElementById('modal-delivery-fee');
+  if (modalFeeEl) modalFeeEl.textContent = (order.delivery_fee ? Number(order.delivery_fee).toFixed(2) : '15.00') + ' ج.م';
+
+  const modalPayEl = document.getElementById('modal-payment-method');
+  if (modalPayEl) modalPayEl.textContent = order.payment_method || 'نقدياً عند الاستلام (كاش)';
+
+  // 4. Items List in Modal
+  const itemsContainer = document.getElementById('order-items-list');
+  if (itemsContainer && order.items && order.items.length) {
+    let itemsHtml = '';
+    order.items.forEach(it => {
+      const itTitle = it.title || it.name || 'صنف مختار';
+      const itPrice = it.price ? Number(it.price).toFixed(2) : '0.00';
+      const itQty = it.qty || 1;
+      itemsHtml += `
+        <div class="flex justify-between items-center p-2.5 rounded-xl bg-white/[0.04]">
+          <div>
+            <div class="font-bold text-white">${itTitle} × ${itQty}</div>
+            <div class="text-[10px] text-white/40">سعر الوحدة: ${itPrice} ج.م</div>
+          </div>
+          <span class="font-bold text-emerald-400">${(Number(itPrice) * itQty).toFixed(2)} ج.م</span>
+        </div>
+      `;
+    });
+    itemsContainer.innerHTML = itemsHtml;
+  }
+
+  // 5. Stepper Status
+  const status = (order.status || 'pending').toLowerCase();
+  if (status === 'pending') {
+    setStepState('step-1', 'active', '📝');
+    setStepState('step-2', 'inactive');
+    setStepState('step-3', 'inactive');
+    setStepState('step-4', 'inactive');
+    setStepState('step-5', 'inactive');
+  } else if (status === 'preparing') {
+    setStepState('step-1', 'completed');
+    setStepState('step-2', 'active', '🍳');
+    setStepState('step-3', 'inactive');
+    setStepState('step-4', 'inactive');
+    setStepState('step-5', 'inactive');
+  } else if (status === 'ready' || status === 'on_the_way') {
+    setStepState('step-1', 'completed');
+    setStepState('step-2', 'completed');
+    setStepState('step-3', 'completed');
+    setStepState('step-4', 'active', '🛵');
+    setStepState('step-5', 'inactive');
+  } else if (status === 'delivered') {
+    setStepState('step-1', 'completed');
+    setStepState('step-2', 'completed');
+    setStepState('step-3', 'completed');
+    setStepState('step-4', 'completed');
+    setStepState('step-5', 'completed');
+    document.getElementById('eta-mins').textContent = '00';
+    document.getElementById('eta-secs').textContent = '00';
+  }
+}
+
+async function initTracking() {
+  const urlParam = new URLSearchParams(window.location.search).get('order');
+  const targetCode = urlParam || localStorage.getItem('last_order_code') || '';
+
+  if (window.HusayniyaCloud) {
+    try {
+      const orders = await window.HusayniyaCloud.getOrders();
+      if (orders && orders.length > 0) {
+        let found = null;
+        if (targetCode) {
+          found = orders.find(o => o.order_code === targetCode || ('#' + o.order_code) === targetCode);
+        }
+        if (!found) {
+          found = orders[0]; // Most recent order
+        }
+        if (found) {
+          updateTrackingUI(found);
+          return;
+        }
+      }
+    } catch(e) {
+      console.warn('Tracking fetch error:', e);
+    }
+  }
+
+  // Fallback demo order if completely fresh
+  updateTrackingUI({
+    order_code: targetCode ? targetCode.replace(/^#/, '') : 'HS-9482',
+    store_name: 'مشويات الباز',
+    customer_name: 'عميل الحسينية',
+    delivery_address: 'الحسينية — شارع المركز أمام بنك مصر',
+    items: [
+      { title: 'كيلو مشكل كباب وكفتة حاتي', price: 340, qty: 1 },
+      { title: 'نصف دجاجة شواية مع أرز بسمتي', price: 120, qty: 1 }
+    ],
+    total_amount: 475,
+    delivery_fee: 15,
+    payment_method: 'الدفع نقدياً عند الاستلام (كاش)',
+    status: 'on_the_way'
+  });
+}
+
 // Realtime Cloud Listener for Customer Tracking
 window.addEventListener('load', () => {
+  initTracking();
+
   if (window.HusayniyaCloud) {
     window.HusayniyaCloud.onOrderEvent((type, order) => {
-      if (type === 'order_updated' && order) {
+      if (!order) return;
+      if (currentTrackingOrder && (order.order_code === currentTrackingOrder.order_code)) {
+        updateTrackingUI(order);
         if (order.status === 'delivered') {
           alert('🎉 تم تسليم طلبك بنجاح! بالهناء والشفاء.');
-        } else if (order.status === 'ready') {
+        } else if (order.status === 'ready' || order.status === 'on_the_way') {
           alert('🛵 الكابتن استلم وجبتك من المطعم وهو في طريقه إليك الآن!');
         }
       }

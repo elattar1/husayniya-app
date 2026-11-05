@@ -3,7 +3,7 @@
  * استراتيجية: Network-First (جلب أحدث التحديثات دائماً من الإنترنت مع حفظ نسخة للطوارئ فقط)
  */
 
-const CACHE_NAME = 'husayniya-v17-mobile-admin-and-clean-cart';
+const CACHE_NAME = 'husayniya-v20-morning-launch-ready';
 
 self.addEventListener('install', (event) => {
   // التفعيل الفوري للنسخة الجديدة دون انتظار إغلاق التبويبات

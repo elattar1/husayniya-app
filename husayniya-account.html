@@ -48,6 +48,47 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 /* ── Modal overlay ── */
 .modal-overlay{position:fixed;inset:0;background:rgba(4,8,20,.85);backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.show{display:flex}
+
+/* ── Mobile Nav Bar (Bottom) ── */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: calc(64px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: rgba(4, 14, 30, 0.95);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 8px;
+  padding-right: 8px;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+}
+@media (min-width: 768px) {
+  .mobile-nav { display: none; }
+}
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .2s;
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+.mobile-nav-item.active {
+  color: #00e5c8;
+}
 </style>
 </head>
 <body>
@@ -358,6 +399,30 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </button>
   </div>
 </div>
+
+<!-- ══════════════ MOBILE BOTTOM NAVIGATION ══════════════ -->
+<nav class="mobile-nav">
+  <a href="index.html" class="mobile-nav-item">
+    <span class="text-lg">🏠</span>
+    <span>الرئيسية</span>
+  </a>
+  <a href="husayniya-restaurants.html" class="mobile-nav-item">
+    <span class="text-lg">🍖</span>
+    <span>المطاعم</span>
+  </a>
+  <a href="husayniya-checkout.html" class="mobile-nav-item relative">
+    <span class="text-lg">🛒</span>
+    <span>السلة</span>
+  </a>
+  <a href="husayniya-tracking.html" class="mobile-nav-item">
+    <span class="text-lg">🛵</span>
+    <span>تتبّع</span>
+  </a>
+  <a href="husayniya-account.html" class="mobile-nav-item active">
+    <span class="text-lg">👤</span>
+    <span>حسابي</span>
+  </a>
+</nav>
 
 </div><!-- .page -->
 
