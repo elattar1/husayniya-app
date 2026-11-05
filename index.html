@@ -359,7 +359,7 @@ body {
       <div id="stores-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
         <!-- Store 1: مشويات الباز والحسينية -->
-        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="مشويات الباز">
+        <div onclick="navigateTo('store-baz')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="مشويات الباز">
           <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#1a3a2a,#0d6640)">
             🍖
             <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
@@ -374,7 +374,7 @@ body {
         </div>
 
         <!-- Store 2: كشري ومطاعم شعبية -->
-        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="كشري التحرير والزعيم">
+        <div onclick="navigateTo('store-koshary')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="كشري التحرير والزعيم">
           <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#3a1a1a,#551111)">
             🍲
             <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
@@ -389,7 +389,7 @@ body {
         </div>
 
         <!-- Store 3: كريب وبيتزا شارع المدارس -->
-        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="بيتزا وكريب الحسينية">
+        <div onclick="navigateTo('store-pizza')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="بيتزا وكريب الحسينية">
           <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#3a2a1a,#663a0d)">
             🍕
             <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
@@ -404,16 +404,31 @@ body {
         </div>
 
         <!-- Store 4: حلواني شندل -->
-        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="حلواني شندل">
+        <div onclick="navigateTo('store-shendel')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="حلواني شندل">
           <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#3d1a3a,#5e1a4d)">
             🍰
             <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
             <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.9</span>
           </div>
-          <h3 class="font-bold text-base text-white mb-1">حلواني شندل — شارع المركز</h3>
+          <h3 class="font-bold text-base text-white mb-1">حلواني شندل والبارون — شارع المركز</h3>
           <p class="text-xs text-white/50 mb-3">تورتات أعياد ميلاد، بسبوسة، كنافة نابلسية، وجاتوهات شرقية وغربية</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
             <span>⏱️ 15 - 25 دقيقة</span>
+            <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
+          </div>
+        </div>
+
+        <!-- Store 5: فول وفلافل البرنس -->
+        <div onclick="navigateTo('store-falafel')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="فول وفلافل البرنس">
+          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#1b3b1e,#28552c)">
+            🧆
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.9</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-1">فول وفلافل البرنس — ترعة سراج</h3>
+          <p class="text-xs text-white/50 mb-3">ساندوتشات فلافل محشية كيري، فول فلاحي زيت حار، مسقعة، وباذنجان مخلل</p>
+          <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
+            <span>⏱️ 10 - 20 دقيقة</span>
             <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
           </div>
         </div>
@@ -531,6 +546,11 @@ body {
 const PAGE_ROUTES = {
   'home': 'index.html',
   'store': 'husayniya-store.html',
+  'store-baz': 'husayniya-store.html',
+  'store-koshary': 'husayniya-store-koshary.html',
+  'store-pizza': 'husayniya-store-pizza.html',
+  'store-shendel': 'husayniya-store-shendel.html',
+  'store-falafel': 'husayniya-store-falafel.html',
   'checkout': 'husayniya-checkout.html',
   'tracking': 'husayniya-tracking.html',
   'account': 'husayniya-account.html',

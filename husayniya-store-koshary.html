@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>كشري الزعيم والتحرير — شارع المركز بالحسينية | خدمات الحسينية</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif}
+body{background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+
+/* ── Liquid Glass Scene ── */
+.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35;animation:drift 18s ease-in-out infinite alternate}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#e65100,#bf360c);top:-150px;right:-150px}
+.o2{width:500px;height:500px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-150px;left:-150px;animation-delay:-6s}
+.o3{width:400px;height:400px;background:radial-gradient(circle,#00b09b,#045353);top:40%;left:30%;animation-delay:-10s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-15px) scale(1.05)}100%{transform:translate(-20px,20px) scale(.95)}}
+
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,.14)}
+.glass-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.12);transition:all .3s ease}
+.glass-card:hover{border-color:rgba(247,148,30,.45);box-shadow:0 14px 40px rgba(230,81,0,.2);transform:translateY(-3px)}
+
+.gt{background:linear-gradient(135deg,#f7971e,#ffd200);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.btn-primary{background:linear-gradient(135deg,#e65100,#f57c00);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-primary:hover{transform:scale(1.02);box-shadow:0 0 25px rgba(230,81,0,.45)}
+
+.store-hero{border-radius:28px;background:linear-gradient(135deg,rgba(40,15,5,.8),rgba(20,5,2,.9)),url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=80') center/cover;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12);min-height:260px}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,#06091a 0%,rgba(6,9,26,.6) 50%,transparent 100%)}
+
+.b-open{background:rgba(0,176,155,.2);color:#00e5c8;border:1px solid rgba(0,176,155,.4)}
+.b-popular{background:rgba(247,201,72,.2);color:#f7c948;border:1px solid rgba(247,201,72,.4)}
+
+.tab-pill{padding:8px 18px;border-radius:14px;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .25s;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);white-space:nowrap}
+.tab-pill:hover,.tab-pill.active{background:rgba(245,124,0,.25);color:#ff9800;border-color:rgba(245,124,0,.6);box-shadow:0 0 16px rgba(245,124,0,.2)}
+
+.floating-cart{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);width:calc(100% - 48px);max-width:540px;background:rgba(18,25,48,.92);backdrop-filter:blur(24px);border:1px solid rgba(247,148,30,.4);border-radius:24px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 16px 40px rgba(0,0,0,.6);z-index:90}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(0,176,155,.95);color:#fff;padding:12px 24px;border-radius:16px;font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:8px;box-shadow:0 10px 30px rgba(0,176,155,.4);opacity:0;pointer-events:none;transition:all .3s ease;z-index:100}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(4,8,20,.85);backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+</style>
+</head>
+<body>
+
+<div class="bg-scene">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<div class="page">
+
+<!-- NAVBAR -->
+<nav class="glass sticky top-0 z-50 px-6 py-4" style="background:rgba(4,14,30,.75);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
+      <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">←</div>
+      <div>
+        <span class="text-xs text-amber-400 font-semibold">العودة للرئيسية</span>
+        <div class="text-sm font-bold">خدمات الحسينية (الشرقية)</div>
+      </div>
+    </a>
+
+    <div class="flex items-center gap-3">
+      <a href="husayniya-checkout.html" class="glass px-4 py-2 rounded-2xl flex items-center gap-2 text-xs font-bold hover:bg-white/10 transition" style="text-decoration:none;color:#fff">
+        <span>🛒 السلة</span>
+        <span id="nav-cart-badge" class="px-2 py-0.5 rounded-full bg-amber-400 text-black font-extrabold text-[10px]">0</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="max-w-6xl mx-auto px-6 py-6 pb-28 flex-1">
+
+  <!-- RESTAURANT HERO -->
+  <div class="store-hero mb-8 flex flex-col justify-end p-6 md:p-8">
+    <div class="hero-overlay"></div>
+    <div class="absolute top-6 right-6 z-10 flex gap-2">
+      <span class="b-open px-3 py-1 rounded-full text-xs font-bold">● مفتوح الآن</span>
+      <span class="b-popular px-3 py-1 rounded-full text-xs font-bold">🍲 كشري أصلي</span>
+    </div>
+
+    <div class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="flex items-center gap-5">
+        <div class="w-24 h-24 rounded-2xl flex items-center justify-center text-5xl shadow-2xl flex-shrink-0" style="background:linear-gradient(135deg,#e65100,#f57c00);border:2px solid rgba(255,255,255,.2)">
+          🍲
+        </div>
+        <div>
+          <h1 class="text-2xl md:text-3xl font-black mb-1">كشري الزعيم والتحرير — شارع المركز</h1>
+          <p class="text-xs md:text-sm text-white/60 mb-2">أفضل كشري مصري مخصوص، طواجن فرن فخار باللحمة والفراخ، دقة وشطة كمون وصلصة مميزة</p>
+          <div class="flex flex-wrap items-center gap-3 text-xs text-white/70">
+            <span class="font-bold text-amber-400">★ 4.8</span>
+            <span class="text-white/40">(+980 تقييم)</span>
+            <span>•</span>
+            <span>⏱️ 15 - 25 دقيقة</span>
+            <span>•</span>
+            <span>📍 الحسينية — شارع المركز أمام مجمع المحاكم</span>
+            <span>•</span>
+            <span class="text-emerald-400 font-bold">توصيل 10 ج.م فقط</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass px-5 py-3 rounded-2xl flex items-center gap-4 flex-shrink-0 text-xs">
+        <div>
+          <div class="text-white/40">الحد الأدنى</div>
+          <div class="font-bold text-sm text-white">30 ج.م</div>
+        </div>
+        <div style="width:1px;height:28px;background:rgba(255,255,255,.15)"></div>
+        <div>
+          <div class="text-white/40">طريقة الدفع</div>
+          <div class="font-bold text-sm text-emerald-400">كاش / إنستاباي</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENU CATEGORIES TABS -->
+  <div class="flex items-center gap-2 mb-8 overflow-x-auto pb-2 scroll-touch">
+    <button onclick="switchCategory('all', this)" class="tab-pill active">🌟 كامل المنيو</button>
+    <button onclick="switchCategory('koshary', this)" class="tab-pill">🍲 علب الكشري</button>
+    <button onclick="switchCategory('tajin', this)" class="tab-pill">🥘 طواجن الفرن الساخنة</button>
+    <button onclick="switchCategory('extras', this)" class="tab-pill">🧅 إضافات ودقات</button>
+    <button onclick="switchCategory('dessert', this)" class="tab-pill">🍨 حلويات ومشروبات</button>
+  </div>
+
+  <!-- MENU ITEMS GRID -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="menu-grid">
+
+    <!-- Item 1: كشري وسط الزعيم -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="koshary">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#3a1a1a,#551111)">
+          🍲
+          <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold">🔥 الأكثر طلباً</span>
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">علبة كشري وسط — مخصوص الزعيم</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">35 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">أرز مصري مفلفل، شعرية محمرة، مكرونة مقصوصة وإسباجيتي، عدس بجبة، حمص شامي، بصل مقرمش ذهبي، مع كيس دقة وصلصة حارة</p>
+      </div>
+      <button onclick="addToCart('كشري وسط الزعيم', 35, '🍲')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 2: كشري ميجا سوبر -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="koshary">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#4a2010,#662505)">
+          🥣
+          <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">حجم عائلي</span>
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">علبة كشري ميجا سوبر جامبو</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">50 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">حجم كبير جداً يكفي شخصين، مع دبل حمص وتقلية وعدس زيادة، وعبوتين صلصة كبيرة ودقة ثوم بالخل</p>
+      </div>
+      <button onclick="addToCart('كشري ميجا سوبر', 50, '🥣')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 3: كشري كبدة إسكندراني -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="koshary">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#2e1205,#481d08)">
+          🥩
+          <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold">سبايسي</span>
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">كشري توبينج كبدة إسكندراني</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">55 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">علبة كشري مع طبقة كبدة إسكندراني بتتبيلة الثوم والفلفل الأخضر الحار والليمون والكمون</p>
+      </div>
+      <button onclick="addToCart('كشري كبدة إسكندراني', 55, '🥩')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 4: طاجن مكرونة فرن باللحمة المفرومة -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="tajin">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#3d1a00,#5c2800)">
+          🥘
+          <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-red-500/20 text-red-300 text-[10px] font-bold">فرن فخار</span>
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">طاجن فرن لحمة مفرومة بلدي</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">45 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">طاجن مكرونة قلم مخبوز بالفرن مع صلصة الطماطم الغنية بالبهارات ولحمة مفرومة بلدي على الوجه</p>
+      </div>
+      <button onclick="addToCart('طاجن لحمة مفرومة', 45, '🥘')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 5: طاجن فراخ وموزاريلا -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="tajin">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#3a2010,#543015)">
+          🍗
+          <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold">جبنة سايحة</span>
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">طاجن مكرونة فراخ بالموزاريلا</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">50 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">قطع صدور فراخ متبلة مع مكرونة فرن وطبقة موزاريلا غنية ذائبة ومحمرة في الفرن</p>
+      </div>
+      <button onclick="addToCart('طاجن فراخ موزاريلا', 50, '🍗')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 6: طاجن سجق بلدي مشطشط -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="tajin">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#400d0d,#611515)">
+          🌶️
+          <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-red-500/20 text-red-300 text-[10px] font-bold">حار ونار</span>
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">طاجن سجق بلدي شرقي</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">50 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">سجق بلدي إسكندراني بقطع الطماطم والفلفل الحار والصلصة المتبكة في الفرن</p>
+      </div>
+      <button onclick="addToCart('طاجن سجق بلدي', 50, '🌶️')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 7: أرز باللبن فرن وقشطة -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="dessert">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#1f2f3d,#112233)">
+          🍮
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">طاجن أرز باللبن فرن بالقشطة</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">25 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">أرز باللبن الطبيعي المبستر مع وش قشطة بلدي محمر في الفرن ومكسرات</p>
+      </div>
+      <button onclick="addToCart('أرز باللبن فرن', 25, '🍮')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 8: أم علي بالمكسرات -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="dessert">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#3d2f1f,#332211)">
+          🥧
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">طاجن أم علي ساخن بالمكسرات</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">30 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">عجينة الميلفاي الهشة مع الحليب المكثف والقشطة والزبيب وجوز الهند والبندق</p>
+      </div>
+      <button onclick="addToCart('أم علي بالمكسرات', 30, '🥧')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 9: باكيت تقلية ودقة زيادة -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="extras">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#2f1f2f,#221122)">
+          🧅
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">باكيت تقلية مقرمشة + دقة زيادة</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">10 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">علبة بصل محمر مقرمش دهبي مع علبة صلصة ودقة ثوم إضافية</p>
+      </div>
+      <button onclick="addToCart('تقلية ودقة زيادة', 10, '🧅')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- FLOATING CART BAR -->
+<div id="floating-cart-bar" class="floating-cart hidden">
+  <div class="flex items-center gap-3">
+    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background:linear-gradient(135deg,#e65100,#f57c00)">
+      🛒
+    </div>
+    <div>
+      <div class="text-xs text-white/50"><span id="cart-items-count">0</span> أصناف في السلة</div>
+      <div class="text-lg font-black gt" id="cart-total-price">0.00 ج.م</div>
+    </div>
+  </div>
+  <a href="husayniya-checkout.html" class="btn-primary px-6 py-3 rounded-2xl text-sm font-bold flex items-center gap-2" style="text-decoration:none">
+    <span>متابعة الشراء والدفع</span>
+    <span>←</span>
+  </a>
+</div>
+
+<!-- TOAST -->
+<div id="toast-msg" class="toast">
+  <span>✓</span>
+  <span id="toast-text">تمت إضافة الوجبة إلى السلة!</span>
+</div>
+
+</div><!-- .page -->
+
+<script>
+let cartCount = 0;
+let cartTotal = 0;
+
+function switchCategory(cat, btn) {
+  document.querySelectorAll('.tab-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('#menu-grid > div').forEach(item => {
+    if (cat === 'all' || item.dataset.cat === cat) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+function addToCart(title, price, icon) {
+  cartCount++;
+  cartTotal += price;
+
+  document.getElementById('nav-cart-badge').textContent = cartCount;
+  document.getElementById('cart-items-count').textContent = cartCount;
+  document.getElementById('cart-total-price').textContent = cartTotal.toFixed(2) + ' ج.م';
+  document.getElementById('floating-cart-bar').classList.remove('hidden');
+
+  showToast(`تمت إضافة "${title}" إلى السلة!`);
+}
+
+function showToast(text) {
+  const toast = document.getElementById('toast-msg');
+  document.getElementById('toast-text').textContent = text;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+
+</body>
+</html>

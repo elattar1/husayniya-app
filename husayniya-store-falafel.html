@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>فول وفلافل البرنس — شارع ترعة سراج بالحسينية | خدمات الحسينية</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif}
+body{background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+
+.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35;animation:drift 18s ease-in-out infinite alternate}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#2e7d32,#1b5e20);top:-150px;right:-150px}
+.o2{width:500px;height:500px;background:radial-gradient(circle,#f9a825,#f57f17);bottom:-150px;left:-150px;animation-delay:-6s}
+.o3{width:400px;height:400px;background:radial-gradient(circle,#00897b,#004d40);top:40%;left:30%;animation-delay:-10s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-15px) scale(1.05)}100%{transform:translate(-20px,20px) scale(.95)}}
+
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,.14)}
+.glass-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.12);transition:all .3s ease}
+.glass-card:hover{border-color:rgba(76,175,80,.45);box-shadow:0 14px 40px rgba(46,125,50,.25);transform:translateY(-3px)}
+
+.gt{background:linear-gradient(135deg,#81c784,#ffd54f);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.btn-primary{background:linear-gradient(135deg,#2e7d32,#43a047);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-primary:hover{transform:scale(1.02);box-shadow:0 0 25px rgba(46,125,50,.45)}
+
+.store-hero{border-radius:28px;background:linear-gradient(135deg,rgba(15,35,15,.85),rgba(5,20,8,.9)),url('https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=1200&q=80') center/cover;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12);min-height:260px}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,#06091a 0%,rgba(6,9,26,.6) 50%,transparent 100%)}
+
+.b-open{background:rgba(0,176,155,.2);color:#00e5c8;border:1px solid rgba(0,176,155,.4)}
+.b-popular{background:rgba(249,168,37,.2);color:#ffd54f;border:1px solid rgba(249,168,37,.4)}
+
+.tab-pill{padding:8px 18px;border-radius:14px;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .25s;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);white-space:nowrap}
+.tab-pill:hover,.tab-pill.active{background:rgba(76,175,80,.25);color:#81c784;border-color:rgba(76,175,80,.6);box-shadow:0 0 16px rgba(76,175,80,.2)}
+
+.floating-cart{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);width:calc(100% - 48px);max-width:540px;background:rgba(18,25,48,.92);backdrop-filter:blur(24px);border:1px solid rgba(76,175,80,.4);border-radius:24px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 16px 40px rgba(0,0,0,.6);z-index:90}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(46,125,50,.95);color:#fff;padding:12px 24px;border-radius:16px;font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:8px;box-shadow:0 10px 30px rgba(46,125,50,.4);opacity:0;pointer-events:none;transition:all .3s ease;z-index:100}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="bg-scene">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<div class="page">
+
+<!-- NAVBAR -->
+<nav class="glass sticky top-0 z-50 px-6 py-4" style="background:rgba(4,14,30,.75);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
+      <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">←</div>
+      <div>
+        <span class="text-xs text-emerald-400 font-semibold">العودة للرئيسية</span>
+        <div class="text-sm font-bold">خدمات الحسينية (الشرقية)</div>
+      </div>
+    </a>
+
+    <div class="flex items-center gap-3">
+      <a href="husayniya-checkout.html" class="glass px-4 py-2 rounded-2xl flex items-center gap-2 text-xs font-bold hover:bg-white/10 transition" style="text-decoration:none;color:#fff">
+        <span>🛒 السلة</span>
+        <span id="nav-cart-badge" class="px-2 py-0.5 rounded-full bg-amber-400 text-black font-extrabold text-[10px]">0</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="max-w-6xl mx-auto px-6 py-6 pb-28 flex-1">
+
+  <!-- RESTAURANT HERO -->
+  <div class="store-hero mb-8 flex flex-col justify-end p-6 md:p-8">
+    <div class="hero-overlay"></div>
+    <div class="absolute top-6 right-6 z-10 flex gap-2">
+      <span class="b-open px-3 py-1 rounded-full text-xs font-bold">● مفتوح الآن (إفطار وعشاء)</span>
+      <span class="b-popular px-3 py-1 rounded-full text-xs font-bold">🧆 فطار الحسينية الأصيل</span>
+    </div>
+
+    <div class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="flex items-center gap-5">
+        <div class="w-24 h-24 rounded-2xl flex items-center justify-center text-5xl shadow-2xl flex-shrink-0" style="background:linear-gradient(135deg,#2e7d32,#43a047);border:2px solid rgba(255,255,255,.2)">
+          🧆
+        </div>
+        <div>
+          <h1 class="text-2xl md:text-3xl font-black mb-1">فول وفلافل البرنس — شارع ترعة سراج</h1>
+          <p class="text-xs md:text-sm text-white/60 mb-2">أشهى فلافل مقرمشة محشية، فول مدمس فلاحي بالزيت الحار والطحينة، مسقعة بلدي، وباذنجان مخلل</p>
+          <div class="flex flex-wrap items-center gap-3 text-xs text-white/70">
+            <span class="font-bold text-amber-400">★ 4.9</span>
+            <span class="text-white/40">(+1,320 تقييم)</span>
+            <span>•</span>
+            <span>⏱️ 10 - 20 دقيقة</span>
+            <span>•</span>
+            <span>📍 الحسينية — شارع ترعة سراج أمام المعهد الديني</span>
+            <span>•</span>
+            <span class="text-emerald-400 font-bold">توصيل 10 ج.م فقط</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass px-5 py-3 rounded-2xl flex items-center gap-4 flex-shrink-0 text-xs">
+        <div>
+          <div class="text-white/40">الحد الأدنى</div>
+          <div class="font-bold text-sm text-white">25 ج.م</div>
+        </div>
+        <div style="width:1px;height:28px;background:rgba(255,255,255,.15)"></div>
+        <div>
+          <div class="text-white/40">طريقة الدفع</div>
+          <div class="font-bold text-sm text-emerald-400">كاش / إنستاباي</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENU CATEGORIES TABS -->
+  <div class="flex items-center gap-2 mb-8 overflow-x-auto pb-2 scroll-touch">
+    <button onclick="switchCategory('all', this)" class="tab-pill active">🌟 كامل المنيو</button>
+    <button onclick="switchCategory('sandwiches', this)" class="tab-pill">🥪 ساندوتشات شعبية</button>
+    <button onclick="switchCategory('plates', this)" class="tab-pill">🥘 علب وأطباق عائلية</button>
+    <button onclick="switchCategory('falafel', this)" class="tab-pill">🧆 طعمية سخنة وعجينة</button>
+    <button onclick="switchCategory('pickles', this)" class="tab-pill">🥗 مقبلات ومخللات</button>
+  </div>
+
+  <!-- MENU ITEMS GRID -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="menu-grid">
+
+    <!-- Item 1: ساندوتش فلافل محشية كيري وشطة -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="sandwiches">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#1b3b1e,#28552c)">
+          🧆
+          <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">🔥 الأكثر طلباً</span>
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">ساندوتش فلافل محشية كيري وشطة</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">8 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">قرص فلافل مقرمش بالسمسم محشو جبنة كيري سايحة ودقة بصل وشطة مع سلطة خضراء وطحينة سمسم</p>
+      </div>
+      <button onclick="addToCart('ساندوتش فلافل كيري', 8, '🧆')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 2: ساندوتش فول بالزيت الحار -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="sandwiches">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#302510,#483515)">
+          🥖
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">ساندوتش فول بلدي بالزيت الحار والليمون</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">8 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">فول مدمس فلاحي زبدة مع زيت حار بذر كتان أصلي، طحينة بيضاء، كمون، وليمون في عيش بلدي سخن</p>
+      </div>
+      <button onclick="addToCart('ساندوتش فول زيت حار', 8, '🥖')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 3: ساندوتش بطاطس بانيه -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="sandwiches">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#352a0a,#503f10)">
+          🍟
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">ساندوتش بطاطس بانيه بالكاتشب والمايونيز</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">10 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">أصابع بطاطس بانيه مقرمشة مع خلطة البرنس الخاصة وصوص كاتشب ومايونيز وسلطة كول سلو</p>
+      </div>
+      <button onclick="addToCart('ساندوتش بطاطس بانيه', 10, '🍟')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 4: علبة فول مدمس بالخلطة عائلية -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="plates">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#251d08,#382c0e)">
+          🍲
+          <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold">تكفي 3 أفراد</span>
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">علبة فول مدمس فلاحي متبل كبير</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">20 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">علبة فول كاملة متبلة بالطحينة والزيت والكمون والليمون والطماطم، تأتي مع 5 أرغفة عيش بلدي ساخن</p>
+      </div>
+      <button onclick="addToCart('علبة فول متبل عائلية', 20, '🍲')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 5: طبق مسقعة باللحمة المفرومة -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="plates">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#301510,#482015)">
+          🥘
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">طبق مسقعة بلدي بالصلصة</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">25 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">باذنجان رومي مقلي مع فلفل رومي وحار في صلصة طماطم مسبكة بالثوم والخل والبهارات الشرقية</p>
+      </div>
+      <button onclick="addToCart('طبق مسقعة بلدي', 25, '🥘')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 6: طبق باذنجان مخلل بالثوم والليمون -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="pickles">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#201025,#34153c)">
+          🍆
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">طبق باذنجان مخلل بالدقة والليمون</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">15 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">باذنجان عروس مسلوق ومخلل بتتبيلة الثوم المفروم، الفلفل الأحمر الحار، الكمون، وعصير الليمون والخل</p>
+      </div>
+      <button onclick="addToCart('باذنجان مخلل بالدقة', 15, '🍆')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 7: 10 أقراص فلافل سخنة بالسمسم -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="falafel">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#1b3b1e,#28552c)">
+          🟢
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">10 أقراص فلافل سخنة مقرمشة بالسمسم</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">15 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">طعمية مقلية طازجة في زيت نظيف مع رشة كزبرة ناشفة وسمسم محمص ذهبي</p>
+      </div>
+      <button onclick="addToCart('10 أقراص فلافل سمسم', 15, '🟢')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 8: كيس عجينة فلافل بالسمسم -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="falafel">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#122e15,#1b4520)">
+          📦
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">كيس عجينة فلافل متبلة (نصف كيلو)</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">20 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">عجينة طعمية فريش مفرومة ناعم مع الخضرة والبهارات والسمسم للقلي السريع في المنزل</p>
+      </div>
+      <button onclick="addToCart('كيس عجينة فلافل نصف كيلو', 20, '📦')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 9: طبق بابا غنوج بالطحينة -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="plates">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#252515,#383820)">
+          🥣
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">طبق بابا غنوج مشوي ع الفحم بالطحينة</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">20 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">باذنجان مشوي بريحة الفحم مهروس مع طحينة بيضاء خام، ثوم، زيت زيتون، وكمون</p>
+      </div>
+      <button onclick="addToCart('طبق بابا غنوج', 20, '🥣')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- FLOATING CART BAR -->
+<div id="floating-cart-bar" class="floating-cart hidden">
+  <div class="flex items-center gap-3">
+    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background:linear-gradient(135deg,#2e7d32,#43a047)">
+      🛒
+    </div>
+    <div>
+      <div class="text-xs text-white/50"><span id="cart-items-count">0</span> أصناف في السلة</div>
+      <div class="text-lg font-black gt" id="cart-total-price">0.00 ج.م</div>
+    </div>
+  </div>
+  <a href="husayniya-checkout.html" class="btn-primary px-6 py-3 rounded-2xl text-sm font-bold flex items-center gap-2" style="text-decoration:none">
+    <span>متابعة الشراء والدفع</span>
+    <span>←</span>
+  </a>
+</div>
+
+<!-- TOAST -->
+<div id="toast-msg" class="toast">
+  <span>✓</span>
+  <span id="toast-text">تمت إضافة الوجبة إلى السلة!</span>
+</div>
+
+</div><!-- .page -->
+
+<script>
+let cartCount = 0;
+let cartTotal = 0;
+
+function switchCategory(cat, btn) {
+  document.querySelectorAll('.tab-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('#menu-grid > div').forEach(item => {
+    if (cat === 'all' || item.dataset.cat === cat) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+function addToCart(title, price, icon) {
+  cartCount++;
+  cartTotal += price;
+
+  document.getElementById('nav-cart-badge').textContent = cartCount;
+  document.getElementById('cart-items-count').textContent = cartCount;
+  document.getElementById('cart-total-price').textContent = cartTotal.toFixed(2) + ' ج.م';
+  document.getElementById('floating-cart-bar').classList.remove('hidden');
+
+  showToast(`تمت إضافة "${title}" إلى السلة!`);
+}
+
+function showToast(text) {
+  const toast = document.getElementById('toast-msg');
+  document.getElementById('toast-text').textContent = text;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+
+</body>
+</html>

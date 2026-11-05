@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>بيتزا وكريب الرواد — شارع المدارس بالحسينية | خدمات الحسينية</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif}
+body{background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+
+.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35;animation:drift 18s ease-in-out infinite alternate}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#d32f2f,#b71c1c);top:-150px;right:-150px}
+.o2{width:500px;height:500px;background:radial-gradient(circle,#f57c00,#e65100);bottom:-150px;left:-150px;animation-delay:-6s}
+.o3{width:400px;height:400px;background:radial-gradient(circle,#7b1fa2,#4a148c);top:40%;left:30%;animation-delay:-10s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-15px) scale(1.05)}100%{transform:translate(-20px,20px) scale(.95)}}
+
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,.14)}
+.glass-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.12);transition:all .3s ease}
+.glass-card:hover{border-color:rgba(244,67,54,.45);box-shadow:0 14px 40px rgba(211,47,47,.25);transform:translateY(-3px)}
+
+.gt{background:linear-gradient(135deg,#ff5252,#ff7a00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.btn-primary{background:linear-gradient(135deg,#d32f2f,#f57c00);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-primary:hover{transform:scale(1.02);box-shadow:0 0 25px rgba(211,47,47,.45)}
+
+.store-hero{border-radius:28px;background:linear-gradient(135deg,rgba(40,10,10,.85),rgba(25,5,5,.9)),url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80') center/cover;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12);min-height:260px}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,#06091a 0%,rgba(6,9,26,.6) 50%,transparent 100%)}
+
+.b-open{background:rgba(0,176,155,.2);color:#00e5c8;border:1px solid rgba(0,176,155,.4)}
+.b-popular{background:rgba(255,82,82,.2);color:#ff5252;border:1px solid rgba(255,82,82,.4)}
+
+.tab-pill{padding:8px 18px;border-radius:14px;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .25s;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);white-space:nowrap}
+.tab-pill:hover,.tab-pill.active{background:rgba(244,67,54,.25);color:#ff5252;border-color:rgba(244,67,54,.6);box-shadow:0 0 16px rgba(244,67,54,.2)}
+
+.floating-cart{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);width:calc(100% - 48px);max-width:540px;background:rgba(18,25,48,.92);backdrop-filter:blur(24px);border:1px solid rgba(244,67,54,.4);border-radius:24px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 16px 40px rgba(0,0,0,.6);z-index:90}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(211,47,47,.95);color:#fff;padding:12px 24px;border-radius:16px;font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:8px;box-shadow:0 10px 30px rgba(211,47,47,.4);opacity:0;pointer-events:none;transition:all .3s ease;z-index:100}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="bg-scene">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<div class="page">
+
+<!-- NAVBAR -->
+<nav class="glass sticky top-0 z-50 px-6 py-4" style="background:rgba(4,14,30,.75);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
+      <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">←</div>
+      <div>
+        <span class="text-xs text-red-400 font-semibold">العودة للرئيسية</span>
+        <div class="text-sm font-bold">خدمات الحسينية (الشرقية)</div>
+      </div>
+    </a>
+
+    <div class="flex items-center gap-3">
+      <a href="husayniya-checkout.html" class="glass px-4 py-2 rounded-2xl flex items-center gap-2 text-xs font-bold hover:bg-white/10 transition" style="text-decoration:none;color:#fff">
+        <span>🛒 السلة</span>
+        <span id="nav-cart-badge" class="px-2 py-0.5 rounded-full bg-amber-400 text-black font-extrabold text-[10px]">0</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="max-w-6xl mx-auto px-6 py-6 pb-28 flex-1">
+
+  <!-- RESTAURANT HERO -->
+  <div class="store-hero mb-8 flex flex-col justify-end p-6 md:p-8">
+    <div class="hero-overlay"></div>
+    <div class="absolute top-6 right-6 z-10 flex gap-2">
+      <span class="b-open px-3 py-1 rounded-full text-xs font-bold">● مفتوح الآن</span>
+      <span class="b-popular px-3 py-1 rounded-full text-xs font-bold">🍕 كريب وبيتزا إيطالي</span>
+    </div>
+
+    <div class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="flex items-center gap-5">
+        <div class="w-24 h-24 rounded-2xl flex items-center justify-center text-5xl shadow-2xl flex-shrink-0" style="background:linear-gradient(135deg,#d32f2f,#f57c00);border:2px solid rgba(255,255,255,.2)">
+          🍕
+        </div>
+        <div>
+          <h1 class="text-2xl md:text-3xl font-black mb-1">بيتزا وكريب الرواد — شارع المدارس</h1>
+          <p class="text-xs md:text-sm text-white/60 mb-2">أقوى كريب كرانشي حار، شاورما سوري، بيتزا شرقي وإيطالي بالموزاريلا الطبيعية، وبرجر دوبل</p>
+          <div class="flex flex-wrap items-center gap-3 text-xs text-white/70">
+            <span class="font-bold text-amber-400">★ 4.7</span>
+            <span class="text-white/40">(+840 تقييم)</span>
+            <span>•</span>
+            <span>⏱️ 20 - 30 دقيقة</span>
+            <span>•</span>
+            <span>📍 الحسينية — شارع المدارس أمام مدرسة التجارة</span>
+            <span>•</span>
+            <span class="text-emerald-400 font-bold">توصيل 12 ج.م</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass px-5 py-3 rounded-2xl flex items-center gap-4 flex-shrink-0 text-xs">
+        <div>
+          <div class="text-white/40">الحد الأدنى</div>
+          <div class="font-bold text-sm text-white">40 ج.م</div>
+        </div>
+        <div style="width:1px;height:28px;background:rgba(255,255,255,.15)"></div>
+        <div>
+          <div class="text-white/40">طريقة الدفع</div>
+          <div class="font-bold text-sm text-emerald-400">كاش / إنستاباي</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENU CATEGORIES TABS -->
+  <div class="flex items-center gap-2 mb-8 overflow-x-auto pb-2 scroll-touch">
+    <button onclick="switchCategory('all', this)" class="tab-pill active">🌟 كامل المنيو</button>
+    <button onclick="switchCategory('crepe', this)" class="tab-pill">🌯 كريب مالح مقرمش</button>
+    <button onclick="switchCategory('pizza', this)" class="tab-pill">🍕 بيتزا إيطالي وشرقي</button>
+    <button onclick="switchCategory('burger', this)" class="tab-pill">🍔 برجر وسندوتشات</button>
+    <button onclick="switchCategory('sweet', this)" class="tab-pill">🍫 كريب حلو ومشروبات</button>
+  </div>
+
+  <!-- MENU ITEMS GRID -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="menu-grid">
+
+    <!-- Item 1: كريب زنجر سوبر كرانشي -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="crepe">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#3a1010,#551111)">
+          🌯
+          <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-red-500/20 text-red-300 text-[10px] font-bold">🔥 الأكثر طلباً</span>
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">كريب زنجر سوبر كرانشي حار</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">65 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">قطع صدور فراخ كرانشي متبلة حارة، بطاطس فارم فريتس، ميكس جبن موزاريلا وشيدر، صوص رانش ومايونيز</p>
+      </div>
+      <button onclick="addToCart('كريب زنجر سوبر كرانشي', 65, '🌯')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 2: كريب شاورما فراخ سوري -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="crepe">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#3a2010,#543015)">
+          🌮
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">كريب شاورما فراخ سوري ميكس جبن</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">60 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">شاورما فراخ سوري على السيخ، ثومية مخصوصة، خيار مخلل، وبطاطس وموزاريلا سايحة على الجريل</p>
+      </div>
+      <button onclick="addToCart('كريب شاورما فراخ', 60, '🌮')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 3: كريب ميكس جبن كيري -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="crepe">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#3a3010,#504015)">
+          🧀
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">كريب ميكس جبن (كيري + موزاريلا + رومي)</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">50 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">أربع أنواع جبن غنية تذوب معاً مع الزيتون الأخضر والفلفل الألوان وصوص الجبنة الشيدر</p>
+      </div>
+      <button onclick="addToCart('كريب ميكس جبن', 50, '🧀')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 4: بيتزا سوبر سوبريم -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="pizza">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#401010,#611515)">
+          🍕
+          <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold">حجم كبير L</span>
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">بيتزا سوبر سوبريم إيطالي</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">140 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">لحم مفروم بلدي، سجق شرقي، مشروم فريش، زيتون أسود، فلفل أخضر، صوص طماطم إيطالي وموزاريلا دوبل</p>
+      </div>
+      <button onclick="addToCart('بيتزا سوبر سوبريم', 140, '🍕')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 5: بيتزا فراخ باربكيو -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="pizza">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#351505,#502008)">
+          🍗
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">بيتزا فراخ صوص الباربكيو المدخن</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">125 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">قطع دجاج متبلة مشوية مع صوص الباربكيو الأمريكي المدخن، بصل أحمر شرائح وموزاريلا طبيعية</p>
+      </div>
+      <button onclick="addToCart('بيتزا فراخ باربكيو', 125, '🍗')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 6: برجر دوبل لحمة بلدي -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="burger">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#2e1205,#481d08)">
+          🍔
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">ساندوتش برجر دوبل بالجبنة</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">75 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">قطعتين برجر لحمة مفرومة بلدي مشوية على الجريل مع جبنة شيدر، خس، طماطم، صوص بيج تيستي وبطاطس</p>
+      </div>
+      <button onclick="addToCart('برجر دوبل بالجبنة', 75, '🍔')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 7: كريب نوتيلا وموز -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="sweet">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#2a1020,#441530)">
+          🍫
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">كريب شوكولاتة نوتيلا بالموز والمكسرات</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">45 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">كريب حلو محشو شوكولاتة نوتيلا أصلية غنية مع شرائح الموز الطازجة والمكسرات وصوص شوكولاتة</p>
+      </div>
+      <button onclick="addToCart('كريب نوتيلا وموز', 45, '🍫')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 8: كريب زبدة اللوتس -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="sweet">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#302010,#483015)">
+          🍪
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">كريب زبدة وبسكويت اللوتس المقرمش</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">50 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">كريمة زبدة اللوتس اللذيذة مع قطع بسكويت لوتس هشة وصوص كراميل</p>
+      </div>
+      <button onclick="addToCart('كريب لوتس', 50, '🍪')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+    <!-- Item 9: باكت بطاطس فارم مع صوص جبنة -->
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="crepe">
+      <div>
+        <div class="h-40 rounded-2xl flex items-center justify-center text-6xl mb-4 relative" style="background:linear-gradient(135deg,#352500,#503a00)">
+          🍟
+        </div>
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <h3 class="font-bold text-base text-white">باكت بطاطس فارم فريتس بصوص الشيدر</h3>
+          <span class="text-sm font-extrabold text-amber-400 whitespace-nowrap">30 ج.م</span>
+        </div>
+        <p class="text-xs text-white/50 mb-4 leading-relaxed">بطاطس مقرمشة ذهبية مع صوص الجبنة الشيدر الساخن والبهارات الخاصة</p>
+      </div>
+      <button onclick="addToCart('بطاطس بصوص الشيدر', 30, '🍟')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- FLOATING CART BAR -->
+<div id="floating-cart-bar" class="floating-cart hidden">
+  <div class="flex items-center gap-3">
+    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background:linear-gradient(135deg,#d32f2f,#f57c00)">
+      🛒
+    </div>
+    <div>
+      <div class="text-xs text-white/50"><span id="cart-items-count">0</span> أصناف في السلة</div>
+      <div class="text-lg font-black gt" id="cart-total-price">0.00 ج.م</div>
+    </div>
+  </div>
+  <a href="husayniya-checkout.html" class="btn-primary px-6 py-3 rounded-2xl text-sm font-bold flex items-center gap-2" style="text-decoration:none">
+    <span>متابعة الشراء والدفع</span>
+    <span>←</span>
+  </a>
+</div>
+
+<!-- TOAST -->
+<div id="toast-msg" class="toast">
+  <span>✓</span>
+  <span id="toast-text">تمت إضافة الوجبة إلى السلة!</span>
+</div>
+
+</div><!-- .page -->
+
+<script>
+let cartCount = 0;
+let cartTotal = 0;
+
+function switchCategory(cat, btn) {
+  document.querySelectorAll('.tab-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('#menu-grid > div').forEach(item => {
+    if (cat === 'all' || item.dataset.cat === cat) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+function addToCart(title, price, icon) {
+  cartCount++;
+  cartTotal += price;
+
+  document.getElementById('nav-cart-badge').textContent = cartCount;
+  document.getElementById('cart-items-count').textContent = cartCount;
+  document.getElementById('cart-total-price').textContent = cartTotal.toFixed(2) + ' ج.م';
+  document.getElementById('floating-cart-bar').classList.remove('hidden');
+
+  showToast(`تمت إضافة "${title}" إلى السلة!`);
+}
+
+function showToast(text) {
+  const toast = document.getElementById('toast-msg');
+  document.getElementById('toast-text').textContent = text;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+
+</body>
+</html>

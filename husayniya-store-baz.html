@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>مطعم السلام — قائمة المأكولات | خدمات الحسينية</title>
+<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+
+/* ── Background Scene ── */
+.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.38;animation:drift 16s ease-in-out infinite alternate}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#00b09b,#045353);top:-200px;right:-150px}
+.o2{width:480px;height:480px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-150px;left:-150px;animation-delay:-6s}
+.o3{width:380px;height:380px;background:radial-gradient(circle,#43cea2,#185a9d66);top:45%;left:40%;animation-delay:-10s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-18px) scale(1.05)}100%{transform:translate(-20px,25px) scale(.97)}}
+
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+
+/* ── Liquid Glass Utilities ── */
+.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,.14)}
+.glass-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.12);transition:all .3s ease}
+.glass-card:hover{border-color:rgba(0,176,155,.45);box-shadow:0 14px 40px rgba(0,176,155,.15);transform:translateY(-3px)}
+
+/* ── Gradients ── */
+.gt{background:linear-gradient(135deg,#00e5c8 0%,#43cea2 45%,#f7c948 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt-gold{background:linear-gradient(135deg,#f7c948,#f7971e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── Buttons ── */
+.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-primary::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.25),transparent);opacity:0;transition:.3s}
+.btn-primary:hover::after{opacity:1}
+.btn-primary:hover{transform:scale(1.02);box-shadow:0 0 28px rgba(0,176,155,.45)}
+
+.btn-add{background:rgba(0,176,155,.18);border:1px solid rgba(0,176,155,.5);color:#00e5c8;font-weight:700;border-radius:12px;padding:8px 16px;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:6px}
+.btn-add:hover{background:linear-gradient(135deg,#00b09b,#06d6a0);color:#fff;box-shadow:0 0 16px rgba(0,176,155,.4);transform:scale(1.04)}
+
+/* ── Store Hero Banner ── */
+.store-hero{height:300px;border-radius:32px;position:relative;overflow:hidden;background:linear-gradient(135deg,#0d3826 0%,#154d37 50%,#092419 100%);border:1px solid rgba(255,255,255,.14)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(6,9,26,0.95) 10%, rgba(6,9,26,0.4) 60%, transparent 100%)}
+
+/* ── Menu Category Chips ── */
+.menu-tab{padding:10px 22px;border-radius:16px;cursor:pointer;font-size:.88rem;font-weight:600;transition:all .3s;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);white-space:nowrap}
+.menu-tab:hover,.menu-tab.active{background:rgba(0,176,155,.22);color:#00e5c8;border-color:rgba(0,176,155,.6);box-shadow:0 0 20px rgba(0,176,155,.25)}
+
+/* ── Floating Cart Bar ── */
+.floating-cart{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:90;width:calc(100% - 48px);max-width:680px;background:rgba(4,14,30,.88);backdrop-filter:blur(30px);border:1px solid rgba(0,176,155,.4);border-radius:24px;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 20px 50px rgba(0,0,0,.6), 0 0 30px rgba(0,176,155,.2);transition:all .4s}
+.floating-cart.hidden{transform:translate(-50%, 120%);opacity:0;pointer-events:none}
+
+/* ── Toast notification ── */
+.toast{position:fixed;top:24px;left:50%;transform:translateX(-50%) translateY(-100px);z-index:200;background:rgba(0,176,155,.95);backdrop-filter:blur(10px);color:#fff;padding:12px 24px;border-radius:18px;font-weight:700;font-size:.88rem;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .4s cubic-bezier(.175,.885,.32,1.275);display:flex;align-items:center;gap:10px}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ── Modal (Product Options) ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(4,8,20,.85);backdrop-filter:blur(12px);z-index:150;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+
+/* ── Stars & Badges ── */
+.stars{color:#f7c948;letter-spacing:2px}
+.b-open{background:rgba(0,214,160,.18);border:1px solid rgba(0,214,160,.4);color:#00d6a0}
+.b-popular{background:rgba(247,201,72,.18);border:1px solid rgba(247,201,72,.4);color:#f7c948}
+
+/* ── Scrollbars ── */
+.scroll-x{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.scroll-x::-webkit-scrollbar{display:none}
+</style>
+</head>
+<body>
+
+<!-- Animated Orbs -->
+<div class="bg-scene">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<div class="page">
+
+<!-- ══════════════════ NAVBAR ══════════════════ -->
+<nav class="glass sticky top-0 z-50 px-6 py-4" style="background:rgba(4,14,30,.65);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <!-- Back to Stores / Home -->
+    <a href="index.html" class="flex items-center gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
+      <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">
+        ←
+      </div>
+      <div>
+        <span class="text-xs text-emerald-400 font-semibold">العودة للمتاجر</span>
+        <div class="text-sm font-bold">خدمات الحسينية</div>
+      </div>
+    </a>
+
+    <!-- Search in menu -->
+    <div class="hidden md:flex items-center relative w-72">
+      <input id="menu-search" oninput="filterMenuItems()" type="text" placeholder="ابحث في قائمة المطعم..." class="w-full rounded-2xl px-4 py-2 pr-10 text-xs bg-white/[0.07] border border-white/15 focus:outline-none focus:border-emerald-400 text-white"/>
+      <span class="absolute right-3 text-white/40 text-xs">🔍</span>
+    </div>
+
+    <!-- View Cart Pill -->
+    <a href="husayniya-checkout.html" class="glass px-4 py-2 rounded-2xl flex items-center gap-2 text-xs font-bold hover:bg-white/10 transition" style="text-decoration:none;color:#fff">
+      <span>🛒 السلة</span>
+      <span id="nav-cart-badge" class="px-2 py-0.5 rounded-full bg-amber-400 text-black font-extrabold text-[10px]">0</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ══════════════════ MAIN CONTENT ══════════════════ -->
+<main class="max-w-6xl mx-auto px-6 py-6 pb-28 flex-1">
+
+  <!-- ── 1. STORE HERO BANNER ── -->
+  <div class="store-hero mb-8 flex flex-col justify-end p-6 md:p-8">
+    <div class="hero-overlay"></div>
+    <!-- Floating tag on top -->
+    <div class="absolute top-6 right-6 z-10 flex gap-2">
+      <span class="b-open px-3 py-1 rounded-full text-xs font-bold">● مفتوح الآن</span>
+      <span class="b-popular px-3 py-1 rounded-full text-xs font-bold">🔥 خيار الحسينية الأول</span>
+    </div>
+
+    <div class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="flex items-center gap-5">
+        <!-- Store Avatar -->
+        <div class="w-24 h-24 rounded-2xl flex items-center justify-center text-5xl shadow-2xl flex-shrink-0" style="background:linear-gradient(135deg,#00b09b,#06d6a0);border:2px solid rgba(255,255,255,.2)">
+          🍖
+        </div>
+        <div>
+          <h1 class="text-2xl md:text-3xl font-black mb-1">مشويات الباز والحسينية — كباب وكفتة بلدي</h1>
+          <p class="text-xs md:text-sm text-white/60 mb-2">أشهى المشويات المصرية، كباب وكفتة حاتي، طرب، حمام محشي، وطواجن فرن بلدي</p>
+          <div class="flex flex-wrap items-center gap-3 text-xs text-white/70">
+            <span class="stars font-bold text-amber-400">★ 4.9</span>
+            <span class="text-white/40">(+1,420 تقييم)</span>
+            <span>•</span>
+            <span>⏱️ 25 - 35 دقيقة</span>
+            <span>•</span>
+            <span>📍 الحسينية — شارع المركز أمام بنك مصر</span>
+            <span>•</span>
+            <span class="text-emerald-400 font-bold">توصيل 15 ج.م</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Delivery Info Card -->
+      <div class="glass px-5 py-3 rounded-2xl flex items-center gap-4 flex-shrink-0 text-xs">
+        <div>
+          <div class="text-white/40">الحد الأدنى للطلب</div>
+          <div class="font-bold text-sm text-white">50 ج.م</div>
+        </div>
+        <div style="width:1px;height:28px;background:rgba(255,255,255,.15)"></div>
+        <div>
+          <div class="text-white/40">طرق الدفع</div>
+          <div class="font-bold text-emerald-400">كاش • فودافون كاش • إنستاباي</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 2. MENU CATEGORIES (TABS) ── -->
+  <div class="flex items-center gap-3 scroll-x pb-4 mb-8">
+    <button onclick="switchCategory('all', this)" class="menu-tab active">🍽️ الكل</button>
+    <button onclick="switchCategory('grills', this)" class="menu-tab">🍢 المشاوي والكباب</button>
+    <button onclick="switchCategory('rice', this)" class="menu-tab">🍚 القوزي والأرز</button>
+    <button onclick="switchCategory('fastfood', this)" class="menu-tab">🍔 الوجبات السريعة</button>
+    <button onclick="switchCategory('appetizers', this)" class="menu-tab">🥗 المقبلات والسلطات</button>
+    <button onclick="switchCategory('drinks', this)" class="menu-tab">🥤 المشروبات والعصائر</button>
+    <button onclick="switchCategory('reviews', this)" class="menu-tab">⭐ آراء العملاء (4.9)</button>
+  </div>
+
+  <!-- ── 3. MENU ITEMS GRID ── -->
+  <div id="menu-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Item 1: كباب -->
+    <div class="menu-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-category="grills" data-title="كيلو مشكل كباب وكفتة حاتي بلدي">
+      <div class="p-5">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div>
+            <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold mb-1.5 inline-block">الأكثر طلباً 🔥</span>
+            <h3 class="text-base font-bold text-white mb-1">كيلو مشكل كباب وكفتة حاتي بلدي</h3>
+            <p class="text-xs text-white/50 leading-relaxed">كباب ضاني وكفتة بلدي مشوية على الفحم مع طحينة، سلطة خضراء، عيش بلدي ساخن، ومخلل.</p>
+          </div>
+          <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl flex-shrink-0" style="background:linear-gradient(135deg,#1a3a2a,#0d6640)">
+            🍢
+          </div>
+        </div>
+      </div>
+      <div class="px-5 pb-5 pt-3 border-t border-white/5 flex items-center justify-between">
+        <div>
+          <span class="text-xs text-white/40 block">السعر</span>
+          <span class="text-lg font-black text-emerald-400">380 ج.م</span>
+        </div>
+        <button onclick="openCustomizer('كيلو مشكل كباب وكفتة حاتي بلدي', 18.50, '🍢')" class="btn-add">
+          <span>+ إضافة</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Item 2: قوزي -->
+    <div class="menu-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-category="rice" data-title="قوزي لحم على التمن">
+      <div class="p-5">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div>
+            <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-bold mb-1.5 inline-block">وجبة فاخرة 👑</span>
+            <h3 class="text-base font-bold text-white mb-1">طاجن لحمة بلدي بالبصل والأرز البسمتي</h3>
+            <p class="text-xs text-white/50 leading-relaxed">قطع لحم بلدي طازجة مع أرز بسمتي بالمكسرات وشوربة لسان عصفور وطحينة.</p>
+          </div>
+          <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl flex-shrink-0" style="background:linear-gradient(135deg,#3a2a1a,#663a0d)">
+            🍖
+          </div>
+        </div>
+      </div>
+      <div class="px-5 pb-5 pt-3 border-t border-white/5 flex items-center justify-between">
+        <div>
+          <span class="text-xs text-white/40 block">السعر</span>
+          <span class="text-lg font-black text-emerald-400">240 ج.م</span>
+        </div>
+        <button onclick="openCustomizer('طاجن لحمة بلدي بالبصل والأرز البسمتي', 22.00, '🍖')" class="btn-add">
+          <span>+ إضافة</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Item 3: دجاج شواية -->
+    <div class="menu-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-category="grills" data-title="وجبة فرخة مشوية على الفحم مع أرز وبطاطس">
+      <div class="p-5">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div>
+            <h3 class="text-base font-bold text-white mb-1">وجبة فرخة مشوية على الفحم مع أرز وبطاطس</h3>
+            <p class="text-xs text-white/50 leading-relaxed">فرخة متبلة بالخلطة السرية مشوية على الفحم مع أرز بسمتي، تومية، سلطة، وبطاطس.</p>
+          </div>
+          <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl flex-shrink-0" style="background:linear-gradient(135deg,#332211,#553311)">
+            🍗
+          </div>
+        </div>
+      </div>
+      <div class="px-5 pb-5 pt-3 border-t border-white/5 flex items-center justify-between">
+        <div>
+          <span class="text-xs text-white/40 block">السعر</span>
+          <span class="text-lg font-black text-emerald-400">190 ج.م</span>
+        </div>
+        <button onclick="openCustomizer('وجبة فرخة مشوية على الفحم مع أرز وبطاطس', 14.00, '🍗')" class="btn-add">
+          <span>+ إضافة</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Item 4: تكا لحم -->
+    <div class="menu-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-category="grills" data-title="وجبة تكا لحم غنم">
+      <div class="p-5">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div>
+            <h3 class="text-base font-bold text-white mb-1">وجبة طرب وكفتة بلدي مخصوص</h3>
+            <p class="text-xs text-white/50 leading-relaxed">طرب ضاني وكفتة مشوية على الفحم مع سلطة بلدي، سلطة طحينة، وعيش بلدي.</p>
+          </div>
+          <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl flex-shrink-0" style="background:linear-gradient(135deg,#1f3d2b,#0f2419)">
+            🥩
+          </div>
+        </div>
+      </div>
+      <div class="px-5 pb-5 pt-3 border-t border-white/5 flex items-center justify-between">
+        <div>
+          <span class="text-xs text-white/40 block">السعر</span>
+          <span class="text-lg font-black text-emerald-400">260 ج.م</span>
+        </div>
+        <button onclick="openCustomizer('وجبة طرب وكفتة بلدي مخصوص', 19.00, '🥩')" class="btn-add">
+          <span>+ إضافة</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Item 5: برجر السلام -->
+    <div class="menu-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-category="fastfood" data-title="ساندوتش كريب زنجر سوبر كرانشي">
+      <div class="p-5">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div>
+            <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-bold mb-1.5 inline-block">سريع ⚡</span>
+            <h3 class="text-base font-bold text-white mb-1">ساندوتش كريب زنجر سوبر كرانشي</h3>
+            <p class="text-xs text-white/50 leading-relaxed">قطع دجاج زنجر مقرمشة مع جبنة موزاريلا سايحة، صوص شيدر، ومايونيز في عيش كريب مقرمش.</p>
+          </div>
+          <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl flex-shrink-0" style="background:linear-gradient(135deg,#2b1a1a,#4a2424)">
+            🍔
+          </div>
+        </div>
+      </div>
+      <div class="px-5 pb-5 pt-3 border-t border-white/5 flex items-center justify-between">
+        <div>
+          <span class="text-xs text-white/40 block">السعر</span>
+          <span class="text-lg font-black text-emerald-400">85 ج.م</span>
+        </div>
+        <button onclick="openCustomizer('ساندوتش كريب زنجر سوبر كرانشي', 8.50, '🍔')" class="btn-add">
+          <span>+ إضافة</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Item 6: مقبلات مشكلة -->
+    <div class="menu-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-category="appetizers" data-title="طبق مقبلات وطحينة بلدي وسلطات">
+      <div class="p-5">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div>
+            <h3 class="text-base font-bold text-white mb-1">طبق مقبلات وطحينة بلدي وسلطات</h3>
+            <p class="text-xs text-white/50 leading-relaxed">طحينة بيضاء بالخل، بابا غنوج، سلطة خضراء بلدي، ومخلل مشكل بلدي.</p>
+          </div>
+          <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl flex-shrink-0" style="background:linear-gradient(135deg,#1f2b1a,#2a421e)">
+            🥗
+          </div>
+        </div>
+      </div>
+      <div class="px-5 pb-5 pt-3 border-t border-white/5 flex items-center justify-between">
+        <div>
+          <span class="text-xs text-white/40 block">السعر</span>
+          <span class="text-lg font-black text-emerald-400">40 ج.م</span>
+        </div>
+        <button onclick="openCustomizer('طبق مقبلات وطحينة بلدي وسلطات', 6.00, '🥗')" class="btn-add">
+          <span>+ إضافة</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Item 7: عصير رمان طبيعي -->
+    <div class="menu-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-category="drinks" data-title="عصير رمان الحسينية طبيعي">
+      <div class="p-5">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div>
+            <h3 class="text-base font-bold text-white mb-1">عصير قصب / برتقال فريش من الحسينية</h3>
+            <p class="text-xs text-white/50 leading-relaxed">عصير طبيعي فريش بارد ينعشك بعد الأكل.</p>
+          </div>
+          <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl flex-shrink-0" style="background:linear-gradient(135deg,#3d1a2b,#5e183a)">
+            🥤
+          </div>
+        </div>
+      </div>
+      <div class="px-5 pb-5 pt-3 border-t border-white/5 flex items-center justify-between">
+        <div>
+          <span class="text-xs text-white/40 block">السعر</span>
+          <span class="text-lg font-black text-emerald-400">25 ج.م</span>
+        </div>
+        <button onclick="openCustomizer('عصير رمان الحسينية طبيعي', 3.50, '🥤')" class="btn-add">
+          <span>+ إضافة</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── 4. REVIEWS SECTION (Hidden by default) ── -->
+  <div id="reviews-section" class="hidden space-y-6">
+    <div class="glass-card rounded-3xl p-6 md:p-8">
+      <div class="flex flex-col md:flex-row items-center gap-8 pb-6 border-b border-white/10">
+        <div class="text-center md:text-right">
+          <div class="text-5xl font-black text-amber-400 mb-1">4.9</div>
+          <div class="stars text-lg mb-1">★★★★★</div>
+          <div class="text-xs text-white/50">بناءً على 1,420 تقييم من أهالي الحسينية</div>
+        </div>
+        <div class="flex-1 w-full space-y-2 text-xs">
+          <div class="flex items-center gap-3">
+            <span class="w-12 text-white/60">5 نجوم</span>
+            <div class="flex-1 h-2 rounded-full bg-white/10 overflow-hidden"><div class="h-full bg-emerald-400 rounded-full" style="width:92%"></div></div>
+            <span class="w-8 text-left font-bold text-white/70">92%</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-12 text-white/60">4 نجوم</span>
+            <div class="flex-1 h-2 rounded-full bg-white/10 overflow-hidden"><div class="h-full bg-emerald-400 rounded-full" style="width:6%"></div></div>
+            <span class="w-8 text-left font-bold text-white/70">6%</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-12 text-white/60">3 نجوم</span>
+            <div class="flex-1 h-2 rounded-full bg-white/10 overflow-hidden"><div class="h-full bg-amber-400 rounded-full" style="width:2%"></div></div>
+            <span class="w-8 text-left font-bold text-white/70">2%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-6 space-y-4">
+        <!-- Review 1 -->
+        <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/5">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">أ</div>
+              <span class="font-bold text-sm">أحمد الشرقاوي (شارع المركز)</span>
+              <span class="text-[10px] text-white/40">• منذ يومين</span>
+            </div>
+            <div class="stars text-xs">★★★★★</div>
+          </div>
+          <p class="text-xs text-white/70 leading-relaxed">"المشويات وصلت سخنة جداً وريحة الفحم تحفة، الكفتة بلدي وتتبيلتها ممتازة والتوصيل في ربع ساعة لشارع المركز. التوصيل كان بأقل من نصف ساعة داخل الحسينية. أنصح به بشدة."</p>
+        </div>
+        <!-- Review 2 -->
+        <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/5">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs">م</div>
+              <span class="font-bold text-sm">د. منى عبد الله (شارع المدارس)</span>
+              <span class="text-[10px] text-white/40">• منذ أسبوع</span>
+            </div>
+            <div class="stars text-xs">★★★★★</div>
+          </div>
+          <p class="text-xs text-white/70 leading-relaxed">"القوزي ممتاز واللحم ذايب ذوبان، والتغليف راقي جداً ونظيف. شكراً لمطعم السلام وتطبيق خدمات الحسينية."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ══════════════════ FLOATING CART BAR ══════════════════ -->
+<div id="floating-cart-bar" class="floating-cart hidden">
+  <div class="flex items-center gap-3">
+    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background:linear-gradient(135deg,#00b09b,#06d6a0)">
+      🛒
+    </div>
+    <div>
+      <div class="text-xs text-white/50"><span id="cart-items-count">0</span> أصناف في السلة</div>
+      <div class="text-lg font-black gt" id="cart-total-price">0.00 ج.م</div>
+    </div>
+  </div>
+  <a href="husayniya-checkout.html" class="btn-primary px-6 py-3 rounded-2xl text-sm font-bold flex items-center gap-2" style="text-decoration:none">
+    <span>متابعة الشراء والدفع</span>
+    <span>←</span>
+  </a>
+</div>
+
+<!-- ══════════════════ TOAST NOTIFICATION ══════════════════ -->
+<div id="toast-msg" class="toast">
+  <span>✓</span>
+  <span id="toast-text">تمت إضافة الوجبة إلى السلة!</span>
+</div>
+
+<!-- ══════════════════ PRODUCT CUSTOMIZER MODAL ══════════════════ -->
+<div id="item-modal" class="modal-overlay">
+  <div class="glass-card rounded-3xl p-6 md:p-8 max-w-lg w-full relative border border-white/20">
+    <button onclick="closeCustomizer()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg">✕</button>
+
+    <div class="flex items-center gap-4 mb-5">
+      <div id="modal-icon" class="w-16 h-16 rounded-2xl flex items-center justify-center text-4xl" style="background:linear-gradient(135deg,#00b09b,#06d6a0)">
+        🍢
+      </div>
+      <div>
+        <h3 id="modal-title" class="text-lg font-bold">اسم الوجبة</h3>
+        <p class="text-xs text-white/50">خصص وجبتك حسب رغبتك</p>
+        <div id="modal-base-price" class="text-sm font-extrabold text-emerald-400 mt-1">380 ج.م</div>
+      </div>
+    </div>
+
+    <!-- Options Section -->
+    <div class="space-y-4 mb-6 text-xs">
+      <!-- Extras -->
+      <div>
+        <label class="block font-bold text-white/80 mb-2">إضافات مع الوجبة:</label>
+        <div class="space-y-2">
+          <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.04] border border-white/5 cursor-pointer hover:bg-white/[0.08]">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" class="extra-check" data-price="2.00" onchange="calcModalTotal()"/>
+              <span>صحن حمص بطحينة إضافي</span>
+            </div>
+            <span class="text-emerald-400 font-bold">+2.00 ج.م</span>
+          </label>
+          <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.04] border border-white/5 cursor-pointer hover:bg-white/[0.08]">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" class="extra-check" data-price="1.50" onchange="calcModalTotal()"/>
+              <span>خبز تنور إضافي حار (3 أقراص)</span>
+            </div>
+            <span class="text-emerald-400 font-bold">+1.50 ج.م</span>
+          </label>
+          <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.04] border border-white/5 cursor-pointer hover:bg-white/[0.08]">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" class="extra-check" data-price="1.00" onchange="calcModalTotal()"/>
+              <span>علبة صوص عمبة حارة وثومية</span>
+            </div>
+            <span class="text-emerald-400 font-bold">+1.00 ج.م</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div>
+        <label class="block font-bold text-white/80 mb-1">ملاحظات للمطعم:</label>
+        <input id="modal-notes" type="text" placeholder="مثلاً: بدون بصل، زيادة سماق..." class="w-full rounded-xl px-3 py-2 text-xs bg-white/[0.07] border border-white/10 text-white focus:outline-none focus:border-emerald-400"/>
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="flex items-center justify-between pt-4 border-t border-white/10">
+      <div>
+        <div class="text-[10px] text-white/40">المجموع الكلي للوجبة</div>
+        <div id="modal-total-price" class="text-xl font-black text-emerald-400">380 ج.م</div>
+      </div>
+      <button onclick="confirmAddToCart()" class="btn-primary px-6 py-3 rounded-2xl text-sm font-bold">
+        إضافة للسلة 🛍️
+      </button>
+    </div>
+  </div>
+</div>
+
+</div><!-- .page -->
+
+<script>
+// ── Cart State ──
+let cartCount = 0;
+let cartTotal = 0.00;
+let currentItem = { title: '', basePrice: 0.00 };
+
+// ── Switch Menu Category Tabs ──
+function switchCategory(cat, btn) {
+  document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+
+  const menuContainer = document.getElementById('menu-container');
+  const reviewsSection = document.getElementById('reviews-section');
+
+  if (cat === 'reviews') {
+    menuContainer.classList.add('hidden');
+    reviewsSection.classList.remove('hidden');
+    return;
+  }
+
+  menuContainer.classList.remove('hidden');
+  reviewsSection.classList.add('hidden');
+
+  document.querySelectorAll('.menu-card').forEach(card => {
+    if (cat === 'all' || card.dataset.category === cat) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// ── Filter Menu via Search ──
+function filterMenuItems() {
+  const query = document.getElementById('menu-search').value.toLowerCase().trim();
+  document.querySelectorAll('.menu-card').forEach(card => {
+    const title = card.dataset.title.toLowerCase();
+    if (title.includes(query)) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// ── Product Customizer Modal ──
+function openCustomizer(title, price, icon) {
+  currentItem = { title, basePrice: price };
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-icon').textContent = icon;
+  document.getElementById('modal-base-price').textContent = price.toFixed(2) + ' ج.م';
+  document.getElementById('modal-notes').value = '';
+  document.querySelectorAll('.extra-check').forEach(c => c.checked = false);
+  calcModalTotal();
+  document.getElementById('item-modal').classList.add('show');
+}
+
+function closeCustomizer() {
+  document.getElementById('item-modal').classList.remove('show');
+}
+
+function calcModalTotal() {
+  let total = currentItem.basePrice;
+  document.querySelectorAll('.extra-check:checked').forEach(c => {
+    total += parseFloat(c.dataset.price);
+  });
+  document.getElementById('modal-total-price').textContent = total.toFixed(2) + ' ج.م';
+  return total;
+}
+
+// ── Add Item to Cart & Update Bars ──
+function confirmAddToCart() {
+  const finalItemPrice = calcModalTotal();
+  cartCount += 1;
+  cartTotal += finalItemPrice;
+
+  // Update Nav Badge
+  document.getElementById('nav-cart-badge').textContent = cartCount;
+
+  // Update Floating Cart Bar
+  document.getElementById('cart-items-count').textContent = cartCount;
+  document.getElementById('cart-total-price').textContent = cartTotal.toFixed(2) + ' ج.م';
+  document.getElementById('floating-cart-bar').classList.remove('hidden');
+
+  closeCustomizer();
+  showToast(`تمت إضافة "${currentItem.title}" إلى السلة!`);
+}
+
+// ── Toast System ──
+function showToast(text) {
+  const toast = document.getElementById('toast-msg');
+  document.getElementById('toast-text').textContent = text;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2500);
+}
+</script>
+
+</body>
+</html>
+
+
+
