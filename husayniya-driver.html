@@ -1324,8 +1324,21 @@
     }, 800);
 
     // Realtime Cloud Listener for Driver
-    window.addEventListener('load', () => {
+    window.addEventListener('load', async () => {
       if (window.HusayniyaCloud) {
+        try {
+          const liveOrders = await window.HusayniyaCloud.getOrders();
+          if (liveOrders && liveOrders.length > 0) {
+            const active = liveOrders.find(o => o.status === 'on_the_way' || o.status === 'preparing');
+            if (active) {
+              const codeBadge = document.querySelector('#active-mission-card .font-mono');
+              if (codeBadge) codeBadge.innerText = '#' + active.order_code;
+              const storeEl = document.querySelector('#active-mission-card h4');
+              if (storeEl) storeEl.innerText = active.store_name + ' — الحسينية';
+            }
+          }
+        } catch(e) {}
+
         window.HusayniyaCloud.onOrderEvent((type, order) => {
           if (type === 'order_created' && order && isOnline) {
             // Update radar offer

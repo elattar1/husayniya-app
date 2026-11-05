@@ -514,8 +514,19 @@ function updateLiveBadge(delta) {
 }
 
 // Listen to Realtime Cloud Orders
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
   if (window.HusayniyaCloud) {
+    try {
+      const liveOrders = await window.HusayniyaCloud.getOrders();
+      if (liveOrders && liveOrders.length > 0) {
+        liveOrders.forEach(o => {
+          if (o.status === 'pending' || o.status === 'preparing' || o.status === 'on_the_way') {
+            renderIncomingOrderCard(o);
+          }
+        });
+      }
+    } catch(e) {}
+
     window.HusayniyaCloud.onOrderEvent((type, order) => {
       if (type === 'order_created' && order) {
         renderIncomingOrderCard(order);
@@ -523,12 +534,6 @@ window.addEventListener('load', () => {
     });
   }
 });
-
-function updateLiveBadge(delta) {
-  const badge = document.getElementById('live-badge');
-  let count = parseInt(badge.textContent) + delta;
-  badge.textContent = Math.max(0, count);
-}
 
 // ── Add Item Modal ──
 function openAddItemModal() {

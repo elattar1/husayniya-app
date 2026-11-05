@@ -6,6 +6,12 @@
 (function (window) {
   'use strict';
 
+  // Default Live Supabase Configuration (Al-Husayniya Project)
+  const DEFAULT_CONFIG = {
+    URL: 'https://qhrxymsnmzqtxvddoxdo.supabase.co',
+    KEY: 'sb_publishable_pB-JHTIMDfgQRlJqjYDHjg_KEmL3IvC'
+  };
+
   // Local Storage Keys
   const STORAGE_KEYS = {
     URL: 'husayniya_supabase_url',
@@ -18,8 +24,8 @@
 
   class HusayniyaCloudEngine {
     constructor() {
-      this.supabaseUrl = localStorage.getItem(STORAGE_KEYS.URL) || '';
-      this.supabaseKey = localStorage.getItem(STORAGE_KEYS.KEY) || '';
+      this.supabaseUrl = localStorage.getItem(STORAGE_KEYS.URL) || DEFAULT_CONFIG.URL;
+      this.supabaseKey = localStorage.getItem(STORAGE_KEYS.KEY) || DEFAULT_CONFIG.KEY;
       this.client = null;
       this.isConnected = false;
       this.listeners = [];
