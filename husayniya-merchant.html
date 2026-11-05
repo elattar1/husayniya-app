@@ -1,0 +1,516 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>لوحة صاحب المتجر — خدمات الحسينية</title>
+<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+
+/* ── Background Scene ── */
+.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35;animation:drift 18s ease-in-out infinite alternate}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#00b09b,#045353);top:-150px;right:-150px}
+.o2{width:500px;height:500px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-150px;left:-150px;animation-delay:-6s}
+.o3{width:400px;height:400px;background:radial-gradient(circle,#667eea,#764ba2);top:40%;left:30%;animation-delay:-10s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-15px) scale(1.05)}100%{transform:translate(-20px,20px) scale(.95)}}
+
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+
+/* ── Liquid Glass Utilities ── */
+.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,.14)}
+.glass-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.12);transition:all .3s ease}
+.glass-card:hover{border-color:rgba(0,176,155,.45);box-shadow:0 14px 40px rgba(0,176,155,.15)}
+
+/* ── Gradients ── */
+.gt{background:linear-gradient(135deg,#00e5c8 0%,#43cea2 45%,#f7c948 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt-gold{background:linear-gradient(135deg,#f7c948,#f7971e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── Buttons ── */
+.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-primary:hover{transform:scale(1.02);box-shadow:0 0 25px rgba(0,176,155,.45)}
+
+.btn-tab{padding:10px 18px;border-radius:14px;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .25s;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);display:inline-flex;align-items:center;gap:8px}
+.btn-tab:hover,.btn-tab.active{background:rgba(0,176,155,.2);color:#00e5c8;border-color:rgba(0,176,155,.5);box-shadow:0 0 20px rgba(0,176,155,.2)}
+
+/* ── Live Order Ring Pulse ── */
+.order-alert{animation:pulseBorder 1.5s infinite}
+@keyframes pulseBorder{0%,100%{border-color:rgba(247,201,72,.4);box-shadow:0 0 15px rgba(247,201,72,.2)}50%{border-color:rgba(247,201,72,.9);box-shadow:0 0 30px rgba(247,201,72,.5)}}
+
+/* ── Toggle Switch (Store Open/Close) ── */
+.toggle-switch{position:relative;width:52px;height:28px;background:rgba(255,255,255,.15);border-radius:14px;cursor:pointer;transition:.3s}
+.toggle-switch.active{background:linear-gradient(135deg,#00b09b,#06d6a0);box-shadow:0 0 15px rgba(0,214,160,.4)}
+.toggle-slider{position:absolute;top:3px;right:3px;width:22px;height:22px;background:#fff;border-radius:50%;transition:.3s}
+.toggle-switch.active .toggle-slider{transform:translateX(-24px)}
+
+/* ── Form Inputs ── */
+.input-glass{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.16);color:#fff;transition:all .3s;font-size:.88rem}
+.input-glass:focus{outline:none;background:rgba(255,255,255,.12);border-color:rgba(0,176,155,.7);box-shadow:0 0 0 3px rgba(0,176,155,.15)}
+
+/* ── Modal overlay ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(4,8,20,.85);backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+</style>
+</head>
+<body>
+
+<!-- Animated Orbs -->
+<div class="bg-scene">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<div class="page">
+
+<!-- ══════════════════ NAVBAR ══════════════════ -->
+<nav class="glass sticky top-0 z-50 px-6 py-4" style="background:rgba(4,14,30,.7);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <!-- Merchant Info -->
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl shadow-lg" style="background:linear-gradient(135deg,#00b09b,#06d6a0)">
+        🏪
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-sm font-extrabold text-white">مطعم السلام للمشاوي</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold">بائع معتمد ✓</span>
+        </div>
+        <div class="text-[11px] text-white/50">بوابة إدارة المتجر والطلبات الواردة</div>
+      </div>
+    </div>
+
+    <!-- Store Status Live Toggle -->
+    <div class="flex items-center gap-4">
+      <div class="glass px-3.5 py-1.5 rounded-2xl flex items-center gap-3">
+        <span id="store-status-text" class="text-xs font-bold text-emerald-400">المتجر: يستقبل الطلبات</span>
+        <div id="store-toggle" onclick="toggleStoreStatus()" class="toggle-switch active">
+          <div class="toggle-slider"></div>
+        </div>
+      </div>
+
+      <a href="index.html" class="hidden sm:inline text-xs text-white/60 hover:text-white transition">
+        معاينة المتجر كزبون ↗
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════ MAIN MERCHANT WORKSPACE ══════════════════ -->
+<main class="max-w-7xl mx-auto px-6 py-8 flex-1">
+
+  <!-- Metrics Overview Cards -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div class="glass-card rounded-2xl p-5">
+      <div class="text-white/40 text-xs mb-1">مبيعات اليوم</div>
+      <div class="text-2xl font-black gt">285.50 $</div>
+      <div class="text-[10px] text-emerald-400 mt-1 font-semibold">↑ 18% مقارنة بالأمس</div>
+    </div>
+    <div class="glass-card rounded-2xl p-5">
+      <div class="text-white/40 text-xs mb-1">الطلبات اليومية</div>
+      <div class="text-2xl font-black text-amber-300">14 طلب</div>
+      <div class="text-[10px] text-amber-400 mt-1 font-semibold">3 طلبات جديدة الآن 🔥</div>
+    </div>
+    <div class="glass-card rounded-2xl p-5">
+      <div class="text-white/40 text-xs mb-1">متوسط وقت التجهيز</div>
+      <div class="text-2xl font-black text-white">16 دقيقة</div>
+      <div class="text-[10px] text-emerald-400 mt-1 font-semibold">أسرع من 85% من المتاجر</div>
+    </div>
+    <div class="glass-card rounded-2xl p-5">
+      <div class="text-white/40 text-xs mb-1">تقييم الزبائن</div>
+      <div class="text-2xl font-black text-amber-400">★ 4.9</div>
+      <div class="text-[10px] text-white/40 mt-1">بناءً على 1,420 تقييم</div>
+    </div>
+  </div>
+
+  <!-- Tabs Navigation -->
+  <div class="flex items-center gap-2 mb-6 overflow-x-auto pb-2">
+    <button onclick="switchMerchantTab('live-orders')" id="tab-btn-live-orders" class="btn-tab active">
+      <span>🔔</span>
+      <span>الطلبات الواردة الحية</span>
+      <span class="px-2 py-0.5 rounded-full bg-amber-400 text-black text-[10px] font-extrabold" id="live-badge">3</span>
+    </button>
+    <button onclick="switchMerchantTab('menu-manage')" id="tab-btn-menu-manage" class="btn-tab">
+      <span>🍽️</span>
+      <span>إدارة قائمة المأكولات (الأصناف والأسعار)</span>
+    </button>
+    <button onclick="switchMerchantTab('sales-report')" id="tab-btn-sales-report" class="btn-tab">
+      <span>📊</span>
+      <span>الأرباح والتقارير المالية</span>
+    </button>
+  </div>
+
+  <!-- ═══ 1. LIVE INCOMING ORDERS TAB ═══ -->
+  <div id="tab-live-orders" class="space-y-4">
+    <div class="flex items-center justify-between mb-2">
+      <h2 class="text-base font-bold flex items-center gap-2">
+        <span>مطبخ التحضير المباشر</span>
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      </h2>
+      <button onclick="simulateNewOrder()" class="glass px-3 py-1.5 rounded-xl text-xs font-bold text-amber-300 hover:bg-white/10 transition">
+        + محاكاة وصول طلب جديد 🔔
+      </button>
+    </div>
+
+    <div id="orders-list" class="space-y-4">
+
+      <!-- Order 1: New (Alerting) -->
+      <div class="glass-card rounded-3xl p-6 order-alert relative border border-amber-400" id="order-card-9482">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/10">
+          <div>
+            <div class="flex items-center gap-3">
+              <span class="text-lg font-black text-white">طلب رقم #HS-9482</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-xs font-extrabold animate-bounce">● طلب جديد بانتظار التأكيد!</span>
+            </div>
+            <div class="text-xs text-white/50 mt-1">العميل: أحمد محمد • الحي العسكري بالحسينية • منذ 3 دقائق</div>
+          </div>
+          <div class="text-left">
+            <div class="text-xl font-black gt">47.50 $</div>
+            <span class="text-[10px] text-emerald-400 font-bold">الدفع: كاش عند الاستلام</span>
+          </div>
+        </div>
+
+        <!-- Order Items -->
+        <div class="py-4 space-y-2 text-xs">
+          <div class="flex justify-between items-center bg-white/[0.03] p-2.5 rounded-xl">
+            <span class="font-bold text-white">1 × وجبة كباب عراقي مشكل (مع خبز تنور حار وسماق)</span>
+            <span class="text-white/60">18.50 $</span>
+          </div>
+          <div class="flex justify-between items-center bg-white/[0.03] p-2.5 rounded-xl">
+            <span class="font-bold text-white">2 × نصف دجاجة شواية مع أرز بسمتي وشوربة</span>
+            <span class="text-white/60">24.00 $</span>
+          </div>
+          <div class="flex justify-between items-center bg-white/[0.03] p-2.5 rounded-xl">
+            <span class="font-bold text-white">1 × مشروب غازي عائلي 1 لتر</span>
+            <span class="text-white/60">2.50 $</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-amber-400/10 text-amber-200 text-[11px] font-semibold border border-amber-400/20">
+            ⚠️ ملاحظة العميل: يرجى زيادة صوص العمبة الحارة والخبز يكون محمص جيداً.
+          </div>
+        </div>
+
+        <!-- Action Stepper Buttons -->
+        <div class="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4" id="order-actions-9482">
+          <div class="text-xs text-white/50">
+            الكابتن المخصص للتوصيل: <span class="text-white font-bold">عمر حسن (دراجة نارية)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="advanceOrderStatus('9482', 'prep')" class="btn-primary px-5 py-2.5 rounded-xl text-xs font-bold">
+              ✓ قبول الطلب والبدء بالتجهيز
+            </button>
+            <button onclick="rejectOrder('9482')" class="px-4 py-2.5 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 text-xs font-bold transition">
+              ✕ اعتذار
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order 2: In Preparation -->
+      <div class="glass-card rounded-3xl p-6 relative border border-emerald-500/30" id="order-card-9481">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/10">
+          <div>
+            <div class="flex items-center gap-3">
+              <span class="text-lg font-black text-white">طلب رقم #HS-9481</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-xs font-extrabold">👨‍🍳 جاري الشواء والتجهيز بالمطبخ</span>
+            </div>
+            <div class="text-xs text-white/50 mt-1">العميل: سارة علي • شارع الحسين الرئيسي • متبقي 8 دقائق</div>
+          </div>
+          <div class="text-left">
+            <div class="text-xl font-black text-white">22.00 $</div>
+            <span class="text-[10px] text-amber-300 font-bold">الدفع: مدفوع إلكترونياً (زين كاش)</span>
+          </div>
+        </div>
+
+        <div class="py-4 text-xs space-y-1.5">
+          <div class="font-bold text-white">1 × قوزي لحم على التمن العراقي مع مكسرات</div>
+        </div>
+
+        <div class="pt-4 border-t border-white/10 flex items-center justify-between gap-4">
+          <span class="text-xs text-white/40">السائق في طريقه للمطعم للاستلام</span>
+          <button onclick="advanceOrderStatus('9481', 'ready')" class="btn-primary px-5 py-2.5 rounded-xl text-xs font-bold">
+            📦 تم التجهيز — تسليم الوجبة للسائق
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ 2. MENU MANAGEMENT TAB ═══ -->
+  <div id="tab-menu-manage" class="hidden space-y-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-base font-bold">أصناف وجبات مطعم السلام</h2>
+        <p class="text-xs text-white/50">يمكنك تعديل الأسعار أو إيقاف أي صنف نفد من المطعم مؤقتاً</p>
+      </div>
+      <button onclick="openAddItemModal()" class="btn-primary px-4 py-2.5 rounded-xl text-xs font-bold">
+        + إضافة وجبة جديدة للقائمة
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="merchant-menu-grid">
+
+      <!-- Item 1 -->
+      <div class="glass-card rounded-2xl p-4 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background:linear-gradient(135deg,#1a3a2a,#0d6640)">🍢</div>
+          <div>
+            <h4 class="font-bold text-sm">كباب عراقي مشكل</h4>
+            <div class="text-xs text-emerald-400 font-black">18.50 $</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] text-emerald-400 font-bold">متاح ✓</span>
+          <button onclick="alert('تعديل الصنف')" class="text-xs text-white/60 hover:text-white">✏️</button>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="glass-card rounded-2xl p-4 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background:linear-gradient(135deg,#3a2a1a,#663a0d)">🍖</div>
+          <div>
+            <h4 class="font-bold text-sm">قوزي لحم على التمن</h4>
+            <div class="text-xs text-emerald-400 font-black">22.00 $</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] text-emerald-400 font-bold">متاح ✓</span>
+          <button onclick="alert('تعديل الصنف')" class="text-xs text-white/60 hover:text-white">✏️</button>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="glass-card rounded-2xl p-4 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background:linear-gradient(135deg,#332211,#553311)">🍗</div>
+          <div>
+            <h4 class="font-bold text-sm">دجاجة شواية كاملة</h4>
+            <div class="text-xs text-emerald-400 font-black">14.00 $</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] text-emerald-400 font-bold">متاح ✓</span>
+          <button onclick="alert('تعديل الصنف')" class="text-xs text-white/60 hover:text-white">✏️</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ 3. FINANCIAL & SALES REPORT TAB ═══ -->
+  <div id="tab-sales-report" class="hidden space-y-6">
+    <div class="glass-card rounded-3xl p-6">
+      <h3 class="text-base font-bold mb-4">تقرير أرباح هذا الأسبوع (الحسينية)</h3>
+      <div class="h-44 rounded-2xl bg-white/[0.02] border border-white/5 p-4 flex items-end justify-between gap-2">
+        <div class="flex-1 flex flex-col items-center gap-2">
+          <div class="w-full bg-emerald-500/30 rounded-t-lg" style="height:60%"></div>
+          <span class="text-[10px] text-white/40">السبت</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-2">
+          <div class="w-full bg-emerald-500/30 rounded-t-lg" style="height:75%"></div>
+          <span class="text-[10px] text-white/40">الأحد</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-2">
+          <div class="w-full bg-emerald-500/30 rounded-t-lg" style="height:45%"></div>
+          <span class="text-[10px] text-white/40">الاثنين</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-2">
+          <div class="w-full bg-emerald-500/30 rounded-t-lg" style="height:85%"></div>
+          <span class="text-[10px] text-white/40">الثلاثاء</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-2">
+          <div class="w-full bg-emerald-500/30 rounded-t-lg" style="height:90%"></div>
+          <span class="text-[10px] text-white/40">الأربعاء</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-2">
+          <div class="w-full bg-emerald-400 rounded-t-lg shadow-lg shadow-emerald-500/50" style="height:100%"></div>
+          <span class="text-[10px] text-emerald-400 font-bold">الخميس (اليوم)</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-2">
+          <div class="w-full bg-white/10 rounded-t-lg" style="height:20%"></div>
+          <span class="text-[10px] text-white/40">الجمعة</span>
+        </div>
+      </div>
+      <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center text-xs">
+        <span>صافي الأرباح القابلة للسحب: <span class="font-extrabold text-emerald-400 text-sm">1,420.00 $</span></span>
+        <button onclick="alert('تم إرسال طلب تحويل الأرباح إلى حسابك المصرفي!')" class="btn-primary px-4 py-2 rounded-xl font-bold">طلب سحب الأرباح 💸</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ══════════════════ ADD ITEM MODAL ══════════════════ -->
+<div id="add-item-modal" class="modal-overlay">
+  <div class="glass-card rounded-3xl p-6 md:p-8 max-w-md w-full relative border border-white/20">
+    <button onclick="closeAddItemModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg">✕</button>
+    <h3 class="text-base font-bold mb-4">إضافة وجبة أو صنف جديد للمطعم</h3>
+    <div class="space-y-3 text-xs mb-5">
+      <div>
+        <label class="block font-semibold mb-1 text-white/70">اسم الوجبة</label>
+        <input id="new-item-name" type="text" placeholder="مثلاً: برياني لحم عراقي" class="input-glass w-full rounded-xl px-3 py-2"/>
+      </div>
+      <div>
+        <label class="block font-semibold mb-1 text-white/70">السعر ($)</label>
+        <input id="new-item-price" type="number" step="0.5" placeholder="15.00" class="input-glass w-full rounded-xl px-3 py-2"/>
+      </div>
+      <div>
+        <label class="block font-semibold mb-1 text-white/70">القسم</label>
+        <select id="new-item-cat" class="input-glass w-full rounded-xl px-3 py-2">
+          <option class="bg-slate-900">مشاوي وكباب</option>
+          <option class="bg-slate-900">قوزي وأرز</option>
+          <option class="bg-slate-900">وجبات سريعة</option>
+          <option class="bg-slate-900">مقبلات وسلطات</option>
+          <option class="bg-slate-900">مشروبات وعصائر</option>
+        </select>
+      </div>
+      <div>
+        <label class="block font-semibold mb-1 text-white/70">وصف المكونات</label>
+        <input id="new-item-desc" type="text" placeholder="مكونات الوجبة وطريقة التحضير..." class="input-glass w-full rounded-xl px-3 py-2"/>
+      </div>
+    </div>
+    <button onclick="saveNewItem()" class="btn-primary w-full py-3 rounded-xl text-xs font-bold">
+      حفظ ونشر الوجبة في التطبيق 🚀
+    </button>
+  </div>
+</div>
+
+</div><!-- .page -->
+
+<script>
+// ── Store Status Toggle ──
+let isStoreOpen = true;
+function toggleStoreStatus() {
+  isStoreOpen = !isStoreOpen;
+  const toggle = document.getElementById('store-toggle');
+  const text = document.getElementById('store-status-text');
+  if (isStoreOpen) {
+    toggle.classList.add('active');
+    text.textContent = 'المتجر: يستقبل الطلبات';
+    text.className = 'text-xs font-bold text-emerald-400';
+  } else {
+    toggle.classList.remove('active');
+    text.textContent = 'المتجر: مغلق مؤقتاً';
+    text.className = 'text-xs font-bold text-rose-400';
+  }
+}
+
+// ── Tab Navigation ──
+function switchMerchantTab(tabId) {
+  ['live-orders', 'menu-manage', 'sales-report'].forEach(t => {
+    document.getElementById(`tab-btn-${t}`).classList.remove('active');
+    document.getElementById(`tab-${t}`).classList.add('hidden');
+  });
+  document.getElementById(`tab-btn-${tabId}`).classList.add('active');
+  document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+}
+
+// ── Order Workflow Simulation ──
+function advanceOrderStatus(orderId, nextState) {
+  const card = document.getElementById(`order-card-${orderId}`);
+  const actions = document.getElementById(`order-actions-${orderId}`);
+  
+  if (nextState === 'prep') {
+    card.classList.remove('order-alert', 'border-amber-400');
+    card.classList.add('border-blue-400');
+    actions.innerHTML = `
+      <div class="text-xs text-white/60">حالة الطلب: <span class="text-blue-300 font-bold">جاري التحضير بالمطبخ 👨‍🍳</span></div>
+      <button onclick="advanceOrderStatus('${orderId}', 'ready')" class="btn-primary px-5 py-2.5 rounded-xl text-xs font-bold">
+        📦 تم التجهيز — تسليم الوجبة للسائق
+      </button>
+    `;
+  } else if (nextState === 'ready') {
+    card.classList.remove('border-blue-400');
+    card.classList.add('border-emerald-400');
+    actions.innerHTML = `
+      <div class="text-xs text-emerald-400 font-bold">✓ تم تسليم الوجبة للكابتن بنجاح وهو في طريقه للعميل! 🛵</div>
+    `;
+  }
+}
+
+function rejectOrder(orderId) {
+  if (confirm('هل أنت متأكد من الاعتذار عن هذا الطلب؟')) {
+    document.getElementById(`order-card-${orderId}`).remove();
+    updateLiveBadge(-1);
+  }
+}
+
+function simulateNewOrder() {
+  const orderNum = Math.floor(1000 + Math.random() * 9000);
+  const container = document.getElementById('orders-list');
+  const newOrderHtml = `
+    <div class="glass-card rounded-3xl p-6 order-alert relative border border-amber-400" id="order-card-${orderNum}">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/10">
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="text-lg font-black text-white">طلب جديد #HS-${orderNum}</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-xs font-extrabold animate-bounce">● وصل الآن!</span>
+          </div>
+          <div class="text-xs text-white/50 mt-1">العميل: زبون جديد • الحسينية، حي الزهور • منذ لحظات</div>
+        </div>
+        <div class="text-left">
+          <div class="text-xl font-black gt">28.00 $</div>
+          <span class="text-[10px] text-emerald-400 font-bold">كاش عند الاستلام</span>
+        </div>
+      </div>
+      <div class="py-4 text-xs">
+        <div class="font-bold text-white">2 × وجبة كباب عراقي مشكل + بيبسي بارد</div>
+      </div>
+      <div class="pt-4 border-t border-white/10 flex items-center justify-end gap-2" id="order-actions-${orderNum}">
+        <button onclick="advanceOrderStatus('${orderNum}', 'prep')" class="btn-primary px-5 py-2.5 rounded-xl text-xs font-bold">
+          ✓ قبول الطلب
+        </button>
+      </div>
+    </div>
+  `;
+  container.insertAdjacentHTML('afterbegin', newOrderHtml);
+  updateLiveBadge(1);
+  alert('🔔 تنبيه صوتي: وصل طلب طعام جديد للمطعم!');
+}
+
+function updateLiveBadge(delta) {
+  const badge = document.getElementById('live-badge');
+  let count = parseInt(badge.textContent) + delta;
+  badge.textContent = Math.max(0, count);
+}
+
+// ── Add Item Modal ──
+function openAddItemModal() {
+  document.getElementById('add-item-modal').classList.add('show');
+}
+function closeAddItemModal() {
+  document.getElementById('add-item-modal').classList.remove('show');
+}
+function saveNewItem() {
+  const name = document.getElementById('new-item-name').value.trim();
+  const price = document.getElementById('new-item-price').value.trim();
+  if (!name || !price) {
+    alert('يرجى ملء اسم الوجبة والسعر');
+    return;
+  }
+  const grid = document.getElementById('merchant-menu-grid');
+  grid.innerHTML += `
+    <div class="glass-card rounded-2xl p-4 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background:linear-gradient(135deg,#00b09b,#06d6a0)">🥘</div>
+        <div>
+          <h4 class="font-bold text-sm">${name}</h4>
+          <div class="text-xs text-emerald-400 font-black">${parseFloat(price).toFixed(2)} $</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-[10px] text-emerald-400 font-bold">متاح ✓</span>
+      </div>
+    </div>
+  `;
+  closeAddItemModal();
+  alert(`تمت إضافة الوجبة "${name}" ونشرها بنجاح في تطبيق خدمات الحسينية!`);
+}
+</script>
+
+</body>
+</html>
+
