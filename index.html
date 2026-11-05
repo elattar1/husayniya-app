@@ -440,7 +440,7 @@ body {
         </div>
 
         <!-- Store 6: سوبر ماركت الفرسان -->
-        <div onclick="navigateTo('store-baz')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="grocery" data-name="سوبر ماركت الفرسان">
+        <div onclick="navigateTo('store-forsan')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="grocery" data-name="سوبر ماركت الفرسان هايبر">
           <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
             <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" alt="هايبر الفرسان" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -452,6 +452,38 @@ body {
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
             <span>⏱️ 15 - 20 دقيقة</span>
             <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
+          </div>
+        </div>
+
+        <!-- Store 6B: بروستد وشاورما الحسينية -->
+        <div onclick="navigateTo('store-broast')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="بروستد وشاورما الحسينية كريسبي">
+          <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80" alt="بروستد الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.8</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-1">بروستد وشاورما الحسينية — شارع المركز</h3>
+          <p class="text-xs text-white/50 mb-3">دجاج مقرمش كريسبي، فتة شاورما سوري، ساندوتشات كرانشي، وتومية أصلية</p>
+          <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
+            <span>⏱️ 20 - 30 دقيقة</span>
+            <span class="text-emerald-400 font-bold">توصيل 12 ج.م</span>
+          </div>
+        </div>
+
+        <!-- Store 6C: أسماك وسيفود القنال والبردويل -->
+        <div onclick="navigateTo('store-fish')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="أسماك وسيفود القنال البردويل">
+          <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" alt="أسماك وسيفود الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.9</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-1">أسماك وسيفود القنال والبردويل — جمال عبد الناصر</h3>
+          <p class="text-xs text-white/50 mb-3">جمبري مشوي، بوري سنجاري، طواجن سيفود بالوايت صوص، وشوربة مخلية</p>
+          <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
+            <span>⏱️ 25 - 40 دقيقة</span>
+            <span class="text-emerald-400 font-bold">توصيل 15 ج.م</span>
           </div>
         </div>
 
@@ -589,6 +621,9 @@ const PAGE_ROUTES = {
   'store-pizza': 'husayniya-store.html?store=pizza',
   'store-shendel': 'husayniya-store.html?store=shendel',
   'store-falafel': 'husayniya-store.html?store=falafel',
+  'store-forsan': 'husayniya-store.html?store=forsan',
+  'store-fish': 'husayniya-store.html?store=fish',
+  'store-broast': 'husayniya-store.html?store=broast',
   'checkout': 'husayniya-checkout.html',
   'tracking': 'husayniya-tracking.html',
   'account': 'husayniya-account.html',

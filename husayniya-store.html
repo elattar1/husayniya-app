@@ -372,7 +372,7 @@ body {
             <span class="text-[10px] text-emerald-400">▼</span>
           </button>
           <div id="store-selector-dropdown" class="hidden absolute left-0 mt-2 w-64 glass-card rounded-2xl p-2 z-50 shadow-2xl border border-white/20 bg-[#091124]/95 backdrop-blur-xl">
-            <div class="text-[10px] text-white/50 px-2 py-1 font-bold">مطاعم الحسينية المعتمدة:</div>
+            <div class="text-[10px] text-white/50 px-2 py-1 font-bold">مطاعم ومتاجر الحسينية:</div>
             <a href="husayniya-store.html?store=baz" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
               <span class="text-base">🍖</span>
               <div class="min-w-0 flex-1 truncate font-semibold">مشويات الباز والحسينية</div>
@@ -392,6 +392,18 @@ body {
             <a href="husayniya-store.html?store=falafel" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
               <span class="text-base">🧆</span>
               <div class="min-w-0 flex-1 truncate font-semibold">فول وفلافل البرنس</div>
+            </a>
+            <a href="husayniya-store.html?store=broast" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="text-base">🍗</span>
+              <div class="min-w-0 flex-1 truncate font-semibold">بروستد وشاورما الحسينية</div>
+            </a>
+            <a href="husayniya-store.html?store=fish" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="text-base">🐟</span>
+              <div class="min-w-0 flex-1 truncate font-semibold">أسماك وسيفود الحسينية</div>
+            </a>
+            <a href="husayniya-store.html?store=forsan" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="text-base">🛒</span>
+              <div class="min-w-0 flex-1 truncate font-semibold">هايبر وسوبر ماركت الفرسان</div>
             </a>
           </div>
         </div>
@@ -1142,6 +1154,328 @@ const STORES_DATABASE = {
     reviews: [
       { author: 'الحاج عاطف عبد الحميد (سراج)', text: 'أحسن فلافل بالجبنة الكيري ممكن تاكلها في حياتك، فول البرنس رقم واحد في الحسينية.', rating: '★★★★★', time: 'اليوم' },
       { author: 'أحمد بدوي', text: 'سرعة توصيل الفطار في الصبح ممتازة، الأكل بيوصل سخن والعيش طازة.', rating: '★★★★★', time: 'منذ يومين' }
+    ]
+  },
+
+  // ── 6. بروستد وشاورما الحسينية ──
+  'broast': {
+    id: 'broast',
+    name: 'بروستد وشاورما الحسينية — كريسبي ووجبات عائلية',
+    tagline: 'دجاج مقرمش بخلطة الأعشاب السرية، فتة شاورما سوري، برجر ع الفحم، كول سلو وتومية بيضاء أصلية',
+    category: 'بروستد وشاورما فاست فود',
+    statusBadge: '● مفتوح الآن',
+    featureBadge: '🍗 قرمشة سوبر كرانشي',
+    rating: '★ 4.8',
+    reviewsCount: '(+1,580 تقييم)',
+    deliveryTime: '20 - 35 دقيقة',
+    address: 'شارع المركز بجوار بنك الإسكندرية، الحسينية',
+    deliveryFee: '12 ج.م',
+    minOrder: '50 ج.م',
+    paymentMethods: 'كاش • فودافون كاش • إنستاباي',
+    avatar: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=300&q=80',
+    cover: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=1200&q=80',
+    themeGradient: 'linear-gradient(135deg, #3d1b06 0%, #5e2808 50%, #2b1103 100%)',
+    categories: [
+      { id: 'all', name: '🍗 كامل الوجبات' },
+      { id: 'broast', name: '🍗 وجبات البروستد' },
+      { id: 'shawarma', name: '🌯 الشاورما والفتات' },
+      { id: 'strips', name: '🍟 الستريبس والكرانشي' },
+      { id: 'sides', name: '🥗 المقبلات والبطاطس' },
+      { id: 'reviews', name: '⭐ تجارب الزبائن' }
+    ],
+    items: [
+      {
+        id: 'br-1',
+        title: 'وجبة بروستد 4 قطع مقرمشة (عادي أو حار)',
+        price: 160,
+        desc: '4 قطع دجاج ذهبي مقرمش مع بطاطس فارم فريتس، سلطة كول سلو، صوص تومية، و2 عيش كيزر.',
+        image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=600&q=80',
+        badge: 'الأكثر مبيعاً 🔥',
+        badgeColor: 'bg-emerald-500 text-black',
+        cat: 'broast',
+        icon: '🍗'
+      },
+      {
+        id: 'br-2',
+        title: 'وجبة بروستد عائلية 8 قطع + لتر كوكاكولا وبطاطس لارج',
+        price: 295,
+        desc: '8 قطع دجاج مقرمش مع طبق بطاطس عائلي، 2 كول سلو، 2 تومية، 4 عيش، وزجاجة كوكاكولا لتر.',
+        image: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80',
+        badge: 'توفير العيلة 👑',
+        badgeColor: 'bg-amber-400 text-black',
+        cat: 'broast',
+        icon: '🍗'
+      },
+      {
+        id: 'br-3',
+        title: 'فتة شاورما فراخ سوري ملوكي بالموزاريلا',
+        price: 110,
+        desc: 'أرز بسمتي أصفر مع قطع شاورما دجاج متبلة، عيش سوري مقرمش، صوص تومية كريمي، ورشة موزاريلا.',
+        image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=600&q=80',
+        badge: 'شاورما سوري',
+        badgeColor: 'bg-rose-500 text-white',
+        cat: 'shawarma',
+        icon: '🌯'
+      },
+      {
+        id: 'br-4',
+        title: 'ساندوتش شاورما فراخ سوري سوبر دبل مع جبنة',
+        price: 65,
+        desc: 'رول عيش صاج محمص على الجريل مليان شاورما فراخ، خيار مخلل مقرمش، وتومية بيضاء غنية.',
+        image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=600&q=80',
+        badge: 'ساندوتش صاروخ',
+        badgeColor: 'bg-blue-500 text-white',
+        cat: 'shawarma',
+        icon: '🌯'
+      },
+      {
+        id: 'br-5',
+        title: 'وجبة ستريبس دجاج مقرمش 5 قطع مع صوص الباربيكيو',
+        price: 125,
+        desc: 'أصابع صدور دجاج فيليه مقرمشة خالية من العظم مع بطاطس فارم، كول سلو، وصوص باربيكيو وتومية.',
+        image: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80',
+        badge: 'ستريبس كرانشي',
+        badgeColor: 'bg-amber-500 text-black',
+        cat: 'strips',
+        icon: '🍟'
+      },
+      {
+        id: 'br-6',
+        title: 'طبق بطاطس فارم فريتس لارج بصوص الشيدر السايح',
+        price: 45,
+        desc: 'أصابع بطاطس مقلية ذهبية مقرمشة غرقانة بصوص جبنة شيدر أمريكي أصلي ورشة بهارات خاصة.',
+        image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80',
+        badge: 'شيدر لافرز',
+        badgeColor: 'bg-teal-400 text-black',
+        cat: 'sides',
+        icon: '🍟'
+      }
+    ],
+    reviews: [
+      { author: 'طارق صلاح الدين', text: 'البروستد طعمه خطير ومقرمش من برة وطري جداً من جوة، والتومية مظبوطة 10/10.', rating: '★★★★★', time: 'اليوم' },
+      { author: 'حسام خليل', text: 'أحلى فتة شاورما فراخ في الحسينية، كمية محترمة وطعم سوري أصيل.', rating: '★★★★★', time: 'منذ يومين' }
+    ]
+  },
+
+  // ── 7. أسماك وسيفود الحسينية ──
+  'fish': {
+    id: 'fish',
+    name: 'أسماك وسيفود الحسينية — القنال والبردويل',
+    tagline: 'أطازج أسماك البحر والبحيرات، جمبري مشوي ومقلي، بوري مشوي زيت وليمون، وطواجن سيفود بالموتزاريلا',
+    category: 'مأكولات بحرية وسيفود',
+    statusBadge: '● مفتوح الآن',
+    featureBadge: '🐟 طازج من البحر يومياً',
+    rating: '★ 4.9',
+    reviewsCount: '(+1,240 تقييم)',
+    deliveryTime: '25 - 40 دقيقة',
+    address: 'شارع جمال عبد الناصر أمام مجمع المصالح، الحسينية',
+    deliveryFee: '15 ج.م',
+    minOrder: '60 ج.م',
+    paymentMethods: 'كاش • فودافون كاش • إنستاباي',
+    avatar: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=300&q=80',
+    cover: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=80',
+    themeGradient: 'linear-gradient(135deg, #082133 0%, #0d3c5e 50%, #071927 100%)',
+    categories: [
+      { id: 'all', name: '🐟 كامل المنيو' },
+      { id: 'grills', name: '🔥 مشويات وجمبري' },
+      { id: 'tajin', name: '🍲 طواجن وسي فود' },
+      { id: 'fried', name: '🍤 مقليات مقرمشة' },
+      { id: 'soup', name: '🥣 شوربات ومقبلات' },
+      { id: 'reviews', name: '⭐ آراء عشاق الأسماك' }
+    ],
+    items: [
+      {
+        id: 'fish-1',
+        title: 'وجبة سمك بوري سنجاري فاخر بالأرز والسلطات',
+        price: 135,
+        desc: 'سمك بوري مبطرخ مشوي بالخلطة السنجاري الإسكندراني مع أرز صيادية بني، سلطة خضراء وطحينة.',
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80',
+        badge: 'الأكثر طلباً 🔥',
+        badgeColor: 'bg-emerald-500 text-black',
+        cat: 'grills',
+        icon: '🐟'
+      },
+      {
+        id: 'fish-2',
+        title: 'طاجن سي فود ميكس بالوايت صوص والموزاريلا',
+        price: 195,
+        desc: 'جمبري، سبيط مقطع، سمك فيليه، وكابوريا في صوص كريمة غني مع جبنة موزاريلا محمرة في الفرن.',
+        image: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80',
+        badge: 'طاجن مميز 👑',
+        badgeColor: 'bg-amber-400 text-black',
+        cat: 'tajin',
+        icon: '🍲'
+      },
+      {
+        id: 'fish-3',
+        title: 'نصف كيلو جمبري جامبو مشوي ع الفحم بالتتبيلة',
+        price: 260,
+        desc: 'جمبري بحري جامبو مشوي على الفحم بخلطة الليمون والكمون والزعتر مع صوص تارتار.',
+        image: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=600&q=80',
+        badge: 'جمبري جامبو',
+        badgeColor: 'bg-rose-500 text-white',
+        cat: 'grills',
+        icon: '🍤'
+      },
+      {
+        id: 'fish-4',
+        title: 'شوربة سي فود مخلية بالكريمة الغنية',
+        price: 95,
+        desc: 'شوربة فواكه بحر مخلية تماماً بقطع الجمبري والكلماري والفيليه مع كريمة طهي طازجة ولمسة شبت.',
+        image: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80',
+        badge: 'شوربة ملوكي',
+        badgeColor: 'bg-teal-400 text-black',
+        cat: 'soup',
+        icon: '🥣'
+      },
+      {
+        id: 'fish-5',
+        title: 'وجبة سمك بلطي بلدي مقلي مقرمش مع أرز وسلطات',
+        price: 90,
+        desc: 'سمك بلطي طازج مقلي ذهبي مقرمش بتتبيلة ثوم وكمون مع أرز صيادية وسلطة بلدي وعيش ساخن.',
+        image: 'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=600&q=80',
+        badge: 'وجبة توفير ⚡',
+        badgeColor: 'bg-blue-500 text-white',
+        cat: 'fried',
+        icon: '🐟'
+      },
+      {
+        id: 'fish-6',
+        title: 'ميكس مقليات سيفود (جمبري + سبيط مقرمش + فيليه)',
+        price: 220,
+        desc: 'تشكيلة مقليات ذهبية مقرمشة تكفي شخصين مع بطاطس فارم فريتس وصوصات وليمون مخلل.',
+        image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80',
+        badge: 'ميكس القنال',
+        badgeColor: 'bg-amber-500 text-black',
+        cat: 'fried',
+        icon: '🍤'
+      }
+    ],
+    reviews: [
+      { author: 'الدكتور عصام النجار', text: 'طاجن السيفود بالوايت صوص حكاية لا تفوت، السمك طازة جداً ورائحته تفتح النفس.', rating: '★★★★★', time: 'أمس' },
+      { author: 'محمود عبد السلام', text: 'الجمبري المشوي مستوي صح والشوربة غنية جداً، أحسن مطعم سمك دخل الحسينية.', rating: '★★★★★', time: 'منذ 3 أيام' }
+    ]
+  },
+
+  // ── 8. هايبر وسوبر ماركت الفرسان ──
+  'forsan': {
+    id: 'forsan',
+    name: 'سوبر ماركت وهايبر الفرسان — شارع بورسعيد',
+    tagline: 'أكبر تشكيلة بقالة، منتجات ألبان طازجة، أجبان، تموين منزلي، ومجمدات وعصائر بأفضل الأسعار',
+    category: 'سوبر ماركت وبقالة تموينية',
+    statusBadge: '● متاح للتسوق والتوصيل',
+    featureBadge: '🛒 الهايبر الأكثر شمولاً',
+    rating: '★ 4.8',
+    reviewsCount: '(+910 تقييم)',
+    deliveryTime: '15 - 25 دقيقة',
+    address: 'شارع بورسعيد أمام مدرسة الصنايع، الحسينية',
+    deliveryFee: '10 ج.م',
+    minOrder: '40 ج.م',
+    paymentMethods: 'كاش • فودافون كاش • إنستاباي',
+    avatar: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=300&q=80',
+    cover: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80',
+    themeGradient: 'linear-gradient(135deg, #062b1e 0%, #0d4a36 50%, #061c14 100%)',
+    categories: [
+      { id: 'all', name: '🛒 جميع الأقسام' },
+      { id: 'dairy', name: '🧀 الأجبان والألبان' },
+      { id: 'pantry', name: '🌾 البقالة والتموين' },
+      { id: 'frozen', name: '❄️ المجمدات واللحوم' },
+      { id: 'drinks', name: '🧃 المشروبات والعصائر' },
+      { id: 'reviews', name: '⭐ تقييمات العملاء' }
+    ],
+    items: [
+      {
+        id: 'for-1',
+        title: 'جبنة رومي قديمة بطارخ فاخرة (ربع كيلو)',
+        price: 70,
+        desc: 'جبنة رومي بلدي معتقة وطازجة مقطعة شرائح رفيعة في طبق مفرغ الهواء.',
+        image: 'https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=600&q=80',
+        badge: 'الأكثر مبيعاً ⭐',
+        badgeColor: 'bg-amber-400 text-black',
+        cat: 'dairy',
+        icon: '🧀'
+      },
+      {
+        id: 'for-2',
+        title: 'جبنة موزاريلا طبيعية مبشورة 500 جم',
+        price: 85,
+        desc: 'موزاريلا مطاطية عالية الجودة مثالية للبيتزا والمكرونة البشاميل والطواجن.',
+        image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80',
+        badge: 'مطاطية فاخرة',
+        badgeColor: 'bg-emerald-500 text-black',
+        cat: 'dairy',
+        icon: '🧀'
+      },
+      {
+        id: 'for-3',
+        title: 'كرتونة بيض أبيض مزارع طازج (30 بيضة)',
+        price: 160,
+        desc: 'بيض مزارع طازج يوم بيوم مفحوص ونظيف في طبق كرتون محكم.',
+        image: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=600&q=80',
+        badge: 'طازج يومياً',
+        badgeColor: 'bg-emerald-500 text-black',
+        cat: 'dairy',
+        icon: '🥚'
+      },
+      {
+        id: 'for-4',
+        title: 'كيس أرز مصري فاخر عريض الحبة (5 كجم)',
+        price: 175,
+        desc: 'أرز أبيض مصري نمرة واحد مغسول ومنقى آلياً 100% بدون شوائب.',
+        image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80',
+        badge: 'تموين البيت',
+        badgeColor: 'bg-blue-500 text-white',
+        cat: 'pantry',
+        icon: '🌾'
+      },
+      {
+        id: 'for-5',
+        title: 'زجاجة زيت ذرة عافية نقي 1.6 لتر',
+        price: 135,
+        desc: 'زيت ذرة خفيف نقي للطبخ والقلي الخفيف خالي من الكوليسترول.',
+        image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80',
+        badge: 'عافية الأصلي',
+        badgeColor: 'bg-amber-400 text-black',
+        cat: 'pantry',
+        icon: '🍶'
+      },
+      {
+        id: 'for-6',
+        title: 'لبن جهينة كامل الدسم عبوة 1 لتر',
+        price: 42,
+        desc: 'حليب طبيعي معقم 100% مغذي وصحي للعائلة وللشاي والقهوة.',
+        image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=600&q=80',
+        badge: 'جهينة',
+        badgeColor: 'bg-blue-400 text-black',
+        cat: 'dairy',
+        icon: '🥛'
+      },
+      {
+        id: 'for-7',
+        title: 'علبة برجر لحمة بقري جامبو متبل (8 قطع)',
+        price: 120,
+        desc: 'برجر لحم بلدي متبل سريع التحضير في 5 دقائق مع سمسم وصوص.',
+        image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80',
+        badge: 'مجمدات جاهزة',
+        badgeColor: 'bg-rose-500 text-white',
+        cat: 'frozen',
+        icon: '🥩'
+      },
+      {
+        id: 'for-8',
+        title: 'كرتونة مياه معدنية طبيعية 12 زجاجة (1.5 لتر)',
+        price: 75,
+        desc: 'مياه شرب نقية معقمة من أنقى الآبار الطبيعية لترطيب يومي.',
+        image: 'https://images.unsplash.com/photo-1560023907-5f339617ea30?auto=format&fit=crop&w=600&q=80',
+        badge: 'عرض كرتونة',
+        badgeColor: 'bg-teal-500 text-black',
+        cat: 'drinks',
+        icon: '💧'
+      }
+    ],
+    reviews: [
+      { author: 'المهندس كريم شريف', text: 'أفضل سوبر ماركت في الحسينية، الطلب وصلني خلال ربع ساعة وكل الحاجات طازة وتاريخ صلاحيتها جديد.', rating: '★★★★★', time: 'اليوم' },
+      { author: 'أم زياد (شارع بورسعيد)', text: 'الأجبان والبيض عندهم دايماً طازة ومغلفة بشكل ممتاز، وتوصيل الدليفري محترم جداً.', rating: '★★★★★', time: 'منذ يومين' }
     ]
   }
 };

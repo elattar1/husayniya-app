@@ -637,14 +637,20 @@ async function submitOrder() {
   }
 
   const grandTotal = Math.max(0, subtotal + deliveryFee - discount);
-  const address = 'حي المعاشات، شارع المدارس أمام مدرسة التجارة، الحسينية';
+  const address = 'الحسينية — شارع المركز أمام بنك مصر';
+
+  // Read logged in user
+  const user = window.HusayniyaCloud ? await window.HusayniyaCloud.getCurrentUser() : null;
+  const customerName = user ? (user.name || user.email.split('@')[0]) : 'عميل الحسينية';
+  const customerPhone = user ? (user.phone || '01012345678') : '01012345678';
 
   // Realtime Cloud Insertion
+  let createdOrderCode = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
   if (window.HusayniyaCloud) {
     const res = await window.HusayniyaCloud.createOrder({
       store_name: activeStoreName,
-      customer_name: 'أحمد السيد',
-      customer_phone: '01012345678',
+      customer_name: customerName,
+      customer_phone: customerPhone,
       items: cartItems,
       total_amount: grandTotal,
       delivery_fee: deliveryFee,
@@ -652,6 +658,7 @@ async function submitOrder() {
       delivery_address: address
     });
     if (res && res.order) {
+      createdOrderCode = res.order.order_code;
       const codeEl = document.querySelector('#success-modal .text-emerald-400');
       if (codeEl) codeEl.textContent = '#' + res.order.order_code;
     }
@@ -661,6 +668,8 @@ async function submitOrder() {
   localStorage.removeItem('husayniya_cart');
 
   document.getElementById('confirmed-payment').textContent = selectedPaymentMethod;
+  const trackBtn = document.querySelector('#success-modal a[href*="tracking"]');
+  if (trackBtn) trackBtn.href = `husayniya-tracking.html?order=${createdOrderCode}`;
   document.getElementById('success-modal').classList.add('show');
 }
 

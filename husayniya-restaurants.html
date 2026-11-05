@@ -550,12 +550,15 @@ body {
       <!-- Filter Pills -->
       <div class="w-full max-w-full overflow-hidden">
         <div class="flex items-center gap-2 overflow-x-auto scroll-touch pb-2 w-full max-w-full">
-          <button onclick="filterCategory('all', this)" class="filter-pill active">🍽️ جميع المطاعم (5)</button>
+          <button onclick="filterCategory('all', this)" class="filter-pill active">🍽️ جميع المطاعم (8)</button>
           <button onclick="filterCategory('grills', this)" class="filter-pill">🍢 مشويات وكباب</button>
-          <button onclick="filterCategory('koshary', this)" class="filter-pill">🍲 كشري وطواجن</button>
+          <button onclick="filterCategory('broast', this)" class="filter-pill">🍗 بروستد وشاورما</button>
+          <button onclick="filterCategory('fish', this)" class="filter-pill">🐟 أسماك وسيفود</button>
           <button onclick="filterCategory('pizza', this)" class="filter-pill">🍕 بيتزا وكريب</button>
+          <button onclick="filterCategory('koshary', this)" class="filter-pill">🍲 كشري وطواجن</button>
           <button onclick="filterCategory('dessert', this)" class="filter-pill">🍰 حلويات وتورتات</button>
           <button onclick="filterCategory('breakfast', this)" class="filter-pill">🧆 فطور شعبي</button>
+          <button onclick="filterCategory('grocery', this)" class="filter-pill">🛒 هايبر وبقالة</button>
         </div>
       </div>
 
@@ -693,6 +696,87 @@ body {
           </div>
           <a href="husayniya-store.html?store=falafel" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 no-underline text-white">
             <span>تصفح المنيو واطلب الآن</span>
+            <span>👈</span>
+          </a>
+        </div>
+
+        <!-- Restaurant 6: بروستد وشاورما الحسينية -->
+        <div class="store-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="broast" data-name="بروستد كريسبي شاورما فراخ سوري بطاطس فارم كول سلو">
+          <div>
+            <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80" alt="بروستد وشاورما الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.8</span>
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs px-2 py-0.5 rounded-lg bg-amber-500/20 text-amber-400 font-bold">بروستد وشاورما كريسبي</span>
+              <span class="text-xs text-white/40">• (+1,580 تقييم)</span>
+            </div>
+            <h3 class="font-bold text-lg text-white mb-1.5">بروستد وشاورما الحسينية</h3>
+            <p class="text-xs text-white/60 mb-3 leading-relaxed">دجاج مقرمش بخلطة الأعشاب السرية، فتة شاورما سوري، ساندوتشات كرانشي، وتومية أصلية.</p>
+            <div class="flex items-center justify-between text-xs text-white/70 py-2.5 border-y border-white/5 mb-4">
+              <span>⏱️ 20 - 35 دقيقة</span>
+              <span class="text-emerald-400 font-bold">توصيل 12 ج.م</span>
+              <span>📍 شارع المركز</span>
+            </div>
+          </div>
+          <a href="husayniya-store.html?store=broast" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 no-underline text-white">
+            <span>تصفح المنيو واطلب الآن</span>
+            <span>👈</span>
+          </a>
+        </div>
+
+        <!-- Restaurant 7: أسماك وسيفود القنال والبردويل -->
+        <div class="store-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="fish" data-name="أسماك وسيفود القنال البردويل جمبري بوري طاجن وايت صوص">
+          <div>
+            <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" alt="أسماك وسيفود الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.9</span>
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs px-2 py-0.5 rounded-lg bg-blue-500/20 text-blue-400 font-bold">مأكولات بحرية وسيفود</span>
+              <span class="text-xs text-white/40">• (+1,240 تقييم)</span>
+            </div>
+            <h3 class="font-bold text-lg text-white mb-1.5">أسماك وسيفود القنال والبردويل</h3>
+            <p class="text-xs text-white/60 mb-3 leading-relaxed">أطازج أسماك البحر، جمبري مشوي، بوري سنجاري، طواجن سيفود بالوايت صوص، وشوربة مخلية.</p>
+            <div class="flex items-center justify-between text-xs text-white/70 py-2.5 border-y border-white/5 mb-4">
+              <span>⏱️ 25 - 40 دقيقة</span>
+              <span class="text-emerald-400 font-bold">توصيل 15 ج.م</span>
+              <span>📍 جمال عبد الناصر</span>
+            </div>
+          </div>
+          <a href="husayniya-store.html?store=fish" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 no-underline text-white">
+            <span>تصفح المنيو واطلب الآن</span>
+            <span>👈</span>
+          </a>
+        </div>
+
+        <!-- Restaurant 8: هايبر وسوبر ماركت الفرسان -->
+        <div class="store-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="grocery" data-name="هايبر الفرسان سوبر ماركت جبن ألبان بيض تموين بقالة">
+          <div>
+            <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" alt="هايبر الفرسان" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● متاح للتسوق</span>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.8</span>
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs px-2 py-0.5 rounded-lg bg-teal-500/20 text-teal-400 font-bold">سوبر ماركت وبقالة</span>
+              <span class="text-xs text-white/40">• (+910 تقييم)</span>
+            </div>
+            <h3 class="font-bold text-lg text-white mb-1.5">هايبر وسوبر ماركت الفرسان</h3>
+            <p class="text-xs text-white/60 mb-3 leading-relaxed">أكبر تشكيلة بقالة، منتجات ألبان طازجة، جبن رومي وموزاريلا، تموين منزلي، ومجمدات وعصائر.</p>
+            <div class="flex items-center justify-between text-xs text-white/70 py-2.5 border-y border-white/5 mb-4">
+              <span>⏱️ 15 - 25 دقيقة</span>
+              <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
+              <span>📍 شارع بورسعيد</span>
+            </div>
+          </div>
+          <a href="husayniya-store.html?store=forsan" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 no-underline text-white">
+            <span>تصفح المنتجات واطلب الآن</span>
             <span>👈</span>
           </a>
         </div>

@@ -41,6 +41,25 @@
           this.isConnected = true;
           console.log('⚡ [Husayniya Cloud] متصل بقاعدة بيانات Supabase بنجاح');
           this.listenToSupabaseRealtime();
+
+          // Auth State Change Listener (OAuth Google & Email/Password)
+          this.client.auth.onAuthStateChange((event, session) => {
+            console.log('⚡ [Husayniya Cloud Auth]:', event, session?.user?.email || '');
+            if (session && session.user) {
+              this.saveLocalUser(session.user);
+            } else if (event === 'SIGNED_OUT') {
+              localStorage.removeItem('husayniya_current_user');
+              this.syncNavbarAuth();
+            }
+          });
+
+          // Restore active session if present
+          this.client.auth.getSession().then(({ data }) => {
+            if (data && data.session && data.session.user) {
+              this.saveLocalUser(data.session.user);
+            }
+          }).catch(() => {});
+
         } catch (e) {
           console.warn('⚠️ [Husayniya Cloud] فشل الاتصال المباشر بـ Supabase:', e);
           this.isConnected = false;
@@ -48,6 +67,15 @@
       } else {
         this.isConnected = false;
         console.log('ℹ️ [Husayniya Cloud] يعمل بنظام المزامنة الفورية المحلية (BroadcastChannel). اربط Supabase للتزامن بين الأجهزة المختلفة.');
+      }
+
+      // Sync navbar user profile state on initialization
+      if (typeof document !== 'undefined') {
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => this.syncNavbarAuth());
+        } else {
+          this.syncNavbarAuth();
+        }
       }
 
       // Listen to cross-tab broadcast bus
@@ -369,6 +397,193 @@
       } catch (e) {
         return [];
       }
+    }
+
+    // ── Authentication API (Real Supabase Auth & Google OAuth) ──
+
+    // 1. Sign in with Google OAuth
+    async signInWithGoogle(customRedirect) {
+      const redirectUri = customRedirect || (window.location.origin + window.location.pathname.replace(/[^\/]+$/, 'husayniya-account.html'));
+      
+      if (this.isConnected && this.client) {
+        try {
+          const { data, error } = await this.client.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+              redirectTo: redirectUri,
+              queryParams: {
+                access_type: 'offline',
+                prompt: 'select_account'
+              }
+            }
+          });
+          if (error) throw error;
+          return { success: true, data };
+        } catch (err) {
+          console.warn('⚠️ Supabase Google OAuth error:', err);
+          return { success: false, error: err.message || 'تعذر بدء تسجيل الدخول بواسطة Google عبر السحابة' };
+        }
+      }
+
+      // Offline / Local Simulation Fallback
+      const mockGoogleUser = {
+        id: 'usr_g_' + Date.now(),
+        email: 'user.google@gmail.com',
+        user_metadata: {
+          full_name: 'مستخدم Google بالحسينية',
+          avatar_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
+          provider: 'google'
+        }
+      };
+      this.saveLocalUser(mockGoogleUser);
+      return { success: true, user: mockGoogleUser, local: true };
+    }
+
+    // 2. Sign in with Email & Password
+    async signInWithEmail(email, password) {
+      if (!email || !password) return { success: false, error: 'يرجى إدخال البريد الإلكتروني وكلمة المرور' };
+      
+      if (this.isConnected && this.client) {
+        try {
+          const { data, error } = await this.client.auth.signInWithPassword({
+            email: email.trim(),
+            password: password
+          });
+          if (error) throw error;
+          if (data && data.user) {
+            this.saveLocalUser(data.user);
+            return { success: true, user: data.user, session: data.session };
+          }
+        } catch (err) {
+          console.warn('⚠️ Supabase Email Sign In error:', err);
+          return { success: false, error: err.message || 'خطأ في البريد الإلكتروني أو كلمة المرور' };
+        }
+      }
+
+      // Fallback local check
+      const localUsers = this.getLocal('husayniya_registered_users');
+      const found = localUsers.find(u => u.email === email && u.password === password);
+      if (found) {
+        const uObj = { id: found.id, email: found.email, user_metadata: { full_name: found.name, phone: found.phone } };
+        this.saveLocalUser(uObj);
+        return { success: true, user: uObj, local: true };
+      }
+      return { success: false, error: 'البريد الإلكتروني أو كلمة المرور غير صحيحة' };
+    }
+
+    // 3. Sign up with Email & Password
+    async signUpWithEmail(email, password, fullName, phone) {
+      if (!email || !password) return { success: false, error: 'يرجى إدخال البريد الإلكتروني وكلمة المرور' };
+
+      if (this.isConnected && this.client) {
+        try {
+          const { data, error } = await this.client.auth.signUp({
+            email: email.trim(),
+            password: password,
+            options: {
+              data: {
+                full_name: fullName || 'عميل الحسينية',
+                phone: phone || ''
+              }
+            }
+          });
+          if (error) throw error;
+          if (data && data.user) {
+            this.saveLocalUser(data.user);
+            return { success: true, user: data.user, session: data.session };
+          }
+        } catch (err) {
+          console.warn('⚠️ Supabase Email Sign Up error:', err);
+          return { success: false, error: err.message || 'تعذر إنشاء الحساب في السحابة' };
+        }
+      }
+
+      // Fallback local registration
+      const localUsers = this.getLocal('husayniya_registered_users');
+      const newUser = {
+        id: 'usr_' + Date.now(),
+        email: email.trim(),
+        password: password,
+        name: fullName || 'عميل الحسينية',
+        phone: phone || '',
+        created_at: new Date().toISOString()
+      };
+      localUsers.push(newUser);
+      localStorage.setItem('husayniya_registered_users', JSON.stringify(localUsers));
+      this.saveLocalUser(newUser);
+      return { success: true, user: newUser, local: true };
+    }
+
+    // 4. Sign Out
+    async signOut() {
+      if (this.isConnected && this.client) {
+        try {
+          await this.client.auth.signOut();
+        } catch (e) {
+          console.warn('Supabase sign out error:', e);
+        }
+      }
+      localStorage.removeItem('husayniya_current_user');
+      this.syncNavbarAuth();
+      return { success: true };
+    }
+
+    // 5. Get Current User Session
+    async getCurrentUser() {
+      if (this.isConnected && this.client) {
+        try {
+          const { data } = await this.client.auth.getUser();
+          if (data && data.user) {
+            this.saveLocalUser(data.user);
+            return data.user;
+          }
+        } catch (e) {}
+      }
+      try {
+        const raw = localStorage.getItem('husayniya_current_user');
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    saveLocalUser(user) {
+      if (!user) return;
+      const minimal = {
+        id: user.id || 'usr_' + Date.now(),
+        email: user.email || '',
+        name: user.user_metadata?.full_name || user.user_metadata?.name || user.name || (user.email ? user.email.split('@')[0] : 'عميل الحسينية'),
+        avatar: user.user_metadata?.avatar_url || user.user_metadata?.picture || user.avatar || '',
+        phone: user.user_metadata?.phone || user.phone || '',
+        provider: user.app_metadata?.provider || user.user_metadata?.provider || (user.email && user.email.includes('google') ? 'google' : 'email'),
+        logged_in_at: new Date().toISOString()
+      };
+      localStorage.setItem('husayniya_current_user', JSON.stringify(minimal));
+      this.syncNavbarAuth();
+    }
+
+    // 6. Dynamic Navbar Auth Sync
+    syncNavbarAuth() {
+      try {
+        const user = JSON.parse(localStorage.getItem('husayniya_current_user'));
+        const accountBtns = document.querySelectorAll('[data-auth-target="account-btn"], button[onclick*="account"], a[href*="account"]');
+        
+        accountBtns.forEach(btn => {
+          if (!btn) return;
+          if (user && user.name) {
+            const firstName = user.name.split(' ')[0];
+            const initial = firstName.charAt(0);
+            const avatarHtml = user.avatar 
+              ? `<img src="${user.avatar}" class="w-6 h-6 rounded-lg object-cover" alt="${firstName}"/>`
+              : `<div class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px]">${initial}</div>`;
+            
+            btn.innerHTML = `
+              <span class="truncate max-w-[90px] text-xs font-bold">${firstName}</span>
+              ${avatarHtml}
+            `;
+          }
+        });
+      } catch (e) {}
     }
 
     // Local Storage helpers
