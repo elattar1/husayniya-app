@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"/>
@@ -211,12 +211,16 @@ body {
       </div>
 
       <!-- Desktop Nav Links -->
-      <nav class="hidden md:flex items-center gap-1.5 text-xs font-bold text-white/70">
-        <button onclick="navigateTo('home')" class="px-3.5 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">الرئيسية</button>
-        <button onclick="navigateTo('store')" class="px-3.5 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">المتاجر والمطاعم</button>
-        <button onclick="navigateTo('tracking')" class="px-3.5 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">تتبع طلبي 🛵</button>
-        <button onclick="navigateTo('lost')" class="px-3.5 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">أمانات ومفقودات 🔍</button>
-        <button onclick="navigateTo('dashboard')" class="px-3.5 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">لوحة الإدارة 📊</button>
+      <nav class="hidden lg:flex items-center gap-1.5 text-xs font-bold text-white/70">
+        <button onclick="navigateTo('home')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">الرئيسية</button>
+        <button onclick="navigateTo('store')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">المطاعم 🍖</button>
+        <button onclick="navigateTo('medical')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">دليل الأطباء 🏥</button>
+        <button onclick="navigateTo('realestate')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">عقارات 🏠</button>
+        <button onclick="navigateTo('lost')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">أمانات 🔍</button>
+        <button onclick="navigateTo('tracking')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">تتبع 🛵</button>
+        <button onclick="navigateTo('merchant')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">بوابة التجار 🏪</button>
+        <button onclick="navigateTo('driver')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">الكباتن ⚡</button>
+        <button onclick="navigateTo('dashboard')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">لوحة الإدارة 📊</button>
       </nav>
 
       <!-- Action Buttons -->
@@ -254,7 +258,16 @@ body {
         <span>🏠</span><span>الرئيسية</span>
       </button>
       <button onclick="navigateTo('store'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>🍖</span><span>قائمة المطعم والوجبات</span>
+        <span>🍖</span><span>المطاعم وقائمة الوجبات</span>
+      </button>
+      <button onclick="navigateTo('medical'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>🏥</span><span>دليل الأطباء والعيادات بالحسينية</span>
+      </button>
+      <button onclick="navigateTo('realestate'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>🏠</span><span>عقارات وشقق الحسينية (بيع وإيجار)</span>
+      </button>
+      <button onclick="navigateTo('lost'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>🔍</span><span>أمانات ومفقودات الحسينية</span>
       </button>
       <button onclick="navigateTo('checkout'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <span>🛒</span><span>سلة التسوق وإتمام الدفع</span>
@@ -262,14 +275,17 @@ body {
       <button onclick="navigateTo('tracking'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <span>🛵</span><span>تتبع مسار السائق الحي</span>
       </button>
-      <button onclick="navigateTo('account'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>👤</span><span>حسابي الشخصي وسجل الطلبات</span>
+      <button onclick="navigateTo('driver'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>⚡</span><span>بوابة الكباتن والدليفري</span>
       </button>
-      <button onclick="navigateTo('dashboard'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>🔍</span><span>أمانات ومفقودات الحسينية</span>
+      <button onclick="navigateTo('merchant'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>🏪</span><span>بوابة التجار وأصحاب المطاعم</span>
       </button>
       <button onclick="navigateTo('dashboard'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <span>📊</span><span>لوحة الإدارة والتحكم</span>
+      </button>
+      <button onclick="navigateTo('account'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>👤</span><span>حسابي الشخصي وسجل الطلبات</span>
       </button>
       <button onclick="navigateTo('login'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <span>🔐</span><span>تسجيل الدخول / إنشاء حساب</span>
@@ -324,7 +340,8 @@ body {
           <button onclick="filterCategory('pharmacy', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">💊 صيدليات 24h</button>
           <button onclick="filterCategory('ride', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🚖 تكسي وتوصيل</button>
           <button onclick="navigateTo('medical')" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🏥 دليل الأطباء</button>
-          <button onclick="filterCategory('realty', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🏠 عقارات المنطقة</button>
+          <button onclick="navigateTo('realestate')" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🏠 عقارات المنطقة</button>
+          <button onclick="navigateTo('driver')" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">⚡ كباتن التوصيل</button>
         </div>
       </div>
 
@@ -453,7 +470,7 @@ body {
         </div>
 
         <!-- Store 9: عقارات وشقق الحسينية -->
-        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="realty" data-name="مكتب عقارات الحسينية">
+        <div onclick="navigateTo('realestate')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="realty" data-name="مكتب عقارات الحسينية">
           <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#2f1f3d,#331144)">
             🏠
             <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● 45 عقار متاح</span>
@@ -510,8 +527,10 @@ const PAGE_ROUTES = {
   'account': 'husayniya-account.html',
   'dashboard': 'husayniya-dashboard.html',
   'merchant': 'husayniya-merchant.html',
+  'driver': 'husayniya-driver.html',
   'medical': 'husayniya-medical.html',
   'lost': 'husayniya-lost.html',
+  'realestate': 'husayniya-realestate.html',
   'login': 'husayniya-login.html'
 };
 

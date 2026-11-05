@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>عقارات وشقق الحسينية — بيع وإيجار (الشرقية)</title>
+<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+
+/* ── Background Scene ── */
+.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35;animation:drift 18s ease-in-out infinite alternate}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#00b09b,#045353);top:-150px;right:-150px}
+.o2{width:500px;height:500px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-150px;left:-150px;animation-delay:-6s}
+.o3{width:400px;height:400px;background:radial-gradient(circle,#667eea,#764ba2);top:40%;left:30%;animation-delay:-10s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-15px) scale(1.05)}100%{transform:translate(-20px,20px) scale(.95)}}
+
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+
+/* ── Liquid Glass Utilities ── */
+.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,.14)}
+.glass-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.12);transition:all .3s ease}
+.glass-card:hover{border-color:rgba(0,176,155,.45);box-shadow:0 14px 40px rgba(0,176,155,.15);transform:translateY(-3px)}
+
+/* ── Gradients ── */
+.gt{background:linear-gradient(135deg,#00e5c8 0%,#43cea2 45%,#f7c948 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt-gold{background:linear-gradient(135deg,#f7c948,#f7971e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── Buttons ── */
+.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-primary:hover{transform:scale(1.02);box-shadow:0 0 25px rgba(0,176,155,.45)}
+
+.btn-tab{padding:9px 18px;border-radius:14px;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .25s;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);white-space:nowrap}
+.btn-tab:hover,.btn-tab.active{background:rgba(0,176,155,.22);color:#00e5c8;border-color:rgba(0,176,155,.6);box-shadow:0 0 16px rgba(0,176,155,.2)}
+
+/* ── Status Badges ── */
+.b-rent{background:rgba(0,176,155,.18);border:1px solid rgba(0,176,155,.4);color:#00e5c8}
+.b-sale{background:rgba(247,201,72,.18);border:1px solid rgba(247,201,72,.4);color:#f7c948}
+
+/* ── Form Inputs ── */
+.input-glass{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.16);color:#fff;transition:all .3s;font-size:.88rem}
+.input-glass:focus{outline:none;background:rgba(255,255,255,.12);border-color:rgba(0,176,155,.7);box-shadow:0 0 0 3px rgba(0,176,155,.15)}
+
+/* ── Modal overlay ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(4,8,20,.85);backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+
+.scroll-touch{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.scroll-touch::-webkit-scrollbar{display:none}
+</style>
+</head>
+<body>
+
+<!-- Animated Orbs -->
+<div class="bg-scene">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<div class="page">
+
+<!-- ══════════════════ NAVBAR ══════════════════ -->
+<nav class="glass sticky top-0 z-50 px-6 py-4" style="background:rgba(4,14,30,.7);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <!-- Back to Home -->
+    <a href="index.html" class="flex items-center gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
+      <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">←</div>
+      <div>
+        <span class="text-xs text-emerald-400 font-semibold">الرئيسية</span>
+        <div class="text-sm font-bold">خدمات الحسينية (الشرقية)</div>
+      </div>
+    </a>
+
+    <!-- Add Property Button -->
+    <div class="flex items-center gap-3">
+      <button onclick="openPropertyModal()" class="btn-primary px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2">
+        <span>+ أضف عقارك مجاناً (شقة / أرض / محل)</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════ MAIN REAL ESTATE PORTAL ══════════════════ -->
+<main class="max-w-7xl mx-auto px-6 py-8 flex-1">
+
+  <!-- Header Banner -->
+  <div class="glass-card rounded-3xl p-6 md:p-10 mb-8 relative overflow-hidden">
+    <div class="max-w-2xl relative z-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold mb-4">
+        <span>🏠</span>
+        <span>بوابة عقارات وشقق مركز الحسينية ومحافظة الشرقية</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-black leading-tight mb-3">
+        ابحث عن بيتك أو استثمارك القادم<br/><span class="gt">في أرقى مناطق وشوارع الحسينية</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-white/60 mb-6 leading-relaxed">
+        أكبر دليل للعقارات المتاحة للبيع والإيجار مباشرة من المالك: شقق تشطيب سوبر لوكس، أراضي بناء وزراعية، محلات تجارية في شارع المركز، شارع بورسعيد، وحي المعاشات والمحجوب.
+      </p>
+
+      <!-- Search in Properties -->
+      <div class="glass p-1.5 rounded-2xl flex items-center gap-2 max-w-lg border border-white/20">
+        <input id="prop-search" oninput="filterProperties()" type="text" placeholder="ابحث بالمنطقة، نوع العقار (شقة، محل، أرض)..." class="flex-1 bg-transparent px-3 text-xs sm:text-sm text-white focus:outline-none"/>
+        <button class="btn-primary px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap">
+          بحث 🔍
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Buttons (All, Rent, Sale, Commercial, Lands) -->
+  <div class="flex items-center gap-2 mb-8 scroll-touch pb-2">
+    <button onclick="filterPropType('all', this)" class="btn-tab active">🌟 جميع العقارات (<span id="total-props">6</span>)</button>
+    <button onclick="filterPropType('rent', this)" class="btn-tab">🔑 شقق للإيجار</button>
+    <button onclick="filterPropType('sale', this)" class="btn-tab">🏷️ شقق ومنازل للبيع</button>
+    <button onclick="filterPropType('commercial', this)" class="btn-tab">🏪 محلات ومقرات تجارية</button>
+    <button onclick="filterPropType('land', this)" class="btn-tab">📐 أراضي بناء واستثمار</button>
+  </div>
+
+  <!-- Properties Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="props-grid">
+
+    <!-- Property 1: شقة إيجار بحي المعاشات -->
+    <div class="prop-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-type="rent">
+      <div>
+        <div class="h-44 flex items-center justify-center text-6xl relative" style="background:linear-gradient(135deg,#1a3a3a,#092e2e)">
+          🏢
+          <span class="b-rent text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3">🔑 للإيجار الشهري</span>
+          <span class="text-xs font-black text-white px-3 py-1 rounded-xl bg-black/50 absolute bottom-3 left-3">2,200 ج.م / شهر</span>
+        </div>
+
+        <div class="p-5">
+          <div class="text-xs text-emerald-400 font-bold mb-1">الحسينية — حي المعاشات الراقي</div>
+          <h3 class="font-bold text-base text-white mb-2">شقة 130 متر سوبر لوكس (3 غرف ورسبشن)</h3>
+          
+          <div class="grid grid-cols-3 gap-2 text-[11px] text-white/60 mb-4 bg-white/[0.03] p-2.5 rounded-xl text-center">
+            <div>🛏️ 3 غرف نوم</div>
+            <div>🚿 1 حمام</div>
+            <div>🪜 الدور الثالث (أسانسير)</div>
+          </div>
+
+          <p class="text-xs text-white/50 leading-relaxed mb-4">
+            تشطيب حديث، عداد غاز طبيعي وكهرباء كارت، قريبة من مجمع المدارس والخدمات، جاهزة للسكن الفوري للعائلات والعرسان.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-5 pt-0">
+        <button onclick="contactOwner('الحاج فريد النجار', '01012345678', 'شقة حي المعاشات 2200 ج')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
+          <span>📞 التواصل مع المالك للمعاينة</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Property 2: منزل للبيع بشارع المركز -->
+    <div class="prop-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-type="sale">
+      <div>
+        <div class="h-44 flex items-center justify-center text-6xl relative" style="background:linear-gradient(135deg,#3a2a1a,#553311)">
+          🏡
+          <span class="b-sale text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3">🏷️ للبيع كاش</span>
+          <span class="text-xs font-black text-amber-300 px-3 py-1 rounded-xl bg-black/50 absolute bottom-3 left-3">1,850,000 ج.م</span>
+        </div>
+
+        <div class="p-5">
+          <div class="text-xs text-amber-300 font-bold mb-1">الحسينية — متفرع من شارع المركز</div>
+          <h3 class="font-bold text-base text-white mb-2">منزل كامل 3 أدوار + محل تجاري مرخص</h3>
+          
+          <div class="grid grid-cols-3 gap-2 text-[11px] text-white/60 mb-4 bg-white/[0.03] p-2.5 rounded-xl text-center">
+            <div>📐 مساحة 110 م²</div>
+            <div>🏪 محل بالدور الأرضي</div>
+            <div>📜 مسجل شهر عقاري</div>
+          </div>
+
+          <p class="text-xs text-white/50 leading-relaxed mb-4">
+            واجهة بحري مميزة، أساسات وقواعد تتحمل 5 أدوار، موقع حيوي وتجاري ممتاز للاستثمار والسكن معاً.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-5 pt-0">
+        <button onclick="contactOwner('أ/ إبراهيم الشرقاوي', '01122334455', 'منزل شارع المركز 1.85 م')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
+          <span>📞 الاتصال بالمالك للتفاوض</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Property 3: محل تجاري بشارع بورسعيد -->
+    <div class="prop-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-type="commercial">
+      <div>
+        <div class="h-44 flex items-center justify-center text-6xl relative" style="background:linear-gradient(135deg,#1f3d2f,#0d4a30)">
+          🏪
+          <span class="b-rent text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3">🔑 إيجار تجاري</span>
+          <span class="text-xs font-black text-white px-3 py-1 rounded-xl bg-black/50 absolute bottom-3 left-3">4,500 ج.م / شهر</span>
+        </div>
+
+        <div class="p-5">
+          <div class="text-xs text-emerald-400 font-bold mb-1">الحسينية — شارع بورسعيد الرئيسي</div>
+          <h3 class="font-bold text-base text-white mb-2">محل تجاري 45 م واجهة زجاجية</h3>
+          
+          <div class="grid grid-cols-3 gap-2 text-[11px] text-white/60 mb-4 bg-white/[0.03] p-2.5 rounded-xl text-center">
+            <div>📐 45 متر صافي</div>
+            <div>💡 كهرباء تجاري ومياه</div>
+            <div>🛍️ شارع تجاري نشط</div>
+          </div>
+
+          <p class="text-xs text-white/50 leading-relaxed mb-4">
+            يصلح لجميع الأنشطة (صيدلية، ملابس، مطعم تيك أواي، كافيه، أو مكتبة)، بجوار أشهر التوكيلات بالحسينية.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-5 pt-0">
+        <button onclick="contactOwner('الحاج سالم الباز', '01234567890', 'محل شارع بورسعيد 4500 ج')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
+          <span>📞 الاستفسار ومعاينة المحل</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Property 4: شقة للبيع بتسهيلات -->
+    <div class="prop-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-type="sale">
+      <div>
+        <div class="h-44 flex items-center justify-center text-6xl relative" style="background:linear-gradient(135deg,#2e1a3a,#4a1d5e)">
+          🌇
+          <span class="b-sale text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3">🏷️ للبيع بتسهيلات</span>
+          <span class="text-xs font-black text-amber-300 px-3 py-1 rounded-xl bg-black/50 absolute bottom-3 left-3">650,000 ج.م</span>
+        </div>
+
+        <div class="p-5">
+          <div class="text-xs text-amber-300 font-bold mb-1">الحسينية — حي المحجوب</div>
+          <h3 class="font-bold text-base text-white mb-2">شقة 115 م² نصف تشطيب برج حديث</h3>
+          
+          <div class="grid grid-cols-3 gap-2 text-[11px] text-white/60 mb-4 bg-white/[0.03] p-2.5 rounded-xl text-center">
+            <div>📐 115 متر</div>
+            <div>🛏️ 2 نوم + رسبشن كبير</div>
+            <div>🪜 الدور الرابع (أسانسير)</div>
+          </div>
+
+          <p class="text-xs text-white/50 leading-relaxed mb-4">
+            إمكانية دفع مقدم 50% والباقي أقساط على سنتين بدون فوائد، حصة بالأرض والبرج مرخص بالكامل.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-5 pt-0">
+        <button onclick="contactOwner('م/ عصام خليل', '01099887766', 'شقة حي المحجوب 650 ألف')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
+          <span>📞 الاتصال لحساب الأقساط</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Property 5: قطعة أرض بناء -->
+    <div class="prop-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-type="land">
+      <div>
+        <div class="h-44 flex items-center justify-center text-6xl relative" style="background:linear-gradient(135deg,#1f3d3d,#113333)">
+          📐
+          <span class="b-sale text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3">🏷️ أرض للبيع</span>
+          <span class="text-xs font-black text-amber-300 px-3 py-1 rounded-xl bg-black/50 absolute bottom-3 left-3">12,000 ج.م / المتر</span>
+        </div>
+
+        <div class="p-5">
+          <div class="text-xs text-amber-300 font-bold mb-1">الحسينية — امتداد ترعة سراج</div>
+          <h3 class="font-bold text-base text-white mb-2">قطعة أرض فضاء 175 م² كردون مباني</h3>
+          
+          <div class="grid grid-cols-3 gap-2 text-[11px] text-white/60 mb-4 bg-white/[0.03] p-2.5 rounded-xl text-center">
+            <div>📐 175 م²</div>
+            <div>🛣️ شارع عرض 10 أمتار</div>
+            <div>⚡ كاملة المرافق</div>
+          </div>
+
+          <p class="text-xs text-white/50 leading-relaxed mb-4">
+            حيز عمراني معتمد ورخصة بناء سارية، واجهة 12 متراً على الشارع الرئيسي، فرصة ممتازة للبناء السكني.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-5 pt-0">
+        <button onclick="contactOwner('الحاج طارق العزازي', '01066554433', 'أرض ترعة سراج')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
+          <span>📞 التواصل للمعاينة على الطبيعة</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Property 6: شقة إيجار للطلاب والعائلات -->
+    <div class="prop-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-type="rent">
+      <div>
+        <div class="h-44 flex items-center justify-center text-6xl relative" style="background:linear-gradient(135deg,#1a2a3e,#0d3d6e)">
+          🏠
+          <span class="b-rent text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3">🔑 للإيجار</span>
+          <span class="text-xs font-black text-white px-3 py-1 rounded-xl bg-black/50 absolute bottom-3 left-3">1,600 ج.م / شهر</span>
+        </div>
+
+        <div class="p-5">
+          <div class="text-xs text-emerald-400 font-bold mb-1">الحسينية — شارع المدارس</div>
+          <h3 class="font-bold text-base text-white mb-2">شقة 90 م² قريبة من الموقف والمعهد الديني</h3>
+          
+          <div class="grid grid-cols-3 gap-2 text-[11px] text-white/60 mb-4 bg-white/[0.03] p-2.5 rounded-xl text-center">
+            <div>🛏️ 2 غرف نوم</div>
+            <div>🚿 1 حمام ومطبخ</div>
+            <div>🪜 الدور الثاني</div>
+          </div>
+
+          <p class="text-xs text-white/50 leading-relaxed mb-4">
+            موقع هادئ جداً، عدادات مستقلة، قريبة من المواصلات والمحلات وسوبر ماركت الفرسان.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-5 pt-0">
+        <button onclick="contactOwner('كابتن مصطفى', '01144556677', 'شقة شارع المدارس 1600 ج')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
+          <span>📞 التواصل مع المالك</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- ══════════════════ ADD PROPERTY MODAL ══════════════════ -->
+<div id="prop-modal" class="modal-overlay">
+  <div class="glass-card rounded-3xl p-6 md:p-8 max-w-md w-full relative border border-white/20">
+    <button onclick="closePropertyModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg">✕</button>
+
+    <h3 class="font-bold text-base text-white mb-1">أضف عقارك للبيع أو الإيجار في الحسينية</h3>
+    <p class="text-xs text-white/50 mb-4">إعلانك سيظهر مباشرة لآلاف الباحثين عن عقارات بالمركز</p>
+
+    <!-- Property Form -->
+    <div class="space-y-3.5 text-xs mb-5">
+      <div class="grid grid-cols-2 gap-2">
+        <div>
+          <label class="block font-semibold mb-1 text-white/70">نوع المعاملة</label>
+          <select id="new-prop-deal" class="input-glass w-full rounded-xl px-3 py-2 bg-slate-900 text-white">
+            <option value="rent">🔑 للإيجار الشهري</option>
+            <option value="sale">🏷️ للبيع كاش أو قسط</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-white/70">نوع العقار</label>
+          <select id="new-prop-cat" class="input-glass w-full rounded-xl px-3 py-2 bg-slate-900 text-white">
+            <option value="rent">شقة سكنية</option>
+            <option value="commercial">محل تجاري / مكتب</option>
+            <option value="sale">منزل / بيت كامل</option>
+            <option value="land">قطعة أرض</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1 text-white/70">عنوان الإعلان ومواصفاته</label>
+        <input id="new-prop-title" type="text" placeholder="مثلاً: شقة 120م سوبر لوكس 3 غرف" class="input-glass w-full rounded-xl px-3 py-2 text-white"/>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2">
+        <div>
+          <label class="block font-semibold mb-1 text-white/70">المنطقة في الحسينية</label>
+          <select id="new-prop-area" class="input-glass w-full rounded-xl px-3 py-2 bg-slate-900 text-white">
+            <option>حي المعاشات</option>
+            <option>حي المحجوب</option>
+            <option>شارع المركز</option>
+            <option>شارع بورسعيد</option>
+            <option>شارع المدارس</option>
+            <option>ترعة سراج</option>
+            <option>شارع المستشفى</option>
+            <option>جزيرة سعود</option>
+            <option>الأخيوة</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-white/70">السعر المطلوب (ج.م)</label>
+          <input id="new-prop-price" type="text" placeholder="مثلاً: 2500 ج أو 800,000 ج" class="input-glass w-full rounded-xl px-3 py-2 text-white"/>
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1 text-white/70">المساحة وعدد الغرف وتفاصيل التشطيب</label>
+        <textarea id="new-prop-desc" rows="2" placeholder="المساحة بالمتر، الدور، المرافق، الأسانسير..." class="input-glass w-full rounded-xl px-3 py-2 text-white"></textarea>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2">
+        <div>
+          <label class="block font-semibold mb-1 text-white/70">اسم المالك</label>
+          <input id="new-prop-owner" type="text" placeholder="أحمد محمد" class="input-glass w-full rounded-xl px-3 py-2 text-white"/>
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-white/70">رقم الهاتف للتواصل</label>
+          <input id="new-prop-phone" type="tel" placeholder="010XXXXXXXX" class="input-glass w-full rounded-xl px-3 py-2 text-white" maxlength="11"/>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="submitNewProperty()" class="btn-primary w-full py-3 rounded-2xl text-xs font-bold flex items-center justify-center gap-2">
+      <span>نشر العقار في المنصة الآن 🚀</span>
+    </button>
+  </div>
+</div>
+
+</div><!-- .page -->
+
+<script>
+// ── Filter by Property Type ──
+function filterPropType(type, btn) {
+  document.querySelectorAll('.btn-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.prop-card').forEach(card => {
+    if (type === 'all' || card.dataset.type === type) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// ── Search in Properties ──
+function filterProperties() {
+  const query = document.getElementById('prop-search').value.toLowerCase().trim();
+  document.querySelectorAll('.prop-card').forEach(card => {
+    const text = card.textContent.toLowerCase();
+    if (text.includes(query)) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// ── Contact Owner Action ──
+function contactOwner(name, phone, propTitle) {
+  alert(`بيانات التواصل مع صاحب العقار (${propTitle}):\n\nالمالك: ${name}\nرقم الموبايل: ${phone}\n\nيمكنك الاتصال هاتفياً أو مراسلته عبر واتساب لمعاينة العقار على الطبيعة.`);
+}
+
+// ── Modal Actions ──
+function openPropertyModal() {
+  document.getElementById('prop-modal').classList.add('show');
+}
+function closePropertyModal() {
+  document.getElementById('prop-modal').classList.remove('show');
+}
+
+function submitNewProperty() {
+  const deal = document.getElementById('new-prop-deal').value;
+  const cat = document.getElementById('new-prop-cat').value;
+  const title = document.getElementById('new-prop-title').value.trim();
+  const area = document.getElementById('new-prop-area').value;
+  const price = document.getElementById('new-prop-price').value.trim();
+  const desc = document.getElementById('new-prop-desc').value.trim();
+  const owner = document.getElementById('new-prop-owner').value.trim();
+  const phone = document.getElementById('new-prop-phone').value.trim();
+
+  if (!title || !price || !owner || phone.length < 11) {
+    alert('يرجى ملء جميع الحقول ورقم هاتف مصري صحيح (11 رقماً).');
+    return;
+  }
+
+  const isRent = deal === 'rent';
+  const badgeClass = isRent ? 'b-rent' : 'b-sale';
+  const badgeText = isRent ? '🔑 للإيجار' : '🏷️ للبيع';
+
+  const newCard = `
+    <div class="prop-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-type="${cat}">
+      <div>
+        <div class="h-44 flex items-center justify-center text-6xl relative" style="background:linear-gradient(135deg,#1a3a2a,#0d6640)">
+          🏠
+          <span class="${badgeClass} text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3">${badgeText}</span>
+          <span class="text-xs font-black text-white px-3 py-1 rounded-xl bg-black/50 absolute bottom-3 left-3">${price} ج.م</span>
+        </div>
+
+        <div class="p-5">
+          <div class="text-xs text-emerald-400 font-bold mb-1">الحسينية — ${area}</div>
+          <h3 class="font-bold text-base text-white mb-2">${title}</h3>
+          
+          <p class="text-xs text-white/50 leading-relaxed mb-4">
+            ${desc || 'عقار مميز بموقع حيوي بمركز الحسينية.'}
+          </p>
+        </div>
+      </div>
+
+      <div class="p-5 pt-0">
+        <button onclick="contactOwner('${owner}', '${phone}', '${title}')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
+          <span>📞 التواصل مع المالك للمعاينة</span>
+        </button>
+      </div>
+    </div>
+  `;
+
+  const container = document.getElementById('props-grid');
+  container.insertAdjacentHTML('afterbegin', newCard);
+
+  // Update total
+  const countEl = document.getElementById('total-props');
+  countEl.textContent = parseInt(countEl.textContent) + 1;
+
+  closePropertyModal();
+  alert(`تم نشر عقارك بنجاح في بوابة عقارات الحسينية! 🎉\nسيتم إشعار المهتمين للتواصل معك.`);
+}
+</script>
+
+</body>
+</html>
