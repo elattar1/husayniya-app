@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"/>
@@ -401,75 +401,128 @@ function toggleStoreStatus() {
 // ── Tab Navigation ──
 function switchMerchantTab(tabId) {
   ['live-orders', 'menu-manage', 'sales-report'].forEach(t => {
-    document.getElementById(`tab-btn-ج.م {t}`).classList.remove('active');
-    document.getElementById(`tab-ج.م {t}`).classList.add('hidden');
+    document.getElementById(`tab-btn-${t}`).classList.remove('active');
+    document.getElementById(`tab-${t}`).classList.add('hidden');
   });
-  document.getElementById(`tab-btn-ج.م {tabId}`).classList.add('active');
-  document.getElementById(`tab-ج.م {tabId}`).classList.remove('hidden');
+  document.getElementById(`tab-btn-${tabId}`).classList.add('active');
+  document.getElementById(`tab-${tabId}`).classList.remove('hidden');
 }
 
 // ── Order Workflow Simulation ──
 function advanceOrderStatus(orderId, nextState) {
-  const card = document.getElementById(`order-card-ج.م {orderId}`);
-  const actions = document.getElementById(`order-actions-ج.م {orderId}`);
+  const card = document.getElementById(`order-card-${orderId}`);
+  const actions = document.getElementById(`order-actions-${orderId}`);
+
+  if (window.HusayniyaCloud) {
+    const statusMap = { 'prep': 'preparing', 'ready': 'ready' };
+    window.HusayniyaCloud.updateOrderStatus(orderId, statusMap[nextState] || nextState);
+  }
   
   if (nextState === 'prep') {
-    card.classList.remove('order-alert', 'border-amber-400');
-    card.classList.add('border-blue-400');
-    actions.innerHTML = `
-      <div class="text-xs text-white/60">حالة الطلب: <span class="text-blue-300 font-bold">جاري التحضير بالمطبخ 👨‍🍳</span></div>
-      <button onclick="advanceOrderStatus('ج.م {orderId}', 'ready')" class="btn-primary px-5 py-2.5 rounded-xl text-xs font-bold">
-        📦 تم التجهيز — تسليم الوجبة للسائق
-      </button>
-    `;
+    if (card) {
+      card.classList.remove('order-alert', 'border-amber-400');
+      card.classList.add('border-blue-400');
+    }
+    if (actions) {
+      actions.innerHTML = `
+        <div class="text-xs text-white/60">حالة الطلب: <span class="text-blue-300 font-bold">جاري التحضير بالمطبخ 👨‍🍳</span></div>
+        <button onclick="advanceOrderStatus('${orderId}', 'ready')" class="btn-primary px-5 py-2.5 rounded-xl text-xs font-bold">
+          📦 تم التجهيز — تسليم الوجبة للسائق
+        </button>
+      `;
+    }
   } else if (nextState === 'ready') {
-    card.classList.remove('border-blue-400');
-    card.classList.add('border-emerald-400');
-    actions.innerHTML = `
-      <div class="text-xs text-emerald-400 font-bold">✓ تم تسليم الوجبة للكابتن بنجاح وهو في طريقه للعميل! 🛵</div>
-    `;
+    if (card) {
+      card.classList.remove('border-blue-400');
+      card.classList.add('border-emerald-400');
+    }
+    if (actions) {
+      actions.innerHTML = `
+        <div class="text-xs text-emerald-400 font-bold">✓ تم تسليم الوجبة للكابتن بنجاح وهو في طريقه للعميل! 🛵</div>
+      `;
+    }
   }
 }
 
 function rejectOrder(orderId) {
   if (confirm('هل أنت متأكد من الاعتذار عن هذا الطلب؟')) {
-    document.getElementById(`order-card-ج.م {orderId}`).remove();
+    const card = document.getElementById(`order-card-${orderId}`);
+    if (card) card.remove();
     updateLiveBadge(-1);
+    if (window.HusayniyaCloud) {
+      window.HusayniyaCloud.updateOrderStatus(orderId, 'cancelled');
+    }
   }
 }
 
-function simulateNewOrder() {
-  const orderNum = Math.floor(1000 + Math.random() * 9000);
+function renderIncomingOrderCard(order) {
   const container = document.getElementById('orders-list');
+  const code = order.order_code || ('ORD-' + Math.floor(1000 + Math.random() * 9000));
+  const total = order.total_amount ? Number(order.total_amount).toFixed(2) : '240.00';
+  const customer = order.customer_name || 'عميل الحسينية';
+  const address = order.delivery_address || 'شارع المركز، الحسينية';
+  
   const newOrderHtml = `
-    <div class="glass-card rounded-3xl p-6 order-alert relative border border-amber-400" id="order-card-ج.م {orderNum}">
+    <div class="glass-card rounded-3xl p-6 order-alert relative border border-amber-400 animate-pulse" id="order-card-${code}">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/10">
         <div>
           <div class="flex items-center gap-3">
-            <span class="text-lg font-black text-white">طلب جديد #HS-ج.م {orderNum}</span>
-            <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-xs font-extrabold animate-bounce">● وصل الآن!</span>
+            <span class="text-lg font-black text-white">طلب جديد #${code}</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-xs font-extrabold animate-bounce">● وصل الآن سحابياً!</span>
           </div>
-          <div class="text-xs text-white/50 mt-1">العميل: زبون جديد • الحسينية، شارع المدارس • منذ لحظات</div>
+          <div class="text-xs text-white/50 mt-1">العميل: ${customer} • ${address} • منذ لحظات</div>
         </div>
         <div class="text-left">
-          <div class="text-xl font-black gt">28.00 ج.م</div>
-          <span class="text-[10px] text-emerald-400 font-bold">كاش عند الاستلام</span>
+          <div class="text-xl font-black gt">${total} ج.م</div>
+          <span class="text-[10px] text-emerald-400 font-bold">${order.payment_method || 'كاش عند الاستلام'}</span>
         </div>
       </div>
       <div class="py-4 text-xs">
-        <div class="font-bold text-white">2 × وجبة كباب عراقي مشكل + بيبسي بارد</div>
+        <div class="font-bold text-white">وجبة مشويات مخصوصة + بيبسي + مقبلات ساخنة</div>
       </div>
-      <div class="pt-4 border-t border-white/10 flex items-center justify-end gap-2" id="order-actions-ج.م {orderNum}">
-        <button onclick="advanceOrderStatus('ج.م {orderNum}', 'prep')" class="btn-primary px-5 py-2.5 rounded-xl text-xs font-bold">
-          ✓ قبول الطلب
+      <div class="pt-4 border-t border-white/10 flex items-center justify-end gap-2" id="order-actions-${code}">
+        <button onclick="rejectOrder('${code}')" class="px-4 py-2.5 rounded-xl bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 text-xs font-bold transition">
+          ✕ اعتذار
+        </button>
+        <button onclick="advanceOrderStatus('${code}', 'prep')" class="btn-primary px-5 py-2.5 rounded-xl text-xs font-bold">
+          ✓ قبول الطلب والتحضير
         </button>
       </div>
     </div>
   `;
   container.insertAdjacentHTML('afterbegin', newOrderHtml);
   updateLiveBadge(1);
+}
+
+function simulateNewOrder() {
+  const code = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
+  renderIncomingOrderCard({
+    order_code: code,
+    total_amount: 240,
+    customer_name: 'أحمد السيد',
+    delivery_address: 'حي المعاشات، شارع المدارس أمام مدرسة التجارة',
+    payment_method: 'كاش عند الاستلام'
+  });
   alert('🔔 تنبيه صوتي: وصل طلب طعام جديد للمطعم!');
 }
+
+function updateLiveBadge(delta) {
+  const badge = document.getElementById('live-badge');
+  if (!badge) return;
+  let count = parseInt(badge.textContent) + delta;
+  badge.textContent = Math.max(0, count);
+}
+
+// Listen to Realtime Cloud Orders
+window.addEventListener('load', () => {
+  if (window.HusayniyaCloud) {
+    window.HusayniyaCloud.onOrderEvent((type, order) => {
+      if (type === 'order_created' && order) {
+        renderIncomingOrderCard(order);
+      }
+    });
+  }
+});
 
 function updateLiveBadge(delta) {
   const badge = document.getElementById('live-badge');
@@ -497,8 +550,8 @@ function saveNewItem() {
       <div class="flex items-center gap-3">
         <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background:linear-gradient(135deg,#00b09b,#06d6a0)">🥘</div>
         <div>
-          <h4 class="font-bold text-sm">ج.م {name}</h4>
-          <div class="text-xs text-emerald-400 font-black">ج.م {parseFloat(price).toFixed(2)} ج.م</div>
+          <h4 class="font-bold text-sm">${name}</h4>
+          <div class="text-xs text-emerald-400 font-black">${parseFloat(price).toFixed(2)} ج.م</div>
         </div>
       </div>
       <div class="flex items-center gap-2">
@@ -507,9 +560,12 @@ function saveNewItem() {
     </div>
   `;
   closeAddItemModal();
-  alert(`تمت إضافة الوجبة "ج.م {name}" ونشرها بنجاح في تطبيق خدمات الحسينية!`);
+  alert(`تمت إضافة الوجبة "${name}" ونشرها بنجاح في تطبيق خدمات الحسينية!`);
 }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"/>
@@ -451,7 +451,7 @@ function sendChatMessage() {
   const container = document.getElementById('chat-messages');
   container.innerHTML += `
     <div class="p-2 rounded-xl bg-emerald-600/40 text-white max-w-[80%] mr-auto text-left">
-      ج.م{text}
+      ${text}
     </div>
   `;
   input.value = '';
@@ -467,7 +467,25 @@ function sendChatMessage() {
     container.scrollTop = container.scrollHeight;
   }, 1800);
 }
+
+// Realtime Cloud Listener for Customer Tracking
+window.addEventListener('load', () => {
+  if (window.HusayniyaCloud) {
+    window.HusayniyaCloud.onOrderEvent((type, order) => {
+      if (type === 'order_updated' && order) {
+        if (order.status === 'delivered') {
+          alert('🎉 تم تسليم طلبك بنجاح! بالهناء والشفاء.');
+        } else if (order.status === 'ready') {
+          alert('🛵 الكابتن استلم وجبتك من المطعم وهو في طريقه إليك الآن!');
+        }
+      }
+    });
+  }
+});
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
 
 </body>
 </html>

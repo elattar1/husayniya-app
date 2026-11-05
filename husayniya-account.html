@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"/>
@@ -440,14 +440,14 @@ const tabs = ['orders', 'addresses', 'wallet', 'favorites', 'security', 'notific
 
 function switchTab(tabName) {
   tabs.forEach(t => {
-    const btn = document.getElementById(`tab-btn-ج.م {t}`);
-    const content = document.getElementById(`tab-ج.م {t}`);
+    const btn = document.getElementById(`tab-btn-${t}`);
+    const content = document.getElementById(`tab-${t}`);
     if (btn) btn.classList.remove('active');
     if (content) content.classList.add('hidden');
   });
 
-  const activeBtn = document.getElementById(`tab-btn-ج.م {tabName}`);
-  const activeContent = document.getElementById(`tab-ج.م {tabName}`);
+  const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+  const activeContent = document.getElementById(`tab-${tabName}`);
   if (activeBtn) activeBtn.classList.add('active');
   if (activeContent) activeContent.classList.remove('hidden');
 }

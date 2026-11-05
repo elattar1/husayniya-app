@@ -1322,7 +1322,28 @@
         marker.setAttribute('transform', `translate(${x}, ${y})`);
       }
     }, 800);
+
+    // Realtime Cloud Listener for Driver
+    window.addEventListener('load', () => {
+      if (window.HusayniyaCloud) {
+        window.HusayniyaCloud.onOrderEvent((type, order) => {
+          if (type === 'order_created' && order && isOnline) {
+            // Update radar offer
+            const storeTitle = document.getElementById('incoming-store-title');
+            const dropTitle = document.getElementById('incoming-drop-title');
+            const fareEl = document.getElementById('incoming-fare');
+            if (storeTitle) storeTitle.innerText = order.store_name || 'مطعم بالحسينية';
+            if (dropTitle) dropTitle.innerText = (order.store_name || 'المتجر') + ' ➔ ' + (order.delivery_address || 'الحسينية');
+            if (fareEl) fareEl.innerText = (order.delivery_fee || 25) + ' ج.م كاش';
+            simulateIncomingAudioAlert();
+          }
+        });
+      }
+    });
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-client.js"></script>
 
 </body>
 </html>

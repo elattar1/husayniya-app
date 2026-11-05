@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"/>
@@ -219,6 +219,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
 
     <div style="display:flex;align-items:center;gap:10px">
+      <!-- Supabase Cloud Connection Button -->
+      <button onclick="openCloudModal()" class="glass" style="padding:7px 14px;border-radius:12px;font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:6px;cursor:pointer;border:1px solid rgba(6,214,160,.4);color:#00e5c8;background:rgba(0,176,155,.12)">
+        <span id="cloud-status-dot" style="width:8px;height:8px;border-radius:50%;background:#00d6a0;box-shadow:0 0 8px rgba(0,214,160,.6)"></span>
+        <span id="cloud-status-label">سحابة Supabase</span>
+      </button>
+
       <!-- Search -->
       <div style="position:relative;display:flex;align-items:center">
         <input class="input-glass" placeholder="بحث..." style="width:200px;padding-right:36px"/>
@@ -770,7 +776,128 @@ if(window.innerWidth<1024){
   document.getElementById('sidebar').classList.add('collapsed');
   document.getElementById('main-area').classList.add('expanded');
 }
+
+// ══════════ Supabase Cloud Modal Engine ══════════
+function openCloudModal() {
+  document.getElementById('cloud-modal').style.display = 'flex';
+  const url = localStorage.getItem('husayniya_supabase_url') || '';
+  const key = localStorage.getItem('husayniya_supabase_key') || '';
+  document.getElementById('cfg-url').value = url;
+  document.getElementById('cfg-key').value = key;
+  updateCloudUI();
+}
+
+function closeCloudModal() {
+  document.getElementById('cloud-modal').style.display = 'none';
+}
+
+function updateCloudUI() {
+  const isConn = window.HusayniyaCloud && window.HusayniyaCloud.isConnected;
+  const dot = document.getElementById('cloud-status-dot');
+  const label = document.getElementById('cloud-status-label');
+  const modalStatus = document.getElementById('modal-cloud-status');
+  
+  if (isConn) {
+    if (dot) dot.style.background = '#00d6a0';
+    if (label) label.innerText = 'سحابة Supabase (متصل 🟢)';
+    if (modalStatus) modalStatus.innerHTML = '<span style="color:#00d6a0;font-weight:bold">🟢 متصل بقاعدة بيانات Supabase السحابية في الوقت الفعلي</span>';
+  } else {
+    if (dot) dot.style.background = '#f7c948';
+    if (label) label.innerText = 'سحابة Supabase (محلي 🟡)';
+    if (modalStatus) modalStatus.innerHTML = '<span style="color:#f7c948;font-weight:bold">🟡 يعمل محلياً عبر المتصفح — أدخل بيانات Supabase للتزامن بين الأجهزة</span>';
+  }
+}
+
+async function saveCloudSettings() {
+  const url = document.getElementById('cfg-url').value.trim();
+  const key = document.getElementById('cfg-key').value.trim();
+  if (!url || !key) {
+    alert('يرجى إدخال كل من Project URL و Anon Public Key');
+    return;
+  }
+  if (window.HusayniyaCloud) {
+    window.HusayniyaCloud.saveCredentials(url, key);
+    const test = await window.HusayniyaCloud.testConnection();
+    if (test.success) {
+      alert('تم الاتصال بنجاح بقاعدة بيانات Supabase! 🎉 تم تفعيل المزامنة اللحظية بين العميل والمطعم والمندوب.');
+    } else {
+      alert('تم حفظ البيانات، ولكن تعذر فحص جدول orders:\n' + test.error + '\n\nتأكد من تنفيذ كود SQL المرفق داخل Supabase SQL Editor.');
+    }
+    updateCloudUI();
+    closeCloudModal();
+  }
+}
+
+function disconnectCloud() {
+  if (confirm('هل ترغب في فصل الاتصال السحابي والرجوع للوضع المحلي؟')) {
+    if (window.HusayniyaCloud) window.HusayniyaCloud.clearCredentials();
+    updateCloudUI();
+    alert('تم قطع الاتصال والرجوع إلى الوضع المحلي.');
+  }
+}
+
+function copySchemaInfo() {
+  const schemaPath = 'supabase_schema.sql';
+  alert('تم تضمين ملف قواعد البيانات الكامل في مشروعك:\n' + schemaPath + '\n\nيمكنك نسخه ولصقه في Supabase -> SQL Editor -> Run لتجهيز الجداول وسياسات الأمان في 10 ثوانٍ.');
+}
+
+window.addEventListener('load', () => {
+  setTimeout(updateCloudUI, 300);
+});
 </script>
+
+<!-- ══════════════ SUPABASE SETTINGS MODAL ══════════════ -->
+<div id="cloud-modal" style="position:fixed;inset:0;background:rgba(4,8,20,.85);backdrop-filter:blur(10px);z-index:999;display:none;align-items:center;justify-content:center;padding:20px">
+  <div class="glass-card" style="border-radius:24px;padding:28px;max-width:520px;width:100%;border:1px solid rgba(0,176,155,.4);box-shadow:0 0 40px rgba(0,176,155,.2)">
+    
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:12px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:10px;background:rgba(0,176,155,.2);display:flex;align-items:center;justify-content:center;font-size:18px">⚡</div>
+        <div>
+          <h3 style="font-size:1.05rem;font-weight:800;margin:0">إعدادات سحابة Supabase</h3>
+          <p style="font-size:.72rem;color:rgba(255,255,255,.5);margin:2px 0 0">مزامنة الطلبات الحية في الوقت الفعلي (Real-time)</p>
+        </div>
+      </div>
+      <button onclick="closeCloudModal()" style="background:none;border:none;color:rgba(255,255,255,.4);font-size:1.2rem;cursor:pointer">✕</button>
+    </div>
+
+    <div id="modal-cloud-status" style="background:rgba(255,255,255,.04);padding:10px 14px;border-radius:12px;font-size:.78rem;margin-bottom:16px;border:1px solid rgba(255,255,255,.06)">
+      جاري فحص حالة الاتصال...
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:20px">
+      <div>
+        <label style="font-size:.78rem;font-weight:700;display:block;margin-bottom:6px;color:rgba(255,255,255,.8)">Project URL:</label>
+        <input id="cfg-url" type="text" placeholder="https://xyzcompany.supabase.co" class="input-glass" style="width:100%;direction:ltr;font-family:monospace;font-size:.82rem"/>
+      </div>
+      <div>
+        <label style="font-size:.78rem;font-weight:700;display:block;margin-bottom:6px;color:rgba(255,255,255,.8)">Anon Public Key:</label>
+        <input id="cfg-key" type="password" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." class="input-glass" style="width:100%;direction:ltr;font-family:monospace;font-size:.82rem"/>
+      </div>
+    </div>
+
+    <div style="background:rgba(0,176,155,.08);border:1px dashed rgba(0,176,155,.3);border-radius:14px;padding:12px;margin-bottom:20px;font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.6">
+      💡 <b>كيف تحصل عليها مجاناً؟</b> أنشئ مشروعاً مجانياً على <a href="https://supabase.com" target="_blank" style="color:#00e5c8;text-decoration:underline">Supabase.com</a> ➔ اذهب إلى <b>Settings ➔ API</b> وانسخ الـ URL والـ anon public key.
+    </div>
+
+    <div style="display:flex;gap:10px;justify-content:flex-end">
+      <button onclick="copySchemaInfo()" style="padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:.78rem;font-weight:700;cursor:pointer">
+        📋 ملف SQL للجداول
+      </button>
+      <button onclick="disconnectCloud()" style="padding:10px 14px;border-radius:12px;background:rgba(255,80,80,.12);border:1px solid rgba(255,80,80,.25);color:#ff7070;font-size:.78rem;font-weight:700;cursor:pointer">
+        فصل
+      </button>
+      <button onclick="saveCloudSettings()" class="btn-primary" style="padding:10px 20px;border-radius:12px;font-size:.8rem;font-weight:800;cursor:pointer">
+        حفظ واختبار الاتصال ⚡
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+
 </body>
 </html>
 
