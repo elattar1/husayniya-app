@@ -225,12 +225,6 @@ body {
 
       <!-- Action Buttons -->
       <div class="flex items-center gap-2">
-        <!-- Supabase Cloud Connection Button -->
-        <button onclick="openCloudModal()" class="glass px-2.5 sm:px-3 py-2 rounded-xl flex items-center gap-1.5 text-xs font-bold text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/10 transition" title="إعدادات ربط سحابة Supabase">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          <span>⚡ <span class="hidden sm:inline">ربط</span> Supabase</span>
-        </button>
-
         <!-- Live Cart Badge -->
         <button onclick="navigateTo('checkout')" class="glass px-3.5 py-2 rounded-xl flex items-center gap-2 text-xs font-bold hover:bg-white/10 active:scale-95 transition">
           <span>🛒</span>
@@ -286,9 +280,6 @@ body {
       </button>
       <button onclick="navigateTo('merchant'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <span>🏪</span><span>بوابة التجار وأصحاب المطاعم</span>
-      </button>
-      <button onclick="openCloudModal(); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold flex items-center gap-3">
-        <span>⚡</span><span>ربط سحابة Supabase (لصق المفاتيح)</span>
       </button>
       <button onclick="navigateTo('dashboard'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <span>📊</span><span>لوحة الإدارة والتحكم</span>
