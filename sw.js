@@ -1,28 +1,25 @@
-const CACHE_NAME = 'husayniya-v1';
-const ASSETS = [
-  './index.html',
-  './husayniya-store.html',
-  './husayniya-checkout.html',
-  './husayniya-tracking.html',
-  './husayniya-login.html',
-  './husayniya-dashboard.html',
-  './husayniya-account.html',
-  './manifest.json'
-];
+/**
+ * خدمات الحسينية — ملف Service Worker المحدث
+ * استراتيجية: Network-First (جلب أحدث التحديثات دائماً من الإنترنت مع حفظ نسخة للطوارئ فقط)
+ */
 
-self.addEventListener('install', (e) => {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
-  );
+const CACHE_NAME = 'husayniya-v5-network-first';
+
+self.addEventListener('install', (event) => {
+  // التفعيل الفوري للنسخة الجديدة دون انتظار إغلاق التبويبات
   self.skipWaiting();
 });
 
-self.addEventListener('activate', (e) => {
-  e.waitUntil(
-    caches.keys().then((keys) => {
+self.addEventListener('activate', (event) => {
+  // مسح جميع النسخ القديمة فوراً من ذاكرة الهاتف
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
       return Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) return caches.delete(key);
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
+            console.log('🧹 حذف كاش قديم:', cacheName);
+            return caches.delete(cacheName);
+          }
         })
       );
     })
@@ -30,8 +27,28 @@ self.addEventListener('activate', (e) => {
   self.clients.claim();
 });
 
-self.addEventListener('fetch', (e) => {
-  e.respondWith(
-    caches.match(e.request).then((res) => res || fetch(e.request))
+self.addEventListener('fetch', (event) => {
+  // فقط طلبات GET و بروتوكول http/https
+  if (event.request.method !== 'GET' || !event.request.url.startsWith('http')) {
+    return;
+  }
+
+  // Network-First: حاول دائماً جلب النسخة الأحدث من السيرفر أولاً
+  event.respondWith(
+    fetch(event.request)
+      .then((networkResponse) => {
+        // إذا نجح الاتصال، نحدث الكاش بالنسخة الجديدة
+        if (networkResponse && networkResponse.status === 200) {
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+        }
+        return networkResponse;
+      })
+      .catch(() => {
+        // في حال انقطاع الإنترنت التام فقط، نستخدم الكاش
+        return caches.match(event.request);
+      })
   );
 });

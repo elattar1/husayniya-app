@@ -299,6 +299,9 @@ body {
       <button onclick="navigateTo('login'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <span>🔐</span><span>تسجيل الدخول / إنشاء حساب</span>
       </button>
+      <button onclick="forceAppUpdate(); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-amber-400/10 border border-amber-400/20 text-amber-300 text-xs font-bold flex items-center gap-3">
+        <span>🔄</span><span>تحديث التطبيق ومسح الكاش</span>
+      </button>
     </div>
 
     <div class="pt-4 border-t border-white/10 text-xs text-white/40 text-center">
@@ -617,11 +620,33 @@ function dynamicSearch(val) {
   });
 }
 
-// Register Service Worker for PWA
+// Register Service Worker for PWA with Auto-Update
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
+    navigator.serviceWorker.register('./sw.js').then((reg) => {
+      reg.update();
+    }).catch(() => {});
   });
+}
+
+// Clear Browser Cache and Force Reload
+async function forceAppUpdate() {
+  try {
+    if ('caches' in window) {
+      const keys = await caches.keys();
+      await Promise.all(keys.map(k => caches.delete(k)));
+    }
+    if ('serviceWorker' in navigator) {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      for (let r of registrations) {
+        await r.unregister();
+      }
+    }
+    alert('تم مسح الذاكرة المؤقتة القديمة بنجاح! 🔄 سيتم إعادة تحميل أحدث نسخة من الموقع.');
+    window.location.reload(true);
+  } catch(e) {
+    window.location.reload(true);
+  }
 }
 
 // ── Supabase Cloud Settings Modal Logic ──
