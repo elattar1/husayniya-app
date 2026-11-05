@@ -44,6 +44,76 @@ body{background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:
 
 .modal-overlay{position:fixed;inset:0;background:rgba(4,8,20,.85);backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.show{display:flex}
+
+/* Quantity Stepper Styles */
+.qty-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 4px 6px;
+  border-radius: 14px;
+  background: rgba(245, 124, 0, 0.15);
+  border: 1.5px solid rgba(245, 124, 0, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes popIn {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.qty-btn:active { transform: scale(0.88); }
+.qty-btn-plus {
+  background: linear-gradient(135deg, #e65100, #f57c00);
+  color: #fff;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(230, 81, 0, 0.4);
+}
+.qty-btn-minus {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.qty-btn-minus:hover { background: rgba(255, 255, 255, 0.2); }
+.qty-btn-delete {
+  background: rgba(244, 63, 94, 0.2);
+  color: #fda4af;
+  font-size: 0.95rem;
+  border: 1px solid rgba(244, 63, 94, 0.45);
+}
+.qty-btn-delete:hover { background: rgba(244, 63, 94, 0.35); }
+.qty-count-wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.qty-count {
+  font-size: 1.1rem;
+  color: #ff9800;
+  font-weight: 900;
+  min-width: 20px;
+  text-align: center;
+}
+.qty-unit {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
 </style>
 </head>
 <body>
@@ -147,9 +217,11 @@ body{background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:
         </div>
         <p class="text-xs text-white/50 mb-4 leading-relaxed">أرز مصري مفلفل، شعرية محمرة، مكرونة مقصوصة وإسباجيتي، عدس بجبة، حمص شامي، بصل مقرمش ذهبي، مع كيس دقة وصلصة حارة</p>
       </div>
-      <button onclick="addToCart('كشري وسط الزعيم', 35, '🍲')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-        <span>+ أضف للسلة</span>
-      </button>
+      <div id="ctrl-kosh-1">
+        <button onclick="changeQty('kosh-1', 'علبة كشري وسط — مخصوص الزعيم', 35, '🍲', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+          <span>+ أضف للسلة</span>
+        </button>
+      </div>
     </div>
 
     <!-- Item 2: كشري ميجا سوبر -->
@@ -165,9 +237,11 @@ body{background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:
         </div>
         <p class="text-xs text-white/50 mb-4 leading-relaxed">حجم كبير جداً يكفي شخصين، مع دبل حمص وتقلية وعدس زيادة، وعبوتين صلصة كبيرة ودقة ثوم بالخل</p>
       </div>
-      <button onclick="addToCart('كشري ميجا سوبر', 50, '🥣')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-        <span>+ أضف للسلة</span>
-      </button>
+      <div id="ctrl-kosh-2">
+        <button onclick="changeQty('kosh-2', 'علبة كشري ميجا سوبر جامبو', 50, '🥣', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+          <span>+ أضف للسلة</span>
+        </button>
+      </div>
     </div>
 
     <!-- Item 3: كشري كبدة إسكندراني -->
@@ -183,9 +257,11 @@ body{background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:
         </div>
         <p class="text-xs text-white/50 mb-4 leading-relaxed">علبة كشري مع طبقة كبدة إسكندراني بتتبيلة الثوم والفلفل الأخضر الحار والليمون والكمون</p>
       </div>
-      <button onclick="addToCart('كشري كبدة إسكندراني', 55, '🥩')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-        <span>+ أضف للسلة</span>
-      </button>
+      <div id="ctrl-kosh-3">
+        <button onclick="changeQty('kosh-3', 'كشري توبينج كبدة إسكندراني', 55, '🥩', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+          <span>+ أضف للسلة</span>
+        </button>
+      </div>
     </div>
 
     <!-- Item 4: طاجن مكرونة فرن باللحمة المفرومة -->
@@ -201,9 +277,11 @@ body{background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:
         </div>
         <p class="text-xs text-white/50 mb-4 leading-relaxed">طاجن مكرونة قلم مخبوز بالفرن مع صلصة الطماطم الغنية بالبهارات ولحمة مفرومة بلدي على الوجه</p>
       </div>
-      <button onclick="addToCart('طاجن لحمة مفرومة', 45, '🥘')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-        <span>+ أضف للسلة</span>
-      </button>
+      <div id="ctrl-kosh-4">
+        <button onclick="changeQty('kosh-4', 'طاجن فرن لحمة مفرومة بلدي', 45, '🥘', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+          <span>+ أضف للسلة</span>
+        </button>
+      </div>
     </div>
 
     <!-- Item 5: طاجن فراخ وموزاريلا -->
@@ -219,9 +297,11 @@ body{background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:
         </div>
         <p class="text-xs text-white/50 mb-4 leading-relaxed">قطع صدور فراخ متبلة مع مكرونة فرن وطبقة موزاريلا غنية ذائبة ومحمرة في الفرن</p>
       </div>
-      <button onclick="addToCart('طاجن فراخ موزاريلا', 50, '🍗')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-        <span>+ أضف للسلة</span>
-      </button>
+      <div id="ctrl-kosh-5">
+        <button onclick="changeQty('kosh-5', 'طاجن مكرونة فراخ بالموزاريلا', 50, '🍗', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+          <span>+ أضف للسلة</span>
+        </button>
+      </div>
     </div>
 
     <!-- Item 6: طاجن سجق بلدي مشطشط -->
@@ -237,9 +317,11 @@ body{background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:
         </div>
         <p class="text-xs text-white/50 mb-4 leading-relaxed">سجق بلدي إسكندراني بقطع الطماطم والفلفل الحار والصلصة المتبكة في الفرن</p>
       </div>
-      <button onclick="addToCart('طاجن سجق بلدي', 50, '🌶️')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-        <span>+ أضف للسلة</span>
-      </button>
+      <div id="ctrl-kosh-6">
+        <button onclick="changeQty('kosh-6', 'طاجن سجق بلدي شرقي', 50, '🌶️', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+          <span>+ أضف للسلة</span>
+        </button>
+      </div>
     </div>
 
     <!-- Item 7: أرز باللبن فرن وقشطة -->
@@ -254,9 +336,11 @@ body{background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:
         </div>
         <p class="text-xs text-white/50 mb-4 leading-relaxed">أرز باللبن الطبيعي المبستر مع وش قشطة بلدي محمر في الفرن ومكسرات</p>
       </div>
-      <button onclick="addToCart('أرز باللبن فرن', 25, '🍮')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-        <span>+ أضف للسلة</span>
-      </button>
+      <div id="ctrl-kosh-7">
+        <button onclick="changeQty('kosh-7', 'طاجن أرز باللبن فرن بالقشطة', 25, '🍮', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+          <span>+ أضف للسلة</span>
+        </button>
+      </div>
     </div>
 
     <!-- Item 8: أم علي بالمكسرات -->
@@ -271,9 +355,11 @@ body{background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:
         </div>
         <p class="text-xs text-white/50 mb-4 leading-relaxed">عجينة الميلفاي الهشة مع الحليب المكثف والقشطة والزبيب وجوز الهند والبندق</p>
       </div>
-      <button onclick="addToCart('أم علي بالمكسرات', 30, '🥧')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-        <span>+ أضف للسلة</span>
-      </button>
+      <div id="ctrl-kosh-8">
+        <button onclick="changeQty('kosh-8', 'طاجن أم علي ساخن بالمكسرات', 30, '🥧', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+          <span>+ أضف للسلة</span>
+        </button>
+      </div>
     </div>
 
     <!-- Item 9: باكيت تقلية ودقة زيادة -->
@@ -288,9 +374,11 @@ body{background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:
         </div>
         <p class="text-xs text-white/50 mb-4 leading-relaxed">علبة بصل محمر مقرمش دهبي مع علبة صلصة ودقة ثوم إضافية</p>
       </div>
-      <button onclick="addToCart('تقلية ودقة زيادة', 10, '🧅')" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-        <span>+ أضف للسلة</span>
-      </button>
+      <div id="ctrl-kosh-9">
+        <button onclick="changeQty('kosh-9', 'باكيت تقلية مقرمشة + دقة زيادة', 10, '🧅', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+          <span>+ أضف للسلة</span>
+        </button>
+      </div>
     </div>
 
   </div>
@@ -323,8 +411,21 @@ body{background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:
 </div><!-- .page -->
 
 <script>
-let cartCount = 0;
-let cartTotal = 0;
+const STORE_NAME = 'كشري الزعيم والتحرير — شارع المركز';
+const STORE_KEY = 'koshary';
+const itemCatalog = {
+  'kosh-1': { title: 'علبة كشري وسط — مخصوص الزعيم', price: 35, icon: '🍲' },
+  'kosh-2': { title: 'علبة كشري ميجا سوبر جامبو', price: 50, icon: '🥣' },
+  'kosh-3': { title: 'كشري توبينج كبدة إسكندراني', price: 55, icon: '🥩' },
+  'kosh-4': { title: 'طاجن فرن لحمة مفرومة بلدي', price: 45, icon: '🥘' },
+  'kosh-5': { title: 'طاجن مكرونة فراخ بالموزاريلا', price: 50, icon: '🍗' },
+  'kosh-6': { title: 'طاجن سجق بلدي شرقي', price: 50, icon: '🌶️' },
+  'kosh-7': { title: 'طاجن أرز باللبن فرن بالقشطة', price: 25, icon: '🍮' },
+  'kosh-8': { title: 'طاجن أم علي ساخن بالمكسرات', price: 30, icon: '🥧' },
+  'kosh-9': { title: 'باكيت تقلية مقرمشة + دقة زيادة', price: 10, icon: '🧅' }
+};
+
+let cart = {};
 
 function switchCategory(cat, btn) {
   document.querySelectorAll('.tab-pill').forEach(b => b.classList.remove('active'));
@@ -339,24 +440,126 @@ function switchCategory(cat, btn) {
   });
 }
 
-function addToCart(title, price, icon) {
-  cartCount++;
-  cartTotal += price;
+function loadCart() {
+  try {
+    const saved = localStorage.getItem('husayniya_cart');
+    if (saved) {
+      const data = JSON.parse(saved);
+      if (data && data.storeKey === STORE_KEY && data.items) {
+        cart = data.items;
+        for (let id in cart) {
+          renderCtrl(id);
+        }
+        updateSummary();
+      }
+    }
+  } catch(e) { console.warn(e); }
+}
 
-  document.getElementById('nav-cart-badge').textContent = cartCount;
-  document.getElementById('cart-items-count').textContent = cartCount;
-  document.getElementById('cart-total-price').textContent = cartTotal.toFixed(2) + ' ج.م';
-  document.getElementById('floating-cart-bar').classList.remove('hidden');
+function saveCart() {
+  try {
+    localStorage.setItem('husayniya_cart', JSON.stringify({
+      storeName: STORE_NAME,
+      storeKey: STORE_KEY,
+      items: cart,
+      updatedAt: Date.now()
+    }));
+  } catch(e) { console.warn(e); }
+}
 
-  showToast(`تمت إضافة "${title}" إلى السلة!`);
+function changeQty(id, title, price, icon, delta) {
+  if (!cart[id]) {
+    if (delta > 0) {
+      cart[id] = { id, title: title || itemCatalog[id].title, price: price || itemCatalog[id].price, icon: icon || itemCatalog[id].icon, qty: delta };
+      showToast(`تمت إضافة "${cart[id].title}" إلى السلة! 🛍️`);
+    }
+  } else {
+    cart[id].qty += delta;
+    if (cart[id].qty <= 0) {
+      const oldTitle = cart[id].title;
+      delete cart[id];
+      showToast(`تم حذف "${oldTitle}" من السلة 🗑️`);
+    } else if (delta > 0) {
+      showToast(`تمت زيادة كمية "${cart[id].title}" (${cart[id].qty} بالطلب)`);
+    } else {
+      showToast(`تم تقليل كمية "${cart[id].title}" (${cart[id].qty} بالطلب)`);
+    }
+  }
+
+  renderCtrl(id);
+  updateSummary();
+  saveCart();
+}
+
+function renderCtrl(id) {
+  const container = document.getElementById(`ctrl-${id}`);
+  if (!container || !itemCatalog[id]) return;
+
+  const meta = itemCatalog[id];
+  const item = cart[id];
+
+  if (!item || item.qty <= 0) {
+    container.innerHTML = `
+      <button onclick="changeQty('${id}', '${meta.title}', ${meta.price}, '${meta.icon}', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+        <span>+ أضف للسلة</span>
+      </button>
+    `;
+  } else {
+    const qty = item.qty;
+    const minusBtn = qty === 1
+      ? `<button onclick="changeQty('${id}', '${meta.title}', ${meta.price}, '${meta.icon}', -1)" class="qty-btn qty-btn-delete" title="حذف من السلة">🗑️</button>`
+      : `<button onclick="changeQty('${id}', '${meta.title}', ${meta.price}, '${meta.icon}', -1)" class="qty-btn qty-btn-minus" title="تقليل الكمية">−</button>`;
+
+    container.innerHTML = `
+      <div class="qty-stepper">
+        ${minusBtn}
+        <div class="qty-count-wrap">
+          <span class="qty-count">${qty}</span>
+          <span class="qty-unit">بالطلب</span>
+        </div>
+        <button onclick="changeQty('${id}', '${meta.title}', ${meta.price}, '${meta.icon}', 1)" class="qty-btn qty-btn-plus" title="زيادة الكمية">+</button>
+      </div>
+    `;
+  }
+}
+
+function updateSummary() {
+  let totalCount = 0;
+  let totalPrice = 0;
+
+  for (let id in cart) {
+    totalCount += cart[id].qty;
+    totalPrice += cart[id].qty * cart[id].price;
+  }
+
+  const badge = document.getElementById('nav-cart-badge');
+  const itemsCount = document.getElementById('cart-items-count');
+  const priceEl = document.getElementById('cart-total-price');
+  const bar = document.getElementById('floating-cart-bar');
+
+  if (badge) badge.textContent = totalCount;
+  if (itemsCount) itemsCount.textContent = totalCount;
+  if (priceEl) priceEl.textContent = totalPrice.toFixed(2) + ' ج.م';
+
+  if (bar) {
+    if (totalCount > 0) {
+      bar.classList.remove('hidden');
+    } else {
+      bar.classList.add('hidden');
+    }
+  }
 }
 
 function showToast(text) {
   const toast = document.getElementById('toast-msg');
+  if (!toast) return;
   document.getElementById('toast-text').textContent = text;
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2000);
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
 }
+
+document.addEventListener('DOMContentLoaded', loadCart);
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

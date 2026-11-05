@@ -37,6 +37,77 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 .btn-add{background:rgba(0,176,155,.18);border:1px solid rgba(0,176,155,.5);color:#00e5c8;font-weight:700;border-radius:12px;padding:8px 16px;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:6px}
 .btn-add:hover{background:linear-gradient(135deg,#00b09b,#06d6a0);color:#fff;box-shadow:0 0 16px rgba(0,176,155,.4);transform:scale(1.04)}
 
+/* Quantity Stepper Styles */
+.qty-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 125px;
+  padding: 4px 6px;
+  border-radius: 14px;
+  background: rgba(0, 229, 200, 0.14);
+  border: 1.5px solid rgba(0, 229, 200, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes popIn {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.qty-btn:active { transform: scale(0.88); }
+.qty-btn-plus {
+  background: linear-gradient(135deg, #00b09b, #06d6a0);
+  color: #040e1e;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0, 229, 200, 0.4);
+}
+.qty-btn-minus {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.qty-btn-minus:hover { background: rgba(255, 255, 255, 0.2); }
+.qty-btn-delete {
+  background: rgba(244, 63, 94, 0.2);
+  color: #fda4af;
+  font-size: 0.95rem;
+  border: 1px solid rgba(244, 63, 94, 0.45);
+}
+.qty-btn-delete:hover { background: rgba(244, 63, 94, 0.35); }
+.qty-count-wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.qty-count {
+  font-size: 1.1rem;
+  color: #00e5c8;
+  font-weight: 900;
+  min-width: 20px;
+  text-align: center;
+}
+.qty-unit {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
 /* ── Store Hero Banner ── */
 .store-hero{height:300px;border-radius:32px;position:relative;overflow:hidden;background:linear-gradient(135deg,#0d3826 0%,#154d37 50%,#092419 100%);border:1px solid rgba(255,255,255,.14)}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(6,9,26,0.95) 10%, rgba(6,9,26,0.4) 60%, transparent 100%)}
@@ -188,9 +259,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <span class="text-xs text-white/40 block">السعر</span>
           <span class="text-lg font-black text-emerald-400">380 ج.م</span>
         </div>
-        <button onclick="openCustomizer('كيلو مشكل كباب وكفتة حاتي بلدي', 18.50, '🍢')" class="btn-add">
-          <span>+ إضافة</span>
-        </button>
+        <div id="ctrl-baz-1" class="min-w-[125px]">
+          <button onclick="changeQty('baz-1', 'كيلو مشكل كباب وكفتة حاتي بلدي', 380, '🍢', 1)" class="btn-add">
+            <span>+ إضافة</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -213,9 +286,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <span class="text-xs text-white/40 block">السعر</span>
           <span class="text-lg font-black text-emerald-400">240 ج.م</span>
         </div>
-        <button onclick="openCustomizer('طاجن لحمة بلدي بالبصل والأرز البسمتي', 22.00, '🍖')" class="btn-add">
-          <span>+ إضافة</span>
-        </button>
+        <div id="ctrl-baz-2" class="min-w-[125px]">
+          <button onclick="changeQty('baz-2', 'طاجن لحمة بلدي بالبصل والأرز البسمتي', 240, '🍖', 1)" class="btn-add">
+            <span>+ إضافة</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -237,9 +312,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <span class="text-xs text-white/40 block">السعر</span>
           <span class="text-lg font-black text-emerald-400">190 ج.م</span>
         </div>
-        <button onclick="openCustomizer('وجبة فرخة مشوية على الفحم مع أرز وبطاطس', 14.00, '🍗')" class="btn-add">
-          <span>+ إضافة</span>
-        </button>
+        <div id="ctrl-baz-3" class="min-w-[125px]">
+          <button onclick="changeQty('baz-3', 'وجبة فرخة مشوية على الفحم مع أرز وبطاطس', 190, '🍗', 1)" class="btn-add">
+            <span>+ إضافة</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -261,9 +338,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <span class="text-xs text-white/40 block">السعر</span>
           <span class="text-lg font-black text-emerald-400">260 ج.م</span>
         </div>
-        <button onclick="openCustomizer('وجبة طرب وكفتة بلدي مخصوص', 19.00, '🥩')" class="btn-add">
-          <span>+ إضافة</span>
-        </button>
+        <div id="ctrl-baz-4" class="min-w-[125px]">
+          <button onclick="changeQty('baz-4', 'وجبة طرب وكفتة بلدي مخصوص', 260, '🥩', 1)" class="btn-add">
+            <span>+ إضافة</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -286,9 +365,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <span class="text-xs text-white/40 block">السعر</span>
           <span class="text-lg font-black text-emerald-400">85 ج.م</span>
         </div>
-        <button onclick="openCustomizer('ساندوتش كريب زنجر سوبر كرانشي', 8.50, '🍔')" class="btn-add">
-          <span>+ إضافة</span>
-        </button>
+        <div id="ctrl-baz-5" class="min-w-[125px]">
+          <button onclick="changeQty('baz-5', 'ساندوتش كريب زنجر سوبر كرانشي', 85, '🍔', 1)" class="btn-add">
+            <span>+ إضافة</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -310,9 +391,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <span class="text-xs text-white/40 block">السعر</span>
           <span class="text-lg font-black text-emerald-400">40 ج.م</span>
         </div>
-        <button onclick="openCustomizer('طبق مقبلات وطحينة بلدي وسلطات', 6.00, '🥗')" class="btn-add">
-          <span>+ إضافة</span>
-        </button>
+        <div id="ctrl-baz-6" class="min-w-[125px]">
+          <button onclick="changeQty('baz-6', 'طبق مقبلات وطحينة بلدي وسلطات', 40, '🥗', 1)" class="btn-add">
+            <span>+ إضافة</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -334,9 +417,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <span class="text-xs text-white/40 block">السعر</span>
           <span class="text-lg font-black text-emerald-400">25 ج.م</span>
         </div>
-        <button onclick="openCustomizer('عصير رمان الحسينية طبيعي', 3.50, '🥤')" class="btn-add">
-          <span>+ إضافة</span>
-        </button>
+        <div id="ctrl-baz-7" class="min-w-[125px]">
+          <button onclick="changeQty('baz-7', 'عصير رمان الحسينية طبيعي', 25, '🥤', 1)" class="btn-add">
+            <span>+ إضافة</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -493,10 +578,20 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 </div><!-- .page -->
 
 <script>
-// ── Cart State ──
-let cartCount = 0;
-let cartTotal = 0.00;
-let currentItem = { title: '', basePrice: 0.00 };
+const STORE_NAME = 'مشويات الباز والحسينية — شارع المركز';
+const STORE_KEY = 'baz';
+const itemCatalog = {
+  'baz-1': { title: 'كيلو مشكل كباب وكفتة حاتي بلدي', price: 380, icon: '🍢' },
+  'baz-2': { title: 'طاجن لحمة بلدي بالبصل والأرز البسمتي', price: 240, icon: '🍖' },
+  'baz-3': { title: 'وجبة فرخة مشوية على الفحم مع أرز وبطاطس', price: 190, icon: '🍗' },
+  'baz-4': { title: 'وجبة طرب وكفتة بلدي مخصوص', price: 260, icon: '🥩' },
+  'baz-5': { title: 'ساندوتش كريب زنجر سوبر كرانشي', price: 85, icon: '🍔' },
+  'baz-6': { title: 'طبق مقبلات وطحينة بلدي وسلطات', price: 40, icon: '🥗' },
+  'baz-7': { title: 'عصير رمان الحسينية طبيعي', price: 25, icon: '🥤' }
+};
+
+let cart = {};
+let currentItem = { id: '', title: '', basePrice: 0.00 };
 
 // ── Switch Menu Category Tabs ──
 function switchCategory(cat, btn) {
@@ -537,9 +632,123 @@ function filterMenuItems() {
   });
 }
 
+function loadCart() {
+  try {
+    const saved = localStorage.getItem('husayniya_cart');
+    if (saved) {
+      const data = JSON.parse(saved);
+      if (data && data.storeKey === STORE_KEY && data.items) {
+        cart = data.items;
+        for (let id in cart) {
+          renderCtrl(id);
+        }
+        updateSummary();
+      }
+    }
+  } catch(e) { console.warn(e); }
+}
+
+function saveCart() {
+  try {
+    localStorage.setItem('husayniya_cart', JSON.stringify({
+      storeName: STORE_NAME,
+      storeKey: STORE_KEY,
+      items: cart,
+      updatedAt: Date.now()
+    }));
+  } catch(e) { console.warn(e); }
+}
+
+function changeQty(id, title, price, icon, delta) {
+  if (!cart[id]) {
+    if (delta > 0) {
+      cart[id] = { id, title: title || itemCatalog[id].title, price: price || itemCatalog[id].price, icon: icon || itemCatalog[id].icon, qty: delta };
+      showToast(`تمت إضافة "${cart[id].title}" إلى السلة! 🛍️`);
+    }
+  } else {
+    cart[id].qty += delta;
+    if (cart[id].qty <= 0) {
+      const oldTitle = cart[id].title;
+      delete cart[id];
+      showToast(`تم حذف "${oldTitle}" من السلة 🗑️`);
+    } else if (delta > 0) {
+      showToast(`تمت زيادة كمية "${cart[id].title}" (${cart[id].qty} بالطلب)`);
+    } else {
+      showToast(`تم تقليل كمية "${cart[id].title}" (${cart[id].qty} بالطلب)`);
+    }
+  }
+
+  renderCtrl(id);
+  updateSummary();
+  saveCart();
+}
+
+function renderCtrl(id) {
+  const container = document.getElementById(`ctrl-${id}`);
+  if (!container || !itemCatalog[id]) return;
+
+  const meta = itemCatalog[id];
+  const item = cart[id];
+
+  if (!item || item.qty <= 0) {
+    container.innerHTML = `
+      <button onclick="changeQty('${id}', '${meta.title}', ${meta.price}, '${meta.icon}', 1)" class="btn-add">
+        <span>+ إضافة</span>
+      </button>
+    `;
+  } else {
+    const qty = item.qty;
+    const minusBtn = qty === 1
+      ? `<button onclick="changeQty('${id}', '${meta.title}', ${meta.price}, '${meta.icon}', -1)" class="qty-btn qty-btn-delete" title="حذف من السلة">🗑️</button>`
+      : `<button onclick="changeQty('${id}', '${meta.title}', ${meta.price}, '${meta.icon}', -1)" class="qty-btn qty-btn-minus" title="تقليل الكمية">−</button>`;
+
+    container.innerHTML = `
+      <div class="qty-stepper">
+        ${minusBtn}
+        <div class="qty-count-wrap">
+          <span class="qty-count">${qty}</span>
+          <span class="qty-unit">بالطلب</span>
+        </div>
+        <button onclick="changeQty('${id}', '${meta.title}', ${meta.price}, '${meta.icon}', 1)" class="qty-btn qty-btn-plus" title="زيادة الكمية">+</button>
+      </div>
+    `;
+  }
+}
+
+function updateSummary() {
+  let totalCount = 0;
+  let totalPrice = 0;
+
+  for (let id in cart) {
+    totalCount += cart[id].qty;
+    totalPrice += cart[id].qty * cart[id].price;
+  }
+
+  const badge = document.getElementById('nav-cart-badge');
+  const itemsCount = document.getElementById('cart-items-count');
+  const priceEl = document.getElementById('cart-total-price');
+  const bar = document.getElementById('floating-cart-bar');
+
+  if (badge) badge.textContent = totalCount;
+  if (itemsCount) itemsCount.textContent = totalCount;
+  if (priceEl) priceEl.textContent = totalPrice.toFixed(2) + ' ج.م';
+
+  if (bar) {
+    if (totalCount > 0) {
+      bar.classList.remove('hidden');
+    } else {
+      bar.classList.add('hidden');
+    }
+  }
+}
+
 // ── Product Customizer Modal ──
 function openCustomizer(title, price, icon) {
-  currentItem = { title, basePrice: price };
+  let matchedId = 'baz-1';
+  for (let id in itemCatalog) {
+    if (itemCatalog[id].title === title) { matchedId = id; break; }
+  }
+  currentItem = { id: matchedId, title, basePrice: price };
   document.getElementById('modal-title').textContent = title;
   document.getElementById('modal-icon').textContent = icon;
   document.getElementById('modal-base-price').textContent = price.toFixed(2) + ' ج.م';
@@ -562,34 +771,27 @@ function calcModalTotal() {
   return total;
 }
 
-// ── Add Item to Cart & Update Bars ──
+// ── Add Item to Cart from Modal ──
 function confirmAddToCart() {
-  const finalItemPrice = calcModalTotal();
-  cartCount += 1;
-  cartTotal += finalItemPrice;
-
-  // Update Nav Badge
-  document.getElementById('nav-cart-badge').textContent = cartCount;
-
-  // Update Floating Cart Bar
-  document.getElementById('cart-items-count').textContent = cartCount;
-  document.getElementById('cart-total-price').textContent = cartTotal.toFixed(2) + ' ج.م';
-  document.getElementById('floating-cart-bar').classList.remove('hidden');
-
+  changeQty(currentItem.id, currentItem.title, currentItem.basePrice, '🍢', 1);
   closeCustomizer();
-  showToast(`تمت إضافة "${currentItem.title}" إلى السلة!`);
 }
 
 // ── Toast System ──
 function showToast(text) {
   const toast = document.getElementById('toast-msg');
+  if (!toast) return;
   document.getElementById('toast-text').textContent = text;
   toast.classList.add('show');
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 2500);
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
 }
+
+document.addEventListener('DOMContentLoaded', loadCart);
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
 
 </body>
 </html>

@@ -145,7 +145,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <div class="flex items-center gap-3">
             <span class="text-xl">🏪</span>
             <div>
-              <h2 class="text-base font-bold">مشويات الباز والحسينية — شارع المركز</h2>
+              <h2 id="checkout-store-name" class="text-base font-bold">مشويات الباز والحسينية — شارع المركز</h2>
               <p class="text-xs text-white/40">التوصيل التقديري: 25 - 35 دقيقة</p>
             </div>
           </div>
@@ -448,26 +448,120 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
 <script>
 // ── Global Cart State ──
-const items = {
-  1: { price: 380.00, qty: 1 },
-  2: { price: 95.00, qty: 2 },
-  3: { price: 25.00, qty: 1 }
+let activeStoreName = 'مشويات الباز والحسينية — شارع المركز';
+let activeStoreKey = 'baz';
+let items = {
+  1: { id: 1, title: 'كيلو مشكل كباب وكفتة حاتي بلدي', price: 380.00, qty: 1, icon: '🍢' },
+  2: { id: 2, title: 'فرخة مشوية على الفحم مع أرز', price: 190.00, qty: 1, icon: '🍗' },
+  3: { id: 3, title: 'عصير رمان الحسينية طبيعي', price: 25.00, qty: 1, icon: '🥤' }
 };
 const deliveryFee = 15.00;
 let discount = 0.00;
 let selectedPaymentMethod = 'الدفع نقدياً عند الاستلام (كاش)';
 
+// ── Load cart from localStorage ──
+function initCheckoutCart() {
+  try {
+    const saved = localStorage.getItem('husayniya_cart');
+    if (saved) {
+      const data = JSON.parse(saved);
+      if (data && data.items && Object.keys(data.items).length > 0) {
+        items = data.items;
+        if (data.storeName) {
+          activeStoreName = data.storeName;
+          activeStoreKey = data.storeKey || 'store';
+          const storeNameEl = document.getElementById('checkout-store-name');
+          if (storeNameEl) storeNameEl.textContent = activeStoreName;
+        }
+        renderCartList();
+        calculateTotal();
+        return;
+      }
+    }
+  } catch(e) { console.warn(e); }
+
+  // Default fallback
+  calculateTotal();
+}
+
+function syncLocalStorage() {
+  try {
+    localStorage.setItem('husayniya_cart', JSON.stringify({
+      storeName: activeStoreName,
+      storeKey: activeStoreKey,
+      items: items,
+      updatedAt: Date.now()
+    }));
+  } catch(e) { console.warn(e); }
+}
+
+function renderCartList() {
+  const listEl = document.getElementById('cart-list');
+  if (!listEl) return;
+
+  const itemKeys = Object.keys(items);
+  if (itemKeys.length === 0) {
+    listEl.innerHTML = `
+      <div class="text-center py-12 text-white/40">
+        <div class="text-4xl mb-2">🛒</div>
+        <p class="text-sm">سلتك فارغة الآن.</p>
+        <a href="index.html" class="inline-block mt-3 text-xs text-emerald-400 font-bold hover:underline">تصفح المتاجر والمطاعم</a>
+      </div>
+    `;
+    return;
+  }
+
+  let html = '';
+  for (let id in items) {
+    const it = items[id];
+    html += `
+      <div class="cart-item flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.04] border border-white/5" data-id="${id}" data-price="${it.price}">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-xl flex items-center justify-center text-3xl" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">
+            ${it.icon || '🛍️'}
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-white">${it.title}</h3>
+            <p class="text-xs text-white/40 mb-1">سعر الوحدة: ${it.price} ج.م</p>
+            <div class="text-sm font-extrabold text-emerald-400"><span class="item-total-price">${(it.price * it.qty).toFixed(2)}</span> ج.م</div>
+          </div>
+        </div>
+        <!-- Qty control -->
+        <div class="flex items-center gap-2">
+          <button onclick="updateQty('${id}', -1)" class="btn-icon text-base font-bold ${it.qty === 1 ? 'text-rose-400 hover:bg-rose-500/20' : ''}" title="${it.qty === 1 ? 'حذف من السلة' : 'تقليل'}">
+            ${it.qty === 1 ? '🗑️' : '−'}
+          </button>
+          <span id="qty-${id}" class="qty-display font-black text-emerald-400 px-2 min-w-[20px] text-center">${it.qty}</span>
+          <button onclick="updateQty('${id}', 1)" class="btn-icon text-base font-bold" title="زيادة">+</button>
+        </div>
+      </div>
+    `;
+  }
+  listEl.innerHTML = html;
+}
+
 // ── Update Quantity ──
 function updateQty(id, delta) {
   if (!items[id]) return;
   items[id].qty += delta;
-  if (items[id].qty < 1) items[id].qty = 1;
 
-  document.getElementById(`qty-${id}`).textContent = items[id].qty;
+  if (items[id].qty <= 0) {
+    delete items[id];
+    syncLocalStorage();
+    renderCartList();
+    calculateTotal();
+    return;
+  }
+
+  syncLocalStorage();
+  const qtyEl = document.getElementById(`qty-${id}`);
+  if (qtyEl) qtyEl.textContent = items[id].qty;
+
   const itemTotalEl = document.querySelector(`.cart-item[data-id="${id}"] .item-total-price`);
   if (itemTotalEl) {
     itemTotalEl.textContent = (items[id].price * items[id].qty).toFixed(2);
   }
+  renderCartList();
   calculateTotal();
 }
 
@@ -493,7 +587,7 @@ function applyCoupon() {
     discount = 40.00;
     document.getElementById('discount-val').textContent = discount.toFixed(2);
     document.getElementById('discount-row').classList.remove('hidden');
-    msg.textContent = '✓ تم تطبيق خصم بقيمة 5.00 ج.م بنجاح!';
+    msg.textContent = '✓ تم تطبيق خصم بقيمة 40.00 ج.م بنجاح!';
     msg.className = 'text-[11px] mt-1.5 text-emerald-400 font-semibold block';
     calculateTotal();
   } else {
@@ -512,14 +606,9 @@ function selectPayment(element, methodKey) {
 // ── Clear Cart ──
 function clearCart() {
   if (confirm('هل أنت متأكد من رغبتك في تفريغ السلة؟')) {
-    document.getElementById('cart-list').innerHTML = `
-      <div class="text-center py-12 text-white/40">
-        <div class="text-4xl mb-2">🛒</div>
-        <p class="text-sm">سلتك فارغة الآن.</p>
-        <a href="index.html" class="inline-block mt-3 text-xs text-emerald-400 font-bold hover:underline">تصفح المتاجر والمطاعم</a>
-      </div>
-    `;
-    for (let id in items) items[id].qty = 0;
+    items = {};
+    localStorage.removeItem('husayniya_cart');
+    renderCartList();
     calculateTotal();
   }
 }
@@ -532,7 +621,7 @@ async function submitOrder() {
   for (let id in items) {
     if (items[id].qty > 0) {
       hasItems = true;
-      cartItems.push({ id: id, qty: items[id].qty, price: items[id].price });
+      cartItems.push({ id: id, title: items[id].title, qty: items[id].qty, price: items[id].price });
       subtotal += items[id].price * items[id].qty;
     }
   }
@@ -547,7 +636,7 @@ async function submitOrder() {
   // Realtime Cloud Insertion
   if (window.HusayniyaCloud) {
     const res = await window.HusayniyaCloud.createOrder({
-      store_name: 'مشويات الباز والحسينية',
+      store_name: activeStoreName,
       customer_name: 'أحمد السيد',
       customer_phone: '01012345678',
       items: cartItems,
@@ -562,9 +651,14 @@ async function submitOrder() {
     }
   }
 
+  // Clear cart upon successful order
+  localStorage.removeItem('husayniya_cart');
+
   document.getElementById('confirmed-payment').textContent = selectedPaymentMethod;
   document.getElementById('success-modal').classList.add('show');
 }
+
+document.addEventListener('DOMContentLoaded', initCheckoutCart);
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
