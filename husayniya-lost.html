@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>أمانات ومفقودات الحسينية — خدمات الحسينية (الشرقية)</title>
+<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+
+/* ── Background Scene ── */
+.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35;animation:drift 18s ease-in-out infinite alternate}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#00b09b,#045353);top:-150px;right:-150px}
+.o2{width:500px;height:500px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-150px;left:-150px;animation-delay:-6s}
+.o3{width:400px;height:400px;background:radial-gradient(circle,#667eea,#764ba2);top:40%;left:30%;animation-delay:-10s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-15px) scale(1.05)}100%{transform:translate(-20px,20px) scale(.95)}}
+
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+
+/* ── Liquid Glass Utilities ── */
+.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,.14)}
+.glass-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.12);transition:all .3s ease}
+.glass-card:hover{border-color:rgba(0,176,155,.45);box-shadow:0 14px 40px rgba(0,176,155,.15);transform:translateY(-3px)}
+
+/* ── Gradients ── */
+.gt{background:linear-gradient(135deg,#00e5c8 0%,#43cea2 45%,#f7c948 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt-gold{background:linear-gradient(135deg,#f7c948,#f7971e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── Buttons ── */
+.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-primary:hover{transform:scale(1.02);box-shadow:0 0 25px rgba(0,176,155,.45)}
+
+.btn-tab{padding:9px 18px;border-radius:14px;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .25s;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);white-space:nowrap}
+.btn-tab:hover,.btn-tab.active{background:rgba(0,176,155,.22);color:#00e5c8;border-color:rgba(0,176,155,.6);box-shadow:0 0 16px rgba(0,176,155,.2)}
+
+/* ── Status Badges ── */
+.b-lost{background:rgba(255,80,80,.18);border:1px solid rgba(255,80,80,.4);color:#ff8080}
+.b-found{background:rgba(0,214,160,.18);border:1px solid rgba(0,214,160,.4);color:#00d6a0}
+.b-returned{background:rgba(100,149,237,.18);border:1px solid rgba(100,149,237,.4);color:#6fa8f0}
+
+/* ── Form Inputs ── */
+.input-glass{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.16);color:#fff;transition:all .3s;font-size:.88rem}
+.input-glass:focus{outline:none;background:rgba(255,255,255,.12);border-color:rgba(0,176,155,.7);box-shadow:0 0 0 3px rgba(0,176,155,.15)}
+
+/* ── Modal overlay ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(4,8,20,.85);backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+
+.scroll-touch{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.scroll-touch::-webkit-scrollbar{display:none}
+</style>
+</head>
+<body>
+
+<!-- Animated Orbs -->
+<div class="bg-scene">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<div class="page">
+
+<!-- ══════════════════ NAVBAR ══════════════════ -->
+<nav class="glass sticky top-0 z-50 px-6 py-4" style="background:rgba(4,14,30,.7);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <!-- Back to Home -->
+    <a href="index.html" class="flex items-center gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
+      <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">←</div>
+      <div>
+        <span class="text-xs text-emerald-400 font-semibold">الرئيسية</span>
+        <div class="text-sm font-bold">خدمات الحسينية (الشرقية)</div>
+      </div>
+    </a>
+
+    <!-- Add Report Action -->
+    <div class="flex items-center gap-3">
+      <button onclick="openReportModal()" class="btn-primary px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2">
+        <span>+ أضف إعلان (مفقود / معثور عليه)</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════ MAIN LOST & FOUND ══════════════════ -->
+<main class="max-w-7xl mx-auto px-6 py-8 flex-1">
+
+  <!-- Header Banner -->
+  <div class="glass-card rounded-3xl p-6 md:p-10 mb-8 relative overflow-hidden">
+    <div class="max-w-2xl relative z-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold mb-4">
+        <span>🤝</span>
+        <span>بوابة الخير والأمانات المجتمعية بمركز الحسينية</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-black leading-tight mb-3">
+        فقدت شيئاً أو عثرت على أمانة؟<br/><span class="gt">أهل الحسينية دائماً سند لبعض</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-white/60 mb-6 leading-relaxed">
+        منصة موحدة ومجانية تماماً لمساعدة أهالي مركز الحسينية وقراها (سعود، الأخيوة، بحر البقر، وتلراك) في استعادة البطاقات الشخصية، المحافظ، المفاتيح، الأجهزة، والأمانات المفقودة بأمان وسرعة.
+      </p>
+
+      <!-- Search in Items -->
+      <div class="glass p-1.5 rounded-2xl flex items-center gap-2 max-w-lg border border-white/20">
+        <input id="item-search" oninput="filterItems()" type="text" placeholder="ابحث باسم المفقود، اسم صاحب البطاقة، أو المكان..." class="flex-1 bg-transparent px-3 text-xs sm:text-sm text-white focus:outline-none"/>
+        <button class="btn-primary px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap">
+          بحث 🔍
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Buttons (All, Lost, Found, Returned) -->
+  <div class="flex items-center gap-2 mb-8 scroll-touch pb-2">
+    <button onclick="filterType('all', this)" class="btn-tab active">🌟 جميع الإعلانات (<span id="total-count">6</span>)</button>
+    <button onclick="filterType('found', this)" class="btn-tab">🟢 معثور عليه (أمانات بانتظار أصحابها)</button>
+    <button onclick="filterType('lost', this)" class="btn-tab">🔴 مفقودات جاري البحث عنها</button>
+    <button onclick="filterType('returned', this)" class="btn-tab">🤝 تم التسليم لأصحابها بنجاح</button>
+  </div>
+
+  <!-- Items Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="items-grid">
+
+    <!-- Item 1: بطاقة رقم قومي (Found) -->
+    <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-type="found">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="b-found text-[11px] px-3 py-1 rounded-full font-bold">🟢 تم العثور عليها</span>
+          <span class="text-[11px] text-white/40">اليوم، 11:30 ص</span>
+        </div>
+
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#00b09b,#045353)">
+            🪪
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-white">بطاقة رقم قومي ورخصة قيادة</h3>
+            <p class="text-xs text-amber-300 font-bold mt-0.5">باسم: إبراهيم محمود حسن الشرقاوي</p>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3.5 rounded-2xl">
+          <div><strong class="text-white/80">مكان العثور:</strong> شارع المركز، أمام البنك الأهلي المصري بالحسينية</div>
+          <div><strong class="text-white/80">المواصفات:</strong> محفظة جلدية سوداء بها البطاقة ورخصة دراجة نارية ومبلغ مالي أمانة.</div>
+          <div class="text-emerald-400 font-semibold">الأمانة محفوظة طرف: الأستاذ هاني (صاحب مكتبة المركز)</div>
+        </div>
+      </div>
+
+      <button onclick="contactHolder('الأستاذ هاني', '01012345678', 'بطاقة إبراهيم محمود حسن')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
+        <span>📞 التواصل لاستلام الأمانة</span>
+      </button>
+    </div>
+
+    <!-- Item 2: هاتف سامسونج (Lost) -->
+    <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-type="lost">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="b-lost text-[11px] px-3 py-1 rounded-full font-bold">🔴 مفقود (مكافأة مالية)</span>
+          <span class="text-[11px] text-white/40">منذ يومين</span>
+        </div>
+
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#e53e3e,#742a2a)">
+            📱
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-white">موبايل Samsung Galaxy A54</h3>
+            <p class="text-xs text-rose-300 font-bold mt-0.5">لون كحلي — جراب أسود عليه كارت شخصي</p>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3.5 rounded-2xl">
+          <div><strong class="text-white/80">مكان الفقد:</strong> شارع المدارس بالقرب من مدرسة الحسينية الثانوية بنين</div>
+          <div><strong class="text-white/80">التفاصيل:</strong> عليه صور عائلية هامة جداً لصاحبه، ومكافأة 1,000 ج.م لمن يعثر عليه.</div>
+          <div class="text-amber-300 font-semibold">صاحب المفقود: أحمد علاء (ابن الحسينية)</div>
+        </div>
+      </div>
+
+      <button onclick="contactHolder('أحمد علاء', '01123456789', 'موبايل سامسونج مفقود')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
+        <span>📞 الاتصال بصاحب الموبايل</span>
+      </button>
+    </div>
+
+    <!-- Item 3: ميدالية مفاتيح سيارة (Found) -->
+    <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-type="found">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="b-found text-[11px] px-3 py-1 rounded-full font-bold">🟢 تم العثور عليها</span>
+          <span class="text-[11px] text-white/40">أمس</span>
+        </div>
+
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#00b09b,#045353)">
+            🔑
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-white">ريموت ومفاتيح سيارة تويوتا</h3>
+            <p class="text-xs text-amber-300 font-bold mt-0.5">ميدالية جلد سوداء بها 4 مفاتيح</p>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3.5 rounded-2xl">
+          <div><strong class="text-white/80">مكان العثور:</strong> شارع بورسعيد، أمام صيدلية العزازي</div>
+          <div><strong class="text-white/80">المواصفات:</strong> مفتاح سيارة بالريموت مع مفاتيح منزل وشقة.</div>
+          <div class="text-emerald-400 font-semibold">الأمانة مع: كابتن تامر (سائق تكسي بالحسينية)</div>
+        </div>
+      </div>
+
+      <button onclick="contactHolder('كابتن تامر', '01234567890', 'مفاتيح سيارة تويوتا')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
+        <span>📞 التواصل لاستلام المفاتيح</span>
+      </button>
+    </div>
+
+    <!-- Item 4: حقيبة أوراق جامعية (Returned) -->
+    <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between opacity-80" data-type="returned">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="b-returned text-[11px] px-3 py-1 rounded-full font-bold">🤝 تم التسليم لصاحبها</span>
+          <span class="text-[11px] text-white/40">3 نوفمبر 2026</span>
+        </div>
+
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#3182ce,#2b6cb0)">
+            📁
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-white">شهادة تخرج وملف أوراق جيش</h3>
+            <p class="text-xs text-blue-300 font-bold mt-0.5">باسم: محمد فتحي عبد السلام</p>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3.5 rounded-2xl">
+          <div><strong class="text-white/80">مكان العثور:</strong> موقف سيارات الحسينية — الزقازيق</div>
+          <div class="text-emerald-400 font-bold">✓ تم التواصل بنجاح وتسليم الملف لصاحبه بفضل أهالي الحسينية.</div>
+        </div>
+      </div>
+
+      <div class="p-2 text-center text-xs text-white/40 font-bold">
+        تم إغلاق البلاغ بنجاح ✓
+      </div>
+    </div>
+
+    <!-- Item 5: كارت فيزا ميزة (Found) -->
+    <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-type="found">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="b-found text-[11px] px-3 py-1 rounded-full font-bold">🟢 تم العثور عليها</span>
+          <span class="text-[11px] text-white/40">منذ 3 ساعات</span>
+        </div>
+
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#00b09b,#045353)">
+            💳
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-white">كارت ميزة بنك مصر (معاشات)</h3>
+            <p class="text-xs text-amber-300 font-bold mt-0.5">باسم: الحاجة فاطمة السيد إبراهيم</p>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3.5 rounded-2xl">
+          <div><strong class="text-white/80">مكان العثور:</strong> ماكينة صراف ATM البريد بشارع ترعة سراج</div>
+          <div><strong class="text-white/80">التفاصيل:</strong> تم العثور على الكارت متروكاً داخل الماكينة.</div>
+          <div class="text-emerald-400 font-semibold">الأمانة مودعة لدى: صيدلية الشفاء بشارع المركز</div>
+        </div>
+      </div>
+
+      <button onclick="contactHolder('د. مصطفى (صيدلية الشفاء)', '01098765432', 'كارت فيزا الحاجة فاطمة')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
+        <span>📞 التواصل مع الصيدلية للاستلام</span>
+      </button>
+    </div>
+
+    <!-- Item 6: ساعة يد (Lost) -->
+    <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-type="lost">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="b-lost text-[11px] px-3 py-1 rounded-full font-bold">🔴 مفقود</span>
+          <span class="text-[11px] text-white/40">منذ 4 أيام</span>
+        </div>
+
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#e53e3e,#742a2a)">
+            ⌚
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-white">ساعة يد كاسيو فضية كلاسيك</h3>
+            <p class="text-xs text-rose-300 font-bold mt-0.5">هدية عزيزة من الوالد</p>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3.5 rounded-2xl">
+          <div><strong class="text-white/80">مكان الفقد:</strong> نادي الحسينية الرياضي / ملعب الكرة الخماسي</div>
+          <div><strong class="text-white/80">التفاصيل:</strong> سقطت أثناء مباراة كرة قدم يوم الجمعة الماضية.</div>
+          <div class="text-amber-300 font-semibold">صاحب الساعة: يوسف خالد</div>
+        </div>
+      </div>
+
+      <button onclick="contactHolder('يوسف خالد', '01055554444', 'ساعة يد كاسيو')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
+        <span>📞 الاتصال بيوسف</span>
+      </button>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- ══════════════════ ADD REPORT MODAL ══════════════════ -->
+<div id="report-modal" class="modal-overlay">
+  <div class="glass-card rounded-3xl p-6 md:p-8 max-w-md w-full relative border border-white/20">
+    <button onclick="closeReportModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg">✕</button>
+
+    <h3 class="font-bold text-base text-white mb-1">إضافة إعلان مفقودات أو أمانة جديدة</h3>
+    <p class="text-xs text-white/50 mb-4">سيتم نشر الإعلان فوراً لجميع أهالي مركز الحسينية</p>
+
+    <!-- Report Form -->
+    <div class="space-y-3.5 text-xs mb-5">
+      <div>
+        <label class="block font-semibold mb-1 text-white/70">نوع الإعلان</label>
+        <select id="report-type" class="input-glass w-full rounded-xl px-3 py-2 bg-slate-900 text-white">
+          <option value="found">🟢 عثرت على أمانة (معثور عليه)</option>
+          <option value="lost">🔴 أبحث عن شيء فقدته (مفقود)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1 text-white/70">عنوان المفقود (مثال: بطاقة رقم قومي، محفظة، هاتف)</label>
+        <input id="report-title" type="text" placeholder="اكتب الشيء المفقود باختصار" class="input-glass w-full rounded-xl px-3 py-2 text-white"/>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1 text-white/70">المكان بالتحديد في الحسينية</label>
+        <select id="report-area" class="input-glass w-full rounded-xl px-3 py-2 bg-slate-900 text-white">
+          <option>شارع المركز</option>
+          <option>شارع بورسعيد</option>
+          <option>شارع المدارس</option>
+          <option>شارع ترعة سراج والمعهد الديني</option>
+          <option>شارع المستشفى المركزي</option>
+          <option>حي المحجوب والمعاشات</option>
+          <option>موقف الحسينية</option>
+          <option>قرية جزيرة سعود</option>
+          <option>قرية الأخيوة</option>
+          <option>قرية بحر البقر</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1 text-white/70">تفاصيل ومواصفات الأمانة / المفقود</label>
+        <textarea id="report-desc" rows="2" placeholder="اكتب الاسم المكتوب على البطاقة، اللون، أو أي علامة مميزة..." class="input-glass w-full rounded-xl px-3 py-2 text-white"></textarea>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2">
+        <div>
+          <label class="block font-semibold mb-1 text-white/70">اسمك للتواصل</label>
+          <input id="report-name" type="text" placeholder="أحمد محمد" class="input-glass w-full rounded-xl px-3 py-2 text-white"/>
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-white/70">رقم الهاتف (مصر)</label>
+          <input id="report-phone" type="tel" placeholder="010XXXXXXXX" class="input-glass w-full rounded-xl px-3 py-2 text-white" maxlength="11"/>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="submitReport()" class="btn-primary w-full py-3 rounded-2xl text-xs font-bold flex items-center justify-center gap-2">
+      <span>نشر الإعلان في الحسينية الآن 📢</span>
+    </button>
+  </div>
+</div>
+
+</div><!-- .page -->
+
+<script>
+// ── Filter by Type ──
+function filterType(type, btn) {
+  document.querySelectorAll('.btn-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.lost-card').forEach(card => {
+    if (type === 'all' || card.dataset.type === type) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// ── Search Items ──
+function filterItems() {
+  const query = document.getElementById('item-search').value.toLowerCase().trim();
+  document.querySelectorAll('.lost-card').forEach(card => {
+    const text = card.textContent.toLowerCase();
+    if (text.includes(query)) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// ── Contact Holder Action ──
+function contactHolder(name, phone, item) {
+  alert(`بيانات التواصل بخصوص (${item}):\n\nالشخص المسؤول: ${name}\nرقم الهاتف: ${phone}\n\nيمكنك الاتصال به الآن أو مراسلته عبر واتساب لاستلام الأمانة.`);
+}
+
+// ── Modal Logic ──
+function openReportModal() {
+  document.getElementById('report-modal').classList.add('show');
+}
+function closeReportModal() {
+  document.getElementById('report-modal').classList.remove('show');
+}
+
+function submitReport() {
+  const type = document.getElementById('report-type').value;
+  const title = document.getElementById('report-title').value.trim();
+  const area = document.getElementById('report-area').value;
+  const desc = document.getElementById('report-desc').value.trim();
+  const name = document.getElementById('report-name').value.trim();
+  const phone = document.getElementById('report-phone').value.trim();
+
+  if (!title || !name || phone.length < 11) {
+    alert('يرجى كتابة عنوان المفقود، اسمك، ورقم هاتف مصري صحيح (11 رقماً).');
+    return;
+  }
+
+  const isFound = type === 'found';
+  const badgeClass = isFound ? 'b-found' : 'b-lost';
+  const badgeText = isFound ? '🟢 تم العثور عليها' : '🔴 مفقود';
+  const icon = isFound ? '🪪' : '🔍';
+
+  const newCard = `
+    <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-type="${type}">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="${badgeClass} text-[11px] px-3 py-1 rounded-full font-bold">${badgeText}</span>
+          <span class="text-[11px] text-white/40">الآن</span>
+        </div>
+
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#00b09b,#045353)">
+            ${icon}
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-white">${title}</h3>
+            <p class="text-xs text-amber-300 font-bold mt-0.5">الحسينية — ${area}</p>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3.5 rounded-2xl">
+          <div><strong class="text-white/80">المكان:</strong> ${area}</div>
+          <div><strong class="text-white/80">التفاصيل:</strong> ${desc || 'لا توجد تفاصيل إضافية'}</div>
+          <div class="text-emerald-400 font-semibold">المعلن: ${name}</div>
+        </div>
+      </div>
+
+      <button onclick="contactHolder('${name}', '${phone}', '${title}')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
+        <span>📞 التواصل مع المعلن</span>
+      </button>
+    </div>
+  `;
+
+  const container = document.getElementById('items-grid');
+  container.insertAdjacentHTML('afterbegin', newCard);
+
+  // Update total
+  const countEl = document.getElementById('total-count');
+  countEl.textContent = parseInt(countEl.textContent) + 1;
+
+  closeReportModal();
+  alert(`تم نشر إعلانك بنجاح في قسم مفقودات الحسينية! 🎉\nسيتم إشعار أهالي المنطقة لمساعدتك.`);
+}
+</script>
+
+</body>
+</html>

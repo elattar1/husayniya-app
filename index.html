@@ -215,6 +215,7 @@ body {
         <button onclick="navigateTo('home')" class="px-3.5 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">الرئيسية</button>
         <button onclick="navigateTo('store')" class="px-3.5 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">المتاجر والمطاعم</button>
         <button onclick="navigateTo('tracking')" class="px-3.5 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">تتبع طلبي 🛵</button>
+        <button onclick="navigateTo('lost')" class="px-3.5 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">أمانات ومفقودات 🔍</button>
         <button onclick="navigateTo('dashboard')" class="px-3.5 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">لوحة الإدارة 📊</button>
       </nav>
 
@@ -263,6 +264,9 @@ body {
       </button>
       <button onclick="navigateTo('account'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <span>👤</span><span>حسابي الشخصي وسجل الطلبات</span>
+      </button>
+      <button onclick="navigateTo('dashboard'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
+        <span>🔍</span><span>أمانات ومفقودات الحسينية</span>
       </button>
       <button onclick="navigateTo('dashboard'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <span>📊</span><span>لوحة الإدارة والتحكم</span>
@@ -507,6 +511,7 @@ const PAGE_ROUTES = {
   'dashboard': 'husayniya-dashboard.html',
   'merchant': 'husayniya-merchant.html',
   'medical': 'husayniya-medical.html',
+  'lost': 'husayniya-lost.html',
   'login': 'husayniya-login.html'
 };
 
@@ -574,6 +579,7 @@ if ('serviceWorker' in navigator) {
 
 </body>
 </html>
+
 
 
 
