@@ -273,7 +273,7 @@ body {
     </div>
 
     <div class="pt-4 border-t border-white/10 text-xs text-white/40 text-center">
-      الحسينية، بغداد • دعم 24/7
+      الحسينية، الشرقية، مصر • دعم 24/7
     </div>
   </aside>
 
@@ -325,55 +325,145 @@ body {
       </div>
 
       <!-- Responsive Stores Cards Grid (1 col mobile, 2 tablet, 3 desktop) -->
+            <!-- Responsive Stores Cards Grid (Real Al-Husayniya Sharkia Egypt Stores) -->
       <div id="stores-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
-        <!-- Store 1 -->
-        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="مطعم السلام">
+        <!-- Store 1: مشويات الباز والحسينية -->
+        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="مشويات الباز">
           <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#1a3a2a,#0d6640)">
             🍖
             <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
             <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.9</span>
           </div>
-          <h3 class="font-bold text-base text-white mb-1">مطعم السلام للمشاوي</h3>
-          <p class="text-xs text-white/50 mb-3">كباب، قوزي، برياني، ودجاج مشوي على الفحم</p>
+          <h3 class="font-bold text-base text-white mb-1">مشويات الباز (سعود والحسينية)</h3>
+          <p class="text-xs text-white/50 mb-3">كباب، كفتة بلدي، طرب، ريش ضاني، ودجاج مشوي ع الفحم</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ 25 - 35 دقيقة</span>
-            <span class="text-emerald-400 font-bold">توصيل 2.50 $</span>
+            <span>⏱️ 20 - 30 دقيقة</span>
+            <span class="text-emerald-400 font-bold">توصيل 15 ج.م</span>
           </div>
         </div>
 
-        <!-- Store 2 -->
-        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="grocery" data-name="سوبر ماركت الأمل">
-          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#1a2a3e,#0d3d6e)">
-            🛒
+        <!-- Store 2: كشري ومطاعم شعبية -->
+        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="كشري التحرير والزعيم">
+          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#3a1a1a,#551111)">
+            🍲
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.8</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-1">كشري الزعيم والتحرير — شارع المركز</h3>
+          <p class="text-xs text-white/50 mb-3">كشري مخصوص، طواجن فراخ ولحمة في الفرن، كماليات وأرز باللبن</p>
+          <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
+            <span>⏱️ 15 - 25 دقيقة</span>
+            <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
+          </div>
+        </div>
+
+        <!-- Store 3: كريب وبيتزا شارع المدارس -->
+        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="بيتزا وكريب الحسينية">
+          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#3a2a1a,#663a0d)">
+            🍕
             <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
             <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.7</span>
           </div>
-          <h3 class="font-bold text-base text-white mb-1">سوبر ماركت الأمل المركزي</h3>
-          <p class="text-xs text-white/50 mb-3">جميع المواد الغذائية والخضار الطازجة والمعلبات</p>
+          <h3 class="font-bold text-base text-white mb-1">بيتزا وكريب الرواد — شارع المدارس</h3>
+          <p class="text-xs text-white/50 mb-3">كريب زنجر، كرانشي، شاورما سوري، بيتزا شرقي وإيطالي، وبطاطس فارم</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ 20 - 30 دقيقة</span>
-            <span class="text-emerald-400 font-bold">توصيل 2.00 $</span>
+            <span>⏱️ 25 - 35 دقيقة</span>
+            <span class="text-emerald-400 font-bold">توصيل 12 ج.م</span>
           </div>
         </div>
 
-        <!-- Store 3 -->
-        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="pharmacy" data-name="صيدلية الشفاء">
+        <!-- Store 4: حلواني شندل -->
+        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="حلواني شندل">
+          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#3d1a3a,#5e1a4d)">
+            🍰
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.9</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-1">حلواني شندل — شارع المركز</h3>
+          <p class="text-xs text-white/50 mb-3">تورتات أعياد ميلاد، بسبوسة، كنافة نابلسية، وجاتوهات شرقية وغربية</p>
+          <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
+            <span>⏱️ 15 - 25 دقيقة</span>
+            <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
+          </div>
+        </div>
+
+        <!-- Store 5: سوبر ماركت أولاد رجب والأمل -->
+        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="grocery" data-name="سوبر ماركت الفرسان">
+          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#1a2a3e,#0d3d6e)">
+            🛒
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● مفتوح</span>
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.8</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-1">هايبر الفرسان — شارع بورسعيد</h3>
+          <p class="text-xs text-white/50 mb-3">منتجات ألبان، جبن رومي وموزاريلا، بقالة تموينية، مجمدات، وعصائر</p>
+          <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
+            <span>⏱️ 15 - 20 دقيقة</span>
+            <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
+          </div>
+        </div>
+
+        <!-- Store 6: صيدلية الشفاء والعزازي -->
+        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="pharmacy" data-name="صيدلية الشفاء والعزازي">
           <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#2a1a3e,#4a0d6e)">
             💊
             <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[10px] font-bold">● 24 ساعة</span>
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.9</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-1">صيدلية الشفاء والعزازي — أمام المستشفى</h3>
+          <p class="text-xs text-white/50 mb-3">صرف روشتات، أدوية الأمراض المزمنة، مستحضرات تجميل، وقياس ضغط وسكر</p>
+          <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
+            <span>⏱️ 10 - 15 دقيقة</span>
+            <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
+          </div>
+        </div>
+
+        <!-- Store 7: حجز الأطباء بمستشفى الحسينية المركزي -->
+        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="medical" data-name="عيادات أطباء الحسينية">
+          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#1f3d3a,#113333)">
+            🩺
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● حجز فوري</span>
             <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.8</span>
           </div>
-          <h3 class="font-bold text-base text-white mb-1">صيدلية الشفاء التخصصية</h3>
-          <p class="text-xs text-white/50 mb-3">أدوية، مستلزمات طبية، وعناية بالأطفال</p>
+          <h3 class="font-bold text-base text-white mb-1">مجمع عيادات الأطباء — شارع المستشفى</h3>
+          <p class="text-xs text-white/50 mb-3">باطنة، أطفال، عظام، رمد، نساء وتوليد، ومعامل تحاليل ومراكز أشعة</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ 15 - 20 دقيقة</span>
-            <span class="text-emerald-400 font-bold">توصيل 1.50 $</span>
+            <span>⏱️ حجز مسبق</span>
+            <span class="text-emerald-400 font-bold">كشف من 100 ج.م</span>
+          </div>
+        </div>
+
+        <!-- Store 8: تكسي وتوصيل قرى الحسينية -->
+        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="ride" data-name="تكسي الحسينية وتوك توك دليفري">
+          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#3d3a1f,#4a4411)">
+            🚖
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● متاح فوري</span>
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.7</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-1">تكسي ومشاوير الحسينية وقرى المركز</h3>
+          <p class="text-xs text-white/50 mb-3">مشاوير داخلية بالمدينة، جزيرة سعود، الأخيوة، بحر البقر، وتوصيل طلبات</p>
+          <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
+            <span>⏱️ 5 - 10 دقائق</span>
+            <span class="text-emerald-400 font-bold">يبدأ من 15 ج.م</span>
+          </div>
+        </div>
+
+        <!-- Store 9: عقارات وشقق الحسينية -->
+        <div onclick="navigateTo('store')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="realty" data-name="مكتب عقارات الحسينية">
+          <div class="h-36 rounded-2xl flex items-center justify-center text-5xl mb-4 relative" style="background:linear-gradient(135deg,#2f1f3d,#331144)">
+            🏠
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">● 45 عقار متاح</span>
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-xl bg-black/40 text-amber-300 text-[10px] font-bold">★ 4.6</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-1">عقارات الحسينية — شارع جمال عبد الناصر</h3>
+          <p class="text-xs text-white/50 mb-3">شقق للإيجار، أراضي للبناء، محلات تجارية، ومنازل للبيع بحي المحجوب والمعاشات</p>
+          <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
+            <span>📍 جميع أحياء المركز</span>
+            <span class="text-emerald-400 font-bold">استعراض العقارات</span>
           </div>
         </div>
 
       </div>
-
     </div>
 
     <!-- ── 2. STORE DETAIL (SPA EMBED / LINK) ── -->
@@ -392,7 +482,7 @@ body {
     <div id="view-checkout" class="app-view space-y-6">
       <div class="glass-card rounded-3xl p-6 text-center">
         <h2 class="text-xl font-bold mb-2">سلة المشتريات وإتمام الدفع</h2>
-        <p class="text-xs text-white/60 mb-6">حدد موقعك على الخريطة واختر طريقة الدفع (كاش / زين كاش)</p>
+        <p class="text-xs text-white/60 mb-6">حدد موقعك على الخريطة واختر طريقة الدفع (كاش / فودافون كاش)</p>
         <a href="husayniya-checkout.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold" style="text-decoration:none">
           <span>الانتقال لشاشة الدفع وتحديد العنوان</span>
           <span>←</span>
@@ -481,7 +571,7 @@ body {
 // ── Responsive SPA Router ──
 function navigateTo(viewId) {
   document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active'));
-  const target = document.getElementById(`view-${viewId}`);
+  const target = document.getElementById(`view-ج.م {viewId}`);
   if (target) {
     target.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -489,7 +579,7 @@ function navigateTo(viewId) {
 
   // Update mobile active states
   document.querySelectorAll('.mobile-nav-item').forEach(m => m.classList.remove('active'));
-  const activeMob = document.getElementById(`mob-${viewId}`);
+  const activeMob = document.getElementById(`mob-ج.م {viewId}`);
   if (activeMob) activeMob.classList.add('active');
 }
 
@@ -539,4 +629,6 @@ if ('serviceWorker' in navigator) {
 
 </body>
 </html>
+
+
 

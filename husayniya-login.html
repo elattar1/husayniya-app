@@ -167,8 +167,8 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <div style="margin-bottom:18px">
             <label style="font-size:.85rem;font-weight:600;margin-bottom:8px;display:block;color:rgba(255,255,255,.75)">رقم الهاتف</label>
             <div class="phone-wrap">
-              <div class="phone-flag">🇮🇶 +964</div>
-              <input id="phone-login" type="tel" placeholder="7XX XXX XXXX" class="input-glass" style="width:100%;border-radius:16px;padding:14px 16px 14px 100px;direction:ltr;text-align:left" maxlength="13" oninput="validatePhone(this,'login')"/>
+              <div class="phone-flag">🇪🇬 +20</div>
+              <input id="phone-login" type="tel" placeholder="01X XXXX XXXX" class="input-glass" style="width:100%;border-radius:16px;padding:14px 16px 14px 100px;direction:ltr;text-align:left" maxlength="11" oninput="validatePhone(this,'login')"/>
             </div>
             <div class="error-msg" id="err-phone-login">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
@@ -218,8 +218,8 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <div style="margin-bottom:16px">
             <label style="font-size:.85rem;font-weight:600;margin-bottom:8px;display:block;color:rgba(255,255,255,.75)">رقم الهاتف</label>
             <div class="phone-wrap">
-              <div class="phone-flag">🇮🇶 +964</div>
-              <input id="phone-reg" type="tel" placeholder="7XX XXX XXXX" class="input-glass" style="width:100%;border-radius:16px;padding:14px 16px 14px 100px;direction:ltr;text-align:left" maxlength="13" oninput="validatePhone(this,'reg')"/>
+              <div class="phone-flag">🇪🇬 +20</div>
+              <input id="phone-reg" type="tel" placeholder="01X XXXX XXXX" class="input-glass" style="width:100%;border-radius:16px;padding:14px 16px 14px 100px;direction:ltr;text-align:left" maxlength="11" oninput="validatePhone(this,'reg')"/>
             </div>
             <div class="error-msg" id="err-phone-reg">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
@@ -301,7 +301,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
         <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px">تأكيد رقم الهاتف</h2>
         <p style="font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:8px">أرسلنا رمز التحقق إلى</p>
-        <div style="font-size:1rem;font-weight:700;color:#00e5c8;margin-bottom:24px;direction:ltr" id="otp-phone">+964 7XX XXX XXXX</div>
+        <div style="font-size:1rem;font-weight:700;color:#00e5c8;margin-bottom:24px;direction:ltr" id="otp-phone">+20 01X XXXX XXXX</div>
 
         <!-- Step indicator -->
         <div style="display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:28px">
@@ -392,8 +392,8 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         </div>
         <p style="font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:20px;line-height:1.6">أدخل رقم هاتفك وسنرسل لك رابط استعادة كلمة المرور</p>
         <div class="phone-wrap" style="margin-bottom:18px">
-          <div class="phone-flag">🇮🇶 +964</div>
-          <input type="tel" placeholder="7XX XXX XXXX" class="input-glass" style="width:100%;border-radius:16px;padding:14px 16px 14px 100px;direction:ltr;text-align:left" maxlength="13"/>
+          <div class="phone-flag">🇪🇬 +20</div>
+          <input type="tel" placeholder="01X XXXX XXXX" class="input-glass" style="width:100%;border-radius:16px;padding:14px 16px 14px 100px;direction:ltr;text-align:left" maxlength="11"/>
         </div>
         <button class="btn-primary" style="width:100%;border-radius:16px;padding:14px;font-size:.95rem" onclick="closeForgot()">إرسال رابط الاستعادة</button>
       </div>
@@ -519,7 +519,7 @@ function showOTP(phone) {
   document.getElementById('step1').style.display = 'none';
   document.getElementById('step2').style.display = 'block';
   document.getElementById('step2').querySelector('.glass-form').classList.add('fade-up');
-  document.getElementById('otp-phone').textContent = '+964 ' + phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3');
+  document.getElementById('otp-phone').textContent = '+20 ' + phone.replace(/(\d{3})(\d{3})(\d{4})/, 'ج.م 1 ج.م2 ج.م3');
   document.getElementById('otp1').focus();
   startResendTimer();
 }
@@ -644,4 +644,6 @@ document.getElementById('otp1').addEventListener('paste', function(e) {
 </script>
 </body>
 </html>
+
+
 
