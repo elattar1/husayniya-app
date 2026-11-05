@@ -676,9 +676,20 @@ window.addEventListener('load', () => {
       if (currentTrackingOrder && (order.order_code === currentTrackingOrder.order_code)) {
         updateTrackingUI(order);
         if (order.status === 'delivered') {
-          alert('🎉 تم تسليم طلبك بنجاح! بالهناء والشفاء.');
+          window.HusayniyaCloud.sendNotification('🎉 تم تسليم طلبك بنجاح!', {
+            body: 'بالهناء والشفاء! شكراً لطلبك عبر خدمات الحسينية.',
+            soundType: 'success'
+          });
         } else if (order.status === 'ready' || order.status === 'on_the_way') {
-          alert('🛵 الكابتن استلم وجبتك من المطعم وهو في طريقه إليك الآن!');
+          window.HusayniyaCloud.sendNotification('🛵 المندوب في الطريق إليك!', {
+            body: 'الكابتن استلم وجبتك من المطعم وهو يقترب من موقعك الآن.',
+            soundType: 'order'
+          });
+        } else if (order.status === 'preparing') {
+          window.HusayniyaCloud.sendNotification('🍳 بدأ تحضير الوجبة!', {
+            body: 'المطعم يقوم الآن بطهي وتغليف طلبك حرارياً.',
+            soundType: 'order'
+          });
         }
       }
     });

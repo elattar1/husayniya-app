@@ -81,7 +81,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
 
     <!-- Store Status Live Toggle -->
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2 sm:gap-4">
+      <button onclick="window.HusayniyaCloud && window.HusayniyaCloud.requestNotificationPermission()" type="button" class="glass px-3 py-1.5 rounded-2xl flex items-center gap-1.5 text-xs font-bold text-white/80 hover:text-white" title="تفعيل صوت وتنبيهات الطلبات الواردة">
+        <span>🔔</span>
+        <span class="hidden sm:inline">صوت وتنبيهات المطبخ</span>
+      </button>
+
       <div class="glass px-3.5 py-1.5 rounded-2xl flex items-center gap-3">
         <span id="store-status-text" class="text-xs font-bold text-emerald-400">المتجر: يستقبل الطلبات</span>
         <div id="store-toggle" onclick="toggleStoreStatus()" class="toggle-switch active">
@@ -459,6 +464,12 @@ window.addEventListener('load', async () => {
     window.HusayniyaCloud.onOrderEvent((type, order) => {
       if (type === 'order_created' && order) {
         renderIncomingOrderCard(order);
+        if (window.HusayniyaCloud.sendNotification) {
+          window.HusayniyaCloud.sendNotification(`🔔 طلب جديد #${order.order_code}!`, {
+            body: `${order.store_name} — العميل: ${order.customer_name} (${order.total_amount} ج.م)`,
+            soundType: 'order'
+          });
+        }
       }
     });
   }

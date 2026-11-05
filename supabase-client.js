@@ -69,12 +69,17 @@
         console.log('ℹ️ [Husayniya Cloud] يعمل بنظام المزامنة الفورية المحلية (BroadcastChannel). اربط Supabase للتزامن بين الأجهزة المختلفة.');
       }
 
-      // Sync navbar user profile state on initialization
+      // Sync navbar state (Auth, Location & Notifications) on initialization
       if (typeof document !== 'undefined') {
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', () => this.syncNavbarAuth());
-        } else {
+        const syncUI = () => {
           this.syncNavbarAuth();
+          this.syncNavbarLocation();
+          this.syncNotificationToggles();
+        };
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', syncUI);
+        } else {
+          syncUI();
         }
       }
 
@@ -128,6 +133,7 @@
     }
 
     notifyListeners(eventType, orderData) {
+      // 1. Dispatch to registered callbacks
       this.listeners.forEach((fn) => {
         try {
           fn(eventType, orderData);
@@ -135,6 +141,39 @@
           console.error('Error in listener callback:', e);
         }
       });
+
+      // 2. Automated Smart Notification Dispatcher
+      if (orderData && orderData.order_code) {
+        const lastCode = localStorage.getItem('last_order_code') || '';
+        const isMyOrder = lastCode && (lastCode === orderData.order_code || ('#' + lastCode) === orderData.order_code);
+
+        if (eventType === 'order_created') {
+          // If on merchant or driver portals, notify of new order
+          const isMerchantOrDriver = window.location.pathname.includes('merchant') || window.location.pathname.includes('driver') || window.location.pathname.includes('dashboard');
+          if (isMerchantOrDriver) {
+            this.sendNotification(`🔔 طلب جديد #${orderData.order_code}`, {
+              body: `${orderData.store_name} — الإجمالي: ${orderData.total_amount} ج.م`,
+              soundType: 'order',
+              url: 'husayniya-merchant.html'
+            });
+          }
+        } else if (eventType === 'order_updated' && isMyOrder) {
+          const statusLabels = {
+            'preparing': '🍳 مطعمك بدأ في إعداد الوجبة وتجهيزها الآن',
+            'ready': '📦 تم الانتهاء من تجهيز طلبك واستلمه مندوب التوصيل',
+            'on_the_way': '🛵 الكابتن في الطريق إليك الآن بالحسينية',
+            'delivered': '🎉 تم تسليم طلبك بنجاح! بالهناء والشفاء'
+          };
+          const label = statusLabels[orderData.status];
+          if (label) {
+            this.sendNotification(`طلبك #${orderData.order_code}`, {
+              body: label,
+              soundType: orderData.status === 'delivered' ? 'success' : 'order',
+              url: `husayniya-tracking.html?order=${orderData.order_code}`
+            });
+          }
+        }
+      }
     }
 
     // Supabase Postgres Realtime Subscription
@@ -639,6 +678,290 @@
         localBus.postMessage({ type, payload });
       }
       this.notifyListeners(type, payload);
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // ── GEOLOCATION & GPS ENGINE (نظام تحديد الموقع الجغرافي) ──
+    // ════════════════════════════════════════════════════════════════
+
+    async detectUserLocation() {
+      if (!('geolocation' in navigator)) {
+        return { success: false, error: 'المتصفح لا يدعم تحديد الموقع الجغرافي (GPS)' };
+      }
+
+      return new Promise((resolve) => {
+        navigator.geolocation.getCurrentPosition(
+          async (pos) => {
+            const lat = pos.coords.latitude;
+            const lon = pos.coords.longitude;
+            const accuracy = Math.round(pos.coords.accuracy || 10);
+
+            let address = `إحداثيات GPS: ${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+            let area = 'الحسينية — شارع المركز';
+
+            // Attempt free reverse geocode with fast 3.5s timeout
+            try {
+              const controller = new AbortController();
+              const timeoutId = setTimeout(() => controller.abort(), 3500);
+              const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=ar`, {
+                signal: controller.signal
+              });
+              clearTimeout(timeoutId);
+              if (res.ok) {
+                const data = await res.json();
+                if (data && data.display_name) {
+                  address = data.display_name;
+                  const road = data.address?.road || '';
+                  const suburb = data.address?.suburb || data.address?.neighbourhood || data.address?.village || data.address?.town || '';
+                  if (road && suburb) {
+                    area = `الحسينية — ${suburb} (${road})`;
+                  } else if (suburb) {
+                    area = `الحسينية — ${suburb}`;
+                  } else if (road) {
+                    area = `الحسينية — ${road}`;
+                  }
+                }
+              }
+            } catch (e) {
+              // Proximity estimation around Al-Husayniya Center
+              area = 'الحسينية — موقع GPS تم تحديده بدقة';
+            }
+
+            const locData = {
+              lat,
+              lon,
+              accuracy,
+              address,
+              area,
+              timestamp: Date.now()
+            };
+
+            localStorage.setItem('husayniya_user_location', JSON.stringify(locData));
+            this.syncNavbarLocation();
+            resolve({ success: true, ...locData });
+          },
+          (err) => {
+            let msg = 'تعذر تحديد الموقع الجغرافي';
+            if (err.code === 1) msg = 'تم رفض إذن تحديد الموقع. يرجى تفعيل الـ GPS من إعدادات المتصفح.';
+            else if (err.code === 2) msg = 'الموقع غير متاح حالياً. يرجى التأكد من تشغيل الـ GPS.';
+            else if (err.code === 3) msg = 'انتهت مهلة تحديد الموقع.';
+            resolve({ success: false, error: msg });
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 60000
+          }
+        );
+      });
+    }
+
+    getUserLocation() {
+      try {
+        const raw = localStorage.getItem('husayniya_user_location');
+        return raw ? JSON.parse(raw) : null;
+      } catch(e) {
+        return null;
+      }
+    }
+
+    syncNavbarLocation() {
+      try {
+        const loc = this.getUserLocation();
+        const locPills = document.querySelectorAll('[data-location-target="user-location"], #navbar-location-pill');
+        locPills.forEach(pill => {
+          if (!pill) return;
+          if (loc && loc.area) {
+            pill.innerHTML = `
+              <span class="text-emerald-400">📍</span>
+              <span class="truncate max-w-[130px] sm:max-w-[180px] font-bold text-emerald-300">${loc.area}</span>
+            `;
+            pill.title = loc.address || loc.area;
+          } else {
+            pill.innerHTML = `
+              <span>📍</span>
+              <span class="font-bold">تحديد موقعي (GPS)</span>
+            `;
+          }
+        });
+      } catch (e) {}
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // ── NOTIFICATIONS & AUDIO CHIME ENGINE (نظام الإشعارات والأصوات) ──
+    // ════════════════════════════════════════════════════════════════
+
+    playChime(type = 'notification') {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+
+        if (type === 'order') {
+          // Double pleasant chime ascending (C5 -> G5)
+          const now = ctx.currentTime;
+          const osc1 = ctx.createOscillator();
+          const gain1 = ctx.createGain();
+          osc1.type = 'sine';
+          osc1.frequency.setValueAtTime(523.25, now);
+          osc1.frequency.exponentialRampToValueAtTime(783.99, now + 0.15);
+          gain1.gain.setValueAtTime(0.3, now);
+          gain1.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+          osc1.connect(gain1);
+          gain1.connect(ctx.destination);
+          osc1.start(now);
+          osc1.stop(now + 0.45);
+
+          const osc2 = ctx.createOscillator();
+          const gain2 = ctx.createGain();
+          osc2.type = 'triangle';
+          osc2.frequency.setValueAtTime(1046.50, now + 0.18);
+          gain2.gain.setValueAtTime(0.25, now + 0.18);
+          gain2.gain.exponentialRampToValueAtTime(0.01, now + 0.65);
+          osc2.connect(gain2);
+          gain2.connect(ctx.destination);
+          osc2.start(now + 0.18);
+          osc2.stop(now + 0.65);
+
+        } else if (type === 'success') {
+          // Melodic 3-tone arpeggio
+          const now = ctx.currentTime;
+          const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+          notes.forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            const start = now + (idx * 0.12);
+            osc.frequency.setValueAtTime(freq, start);
+            gain.gain.setValueAtTime(0.25, start);
+            gain.gain.exponentialRampToValueAtTime(0.01, start + 0.4);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(start);
+            osc.stop(start + 0.4);
+          });
+
+        } else {
+          // Gentle ping
+          const now = ctx.currentTime;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.frequency.setValueAtTime(880, now);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        }
+      } catch (e) {}
+    }
+
+    async requestNotificationPermission() {
+      if (!('Notification' in window)) {
+        this.showInAppToast('تنبيه الإشعارات', 'متصفحك لا يدعم إشعارات النظام المباشرة، سيتم إشعارك داخل التطبيق فقط.');
+        return { supported: false, status: 'unsupported' };
+      }
+      try {
+        const perm = await Notification.requestPermission();
+        localStorage.setItem('husayniya_notifications_status', perm);
+        this.syncNotificationToggles();
+
+        if (perm === 'granted') {
+          this.playChime('success');
+          this.sendNotification('🎉 تم تفعيل الإشعارات بنجاح!', {
+            body: 'ستتلقى تنبيهاً فورياً عند إعداد وتوصيل وجبتك بمجرد تحرك المندوب.',
+            tag: 'welcome-notification'
+          });
+          return { supported: true, status: 'granted' };
+        } else {
+          this.showInAppToast('تم تعطيل الإشعارات', 'يمكنك تفعيلها في أي وقت من إعدادات المتصفح.');
+          return { supported: true, status: perm };
+        }
+      } catch (err) {
+        return { supported: true, status: 'denied' };
+      }
+    }
+
+    sendNotification(title, options = {}) {
+      // 1. Play synthesized pleasant sound
+      this.playChime(options.soundType || 'order');
+
+      // 2. Display in-app rich toast notification
+      this.showInAppToast(title, options.body);
+
+      // 3. Native OS Notification if permitted
+      if ('Notification' in window && Notification.permission === 'granted') {
+        try {
+          if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+            navigator.serviceWorker.ready.then((reg) => {
+              reg.showNotification(title, {
+                body: options.body || '',
+                icon: options.icon || 'icon-192.png',
+                badge: 'icon-192.png',
+                vibrate: [200, 100, 200],
+                tag: options.tag || ('hs-' + Date.now()),
+                data: { url: options.url || 'husayniya-tracking.html' }
+              });
+            });
+          } else {
+            new Notification(title, {
+              body: options.body || '',
+              icon: options.icon || 'icon-192.png'
+            });
+          }
+        } catch (e) {
+          console.warn('Native notification error:', e);
+        }
+      }
+    }
+
+    showInAppToast(title, body) {
+      if (typeof document === 'undefined') return;
+      let toastContainer = document.getElementById('husayniya-toast-container');
+      if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'husayniya-toast-container';
+        toastContainer.style.cssText = 'position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:10px;pointer-events:none;width:min(90vw, 420px);direction:rtl;';
+        document.body.appendChild(toastContainer);
+      }
+
+      const toast = document.createElement('div');
+      toast.style.cssText = 'background:rgba(4,14,30,0.96);backdrop-filter:blur(22px);border:1px solid rgba(0,229,200,0.5);box-shadow:0 12px 35px rgba(0,0,0,0.65),0 0 25px rgba(0,229,200,0.25);border-radius:18px;padding:12px 16px;color:#fff;display:flex;align-items:center;gap:12px;pointer-events:auto;transition:all .35s cubic-bezier(.175,.885,.32,1.275);';
+
+      toast.innerHTML = `
+        <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#00b09b,#06d6a0);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;box-shadow:0 0 15px rgba(0,229,200,0.4);">
+          🔔
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-weight:800;font-size:13px;color:#fff;line-height:1.3;">${title}</div>
+          ${body ? `<div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:2px;line-height:1.3;">${body}</div>` : ''}
+        </div>
+        <button onclick="this.parentElement.remove()" style="background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:16px;cursor:pointer;padding:4px;line-height:1;">✕</button>
+      `;
+
+      toastContainer.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-20px)';
+        setTimeout(() => toast.remove(), 400);
+      }, 5000);
+    }
+
+    syncNotificationToggles() {
+      try {
+        const isGranted = typeof Notification !== 'undefined' && Notification.permission === 'granted';
+        const notifBadges = document.querySelectorAll('[data-notif-target="bell-badge"], #navbar-notif-btn');
+        notifBadges.forEach(btn => {
+          if (!btn) return;
+          if (isGranted) {
+            btn.classList.add('text-emerald-400');
+            btn.title = 'الإشعارات مفعلة ✓';
+          } else {
+            btn.classList.remove('text-emerald-400');
+            btn.title = 'تفعيل الإشعارات';
+          }
+        });
+      } catch (e) {}
     }
   }
 

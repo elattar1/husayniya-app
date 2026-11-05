@@ -229,17 +229,29 @@ body {
 
       <!-- Action Buttons -->
       <div class="flex items-center gap-2">
+        <!-- Location Pill (GPS) -->
+        <button id="navbar-location-pill" onclick="handleNavbarDetectLocation(this)" type="button" class="glass px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 text-xs font-semibold hover:bg-white/10 active:scale-95 transition" title="تحديد موقع التوصيل عبر GPS">
+          <span>📍</span>
+          <span class="truncate max-w-[100px] sm:max-w-[150px]">تحديد موقعي</span>
+        </button>
+
+        <!-- Notification Bell -->
+        <button id="navbar-notif-btn" onclick="handleNavbarNotification(this)" type="button" class="glass p-2 sm:px-3 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 text-xs font-bold text-white/80 hover:text-white hover:bg-white/10 active:scale-95 transition" title="تفعيل الإشعارات وتنبيهات الطلب">
+          <span>🔔</span>
+          <span class="hidden md:inline">الإشعارات</span>
+        </button>
+
         <!-- Live Cart Badge -->
-        <button onclick="navigateTo('checkout')" class="glass px-3.5 py-2 rounded-xl flex items-center gap-2 text-xs font-bold hover:bg-white/10 active:scale-95 transition">
+        <button onclick="navigateTo('checkout')" class="glass px-3 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 sm:gap-2 text-xs font-bold hover:bg-white/10 active:scale-95 transition">
           <span>🛒</span>
           <span class="hidden sm:inline">السلة</span>
-          <span id="global-cart-qty" class="w-5 h-5 rounded-full bg-amber-400 text-black font-black text-[10px] flex items-center justify-center">2</span>
+          <span id="global-cart-qty" class="w-5 h-5 rounded-full bg-amber-400 text-black font-black text-[10px] flex items-center justify-center">0</span>
         </button>
 
         <!-- Account Pill -->
         <button onclick="navigateTo('account')" class="hidden sm:flex glass p-1.5 pr-3 rounded-xl items-center gap-2 text-xs font-semibold hover:bg-white/10 transition">
-          <span>أحمد</span>
-          <div class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px]">أ</div>
+          <span>حسابي</span>
+          <div class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px]">👤</div>
         </button>
       </div>
 
@@ -783,6 +795,63 @@ function disconnectHomeCloud() {
     alert('تم قطع الاتصال والرجوع للوضع المحلي.');
   }
 }
+
+// ── Topbar GPS Location Detection Handler ──
+async function handleNavbarDetectLocation(btn) {
+  const origHtml = btn ? btn.innerHTML : '';
+  if (btn) btn.innerHTML = `<span>⏳</span><span class="truncate max-w-[120px]">جاري التحديد...</span>`;
+  
+  if (window.HusayniyaCloud) {
+    const res = await window.HusayniyaCloud.detectUserLocation();
+    if (res.success) {
+      if (btn) {
+        btn.innerHTML = `<span>📍</span><span class="truncate max-w-[120px] text-emerald-300 font-bold">${res.area}</span>`;
+      }
+      window.HusayniyaCloud.playChime('success');
+      window.HusayniyaCloud.showInAppToast('✓ تم تحديد موقعك الحالي', `${res.area} (${res.address || 'GPS'})`);
+    } else {
+      if (btn) btn.innerHTML = origHtml;
+      alert(res.error || 'يرجى السماح بصلاحية الموقع من إعدادات المتصفح.');
+    }
+  }
+}
+
+// ── Topbar Notification Permission Handler ──
+async function handleNavbarNotification(btn) {
+  if (window.HusayniyaCloud) {
+    const res = await window.HusayniyaCloud.requestNotificationPermission();
+    if (res.status === 'granted') {
+      if (btn) btn.classList.add('text-emerald-400');
+    }
+  }
+}
+
+// ── Cart Badge Auto-Sync ──
+function syncHomeCartBadge() {
+  try {
+    const saved = localStorage.getItem('husayniya_cart');
+    let totalQty = 0;
+    if (saved) {
+      const data = JSON.parse(saved);
+      if (Array.isArray(data)) {
+        totalQty = data.reduce((s, it) => s + (Number(it.qty) || 1), 0);
+      } else if (data && data.items) {
+        for (let k in data.items) {
+          totalQty += Number(data.items[k]?.qty) || 0;
+        }
+      }
+    }
+    const badge = document.getElementById('global-cart-qty');
+    if (badge) badge.textContent = totalQty;
+    const mobBadge = document.getElementById('mob-cart-badge');
+    if (mobBadge) mobBadge.textContent = totalQty;
+  } catch(e) {}
+}
+
+window.addEventListener('load', () => {
+  syncHomeCartBadge();
+  window.addEventListener('storage', syncHomeCartBadge);
+});
 </script>
 
 <!-- ══════════════ SUPABASE SETTINGS MODAL ══════════════ -->

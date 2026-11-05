@@ -1290,6 +1290,13 @@
     }
 
     function openExternalGoogleMaps() {
+      if (window.HusayniyaCloud) {
+        const loc = window.HusayniyaCloud.getUserLocation();
+        if (loc && loc.lat) {
+          window.open(`https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lon}`, '_blank');
+          return;
+        }
+      }
       window.open('https://www.google.com/maps/search/%D9%85%D8%B1%D9%83%D8%B2+%D8%A7%D9%84%D8%AD%D8%B3%D9%8A%D9%86%D9%8A%D8%A9+%D8%A7%D9%84%D8%B4%D8%B1%D9%82%D9%8A%D8%A9', '_blank');
     }
 
@@ -1347,6 +1354,12 @@
             if (dropTitle) dropTitle.innerText = (order.store_name || 'المتجر') + ' ➔ ' + (order.delivery_address || 'الحسينية');
             if (fareEl) fareEl.innerText = (order.delivery_fee || 25) + ' ج.م كاش';
             simulateIncomingAudioAlert();
+            if (window.HusayniyaCloud.sendNotification) {
+              window.HusayniyaCloud.sendNotification(`🛵 مشوار جديد بالحسينية!`, {
+                body: `${order.store_name} ➔ ${order.delivery_address || 'الحسينية'} (أجرة: ${order.delivery_fee || 25} ج.م)`,
+                soundType: 'order'
+              });
+            }
           }
         });
       }
