@@ -382,7 +382,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         </div>
 
         <!-- Checkout Button -->
-        <button onclick="submitOrder()" class="btn-primary w-full py-4 rounded-2xl text-base font-extrabold flex items-center justify-center gap-2 shadow-xl">
+        <button id="submit-order-btn" onclick="submitOrder()" class="btn-primary w-full py-4 rounded-2xl text-base font-extrabold flex items-center justify-center gap-2 shadow-xl">
           <span>تأكيد وإرسال الطلب الآن</span>
           <span class="text-lg">←</span>
         </button>
@@ -453,51 +453,73 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 </div><!-- .page -->
 
 <script>
-// ── Global Cart State ──
-let activeStoreName = 'مشويات الباز والحسينية — شارع المركز';
-let activeStoreKey = 'baz';
-let items = {
-  1: { id: 1, title: 'كيلو مشكل كباب وكفتة حاتي بلدي', price: 380.00, qty: 1, icon: '🍢' },
-  2: { id: 2, title: 'فرخة مشوية على الفحم مع أرز', price: 190.00, qty: 1, icon: '🍗' },
-  3: { id: 3, title: 'عصير رمان الحسينية طبيعي', price: 25.00, qty: 1, icon: '🥤' }
-};
+// ── Global Cart State (Starts EMPTY - No Mock Items) ──
+let activeStoreName = 'سلة الطلبات';
+let activeStoreKey = 'store';
+let items = {};
 const deliveryFee = 15.00;
 let discount = 0.00;
 let selectedPaymentMethod = 'الدفع نقدياً عند الاستلام (كاش)';
 
-// ── Load cart from localStorage ──
+// ── Load cart from localStorage (Array or Object) ──
 function initCheckoutCart() {
+  items = {};
   try {
     const saved = localStorage.getItem('husayniya_cart');
     if (saved) {
       const data = JSON.parse(saved);
-      if (data && data.items && Object.keys(data.items).length > 0) {
-        items = data.items;
-        if (data.storeName) {
-          activeStoreName = data.storeName;
-          activeStoreKey = data.storeKey || 'store';
-          const storeNameEl = document.getElementById('checkout-store-name');
-          if (storeNameEl) storeNameEl.textContent = activeStoreName;
+      if (Array.isArray(data)) {
+        data.forEach((it, idx) => {
+          if (it && (Number(it.qty) > 0)) {
+            const key = it.id || ('it_' + idx);
+            items[key] = {
+              id: key,
+              title: it.title || it.name || 'صنف مختار',
+              price: Number(it.price) || 0,
+              qty: Number(it.qty) || 1,
+              icon: it.icon || '🛍️'
+            };
+            if (it.storeName) activeStoreName = it.storeName;
+          }
+        });
+      } else if (data && typeof data === 'object') {
+        if (data.items && typeof data.items === 'object') {
+          for (let k in data.items) {
+            if (data.items[k] && Number(data.items[k].qty) > 0) {
+              items[k] = data.items[k];
+            }
+          }
+          if (data.storeName) activeStoreName = data.storeName;
+          if (data.storeKey) activeStoreKey = data.storeKey;
         }
-        renderCartList();
-        calculateTotal();
-        return;
       }
     }
-  } catch(e) { console.warn(e); }
+  } catch(e) {
+    items = {};
+  }
 
-  // Default fallback
+  const storeNameEl = document.getElementById('checkout-store-name');
+  if (storeNameEl) {
+    storeNameEl.textContent = Object.keys(items).length > 0 ? activeStoreName : 'سلة الطلبات';
+  }
+
+  renderCartList();
   calculateTotal();
 }
 
 function syncLocalStorage() {
   try {
-    localStorage.setItem('husayniya_cart', JSON.stringify({
-      storeName: activeStoreName,
-      storeKey: activeStoreKey,
-      items: items,
-      updatedAt: Date.now()
-    }));
+    const count = Object.keys(items).length;
+    if (count === 0) {
+      localStorage.removeItem('husayniya_cart');
+    } else {
+      localStorage.setItem('husayniya_cart', JSON.stringify({
+        storeName: activeStoreName,
+        storeKey: activeStoreKey,
+        items: items,
+        updatedAt: Date.now()
+      }));
+    }
   } catch(e) { console.warn(e); }
 }
 
@@ -508,10 +530,14 @@ function renderCartList() {
   const itemKeys = Object.keys(items);
   if (itemKeys.length === 0) {
     listEl.innerHTML = `
-      <div class="text-center py-12 text-white/40">
-        <div class="text-4xl mb-2">🛒</div>
-        <p class="text-sm">سلتك فارغة الآن.</p>
-        <a href="index.html" class="inline-block mt-3 text-xs text-emerald-400 font-bold hover:underline">تصفح المتاجر والمطاعم</a>
+      <div class="text-center py-12 px-4 rounded-2xl glass border border-white/5">
+        <div class="text-4xl mb-3">🛒</div>
+        <h4 class="text-base font-bold text-white mb-1">سلتك فارغة تماماً</h4>
+        <p class="text-xs text-white/50 mb-5 leading-relaxed">لم تقم بإضافة أي وجبة أو منتج إلى السلة بعد. اختر مطعمك المفضل وتصفح المنيو لإضافة طلباتك.</p>
+        <a href="husayniya-restaurants.html" class="btn-primary inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold no-underline">
+          <span>تصفح مطاعم وعروض الحسينية</span>
+          <span>←</span>
+        </a>
       </div>
     `;
     return;
@@ -574,13 +600,34 @@ function updateQty(id, delta) {
 // ── Calculate Totals ──
 function calculateTotal() {
   let subtotal = 0;
+  const count = Object.keys(items).length;
   for (let id in items) {
-    subtotal += items[id].price * items[id].qty;
+    subtotal += (items[id].price || 0) * (items[id].qty || 0);
   }
   document.getElementById('subtotal').textContent = subtotal.toFixed(2);
   
-  const total = Math.max(0, subtotal + deliveryFee - discount);
+  const actualDeliveryFee = count > 0 ? deliveryFee : 0;
+  const deliveryEl = document.getElementById('delivery-fee');
+  if (deliveryEl) deliveryEl.textContent = actualDeliveryFee.toFixed(2);
+
+  const total = count > 0 ? Math.max(0, subtotal + actualDeliveryFee - discount) : 0;
   document.getElementById('grand-total').textContent = total.toFixed(2) + ' ج.م';
+
+  const submitBtn = document.getElementById('submit-order-btn');
+  if (submitBtn) {
+    if (count === 0) {
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+      submitBtn.classList.remove('btn-primary');
+      submitBtn.classList.add('glass');
+      submitBtn.innerHTML = `<span>السلة فارغة — أضف وجبات للطلب</span>`;
+    } else {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'glass');
+      submitBtn.classList.add('btn-primary');
+      submitBtn.innerHTML = `<span>تأكيد وإرسال الطلب الآن</span><span class="text-lg">←</span>`;
+    }
+  }
 }
 
 // ── Apply Coupon ──

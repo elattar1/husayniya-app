@@ -153,86 +153,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
 
     <div id="orders-list" class="space-y-4">
-
-      <!-- Order 1: New (Alerting) -->
-      <div class="glass-card rounded-3xl p-6 order-alert relative border border-amber-400" id="order-card-9482">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/10">
-          <div>
-            <div class="flex items-center gap-3">
-              <span class="text-lg font-black text-white">طلب رقم #HS-9482</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-xs font-extrabold animate-bounce">● طلب جديد بانتظار التأكيد!</span>
-            </div>
-            <div class="text-xs text-white/50 mt-1">العميل: أحمد محمد • شارع المركز بالحسينية • منذ 3 دقائق</div>
-          </div>
-          <div class="text-left">
-            <div class="text-xl font-black gt">47.50 ج.م</div>
-            <span class="text-[10px] text-emerald-400 font-bold">الدفع: كاش عند الاستلام</span>
-          </div>
-        </div>
-
-        <!-- Order Items -->
-        <div class="py-4 space-y-2 text-xs">
-          <div class="flex justify-between items-center bg-white/[0.03] p-2.5 rounded-xl">
-            <span class="font-bold text-white">1 × كيلو مشكل كباب وكفتة حاتي (مع عيش بلدي ساخن وطحينة)</span>
-            <span class="text-white/60">380.00 ج.م</span>
-          </div>
-          <div class="flex justify-between items-center bg-white/[0.03] p-2.5 rounded-xl">
-            <span class="font-bold text-white">1 × وجبة فرخة مشوية على الفحم مع أرز وبطاطس</span>
-            <span class="text-white/60">190.00 ج.م</span>
-          </div>
-          <div class="flex justify-between items-center bg-white/[0.03] p-2.5 rounded-xl">
-            <span class="font-bold text-white">2 × طبق مقبلات وطحينة بلدي وسلطات</span>
-            <span class="text-white/60">80.00 ج.م</span>
-          </div>
-          <div class="p-2.5 rounded-xl bg-amber-400/10 text-amber-200 text-[11px] font-semibold border border-amber-400/20">
-            ⚠️ ملاحظة العميل: يرجى زيادة الطحينة والمخلل البلدي والعيش يكون سخن جداً.
-          </div>
-        </div>
-
-        <!-- Action Stepper Buttons -->
-        <div class="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4" id="order-actions-9482">
-          <div class="text-xs text-white/50">
-            الكابتن المخصص للتوصيل: <span class="text-white font-bold">عمر حسن (دراجة نارية)</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <button onclick="advanceOrderStatus('9482', 'prep')" class="btn-primary px-5 py-2.5 rounded-xl text-xs font-bold">
-              ✓ قبول الطلب والبدء بالتجهيز
-            </button>
-            <button onclick="rejectOrder('9482')" class="px-4 py-2.5 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 text-xs font-bold transition">
-              ✕ اعتذار
-            </button>
-          </div>
-        </div>
+      <div id="no-merchant-orders" class="text-center py-12 text-white/50 glass-card rounded-3xl p-8">
+        <div class="text-4xl mb-3">👨‍🍳</div>
+        <h3 class="text-base font-bold text-white mb-1">لا توجد طلبات واردة في المطبخ حالياً</h3>
+        <p class="text-xs text-white/40 max-w-sm mx-auto leading-relaxed">عند قيام أي عميل بطلب وجبة من مطاعم الحسينية ستصلك هنا فورياً مع تنبيه صوتي وتفاصيل الأصناف بدقة 🔔</p>
       </div>
-
-      <!-- Order 2: In Preparation -->
-      <div class="glass-card rounded-3xl p-6 relative border border-emerald-500/30" id="order-card-9481">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/10">
-          <div>
-            <div class="flex items-center gap-3">
-              <span class="text-lg font-black text-white">طلب رقم #HS-9481</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-xs font-extrabold">👨‍🍳 جاري الشواء والتجهيز بالمطبخ</span>
-            </div>
-            <div class="text-xs text-white/50 mt-1">العميل: سارة علي • شارع ترعة سراج • متبقي 8 دقائق</div>
-          </div>
-          <div class="text-left">
-            <div class="text-xl font-black text-white">22.00 ج.م</div>
-            <span class="text-[10px] text-amber-300 font-bold">الدفع: مدفوع إلكترونياً (فودافون كاش)</span>
-          </div>
-        </div>
-
-        <div class="py-4 text-xs space-y-1.5">
-          <div class="font-bold text-white">1 × طاجن لحمة بلدي بالبصل والأرز البسمتي</div>
-        </div>
-
-        <div class="pt-4 border-t border-white/10 flex items-center justify-between gap-4">
-          <span class="text-xs text-white/40">السائق في طريقه للمطعم للاستلام</span>
-          <button onclick="advanceOrderStatus('9481', 'ready')" class="btn-primary px-5 py-2.5 rounded-xl text-xs font-bold">
-            📦 تم التجهيز — تسليم الوجبة للسائق
-          </button>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -455,10 +380,16 @@ function rejectOrder(orderId) {
 
 function renderIncomingOrderCard(order) {
   const container = document.getElementById('orders-list');
+  const noOrders = document.getElementById('no-merchant-orders');
+  if (noOrders) noOrders.remove();
+
   const code = order.order_code || ('ORD-' + Math.floor(1000 + Math.random() * 9000));
-  const total = order.total_amount ? Number(order.total_amount).toFixed(2) : '240.00';
+  const total = order.total_amount ? Number(order.total_amount).toFixed(2) : '0.00';
   const customer = order.customer_name || 'عميل الحسينية';
   const address = order.delivery_address || 'شارع المركز، الحسينية';
+  const itemsText = Array.isArray(order.items) && order.items.length > 0 
+    ? order.items.map(it => `${it.title || it.name || 'صنف'} × ${it.qty || 1}`).join(' + ')
+    : 'أصناف مختارة من المنيو';
   
   const newOrderHtml = `
     <div class="glass-card rounded-3xl p-6 order-alert relative border border-amber-400 animate-pulse" id="order-card-${code}">
@@ -476,7 +407,7 @@ function renderIncomingOrderCard(order) {
         </div>
       </div>
       <div class="py-4 text-xs">
-        <div class="font-bold text-white">وجبة مشويات مخصوصة + بيبسي + مقبلات ساخنة</div>
+        <div class="font-bold text-white">${itemsText}</div>
       </div>
       <div class="pt-4 border-t border-white/10 flex items-center justify-end gap-2" id="order-actions-${code}">
         <button onclick="rejectOrder('${code}')" class="px-4 py-2.5 rounded-xl bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 text-xs font-bold transition">

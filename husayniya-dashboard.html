@@ -2,823 +2,603 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>لوحة الإدارة — خدمات الحسينية</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>لوحة الإدارة السحابية — خدمات الحسينية</title>
 <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#fff;overflow-x:hidden;direction:rtl}
+html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans-serif;direction:rtl;min-height:100vh;width:100%;max-width:100vw;overflow-x:hidden}
 
 /* ── BG ── */
 .bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.35;animation:drift 16s ease-in-out infinite alternate}
-.o1{width:500px;height:500px;background:radial-gradient(circle,#00b09b,#045353);top:-150px;right:20%;animation-delay:0s}
-.o2{width:400px;height:400px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-100px;left:10%;animation-delay:-6s}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.32;animation:drift 16s ease-in-out infinite alternate}
+.o1{width:450px;height:450px;background:radial-gradient(circle,#00b09b,#045353);top:-150px;right:20%}
+.o2{width:380px;height:380px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-100px;left:10%;animation-delay:-6s}
 .o3{width:300px;height:300px;background:radial-gradient(circle,#667eea,#764ba2);top:40%;left:50%;animation-delay:-10s}
 @keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-15px) scale(1.05)}100%{transform:translate(-15px,20px) scale(.97)}}
 
-/* ── Layout ── */
-.layout{position:relative;z-index:1;display:flex;min-height:100vh}
-
-/* ── Sidebar ── */
-.sidebar{width:260px;background:rgba(4,12,28,.7);backdrop-filter:blur(30px) saturate(200%);-webkit-backdrop-filter:blur(30px) saturate(200%);border-left:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;transition:width .3s;overflow:hidden;position:fixed;top:0;bottom:0;right:0;z-index:50}
-.sidebar.collapsed{width:72px}
-.sidebar.collapsed .hide-col{display:none}
-.sidebar.collapsed .nav-label{opacity:0;width:0}
-.sidebar.collapsed .logo-text{opacity:0;width:0}
-
-.nav-item{display:flex;align-items:center;gap:12px;padding:11px 16px;border-radius:14px;cursor:pointer;transition:all .25s;color:rgba(255,255,255,.5);font-size:.88rem;font-weight:500;white-space:nowrap;margin:2px 10px}
-.nav-item:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.8)}
-.nav-item.active{background:rgba(0,176,155,.18);color:#00e5c8;border:1px solid rgba(0,176,155,.3)}
-.nav-item .nav-icon{width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.nav-badge{background:linear-gradient(135deg,#f7971e,#f7c948);color:#000;font-size:.65rem;font-weight:800;padding:2px 7px;border-radius:8px;margin-right:auto}
-
-/* ── Main ── */
-.main{flex:1;margin-right:260px;transition:margin .3s;padding:0}
-.main.expanded{margin-right:72px}
-
-/* ── Glass ── */
-.glass{background:rgba(255,255,255,.07);backdrop-filter:blur(18px) saturate(170%);-webkit-backdrop-filter:blur(18px) saturate(170%);border:1px solid rgba(255,255,255,.11)}
-.glass-card{background:rgba(255,255,255,.06);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);border:1px solid rgba(255,255,255,.1);transition:all .3s}
-.glass-card:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);transform:translateY(-2px)}
-
-/* ── Topbar ── */
-.topbar{background:rgba(4,12,28,.5);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,.07);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:40}
+/* ── Liquid Glass ── */
+.glass{background:rgba(255,255,255,.07);backdrop-filter:blur(20px) saturate(170%);-webkit-backdrop-filter:blur(20px) saturate(170%);border:1px solid rgba(255,255,255,.12)}
+.glass-card{background:rgba(255,255,255,.05);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border:1px solid rgba(255,255,255,.1);transition:all .25s ease}
+@media (hover: hover) {
+  .glass-card:hover{background:rgba(255,255,255,.08);border-color:rgba(0,229,200,.35);box-shadow:0 10px 30px rgba(0,229,200,.1)}
+}
 
 /* ── Gradient Text ── */
 .gt{background:linear-gradient(135deg,#00e5c8,#43cea2,#f7c948);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-/* ── Stat card ── */
-.stat-card{border-radius:20px;padding:22px;position:relative;overflow:hidden}
-.stat-card::after{content:'';position:absolute;top:-30%;right:-20%;width:100px;height:100px;border-radius:50%;opacity:.15}
-.stat-card.c1::after{background:#00e5c8}.stat-card.c2::after{background:#f7c948}.stat-card.c3::after{background:#667eea}.stat-card.c4::after{background:#ff7070}
-.stat-val{font-size:1.8rem;font-weight:800;line-height:1;margin:8px 0 4px}
-.stat-change{font-size:.78rem;font-weight:600;display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:8px}
-.stat-up{background:rgba(0,214,160,.15);color:#00d6a0}
-.stat-down{background:rgba(255,80,80,.15);color:#ff7070}
-
-/* ── Button ── */
-.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;color:#fff;font-weight:700;transition:all .3s}
-.btn-primary:hover{transform:scale(1.03);box-shadow:0 0 24px rgba(0,176,155,.4)}
-.btn-sm{border-radius:12px;padding:8px 16px;font-size:.82rem}
-.btn-outline{background:transparent;border:1.5px solid rgba(255,255,255,.2);cursor:pointer;color:#fff;transition:all .3s;font-weight:600}
-.btn-outline:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4)}
+/* ── Buttons ── */
+.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;color:#fff;font-weight:700;transition:all .25s}
+.btn-primary:active{transform:scale(0.97)}
 
 /* ── Input ── */
-.input-glass{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14);color:#fff;border-radius:12px;padding:9px 14px;font-size:.85rem;transition:.3s}
+.input-glass{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14);color:#fff;border-radius:12px;padding:8px 12px;font-size:.85rem;transition:.25s}
 .input-glass:focus{outline:none;background:rgba(255,255,255,.12);border-color:rgba(0,176,155,.6);box-shadow:0 0 0 3px rgba(0,176,155,.1)}
-.input-glass::placeholder{color:rgba(255,255,255,.3)}
 
 /* ── Table ── */
-.tbl{width:100%;border-collapse:separate;border-spacing:0}
-.tbl th{text-align:right;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.4);padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.08);text-transform:uppercase;letter-spacing:.5px}
-.tbl td{padding:12px 14px;font-size:.85rem;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:middle}
-.tbl tr:hover td{background:rgba(255,255,255,.04)}
-.tbl-badge{padding:4px 12px;border-radius:10px;font-size:.75rem;font-weight:700;display:inline-flex;align-items:center;gap:4px}
+.tbl{width:100%;border-collapse:separate;border-spacing:0;min-width:620px}
+.tbl th{text-align:right;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.45);padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.1);text-transform:uppercase}
+.tbl td{padding:12px 14px;font-size:.82rem;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:middle}
+.tbl tr:hover td{background:rgba(255,255,255,.03)}
+
+/* ── Badges ── */
+.tbl-badge{padding:3px 10px;border-radius:8px;font-size:.72rem;font-weight:700;display:inline-flex;align-items:center;gap:4px}
 .b-new{background:rgba(0,176,155,.18);color:#00e5c8;border:1px solid rgba(0,176,155,.3)}
 .b-prep{background:rgba(247,201,72,.15);color:#f7c948;border:1px solid rgba(247,201,72,.3)}
 .b-del{background:rgba(100,149,237,.15);color:#6fa8f0;border:1px solid rgba(100,149,237,.3)}
 .b-done{background:rgba(0,214,160,.15);color:#00d6a0;border:1px solid rgba(0,214,160,.3)}
 .b-cancel{background:rgba(255,80,80,.12);color:#ff7070;border:1px solid rgba(255,80,80,.25)}
 
-/* ── Chart container ── */
-.chart-wrap{border-radius:20px;padding:22px;position:relative}
+/* ── Sidebar Desktop vs Mobile Drawer ── */
+.sidebar{width:250px;background:rgba(4,12,28,.92);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-left:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;position:fixed;top:0;bottom:0;right:0;z-index:90;transition:transform .3s ease}
+.main-wrapper{margin-right:250px;min-height:100vh;display:flex;flex-direction:column;width:calc(100% - 250px);transition:all .3s ease}
 
-/* ── Quick action ── */
-.qa{border-radius:18px;padding:20px;cursor:pointer;transition:all .3s;text-align:center}
-.qa:hover{transform:translateY(-4px);border-color:rgba(0,176,155,.4)}
-.qa-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 10px}
-
-/* ── Animations ── */
-.fade-up{opacity:0;transform:translateY(20px);animation:fu .5s ease forwards}
-@keyframes fu{to{opacity:1;transform:translateY(0)}}
-.d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.15s}.d4{animation-delay:.2s}.d5{animation-delay:.25s}.d6{animation-delay:.3s}
-
-/* ── Scrollbar ── */
-::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:rgba(255,255,255,.02)}::-webkit-scrollbar-thumb{background:rgba(0,176,155,.35);border-radius:3px}
-
-/* ── Notification dropdown ── */
-.notif-drop{position:absolute;top:calc(100% + 8px);left:0;width:340px;border-radius:18px;padding:6px;display:none;z-index:100}
-.notif-drop.open{display:block}
-.notif-item{display:flex;gap:10px;padding:12px;border-radius:14px;cursor:pointer;transition:.2s}
-.notif-item:hover{background:rgba(255,255,255,.06)}
-.notif-dot{width:8px;height:8px;border-radius:50%;background:#00e5c8;flex-shrink:0;margin-top:6px}
-
-/* ── Top stores ── */
-.rank-num{width:28px;height:28px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;flex-shrink:0}
-.rank-1{background:linear-gradient(135deg,#f7c948,#f7971e);color:#000}
-.rank-2{background:rgba(192,192,192,.25);color:#ccc}
-.rank-3{background:rgba(205,127,50,.2);color:#cd7f32}
-.rank-other{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4)}
-
-/* ── Progress bar ── */
-.pbar{height:6px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}
-.pbar-fill{height:100%;border-radius:3px;transition:width .8s ease}
-
-/* ── Driver status ── */
-.drv-online{width:8px;height:8px;border-radius:50%;background:#00d6a0;box-shadow:0 0 8px rgba(0,214,160,.6)}
-.drv-busy{width:8px;height:8px;border-radius:50%;background:#f7c948;box-shadow:0 0 8px rgba(247,201,72,.6)}
-.drv-offline{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)}
-
-/* ── Date chip ── */
-.date-chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:7px 14px;font-size:.8rem;cursor:pointer;transition:.25s;color:rgba(255,255,255,.55)}
-.date-chip:hover,.date-chip.on{background:rgba(0,176,155,.18);border-color:rgba(0,176,155,.5);color:#00e5c8}
-
-/* ── Tooltip ── */
-.tip{position:relative}.tip::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:rgba(0,0,0,.85);color:#fff;padding:5px 10px;border-radius:8px;font-size:.72rem;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
-.tip:hover::after{opacity:1}
-
-/* ── Mobile Responsiveness ── */
-@media (max-width: 768px) {
-  .sidebar {
-    transform: translateX(100%);
-    width: 260px !important;
-    z-index: 100;
-  }
-  .sidebar.mobile-open {
-    transform: translateX(0);
-  }
-  .main {
-    margin-right: 0 !important;
-  }
-  .sidebar-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(4px);
-    z-index: 90;
-    display: none;
-  }
-  .sidebar-backdrop.active {
-    display: block;
-  }
-  .topbar {
-    padding: 12px 16px;
-  }
+@media (max-width: 1024px) {
+  .sidebar{transform:translateX(100%);box-shadow:-10px 0 35px rgba(0,0,0,0.7)}
+  .sidebar.mobile-open{transform:translateX(0)}
+  .main-wrapper{margin-right:0;width:100%}
+  .sidebar-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.65);backdrop-filter:blur(5px);z-index:80;display:none}
+  .sidebar-backdrop.active{display:block}
 }
+
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;cursor:pointer;transition:all .2s;color:rgba(255,255,255,.6);font-size:.85rem;font-weight:600;margin:2px 8px;text-decoration:none}
+.nav-item:hover{background:rgba(255,255,255,.08);color:#fff}
+.nav-item.active{background:rgba(0,176,155,.2);color:#00e5c8;border:1px solid rgba(0,176,155,.35)}
+
+.spin{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
+<!-- Animated Orbs -->
 <div class="bg-scene">
-  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
 </div>
 
-<div class="layout">
-
-<!-- Mobile Backdrop -->
+<!-- Mobile Drawer Backdrop -->
 <div id="sidebar-backdrop" class="sidebar-backdrop" onclick="toggleSidebar()"></div>
 
-<!-- ══════════════════ SIDEBAR ══════════════════ -->
+<!-- ══════════════════ SIDEBAR (Desktop Fixed / Mobile Drawer) ══════════════════ -->
 <aside class="sidebar" id="sidebar">
-  <!-- Logo -->
-  <div style="padding:18px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:8px">
-    <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#00b09b,#06d6a0);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-      <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+  <!-- Brand Header -->
+  <div class="p-4 flex items-center justify-between border-b border-white/10">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center font-bold text-sm shadow-lg shadow-emerald-500/20">
+        ⚡
+      </div>
+      <div>
+        <div class="text-sm font-extrabold text-white leading-tight">خدمات الحسينية</div>
+        <div class="text-[10px] text-emerald-400 font-semibold">لوحة الإدارة السحابية</div>
+      </div>
     </div>
-    <div class="logo-text" style="transition:opacity .3s;overflow:hidden">
-      <div style="font-size:.95rem;font-weight:800;background:linear-gradient(135deg,#fff,#a8f0e8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap">خدمات الحسينية</div>
-      <div style="font-size:.6rem;color:rgba(0,229,200,.5)">لوحة الإدارة</div>
-    </div>
+    <button onclick="toggleSidebar()" class="lg:hidden text-white/50 hover:text-white p-1 text-sm">✕</button>
   </div>
 
-  <!-- Nav -->
-  <nav style="flex:1;overflow-y:auto;padding:0 0 12px">
-    <div style="padding:0 16px 6px;font-size:.68rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:1px" class="hide-col">الرئيسية</div>
-    <div class="nav-item active" onclick="navClick(this)">
-      <span class="nav-icon">📊</span><span class="nav-label">لوحة التحكم</span>
-    </div>
-    <div class="nav-item" onclick="navClick(this)">
-      <span class="nav-icon">📦</span><span class="nav-label">الطلبات</span><span class="nav-badge">12</span>
-    </div>
-    <div class="nav-item" onclick="navClick(this)">
-      <span class="nav-icon">🏪</span><span class="nav-label">المتاجر</span>
-    </div>
-    <div class="nav-item" onclick="navClick(this)">
-      <span class="nav-icon">🛍️</span><span class="nav-label">المنتجات</span>
-    </div>
+  <!-- Navigation Links -->
+  <nav class="flex-1 overflow-y-auto py-3 space-y-1">
+    <div class="px-4 py-1 text-[10px] text-white/35 font-bold uppercase tracking-wider">الرئيسية</div>
+    <a href="husayniya-dashboard.html" class="nav-item active">
+      <span class="text-base">📊</span>
+      <span>لوحة التحكم المباشرة</span>
+    </a>
+    <a href="husayniya-restaurants.html" class="nav-item">
+      <span class="text-base">🏪</span>
+      <span>المطاعم والمنيو</span>
+    </a>
+    <a href="husayniya-checkout.html" class="nav-item">
+      <span class="text-base">🛒</span>
+      <span>سلة الطلبات</span>
+    </a>
 
-    <div style="padding:14px 16px 6px;font-size:.68rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:1px" class="hide-col">التوصيل</div>
-    <div class="nav-item" onclick="navClick(this)">
-      <span class="nav-icon">🚗</span><span class="nav-label">السائقين</span><span class="nav-badge" style="background:rgba(0,214,160,.2);color:#00d6a0">8 نشط</span>
-    </div>
-    <div class="nav-item" onclick="navClick(this)">
-      <span class="nav-icon">🗺️</span><span class="nav-label">خريطة التتبع</span>
-    </div>
+    <div class="px-4 pt-3 py-1 text-[10px] text-white/35 font-bold uppercase tracking-wider">الخدمات السحابية</div>
+    <a href="husayniya-driver.html" class="nav-item">
+      <span class="text-base">🚗</span>
+      <span>بوابة السائقين والتوصيل</span>
+    </a>
+    <a href="husayniya-merchant.html" class="nav-item">
+      <span class="text-base">👨‍🍳</span>
+      <span>بوابة المطاعم والتجار</span>
+    </a>
+    <a href="husayniya-medical.html" class="nav-item">
+      <span class="text-base">🩺</span>
+      <span>عيادات أطباء الحسينية</span>
+    </a>
+    <a href="husayniya-pharmacy.html" class="nav-item">
+      <span class="text-base">💊</span>
+      <span>صيدليات وطلب الروشتة</span>
+    </a>
+    <a href="husayniya-realestate.html" class="nav-item">
+      <span class="text-base">🏢</span>
+      <span>عقارات الحسينية</span>
+    </a>
+    <a href="husayniya-lost.html" class="nav-item">
+      <span class="text-base">🔍</span>
+      <span>المفقودات والأمانات</span>
+    </a>
 
-    <div style="padding:14px 16px 6px;font-size:.68rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:1px" class="hide-col">المستخدمين</div>
-    <div class="nav-item" onclick="navClick(this)">
-      <span class="nav-icon">👥</span><span class="nav-label">العملاء</span>
-    </div>
-    <div class="nav-item" onclick="navClick(this)">
-      <span class="nav-icon">🏢</span><span class="nav-label">مزودي الخدمات</span>
-    </div>
-
-    <div style="padding:14px 16px 6px;font-size:.68rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:1px" class="hide-col">النظام</div>
-    <div class="nav-item" onclick="navClick(this)">
-      <span class="nav-icon">🔔</span><span class="nav-label">الإشعارات</span><span class="nav-badge" style="background:rgba(255,80,80,.2);color:#ff7070">3</span>
-    </div>
-    <div class="nav-item" onclick="navClick(this)">
-      <span class="nav-icon">📈</span><span class="nav-label">التقارير</span>
-    </div>
-    <div class="nav-item" onclick="navClick(this)">
-      <span class="nav-icon">⚙️</span><span class="nav-label">الإعدادات</span>
-    </div>
+    <div class="px-4 pt-3 py-1 text-[10px] text-white/35 font-bold uppercase tracking-wider">الحساب والإدارة</div>
+    <a href="husayniya-account.html" class="nav-item">
+      <span class="text-base">👤</span>
+      <span>حسابي الشخصي</span>
+    </a>
+    <button onclick="openCloudModal()" class="nav-item w-full text-right bg-emerald-500/10 text-emerald-300 border border-emerald-500/25">
+      <span class="text-base">⚡</span>
+      <span>إعدادات سحابة Supabase</span>
+    </button>
   </nav>
 
-  <!-- Bottom -->
-  <div style="padding:12px 10px;border-top:1px solid rgba(255,255,255,.06)">
-    <div class="nav-item" onclick="navClick(this)" style="margin:0">
-      <span class="nav-icon">🚪</span><span class="nav-label">تسجيل الخروج</span>
-    </div>
+  <!-- User / Logout Footer -->
+  <div class="p-3 border-t border-white/10 flex items-center justify-between">
+    <a href="index.html" class="text-xs text-white/60 hover:text-white flex items-center gap-1.5 no-underline">
+      <span>🏠</span>
+      <span>الموقع الرئيسي</span>
+    </a>
+    <button onclick="handleDashboardSignOut()" class="text-xs text-rose-400 hover:text-rose-300 font-bold bg-transparent border-none cursor-pointer">
+      خروج
+    </button>
   </div>
 </aside>
 
-<!-- ══════════════════ MAIN ══════════════════ -->
-<div class="main" id="main-area">
+<!-- ══════════════════ MAIN CONTENT AREA ══════════════════ -->
+<div class="main-wrapper" id="main-area">
 
-  <!-- ── TOPBAR ── -->
-  <div class="topbar">
-    <div style="display:flex;align-items:center;gap:14px">
-      <!-- Toggle sidebar -->
-      <button onclick="toggleSidebar()" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,.5);transition:.3s;padding:6px" onmouseover="this.style.color='#00e5c8'" onmouseout="this.style.color='rgba(255,255,255,.5)'">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+  <!-- ── TOPBAR (100% Mobile Optimized) ── -->
+  <header class="glass sticky top-0 z-40 px-3 sm:px-6 py-2.5 sm:py-3.5 flex items-center justify-between gap-2.5 w-full border-b border-white/10" style="background:rgba(4,14,30,.88)">
+    <div class="flex items-center gap-2.5 min-w-0">
+      <!-- Toggle Mobile Drawer -->
+      <button onclick="toggleSidebar()" class="w-8 h-8 rounded-xl glass flex items-center justify-center text-white/80 hover:text-white flex-shrink-0 lg:hidden">
+        ☰
       </button>
-      <div>
-        <h1 style="font-size:1.15rem;font-weight:800">مرحباً، <span class="gt">محمد</span> 👋</h1>
-        <p style="font-size:.75rem;color:rgba(255,255,255,.4)">آخر تسجيل: اليوم 10:24 ص</p>
+      
+      <div class="min-w-0">
+        <h1 class="text-xs sm:text-base font-extrabold text-white truncate leading-tight">
+          لوحة إدارة <span class="gt">خدمات الحسينية</span>
+        </h1>
+        <p class="text-[10px] sm:text-xs text-white/50 truncate hidden sm:block">متابعة الطلبات، الإيرادات، والمتاجر في الوقت الفعلي</p>
       </div>
     </div>
 
-    <div style="display:flex;align-items:center;gap:10px">
-      <!-- Supabase Cloud Connection Button -->
-      <button onclick="openCloudModal()" class="glass" style="padding:7px 14px;border-radius:12px;font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:6px;cursor:pointer;border:1px solid rgba(6,214,160,.4);color:#00e5c8;background:rgba(0,176,155,.12)">
-        <span id="cloud-status-dot" style="width:8px;height:8px;border-radius:50%;background:#00d6a0;box-shadow:0 0 8px rgba(0,214,160,.6)"></span>
-        <span id="cloud-status-label">سحابة Supabase</span>
+    <!-- Quick Cloud Pill & Actions -->
+    <div class="flex items-center gap-2 flex-shrink-0">
+      <button onclick="openCloudModal()" class="glass px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 transition">
+        <span id="cloud-status-dot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="cloud-status-label" class="hidden sm:inline">سحابة Supabase متصلة</span>
+        <span class="sm:hidden">سحابي 🟢</span>
       </button>
 
-      <!-- Search -->
-      <div style="position:relative;display:flex;align-items:center">
-        <input class="input-glass" placeholder="بحث..." style="width:200px;padding-right:36px"/>
-        <svg style="position:absolute;right:12px;opacity:.35" width="14" height="14" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      </div>
+      <!-- Refresh Orders -->
+      <button onclick="loadRealDashboardData(true)" title="تحديث البيانات اللحظية" class="w-8 h-8 rounded-xl glass flex items-center justify-center text-xs text-white/80 hover:text-white">
+        🔄
+      </button>
+    </div>
+  </header>
 
-      <!-- Date range -->
-      <div style="display:flex;gap:4px">
-        <button class="date-chip on" onclick="dateClick(this)">اليوم</button>
-        <button class="date-chip" onclick="dateClick(this)">الأسبوع</button>
-        <button class="date-chip" onclick="dateClick(this)">الشهر</button>
-      </div>
+  <!-- ── MAIN BODY CONTENT ── -->
+  <main class="flex-1 px-3 sm:px-6 py-4 sm:py-6 pb-28 sm:pb-16 w-full max-w-full min-w-0 overflow-x-hidden space-y-5 sm:space-y-6">
 
-      <!-- Notifications -->
-      <div style="position:relative">
-        <button onclick="toggleNotif()" class="glass" style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;border:1px solid rgba(255,255,255,.12)">
-          <svg width="17" height="17" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-          <span style="position:absolute;top:-3px;left:-3px;width:16px;height:16px;border-radius:50%;background:#ff5050;font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center">3</span>
-        </button>
-        <!-- Dropdown -->
-        <div class="notif-drop glass" id="notif-panel" style="border-radius:18px">
-          <div style="padding:14px 16px 8px;font-size:.88rem;font-weight:700;display:flex;justify-content:space-between;align-items:center">
-            <span>الإشعارات</span>
-            <span style="font-size:.75rem;color:#00e5c8;cursor:pointer">قراءة الكل</span>
-          </div>
-          <div class="notif-item">
-            <div class="notif-dot"></div>
-            <div>
-              <div style="font-size:.82rem;font-weight:600">طلب جديد #1247</div>
-              <div style="font-size:.75rem;color:rgba(255,255,255,.4)">مطعم السلام — 3 وجبات · منذ 2 دقيقة</div>
-            </div>
-          </div>
-          <div class="notif-item">
-            <div class="notif-dot" style="background:#f7c948"></div>
-            <div>
-              <div style="font-size:.82rem;font-weight:600">سائق جديد بانتظار الموافقة</div>
-              <div style="font-size:.75rem;color:rgba(255,255,255,.4)">أحمد محمود — منذ 15 دقيقة</div>
-            </div>
-          </div>
-          <div class="notif-item">
-            <div class="notif-dot" style="background:#ff7070"></div>
-            <div>
-              <div style="font-size:.82rem;font-weight:600">شكوى من عميل</div>
-              <div style="font-size:.75rem;color:rgba(255,255,255,.4)">طلب #1238 تأخر التوصيل — منذ 1 ساعة</div>
-            </div>
-          </div>
+    <!-- ━━━ STATS CARDS (Responsive: 2 on mobile, 4 on desktop) ━━━ -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 w-full">
+
+      <!-- Card 1: Revenue -->
+      <div class="glass-card rounded-2xl p-3.5 sm:p-5 flex flex-col justify-between border-t-2 border-t-emerald-400">
+        <div class="flex items-center justify-between mb-1 sm:mb-2">
+          <span class="text-[11px] sm:text-xs text-white/50 font-bold">إجمالي الإيرادات</span>
+          <span class="text-base sm:text-xl">💰</span>
         </div>
-      </div>
-
-      <!-- Profile -->
-      <div class="glass" style="display:flex;align-items:center;gap:10px;border-radius:14px;padding:6px 14px 6px 8px;cursor:pointer">
-        <div style="width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#00b09b,#06d6a0);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800">م</div>
         <div>
-          <div style="font-size:.82rem;font-weight:700;line-height:1.1">محمد المشرف</div>
-          <div style="font-size:.65rem;color:rgba(0,229,200,.6)">مدير النظام</div>
+          <div id="stat-revenue" class="text-base sm:text-2xl font-black gt truncate">0.00 ج.م</div>
+          <div class="text-[10px] text-emerald-400 mt-1 flex items-center gap-1">
+            <span>●</span>
+            <span id="stat-revenue-orders">من واقع 0 طلب مسجل</span>
+          </div>
         </div>
       </div>
+
+      <!-- Card 2: Today Orders -->
+      <div class="glass-card rounded-2xl p-3.5 sm:p-5 flex flex-col justify-between border-t-2 border-t-amber-400">
+        <div class="flex items-center justify-between mb-1 sm:mb-2">
+          <span class="text-[11px] sm:text-xs text-white/50 font-bold">طلبات اليوم</span>
+          <span class="text-base sm:text-xl">📦</span>
+        </div>
+        <div>
+          <div id="stat-today-orders" class="text-base sm:text-2xl font-black text-amber-300">0</div>
+          <div class="text-[10px] text-amber-400/80 mt-1 flex items-center gap-1">
+            <span>●</span>
+            <span id="stat-total-orders">إجمالي 0 في النظام</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Active Stores -->
+      <div class="glass-card rounded-2xl p-3.5 sm:p-5 flex flex-col justify-between border-t-2 border-t-blue-400">
+        <div class="flex items-center justify-between mb-1 sm:mb-2">
+          <span class="text-[11px] sm:text-xs text-white/50 font-bold">المتاجر النشطة</span>
+          <span class="text-base sm:text-xl">🏪</span>
+        </div>
+        <div>
+          <div id="stat-stores" class="text-base sm:text-2xl font-black text-blue-300">8</div>
+          <div class="text-[10px] text-blue-400 mt-1 flex items-center gap-1">
+            <span>●</span>
+            <span>مطاعم وهايبر الحسينية</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Average Order Value -->
+      <div class="glass-card rounded-2xl p-3.5 sm:p-5 flex flex-col justify-between border-t-2 border-t-rose-400">
+        <div class="flex items-center justify-between mb-1 sm:mb-2">
+          <span class="text-[11px] sm:text-xs text-white/50 font-bold">متوسط قيمة الطلب</span>
+          <span class="text-base sm:text-xl">📈</span>
+        </div>
+        <div>
+          <div id="stat-avg-order" class="text-base sm:text-2xl font-black text-rose-300">0.00 ج.م</div>
+          <div class="text-[10px] text-white/40 mt-1">
+            <span>محسوب لحظياً</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ━━━ ORDERS TABLE (REAL DATA — NO HARDCODED DUMMY ROWS) ━━━ -->
+    <div class="glass-card rounded-3xl p-4 sm:p-6 w-full overflow-hidden">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-4 border-b border-white/10 mb-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 class="text-sm sm:text-base font-extrabold text-white">📦 سجل الطلبات السحابية المباشر</h2>
+            <span id="orders-live-pulse" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          </div>
+          <p class="text-[11px] text-white/50">تحديث فوري لطلبات العملاء من سحابة Supabase ومزامنتها لحظياً</p>
+        </div>
+        <div class="flex items-center gap-2 self-start sm:self-auto">
+          <span id="orders-count-badge" class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold">
+            جاري الفحص...
+          </span>
+        </div>
+      </div>
+
+      <!-- Responsive Table Scroll Container -->
+      <div class="w-full overflow-x-auto scroll-touch -mx-4 sm:mx-0 px-4 sm:px-0">
+        <table class="tbl w-full">
+          <thead>
+            <tr>
+              <th>كود الطلب</th>
+              <th>العميل</th>
+              <th>المتجر / المطعم</th>
+              <th>المبلغ</th>
+              <th>طريقة الدفع</th>
+              <th>الحالة</th>
+              <th>التوقيت</th>
+              <th>الإجراء</th>
+            </tr>
+          </thead>
+          <tbody id="orders-table-body">
+            <tr>
+              <td colspan="8" class="text-center py-8 text-white/50 text-xs">
+                <svg class="spin w-5 h-5 mx-auto mb-2 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 0 1 10 10"/></svg>
+                جاري استدعاء الطلبات الحقيقية من السحابة...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ━━━ STORES RANKING & STATS (REAL TIME) ━━━ -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 w-full">
+      
+      <!-- Top Stores Ranking -->
+      <div class="glass-card rounded-3xl p-4 sm:p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+            <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+              <span>🏆</span>
+              <span>أداء المطاعم الأكثر طلباً بالحسينية</span>
+            </h3>
+            <span class="text-[11px] text-white/40">بيانات فعلية</span>
+          </div>
+          <div id="top-stores-list" class="space-y-3 text-xs">
+            <!-- Dynamically populated from real orders -->
+            <div class="text-center py-8 text-white/40 text-xs">
+              في انتظار تسجيل الطلبات لاحتساب إحصائيات المتاجر
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Delivery Drivers Status -->
+      <div class="glass-card rounded-3xl p-4 sm:p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+            <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+              <span>🛵</span>
+              <span>كباتن ومندوبي توصيل الحسينية</span>
+            </h3>
+            <span class="text-[11px] text-emerald-400 font-bold">جاهزون للطلبات ⚡</span>
+          </div>
+          
+          <div class="space-y-2.5 text-xs">
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.04] border border-white/5">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">🛵</div>
+                <div>
+                  <div class="font-bold text-white">كابتن مشاوير الحسينية والقرى</div>
+                  <div class="text-[10px] text-white/40">شارع المركز وميدان المحطة</div>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">متصل الآن</span>
+            </div>
+
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.04] border border-white/5">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">🛵</div>
+                <div>
+                  <div class="font-bold text-white">كابتن دليفري ترعة سراج والمدارس</div>
+                  <div class="text-[10px] text-white/40">تغطية مطاعم الكريب والفول</div>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">متصل الآن</span>
+            </div>
+
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.04] border border-white/5">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">🚗</div>
+                <div>
+                  <div class="font-bold text-white">سيارات تكسي الحسينية وسعود والأخيوة</div>
+                  <div class="text-[10px] text-white/40">مشاوير خارجية وطلبات كبيرة</div>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 rounded-md bg-amber-500/20 text-amber-300 text-[10px] font-bold">جاهز للطلب</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ━━━ QUICK SYSTEM ACTIONS (Responsive grid) ━━━ -->
+    <div class="glass-card rounded-3xl p-4 sm:p-6 w-full">
+      <h3 class="text-xs sm:text-sm font-bold text-white mb-3">⚡ وصول سريع لبوابات النظام</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3 text-xs">
+        <a href="husayniya-restaurants.html" class="glass p-3 rounded-xl flex flex-col items-center justify-center gap-1.5 hover:bg-white/10 transition no-underline text-white text-center">
+          <span class="text-lg">🏪</span>
+          <span class="font-bold">المطاعم</span>
+        </a>
+        <a href="husayniya-merchant.html" class="glass p-3 rounded-xl flex flex-col items-center justify-center gap-1.5 hover:bg-white/10 transition no-underline text-white text-center">
+          <span class="text-lg">👨‍🍳</span>
+          <span class="font-bold">بوابة التاجر</span>
+        </a>
+        <a href="husayniya-driver.html" class="glass p-3 rounded-xl flex flex-col items-center justify-center gap-1.5 hover:bg-white/10 transition no-underline text-white text-center">
+          <span class="text-lg">🛵</span>
+          <span class="font-bold">بوابة السائق</span>
+        </a>
+        <a href="husayniya-pharmacy.html" class="glass p-3 rounded-xl flex flex-col items-center justify-center gap-1.5 hover:bg-white/10 transition no-underline text-white text-center">
+          <span class="text-lg">💊</span>
+          <span class="font-bold">الصيدليات</span>
+        </a>
+        <a href="husayniya-medical.html" class="glass p-3 rounded-xl flex flex-col items-center justify-center gap-1.5 hover:bg-white/10 transition no-underline text-white text-center">
+          <span class="text-lg">🩺</span>
+          <span class="font-bold">العيادات</span>
+        </a>
+        <button onclick="openCloudModal()" class="glass p-3 rounded-xl flex flex-col items-center justify-center gap-1.5 hover:bg-white/10 transition text-emerald-400 text-center">
+          <span class="text-lg">⚡</span>
+          <span class="font-bold">السحابة</span>
+        </button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ══════════════ SUPABASE CLOUD SETTINGS MODAL ══════════════ -->
+<div id="cloud-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md p-4 flex items-center justify-center">
+  <div class="glass-card rounded-3xl p-6 sm:p-7 max-w-md w-full border border-emerald-500/40 shadow-2xl text-right space-y-4">
+    <div class="flex items-center justify-between pb-3 border-b border-white/10">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">⚡</div>
+        <h3 class="text-sm font-bold text-white">إعدادات سحابة Supabase</h3>
+      </div>
+      <button onclick="closeCloudModal()" class="text-white/50 hover:text-white text-sm">✕</button>
+    </div>
+
+    <div id="modal-cloud-status" class="p-2.5 rounded-xl bg-white/[0.04] text-[11px] text-white/70">
+      جاري فحص حالة الاتصال...
+    </div>
+
+    <div class="space-y-3 text-xs">
+      <div>
+        <label class="block font-bold text-white/80 mb-1">Project URL:</label>
+        <input id="cfg-url" type="text" class="input-glass w-full text-xs font-mono" dir="ltr"/>
+      </div>
+      <div>
+        <label class="block font-bold text-white/80 mb-1">Anon Public Key:</label>
+        <input id="cfg-key" type="password" class="input-glass w-full text-xs font-mono" dir="ltr"/>
+      </div>
+    </div>
+
+    <div class="pt-2 flex items-center justify-end gap-2 text-xs">
+      <button onclick="disconnectCloud()" class="px-4 py-2 rounded-xl glass text-rose-400 hover:bg-rose-500/10">فصل</button>
+      <button onclick="saveCloudSettings()" class="btn-primary px-5 py-2.5 rounded-xl font-bold">حفظ واختبار الاتصال ⚡</button>
     </div>
   </div>
+</div>
 
-  <!-- ── CONTENT ── -->
-  <div style="padding:24px 28px 60px">
-
-    <!-- ━━━ STATS CARDS ━━━ -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px">
-
-      <div class="glass-card stat-card c1 fade-up d1" style="border-radius:20px">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="font-size:.82rem;color:rgba(255,255,255,.5)">إجمالي الإيرادات</div>
-          <div style="width:36px;height:36px;border-radius:12px;background:rgba(0,176,155,.18);display:flex;align-items:center;justify-content:center;font-size:16px">💰</div>
-        </div>
-        <div class="stat-val gt">ج.م 24,580</div>
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <span class="stat-change stat-up">↑ 12.5%</span>
-          <canvas id="spark1" width="80" height="30" style="opacity:.6"></canvas>
-        </div>
-      </div>
-
-      <div class="glass-card stat-card c2 fade-up d2" style="border-radius:20px">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="font-size:.82rem;color:rgba(255,255,255,.5)">الطلبات اليوم</div>
-          <div style="width:36px;height:36px;border-radius:12px;background:rgba(247,201,72,.15);display:flex;align-items:center;justify-content:center;font-size:16px">📦</div>
-        </div>
-        <div class="stat-val" style="color:#f7c948">156</div>
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <span class="stat-change stat-up">↑ 8.3%</span>
-          <canvas id="spark2" width="80" height="30" style="opacity:.6"></canvas>
-        </div>
-      </div>
-
-      <div class="glass-card stat-card c3 fade-up d3" style="border-radius:20px">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="font-size:.82rem;color:rgba(255,255,255,.5)">المستخدمين النشطين</div>
-          <div style="width:36px;height:36px;border-radius:12px;background:rgba(102,126,234,.15);display:flex;align-items:center;justify-content:center;font-size:16px">👥</div>
-        </div>
-        <div class="stat-val" style="color:#667eea">1,248</div>
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <span class="stat-change stat-up">↑ 22.1%</span>
-          <canvas id="spark3" width="80" height="30" style="opacity:.6"></canvas>
-        </div>
-      </div>
-
-      <div class="glass-card stat-card c4 fade-up d4" style="border-radius:20px">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="font-size:.82rem;color:rgba(255,255,255,.5)">متوسط التقييم</div>
-          <div style="width:36px;height:36px;border-radius:12px;background:rgba(255,112,112,.12);display:flex;align-items:center;justify-content:center;font-size:16px">⭐</div>
-        </div>
-        <div class="stat-val" style="color:#f7c948">4.9</div>
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <span class="stat-change stat-up">↑ 0.2</span>
-          <div style="color:#f7c948;font-size:.85rem;letter-spacing:2px">★★★★★</div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ━━━ CHARTS ROW ━━━ -->
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:24px">
-
-      <!-- Revenue Chart -->
-      <div class="glass-card chart-wrap fade-up d3">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
-          <div>
-            <h3 style="font-size:1rem;font-weight:700">الإيرادات والطلبات</h3>
-            <p style="font-size:.78rem;color:rgba(255,255,255,.4)">آخر 7 أيام</p>
-          </div>
-          <div style="display:flex;align-items:center;gap:14px;font-size:.78rem">
-            <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:#00e5c8"></span>الإيرادات</span>
-            <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:#f7c948"></span>الطلبات</span>
-          </div>
-        </div>
-        <canvas id="mainChart" width="600" height="220"></canvas>
-      </div>
-
-      <!-- Orders by category pie -->
-      <div class="glass-card chart-wrap fade-up d4">
-        <h3 style="font-size:1rem;font-weight:700;margin-bottom:4px">الطلبات حسب الفئة</h3>
-        <p style="font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:14px">توزيع اليوم</p>
-        <canvas id="pieChart" width="220" height="220"></canvas>
-        <!-- Legend -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px">
-          <div style="display:flex;align-items:center;gap:6px;font-size:.78rem"><span style="width:10px;height:10px;border-radius:3px;background:#00e5c8"></span>مطاعم 45%</div>
-          <div style="display:flex;align-items:center;gap:6px;font-size:.78rem"><span style="width:10px;height:10px;border-radius:3px;background:#f7c948"></span>بقالة 25%</div>
-          <div style="display:flex;align-items:center;gap:6px;font-size:.78rem"><span style="width:10px;height:10px;border-radius:3px;background:#667eea"></span>صيدلية 18%</div>
-          <div style="display:flex;align-items:center;gap:6px;font-size:.78rem"><span style="width:10px;height:10px;border-radius:3px;background:#ff7070"></span>أخرى 12%</div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ━━━ ORDERS TABLE + SIDEBAR ━━━ -->
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:24px">
-
-      <!-- Recent Orders -->
-      <div class="glass-card fade-up d4" style="border-radius:20px;overflow:hidden">
-        <div style="padding:18px 22px 12px;display:flex;align-items:center;justify-content:space-between">
-          <div>
-            <h3 style="font-size:1rem;font-weight:700">أحدث الطلبات</h3>
-            <p style="font-size:.78rem;color:rgba(255,255,255,.4)">آخر 10 طلبات</p>
-          </div>
-          <button class="btn-outline btn-sm">عرض الكل ←</button>
-        </div>
-        <div style="overflow-x:auto">
-          <table class="tbl">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>العميل</th>
-                <th>المتجر</th>
-                <th>المبلغ</th>
-                <th>الحالة</th>
-                <th>الوقت</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="font-weight:700;color:#00e5c8">#1247</td>
-                <td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#00b09b,#06d6a0);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800">أ</div>أحمد م.</div></td>
-                <td>مطعم السلام</td>
-                <td style="font-weight:700">ج.م 42.50</td>
-                <td><span class="tbl-badge b-new">● جديد</span></td>
-                <td style="color:rgba(255,255,255,.45);font-size:.8rem">منذ 2 د</td>
-              </tr>
-              <tr>
-                <td style="font-weight:700;color:#f7c948">#1246</td>
-                <td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#f7971e,#f7c948);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;color:#000">س</div>سارة ع.</div></td>
-                <td>سوبر ماركت الأمل</td>
-                <td style="font-weight:700">ج.م 78.00</td>
-                <td><span class="tbl-badge b-prep">● قيد التحضير</span></td>
-                <td style="color:rgba(255,255,255,.45);font-size:.8rem">منذ 8 د</td>
-              </tr>
-              <tr>
-                <td style="font-weight:700;color:#6fa8f0">#1245</td>
-                <td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800">م</div>محمد ح.</div></td>
-                <td>صيدلية الشفاء</td>
-                <td style="font-weight:700">ج.م 25.00</td>
-                <td><span class="tbl-badge b-del">● في الطريق</span></td>
-                <td style="color:rgba(255,255,255,.45);font-size:.8rem">منذ 15 د</td>
-              </tr>
-              <tr>
-                <td style="font-weight:700;color:#00d6a0">#1244</td>
-                <td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:8px;background:rgba(0,214,160,.2);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;color:#00d6a0">ع</div>علي ك.</div></td>
-                <td>بيتزا الحسينية</td>
-                <td style="font-weight:700">ج.م 36.00</td>
-                <td><span class="tbl-badge b-done">✓ تم التسليم</span></td>
-                <td style="color:rgba(255,255,255,.45);font-size:.8rem">منذ 30 د</td>
-              </tr>
-              <tr>
-                <td style="font-weight:700;color:#ff7070">#1243</td>
-                <td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:8px;background:rgba(255,80,80,.15);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;color:#ff7070">ن</div>نور ص.</div></td>
-                <td>مطعم السلام</td>
-                <td style="font-weight:700">ج.م 18.50</td>
-                <td><span class="tbl-badge b-cancel">✕ ملغي</span></td>
-                <td style="color:rgba(255,255,255,.45);font-size:.8rem">منذ 45 د</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Right panel -->
-      <div style="display:flex;flex-direction:column;gap:16px">
-
-        <!-- Top Stores -->
-        <div class="glass-card fade-up d5" style="border-radius:20px;padding:20px">
-          <h3 style="font-size:1rem;font-weight:700;margin-bottom:16px">🏆 أفضل المتاجر</h3>
-          <div style="display:flex;flex-direction:column;gap:12px">
-
-            <div style="display:flex;align-items:center;gap:10px">
-              <div class="rank-num rank-1">1</div>
-              <div style="flex:1">
-                <div style="font-size:.85rem;font-weight:700">مطعم السلام</div>
-                <div style="display:flex;align-items:center;gap:6px;margin-top:4px">
-                  <div class="pbar" style="flex:1"><div class="pbar-fill" style="width:92%;background:linear-gradient(90deg,#00b09b,#06d6a0)"></div></div>
-                  <span style="font-size:.72rem;color:rgba(255,255,255,.5)">92%</span>
-                </div>
-              </div>
-              <span style="font-size:.8rem;font-weight:700;color:#00e5c8">ج.م 4,280</span>
-            </div>
-
-            <div style="display:flex;align-items:center;gap:10px">
-              <div class="rank-num rank-2">2</div>
-              <div style="flex:1">
-                <div style="font-size:.85rem;font-weight:700">سوبر ماركت الأمل</div>
-                <div style="display:flex;align-items:center;gap:6px;margin-top:4px">
-                  <div class="pbar" style="flex:1"><div class="pbar-fill" style="width:78%;background:linear-gradient(90deg,#667eea,#764ba2)"></div></div>
-                  <span style="font-size:.72rem;color:rgba(255,255,255,.5)">78%</span>
-                </div>
-              </div>
-              <span style="font-size:.8rem;font-weight:700;color:#6fa8f0">ج.م 3,150</span>
-            </div>
-
-            <div style="display:flex;align-items:center;gap:10px">
-              <div class="rank-num rank-3">3</div>
-              <div style="flex:1">
-                <div style="font-size:.85rem;font-weight:700">صيدلية الشفاء</div>
-                <div style="display:flex;align-items:center;gap:6px;margin-top:4px">
-                  <div class="pbar" style="flex:1"><div class="pbar-fill" style="width:65%;background:linear-gradient(90deg,#f7971e,#f7c948)"></div></div>
-                  <span style="font-size:.72rem;color:rgba(255,255,255,.5)">65%</span>
-                </div>
-              </div>
-              <span style="font-size:.8rem;font-weight:700;color:#f7c948">ج.م 2,420</span>
-            </div>
-
-            <div style="display:flex;align-items:center;gap:10px">
-              <div class="rank-num rank-other">4</div>
-              <div style="flex:1">
-                <div style="font-size:.85rem;font-weight:700">بيتزا الحسينية</div>
-                <div style="display:flex;align-items:center;gap:6px;margin-top:4px">
-                  <div class="pbar" style="flex:1"><div class="pbar-fill" style="width:52%;background:rgba(255,255,255,.25)"></div></div>
-                  <span style="font-size:.72rem;color:rgba(255,255,255,.5)">52%</span>
-                </div>
-              </div>
-              <span style="font-size:.8rem;font-weight:600;color:rgba(255,255,255,.5)">ج.م 1,890</span>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Active Drivers -->
-        <div class="glass-card fade-up d6" style="border-radius:20px;padding:20px">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-            <h3 style="font-size:1rem;font-weight:700">🚗 السائقين</h3>
-            <span style="font-size:.78rem;color:#00e5c8;font-weight:600">8/12 نشط</span>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:10px">
-            <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.04)">
-              <div class="drv-online"></div>
-              <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#00b09b,#06d6a0);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800">خ</div>
-              <div style="flex:1">
-                <div style="font-size:.82rem;font-weight:600">خالد أحمد</div>
-                <div style="font-size:.7rem;color:rgba(255,255,255,.4)">3 طلبات مكتملة</div>
-              </div>
-              <span style="font-size:.72rem;padding:3px 8px;border-radius:8px;background:rgba(0,214,160,.15);color:#00d6a0">متصل</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.04)">
-              <div class="drv-busy"></div>
-              <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#f7971e,#f7c948);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;color:#000">ع</div>
-              <div style="flex:1">
-                <div style="font-size:.82rem;font-weight:600">عمر حسن</div>
-                <div style="font-size:.7rem;color:rgba(255,255,255,.4)">يوصل طلب #1245</div>
-              </div>
-              <span style="font-size:.72rem;padding:3px 8px;border-radius:8px;background:rgba(247,201,72,.15);color:#f7c948">مشغول</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.04)">
-              <div class="drv-online"></div>
-              <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800">ي</div>
-              <div style="flex:1">
-                <div style="font-size:.82rem;font-weight:600">يوسف علي</div>
-                <div style="font-size:.7rem;color:rgba(255,255,255,.4)">5 طلبات مكتملة</div>
-              </div>
-              <span style="font-size:.72rem;padding:3px 8px;border-radius:8px;background:rgba(0,214,160,.15);color:#00d6a0">متصل</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ━━━ QUICK ACTIONS ━━━ -->
-    <div class="fade-up d5" style="margin-bottom:24px">
-      <h3 style="font-size:1rem;font-weight:700;margin-bottom:14px">⚡ إجراءات سريعة</h3>
-      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px">
-        <div class="glass-card qa">
-          <div class="qa-icon" style="background:rgba(0,176,155,.18)">📦</div>
-          <div style="font-size:.82rem;font-weight:600">طلب جديد</div>
-        </div>
-        <div class="glass-card qa">
-          <div class="qa-icon" style="background:rgba(247,201,72,.15)">🏪</div>
-          <div style="font-size:.82rem;font-weight:600">إضافة متجر</div>
-        </div>
-        <div class="glass-card qa">
-          <div class="qa-icon" style="background:rgba(102,126,234,.15)">👤</div>
-          <div style="font-size:.82rem;font-weight:600">عميل جديد</div>
-        </div>
-        <div class="glass-card qa">
-          <div class="qa-icon" style="background:rgba(0,214,160,.15)">🚗</div>
-          <div style="font-size:.82rem;font-weight:600">إضافة سائق</div>
-        </div>
-        <div class="glass-card qa">
-          <div class="qa-icon" style="background:rgba(255,80,80,.12)">📊</div>
-          <div style="font-size:.82rem;font-weight:600">تقرير يومي</div>
-        </div>
-        <div class="glass-card qa">
-          <div class="qa-icon" style="background:rgba(247,151,30,.15)">📢</div>
-          <div style="font-size:.82rem;font-weight:600">إرسال إشعار</div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- content -->
-</div><!-- main -->
-</div><!-- layout -->
-
+<script src="supabase-client.js"></script>
 <script>
-// ══════════ Sidebar Toggle ══════════
-function toggleSidebar(){
-  if (window.innerWidth <= 768) {
-    const s = document.getElementById('sidebar');
-    const b = document.getElementById('sidebar-backdrop');
-    s.classList.toggle('mobile-open');
-    if (b) b.classList.toggle('active');
-  } else {
-    document.getElementById('sidebar').classList.toggle('collapsed');
-    document.getElementById('main-area').classList.toggle('expanded');
+// ── Sidebar Toggle for Mobile Drawer ──
+function toggleSidebar() {
+  const s = document.getElementById('sidebar');
+  const b = document.getElementById('sidebar-backdrop');
+  if (s) s.classList.toggle('mobile-open');
+  if (b) b.classList.toggle('active');
+}
+
+// ── Load Real Dashboard Data from Supabase ──
+let realOrdersCache = [];
+
+async function loadRealDashboardData(notifyUser = false) {
+  const tableBody = document.getElementById('orders-table-body');
+  const countBadge = document.getElementById('orders-count-badge');
+  const revEl = document.getElementById('stat-revenue');
+  const revOrdersEl = document.getElementById('stat-revenue-orders');
+  const todayOrdersEl = document.getElementById('stat-today-orders');
+  const totalOrdersEl = document.getElementById('stat-total-orders');
+  const avgOrderEl = document.getElementById('stat-avg-order');
+  const topStoresList = document.getElementById('top-stores-list');
+
+  try {
+    const orders = await window.HusayniyaCloud.getOrders();
+    realOrdersCache = orders || [];
+
+    // Calculate real numbers
+    const totalOrdersCount = realOrdersCache.length;
+    let totalRevenue = 0;
+    let todayOrdersCount = 0;
+    const todayDateStr = new Date().toDateString();
+
+    const storeStats = {};
+
+    realOrdersCache.forEach(ord => {
+      const amount = Number(ord.total_amount) || 0;
+      totalRevenue += amount;
+
+      if (ord.created_at && new Date(ord.created_at).toDateString() === todayDateStr) {
+        todayOrdersCount++;
+      }
+
+      const sName = ord.store_name || 'مطعم غير محدد';
+      if (!storeStats[sName]) storeStats[sName] = { count: 0, revenue: 0 };
+      storeStats[sName].count++;
+      storeStats[sName].revenue += amount;
+    });
+
+    const avgOrderVal = totalOrdersCount > 0 ? (totalRevenue / totalOrdersCount) : 0;
+
+    // Update UI Stats Cards
+    revEl.textContent = totalRevenue.toFixed(2) + ' ج.م';
+    revOrdersEl.textContent = `من واقع ${totalOrdersCount} طلب مسجل`;
+    todayOrdersEl.textContent = todayOrdersCount;
+    totalOrdersEl.textContent = `إجمالي ${totalOrdersCount} في النظام`;
+    avgOrderEl.textContent = avgOrderVal.toFixed(2) + ' ج.م';
+    countBadge.textContent = `${totalOrdersCount} طلبات مسجلة`;
+
+    // Render Real Orders Table
+    if (totalOrdersCount === 0) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="8" class="text-center py-10 text-white/50">
+            <div class="text-3xl mb-2">📦</div>
+            <div class="text-sm font-bold text-white mb-1">لا توجد طلبات مسجلة حتى الآن</div>
+            <div class="text-xs text-white/40 max-w-sm mx-auto leading-relaxed">
+              عند قيام العملاء بطلب وجبات من المطاعم ستظهر هنا فورياً وتتحدث تلقائياً عبر سحابة Supabase ⚡
+            </div>
+          </td>
+        </tr>
+      `;
+    } else {
+      const statusMap = {
+        'pending': { text: '⏳ قيد المراجعة', class: 'b-new' },
+        'preparing': { text: '🍳 قيد التحضير', class: 'b-prep' },
+        'on_the_way': { text: '🛵 في الطريق', class: 'b-del' },
+        'delivered': { text: '✅ تم التسليم', class: 'b-done' },
+        'cancelled': { text: '❌ ملغي', class: 'b-cancel' }
+      };
+
+      tableBody.innerHTML = realOrdersCache.slice(0, 25).map(ord => {
+        const s = statusMap[ord.status] || { text: ord.status || 'نشط', class: 'b-new' };
+        return `
+          <tr>
+            <td class="font-extrabold text-emerald-400">#${ord.order_code || ord.id || 'ORD'}</td>
+            <td class="font-semibold text-white">${ord.customer_name || 'عميل الحسينية'}</td>
+            <td class="text-white/80">${ord.store_name || 'مطعم الحسينية'}</td>
+            <td class="font-black text-white">${Number(ord.total_amount || 0).toFixed(2)} ج.م</td>
+            <td class="text-white/60 text-xs">${ord.payment_method || 'كاش عند الاستلام'}</td>
+            <td><span class="tbl-badge ${s.class}">${s.text}</span></td>
+            <td class="text-white/40 text-xs">${formatOrderDate(ord.created_at)}</td>
+            <td>
+              <a href="husayniya-tracking.html?order=${ord.order_code || ''}" class="text-emerald-400 hover:underline text-xs font-bold no-underline">
+                تتبع 🗺️
+              </a>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Render Real Top Stores Ranking
+    const sortedStores = Object.keys(storeStats).sort((a,b) => storeStats[b].revenue - storeStats[a].revenue);
+    if (sortedStores.length === 0) {
+      topStoresList.innerHTML = `
+        <div class="text-center py-6 text-white/40 text-xs">
+          في انتظار أول طلب للمتاجر لاحتساب الترتيب الفعلي
+        </div>
+      `;
+    } else {
+      topStoresList.innerHTML = sortedStores.slice(0, 5).map((sName, idx) => {
+        const rankColors = ['bg-amber-400 text-black', 'bg-slate-300 text-black', 'bg-amber-700 text-white', 'bg-white/10 text-white'];
+        const badgeColor = rankColors[idx] || rankColors[3];
+        const data = storeStats[sName];
+        return `
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <span class="w-6 h-6 rounded-lg ${badgeColor} flex items-center justify-center font-bold text-xs flex-shrink-0">${idx + 1}</span>
+              <span class="font-bold text-white truncate text-xs">${sName}</span>
+            </div>
+            <div class="text-left flex-shrink-0">
+              <span class="text-emerald-400 font-extrabold text-xs">${data.revenue.toFixed(2)} ج.م</span>
+              <span class="text-[10px] text-white/40 block">(${data.count} طلب)</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    if (notifyUser) {
+      alert('تم تحديث بيانات اللوحة السحابية بنجاح!');
+    }
+
+  } catch (err) {
+    console.error('Error loading dashboard data:', err);
   }
 }
 
-// ══════════ Nav Click ══════════
-function navClick(el){
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  el.classList.add('active');
-}
-
-// ══════════ Date Chips ══════════
-function dateClick(el){
-  document.querySelectorAll('.date-chip').forEach(c=>c.classList.remove('on'));
-  el.classList.add('on');
-}
-
-// ══════════ Notifications ══════════
-function toggleNotif(){
-  document.getElementById('notif-panel').classList.toggle('open');
-}
-document.addEventListener('click',e=>{
-  if(!e.target.closest('[onclick*="toggleNotif"]')&&!e.target.closest('#notif-panel')){
-    document.getElementById('notif-panel').classList.remove('open');
+function formatOrderDate(dateStr) {
+  if (!dateStr) return 'اليوم';
+  try {
+    const d = new Date(dateStr);
+    return d.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+  } catch(e) {
+    return 'اليوم';
   }
-});
-
-// ══════════ Draw Sparklines ══════════
-function drawSparkline(id,data,color){
-  const c=document.getElementById(id);if(!c)return;
-  const ctx=c.getContext('2d');
-  const w=c.width,h=c.height;
-  const max=Math.max(...data),min=Math.min(...data);
-  const step=w/(data.length-1);
-  ctx.clearRect(0,0,w,h);
-
-  // Gradient fill
-  const grad=ctx.createLinearGradient(0,0,0,h);
-  grad.addColorStop(0,color+'44');
-  grad.addColorStop(1,color+'00');
-  ctx.beginPath();
-  ctx.moveTo(0,h);
-  data.forEach((v,i)=>{
-    const x=i*step;
-    const y=h-((v-min)/(max-min))*h*.85-h*.05;
-    if(i===0)ctx.lineTo(x,y);else ctx.lineTo(x,y);
-  });
-  ctx.lineTo(w,h);ctx.closePath();
-  ctx.fillStyle=grad;ctx.fill();
-
-  // Line
-  ctx.beginPath();
-  data.forEach((v,i)=>{
-    const x=i*step;
-    const y=h-((v-min)/(max-min))*h*.85-h*.05;
-    if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
-  });
-  ctx.strokeStyle=color;ctx.lineWidth=2;ctx.stroke();
 }
 
-drawSparkline('spark1',[12,19,15,22,18,25,24],'#00e5c8');
-drawSparkline('spark2',[80,95,110,105,130,125,156],'#f7c948');
-drawSparkline('spark3',[800,950,880,1050,1100,1180,1248],'#667eea');
-
-// ══════════ Main Chart ══════════
-function drawMainChart(){
-  const c=document.getElementById('mainChart');if(!c)return;
-  const ctx=c.getContext('2d');
-  const W=c.width,H=c.height;
-  ctx.clearRect(0,0,W,H);
-
-  const revenue=[3200,4100,3800,4800,5200,4600,5800];
-  const orders=[42,58,51,72,85,68,96];
-  const days=['السبت','الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة'];
-  const px=70,py=20;
-  const cw=W-px-20,ch=H-py-35;
-
-  // Grid lines
-  ctx.strokeStyle='rgba(255,255,255,.06)';
-  ctx.lineWidth=1;
-  for(let i=0;i<=5;i++){
-    const y=py+ch/5*i;
-    ctx.beginPath();ctx.moveTo(px,y);ctx.lineTo(W-20,y);ctx.stroke();
-    ctx.fillStyle='rgba(255,255,255,.25)';ctx.font='11px sans-serif';ctx.textAlign='right';
-    ctx.fillText('ج.م '+Math.round(6000-6000/5*i),px-8,y+4);
-  }
-
-  // Day labels
-  const barW=cw/days.length;
-  days.forEach((d,i)=>{
-    ctx.fillStyle='rgba(255,255,255,.3)';ctx.font='11px sans-serif';ctx.textAlign='center';
-    ctx.fillText(d,px+barW*i+barW/2,H-8);
-  });
-
-  // Revenue bars
-  const maxR=Math.max(...revenue);
-  revenue.forEach((v,i)=>{
-    const bh=v/maxR*ch*.85;
-    const x=px+barW*i+barW*.2;
-    const w=barW*.35;
-    const y=py+ch-bh;
-    const grad=ctx.createLinearGradient(0,y,0,py+ch);
-    grad.addColorStop(0,'#00e5c8');grad.addColorStop(1,'#00b09b44');
-    ctx.fillStyle=grad;
-    roundRect(ctx,x,y,w,bh,6);
-  });
-
-  // Orders line
-  const maxO=Math.max(...orders);
-  ctx.beginPath();
-  orders.forEach((v,i)=>{
-    const x=px+barW*i+barW/2;
-    const y=py+ch-v/maxO*ch*.85;
-    if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
-  });
-  ctx.strokeStyle='#f7c948';ctx.lineWidth=2.5;ctx.stroke();
-
-  // Dots
-  orders.forEach((v,i)=>{
-    const x=px+barW*i+barW/2;
-    const y=py+ch-v/maxO*ch*.85;
-    ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);
-    ctx.fillStyle='#f7c948';ctx.fill();
-    ctx.beginPath();ctx.arc(x,y,2,0,Math.PI*2);
-    ctx.fillStyle='#06091a';ctx.fill();
-  });
-}
-
-function roundRect(ctx,x,y,w,h,r){
-  ctx.beginPath();
-  ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
-  ctx.lineTo(x+w,y+h);ctx.lineTo(x,y+h);ctx.lineTo(x,y+r);
-  ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();ctx.fill();
-}
-
-drawMainChart();
-
-// ══════════ Pie Chart ══════════
-function drawPie(){
-  const c=document.getElementById('pieChart');if(!c)return;
-  const ctx=c.getContext('2d');
-  const W=c.width,H=c.height;
-  const cx=W/2,cy=H/2,r=Math.min(W,H)/2-20;
-  ctx.clearRect(0,0,W,H);
-
-  const data=[45,25,18,12];
-  const colors=['#00e5c8','#f7c948','#667eea','#ff7070'];
-  let start=-Math.PI/2;
-
-  data.forEach((v,i)=>{
-    const angle=v/100*Math.PI*2;
-    ctx.beginPath();
-    ctx.moveTo(cx,cy);
-    ctx.arc(cx,cy,r,start,start+angle);
-    ctx.closePath();
-    ctx.fillStyle=colors[i];
-    ctx.fill();
-
-    // Gap
-    ctx.beginPath();
-    ctx.moveTo(cx,cy);
-    ctx.arc(cx,cy,r,start,start+angle);
-    ctx.closePath();
-    ctx.strokeStyle='#06091a';
-    ctx.lineWidth=3;
-    ctx.stroke();
-
-    start+=angle;
-  });
-
-  // Center hole (donut)
-  ctx.beginPath();
-  ctx.arc(cx,cy,r*.55,0,Math.PI*2);
-  ctx.fillStyle='#06091a';
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(cx,cy,r*.55,0,Math.PI*2);
-  ctx.strokeStyle='rgba(255,255,255,.08)';
-  ctx.lineWidth=1;
-  ctx.stroke();
-
-  // Center text
-  ctx.fillStyle='#fff';ctx.font='bold 22px sans-serif';ctx.textAlign='center';
-  ctx.fillText('156',cx,cy-2);
-  ctx.fillStyle='rgba(255,255,255,.45)';ctx.font='11px sans-serif';
-  ctx.fillText('طلب',cx,cy+16);
-}
-
-drawPie();
-
-// ══════════ Responsive ══════════
-if(window.innerWidth<1024){
-  document.getElementById('sidebar').classList.add('collapsed');
-  document.getElementById('main-area').classList.add('expanded');
-}
-
-// ══════════ Supabase Cloud Modal Engine ══════════
+// ── Cloud Modal Helpers ──
 function openCloudModal() {
-  document.getElementById('cloud-modal').style.display = 'flex';
+  document.getElementById('cloud-modal').classList.remove('hidden');
   const url = localStorage.getItem('husayniya_supabase_url') || '';
   const key = localStorage.getItem('husayniya_supabase_key') || '';
   document.getElementById('cfg-url').value = url;
@@ -827,7 +607,7 @@ function openCloudModal() {
 }
 
 function closeCloudModal() {
-  document.getElementById('cloud-modal').style.display = 'none';
+  document.getElementById('cloud-modal').classList.add('hidden');
 }
 
 function updateCloudUI() {
@@ -837,13 +617,13 @@ function updateCloudUI() {
   const modalStatus = document.getElementById('modal-cloud-status');
   
   if (isConn) {
-    if (dot) dot.style.background = '#00d6a0';
-    if (label) label.innerText = 'سحابة Supabase (متصل 🟢)';
-    if (modalStatus) modalStatus.innerHTML = '<span style="color:#00d6a0;font-weight:bold">🟢 متصل بقاعدة بيانات Supabase السحابية في الوقت الفعلي</span>';
+    if (dot) dot.className = 'w-2 h-2 rounded-full bg-emerald-400 animate-pulse';
+    if (label) label.innerText = 'سحابة Supabase متصلة 🟢';
+    if (modalStatus) modalStatus.innerHTML = '<span class="text-emerald-400 font-bold">🟢 متصل بقاعدة بيانات Supabase السحابية في الوقت الفعلي</span>';
   } else {
-    if (dot) dot.style.background = '#f7c948';
+    if (dot) dot.className = 'w-2 h-2 rounded-full bg-amber-400';
     if (label) label.innerText = 'سحابة Supabase (محلي 🟡)';
-    if (modalStatus) modalStatus.innerHTML = '<span style="color:#f7c948;font-weight:bold">🟡 يعمل محلياً عبر المتصفح — أدخل بيانات Supabase للتزامن بين الأجهزة</span>';
+    if (modalStatus) modalStatus.innerHTML = '<span class="text-amber-300 font-bold">🟡 يعمل محلياً — أدخل بيانات Supabase للتزامن الفوري</span>';
   }
 }
 
@@ -858,86 +638,45 @@ async function saveCloudSettings() {
     window.HusayniyaCloud.saveCredentials(url, key);
     const test = await window.HusayniyaCloud.testConnection();
     if (test.success) {
-      alert('تم الاتصال بنجاح بقاعدة بيانات Supabase! 🎉 تم تفعيل المزامنة اللحظية بين العميل والمطعم والمندوب.');
+      alert('تم الاتصال بنجاح بقاعدة بيانات Supabase! 🎉');
     } else {
-      alert('تم حفظ البيانات، ولكن تعذر فحص جدول orders:\n' + test.error + '\n\nتأكد من تنفيذ كود SQL المرفق داخل Supabase SQL Editor.');
+      alert('تم الحفظ، تعذر الاتصال:\n' + test.error);
     }
     updateCloudUI();
     closeCloudModal();
+    loadRealDashboardData();
   }
 }
 
 function disconnectCloud() {
-  if (confirm('هل ترغب في فصل الاتصال السحابي والرجوع للوضع المحلي؟')) {
+  if (confirm('هل ترغب في فصل الاتصال السحابي؟')) {
     if (window.HusayniyaCloud) window.HusayniyaCloud.clearCredentials();
     updateCloudUI();
     alert('تم قطع الاتصال والرجوع إلى الوضع المحلي.');
   }
 }
 
-function copySchemaInfo() {
-  const schemaPath = 'supabase_schema.sql';
-  alert('تم تضمين ملف قواعد البيانات الكامل في مشروعك:\n' + schemaPath + '\n\nيمكنك نسخه ولصقه في Supabase -> SQL Editor -> Run لتجهيز الجداول وسياسات الأمان في 10 ثوانٍ.');
+async function handleDashboardSignOut() {
+  if (confirm('هل ترغب في تسجيل الخروج؟')) {
+    await window.HusayniyaCloud.signOut();
+    window.location.href = 'husayniya-login.html';
+  }
 }
 
-window.addEventListener('load', () => {
-  setTimeout(updateCloudUI, 300);
+// ── Realtime listener & Page Init ──
+document.addEventListener('DOMContentLoaded', () => {
+  loadRealDashboardData();
+  updateCloudUI();
+
+  // Auto update when new order is placed from checkout
+  if (window.HusayniyaCloud) {
+    window.HusayniyaCloud.onOrderEvent((event, order) => {
+      console.log('⚡ Dashboard live order event:', event, order);
+      loadRealDashboardData();
+    });
+  }
 });
 </script>
 
-<!-- ══════════════ SUPABASE SETTINGS MODAL ══════════════ -->
-<div id="cloud-modal" style="position:fixed;inset:0;background:rgba(4,8,20,.85);backdrop-filter:blur(10px);z-index:999;display:none;align-items:center;justify-content:center;padding:20px">
-  <div class="glass-card" style="border-radius:24px;padding:28px;max-width:520px;width:100%;border:1px solid rgba(0,176,155,.4);box-shadow:0 0 40px rgba(0,176,155,.2)">
-    
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:12px">
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="width:36px;height:36px;border-radius:10px;background:rgba(0,176,155,.2);display:flex;align-items:center;justify-content:center;font-size:18px">⚡</div>
-        <div>
-          <h3 style="font-size:1.05rem;font-weight:800;margin:0">إعدادات سحابة Supabase</h3>
-          <p style="font-size:.72rem;color:rgba(255,255,255,.5);margin:2px 0 0">مزامنة الطلبات الحية في الوقت الفعلي (Real-time)</p>
-        </div>
-      </div>
-      <button onclick="closeCloudModal()" style="background:none;border:none;color:rgba(255,255,255,.4);font-size:1.2rem;cursor:pointer">✕</button>
-    </div>
-
-    <div id="modal-cloud-status" style="background:rgba(255,255,255,.04);padding:10px 14px;border-radius:12px;font-size:.78rem;margin-bottom:16px;border:1px solid rgba(255,255,255,.06)">
-      جاري فحص حالة الاتصال...
-    </div>
-
-    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:20px">
-      <div>
-        <label style="font-size:.78rem;font-weight:700;display:block;margin-bottom:6px;color:rgba(255,255,255,.8)">Project URL:</label>
-        <input id="cfg-url" type="text" placeholder="https://xyzcompany.supabase.co" class="input-glass" style="width:100%;direction:ltr;font-family:monospace;font-size:.82rem"/>
-      </div>
-      <div>
-        <label style="font-size:.78rem;font-weight:700;display:block;margin-bottom:6px;color:rgba(255,255,255,.8)">Anon Public Key:</label>
-        <input id="cfg-key" type="password" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." class="input-glass" style="width:100%;direction:ltr;font-family:monospace;font-size:.82rem"/>
-      </div>
-    </div>
-
-    <div style="background:rgba(0,176,155,.08);border:1px dashed rgba(0,176,155,.3);border-radius:14px;padding:12px;margin-bottom:20px;font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.6">
-      💡 <b>كيف تحصل عليها مجاناً؟</b> أنشئ مشروعاً مجانياً على <a href="https://supabase.com" target="_blank" style="color:#00e5c8;text-decoration:underline">Supabase.com</a> ➔ اذهب إلى <b>Settings ➔ API</b> وانسخ الـ URL والـ anon public key.
-    </div>
-
-    <div style="display:flex;gap:10px;justify-content:flex-end">
-      <button onclick="copySchemaInfo()" style="padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:.78rem;font-weight:700;cursor:pointer">
-        📋 ملف SQL للجداول
-      </button>
-      <button onclick="disconnectCloud()" style="padding:10px 14px;border-radius:12px;background:rgba(255,80,80,.12);border:1px solid rgba(255,80,80,.25);color:#ff7070;font-size:.78rem;font-weight:700;cursor:pointer">
-        فصل
-      </button>
-      <button onclick="saveCloudSettings()" class="btn-primary" style="padding:10px 20px;border-radius:12px;font-size:.8rem;font-weight:800;cursor:pointer">
-        حفظ واختبار الاتصال ⚡
-      </button>
-    </div>
-
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-client.js"></script>
-
 </body>
 </html>
-
-
