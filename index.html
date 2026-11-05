@@ -467,78 +467,7 @@ body {
     </div>
 
     <!-- ── 2. STORE DETAIL (SPA EMBED / LINK) ── -->
-    <div id="view-store" class="app-view space-y-6">
-      <div class="glass-card rounded-3xl p-6 text-center">
-        <h2 class="text-xl font-bold mb-2">قائمة طعام ومأكولات مطعم السلام</h2>
-        <p class="text-xs text-white/60 mb-6">يمكنك تخصيص الوجبات وتحديد الإضافات بالسلة فوراً</p>
-        <a href="husayniya-store.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold" style="text-decoration:none">
-          <span>افتح قائمة المتجر الكاملة</span>
-          <span>←</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- ── 3. CHECKOUT VIEW ── -->
-    <div id="view-checkout" class="app-view space-y-6">
-      <div class="glass-card rounded-3xl p-6 text-center">
-        <h2 class="text-xl font-bold mb-2">سلة المشتريات وإتمام الدفع</h2>
-        <p class="text-xs text-white/60 mb-6">حدد موقعك على الخريطة واختر طريقة الدفع (كاش / فودافون كاش)</p>
-        <a href="husayniya-checkout.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold" style="text-decoration:none">
-          <span>الانتقال لشاشة الدفع وتحديد العنوان</span>
-          <span>←</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- ── 4. TRACKING VIEW ── -->
-    <div id="view-tracking" class="app-view space-y-6">
-      <div class="glass-card rounded-3xl p-6 text-center">
-        <h2 class="text-xl font-bold mb-2">تتبع مسار السائق المباشر</h2>
-        <p class="text-xs text-white/60 mb-6">خريطة GPS ورصد حركة الدراجة النارية حتى باب منزلك</p>
-        <a href="husayniya-tracking.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold" style="text-decoration:none">
-          <span>مشاهدة الخريطة الحية ومحادثة السائق</span>
-          <span>←</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- ── 5. ACCOUNT VIEW ── -->
-    <div id="view-account" class="app-view space-y-6">
-      <div class="glass-card rounded-3xl p-6 text-center">
-        <h2 class="text-xl font-bold mb-2">الملف الشخصي والمحفظة</h2>
-        <p class="text-xs text-white/60 mb-6">سجل الطلبات السابقة، العناوين المحفوظة، ورصيدك المتاح</p>
-        <a href="husayniya-account.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold" style="text-decoration:none">
-          <span>فتح الحساب الشخصي</span>
-          <span>←</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- ── 6. DASHBOARD VIEW ── -->
-    <div id="view-dashboard" class="app-view space-y-6">
-      <div class="glass-card rounded-3xl p-6 text-center">
-        <h2 class="text-xl font-bold mb-2">لوحة الإدارة والتحكم</h2>
-        <p class="text-xs text-white/60 mb-6">إحصائيات الإيرادات، إدارة السائقين، والطلبات الحية</p>
-        <a href="husayniya-dashboard.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold" style="text-decoration:none">
-          <span>فتح لوحة الإدارة</span>
-          <span>←</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- ── 7. LOGIN VIEW ── -->
-    <div id="view-login" class="app-view space-y-6">
-      <div class="glass-card rounded-3xl p-6 text-center">
-        <h2 class="text-xl font-bold mb-2">تسجيل الدخول والتحقق بـ OTP</h2>
-        <p class="text-xs text-white/60 mb-6">سجل رقم هاتفك واستلم كود التفعيل في ثوانٍ</p>
-        <a href="husayniya-login.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold" style="text-decoration:none">
-          <span>شاشة تسجيل الدخول</span>
-          <span>←</span>
-        </a>
-      </div>
-    </div>
-
-  </main>
+    </main>
 
   <!-- ══════════════ MOBILE BOTTOM NAVIGATION ══════════════ -->
   <nav class="mobile-nav">
@@ -568,35 +497,49 @@ body {
 </div><!-- .app-container -->
 
 <script>
-// ── Responsive SPA Router ──
-function navigateTo(viewId) {
-  document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active'));
-  const target = document.getElementById(`view-ج.م {viewId}`);
-  if (target) {
-    target.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// ── Clean Multi-page Navigation Engine ──
+const PAGE_ROUTES = {
+  'home': 'index.html',
+  'store': 'husayniya-store.html',
+  'checkout': 'husayniya-checkout.html',
+  'tracking': 'husayniya-tracking.html',
+  'account': 'husayniya-account.html',
+  'dashboard': 'husayniya-dashboard.html',
+  'merchant': 'husayniya-merchant.html',
+  'login': 'husayniya-login.html'
+};
+
+function navigateTo(target) {
+  if (PAGE_ROUTES[target]) {
+    if (target === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.location.href = PAGE_ROUTES[target];
+    }
+    return;
   }
-
-  // Update mobile active states
-  document.querySelectorAll('.mobile-nav-item').forEach(m => m.classList.remove('active'));
-  const activeMob = document.getElementById(`mob-ج.م {viewId}`);
-  if (activeMob) activeMob.classList.add('active');
 }
 
-// ── Mobile Drawer Toggle ──
+// Mobile Drawer Toggle
 function toggleDrawer() {
-  document.getElementById('drawer').classList.toggle('open');
-  document.getElementById('drawer-backdrop').classList.toggle('open');
+  const d = document.getElementById('drawer');
+  const b = document.getElementById('drawer-backdrop');
+  if (d && b) {
+    d.classList.toggle('open');
+    b.classList.toggle('open');
+  }
 }
 
-// ── Category Filter ──
+// Category Filter
 function filterCategory(cat, btn) {
   document.querySelectorAll('.cat-pill').forEach(p => {
     p.classList.remove('active', 'text-white');
     p.classList.add('text-white/70');
   });
-  btn.classList.add('active', 'text-white');
-  btn.classList.remove('text-white/70');
+  if (btn) {
+    btn.classList.add('active', 'text-white');
+    btn.classList.remove('text-white/70');
+  }
 
   document.querySelectorAll('.store-card').forEach(card => {
     if (cat === 'all' || card.dataset.cat === cat) {
@@ -607,11 +550,11 @@ function filterCategory(cat, btn) {
   });
 }
 
-// ── Dynamic Search Filter ──
+// Dynamic Search Filter
 function dynamicSearch(val) {
-  const q = val.toLowerCase().trim();
+  const q = (val || '').toLowerCase().trim();
   document.querySelectorAll('.store-card').forEach(card => {
-    const name = card.dataset.name.toLowerCase();
+    const name = (card.dataset.name || '').toLowerCase();
     if (name.includes(q)) {
       card.style.display = 'block';
     } else {
@@ -619,7 +562,8 @@ function dynamicSearch(val) {
     }
   });
 }
-// ── Register Service Worker for PWA / APK ──
+
+// Register Service Worker for PWA
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js').catch(() => {});
@@ -629,6 +573,8 @@ if ('serviceWorker' in navigator) {
 
 </body>
 </html>
+
+
 
 
 
