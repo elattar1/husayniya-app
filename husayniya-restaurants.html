@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+<title>دليل مطاعم وعروض الحسينية — أقوى التخفيضات اليومية | خدمات الحسينية</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+html {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  width: 100%;
+  max-width: 100vw;
+  background: #06091a;
+  color: #fff;
+  overflow-x: hidden !important;
+  min-height: 100vh;
+  direction: rtl;
+  position: relative;
+}
+
+/* ── Background Liquid Scene ── */
+.bg-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: .35;
+  animation: drift 16s ease-in-out infinite alternate;
+}
+.o1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #00b09b, #045353);
+  top: -180px;
+  right: -120px;
+}
+.o2 {
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, #f7971e, #e4a832);
+  bottom: -140px;
+  left: -120px;
+  animation-delay: -6s;
+}
+.o3 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, #e11d48, #881337);
+  top: 45%;
+  left: 35%;
+  animation-delay: -10s;
+}
+@keyframes drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -15px) scale(1.04); }
+  100% { transform: translate(-15px, 20px) scale(.98); }
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  min-width: 0;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Liquid Glass Utilities ── */
+.glass {
+  background: rgba(255, 255, 255, .08);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, .14);
+}
+.glass-card {
+  background: rgba(255, 255, 255, .06);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, .12);
+  transition: all .25s ease;
+}
+@media (hover: hover) {
+  .glass-card:hover {
+    border-color: rgba(0, 229, 200, .45);
+    box-shadow: 0 12px 35px rgba(0, 229, 200, .15);
+    transform: translateY(-3px);
+  }
+}
+
+/* ── Gradient Text ── */
+.gt {
+  background: linear-gradient(135deg, #00e5c8 0%, #43cea2 45%, #f7c948 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gt-fire {
+  background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 50%, #f7c948 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  background: linear-gradient(135deg, #00b09b, #06d6a0);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all .25s ease;
+  color: #fff;
+  font-weight: 700;
+}
+.btn-primary:active {
+  transform: scale(0.97);
+}
+.btn-fire {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 700;
+  transition: all .25s ease;
+}
+.btn-fire:active {
+  transform: scale(0.97);
+}
+
+/* ── Filter Pills ── */
+.filter-pill {
+  padding: 8px 18px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: .82rem;
+  font-weight: 700;
+  transition: all .25s ease;
+  background: rgba(255, 255, 255, .07);
+  border: 1px solid rgba(255, 255, 255, .12);
+  color: rgba(255, 255, 255, .7);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.filter-pill:hover, .filter-pill.active {
+  background: rgba(0, 176, 155, .25);
+  color: #00e5c8;
+  border-color: rgba(0, 176, 155, .6);
+  box-shadow: 0 0 18px rgba(0, 176, 155, .25);
+}
+
+/* ── Responsive Scroll ── */
+.scroll-touch {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-touch::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Floating Cart Bar ── */
+.floating-cart {
+  position: fixed;
+  bottom: calc(74px + env(safe-area-inset-bottom, 0px));
+  left: 12px;
+  right: 12px;
+  margin: 0 auto;
+  max-width: 560px;
+  width: auto;
+  box-sizing: border-box;
+  z-index: 90;
+  background: rgba(4, 14, 30, 0.94);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(0, 229, 200, 0.4);
+  border-radius: 20px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 229, 200, 0.15);
+  transform: translateY(0);
+  transition: transform .35s cubic-bezier(.175, .885, .32, 1.275), opacity .3s ease;
+}
+@media (min-width: 768px) {
+  .floating-cart {
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  }
+}
+.floating-cart.hidden {
+  transform: translateY(160%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Mobile Nav Bar (Bottom) ── */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: calc(64px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: rgba(4, 14, 30, 0.96);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 8px;
+  padding-right: 8px;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+}
+@media (min-width: 768px) {
+  .mobile-nav { display: none; }
+}
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  padding: 6px 12px;
+  border-radius: 12px;
+  text-decoration: none;
+}
+.mobile-nav-item.active {
+  color: #00e5c8;
+}
+
+/* ── Toast Notification ── */
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  z-index: 200;
+  background: rgba(0, 176, 155, .95);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: .82rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+  transition: transform .4s cubic-bezier(.175, .885, .32, 1.275);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Special Offer Glowing Card ── */
+.offer-card {
+  border: 1.5px solid rgba(255, 65, 108, 0.4);
+  background: linear-gradient(135deg, rgba(255, 65, 108, 0.08) 0%, rgba(255, 75, 43, 0.04) 50%, rgba(6, 9, 26, 0.6) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.offer-card:hover {
+  border-color: rgba(255, 65, 108, 0.8);
+  box-shadow: 0 14px 40px rgba(255, 65, 108, 0.22);
+}
+</style>
+</head>
+<body>
+
+<!-- Animated Orbs -->
+<div class="bg-scene">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<div class="page">
+
+  <!-- ══════════════════ NAVBAR ══════════════════ -->
+  <nav class="glass sticky top-0 z-50 w-full" style="background:rgba(4,14,30,.88);border-bottom:1px solid rgba(255,255,255,.08)">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3 w-full box-border">
+      
+      <!-- Back to Home -->
+      <a href="index.html" class="flex items-center gap-2.5 text-white/80 hover:text-white transition flex-shrink-0" style="text-decoration:none">
+        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl glass flex items-center justify-center font-bold text-sm">
+          ←
+        </div>
+        <div class="min-w-0">
+          <span class="text-[10px] sm:text-xs text-emerald-400 font-semibold block leading-tight">الرئيسية</span>
+          <div class="text-xs sm:text-sm font-bold truncate max-w-[130px] sm:max-w-none">خدمات الحسينية</div>
+        </div>
+      </a>
+
+      <!-- Quick Search -->
+      <div class="hidden md:flex items-center relative w-72">
+        <input id="store-search-input" oninput="filterStores()" type="text" placeholder="ابحث عن مطعم أو وجبة بالحسينية..." class="w-full rounded-2xl px-4 py-2 pr-10 text-xs bg-white/[0.07] border border-white/15 focus:outline-none focus:border-emerald-400 text-white"/>
+        <span class="absolute right-3 text-white/40 text-xs">🔍</span>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <a href="#offers-section" class="glass px-3 py-1.5 rounded-xl text-xs font-bold text-rose-400 border border-rose-500/30 hover:bg-rose-500/10 transition hidden sm:inline-flex items-center gap-1.5" style="text-decoration:none">
+          <span>🔥</span>
+          <span>عروض اليوم</span>
+        </a>
+        <a href="husayniya-checkout.html" class="glass px-3 sm:px-4 py-2 rounded-2xl flex items-center gap-2 text-xs font-bold hover:bg-white/10 transition" style="text-decoration:none;color:#fff">
+          <span>🛒</span>
+          <span class="hidden sm:inline">السلة</span>
+          <span id="nav-cart-badge" class="px-2 py-0.5 rounded-full bg-amber-400 text-black font-extrabold text-[10px]">0</span>
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ══════════════════ MAIN CONTENT ══════════════════ -->
+  <main class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-5 sm:py-7 pb-48 sm:pb-36 flex-1 min-w-0 overflow-hidden box-border space-y-8">
+
+    <!-- ── 0. HERO HEADER ── -->
+    <div class="glass-card rounded-3xl p-5 sm:p-8 relative overflow-hidden">
+      <div class="max-w-2xl relative z-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold mb-3">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>دليل مطاعم الحسينية المعتمدة والتوصيل السريع</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-white leading-tight mb-2">
+          أشهى المأكولات وعروض التوفير <span class="gt">بمركز الحسينية</span>
+        </h1>
+        <p class="text-xs sm:text-sm text-white/70 leading-relaxed mb-4">
+          تصفح أقوى عروض اليوم الحصرية، واختر مطعمك المفضل للطلب والدليفري السريع لباب بيتك بمركز الحسينية، سعود، وبحر البقر!
+        </p>
+        <div class="flex flex-wrap items-center gap-3 text-xs text-white/80">
+          <span class="glass px-2.5 py-1 rounded-xl">⭐ 5 مطاعم معتمدة</span>
+          <span class="glass px-2.5 py-1 rounded-xl">🛵 توصيل خلال 30 دقيقة</span>
+          <span class="glass px-2.5 py-1 rounded-xl">💵 كاش وفودافون كاش وإنستاباي</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 1. خانة العروض الحصرية والتخفيضات (OFFERS SECTION) ── -->
+    <section id="offers-section" class="space-y-4">
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center font-black text-base shadow-lg">
+            🔥
+          </div>
+          <div>
+            <h2 class="text-lg sm:text-xl font-black text-white leading-tight">عروض وتخفيضات اليوم الحصرية</h2>
+            <p class="text-[11px] sm:text-xs text-white/60">وجبات كومبو عائلية وعروض توفير مميزة بخصومات تصل إلى 30%</p>
+          </div>
+        </div>
+        <span class="text-xs text-rose-400 font-bold bg-rose-500/10 px-3 py-1 rounded-full border border-rose-500/20 hidden sm:inline-block">محدث اليوم</span>
+      </div>
+
+      <!-- Offers Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+
+        <!-- Offer 1: الباز -->
+        <div class="offer-card glass-card rounded-3xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="عرض مشويات الباز" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-rose-600 text-white text-[10px] font-black shadow-lg">🔥 خصم 50 ج.م + لتر بيبسي هدية</span>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black">مشويات الباز</span>
+            </div>
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <h3 class="font-bold text-base text-white leading-snug">عرض مكس كباب وكفتة حاتي + بيبسي</h3>
+              <div class="text-right whitespace-nowrap">
+                <span class="text-base font-black text-rose-400">360 ج.م</span>
+                <span class="text-xs text-white/40 line-through block">410 ج.م</span>
+              </div>
+            </div>
+            <p class="text-xs text-white/60 mb-4 leading-relaxed">كيلو مشكل كباب وكفتة ضاني مشوية على الفحم + سلطات وطحينة وعيش بلدي ساخن + لتر بيبسي بارد مجاناً.</p>
+          </div>
+          <div class="space-y-2 pt-2 border-t border-white/10">
+            <button onclick="addOfferToCart('offer-baz', 'عرض مشويات الباز (مكس كباب وكفتة + لتر بيبسي هدية)', 360, '🍖', 'مشويات الباز')" class="btn-fire w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+              <span>🛒 اطلب العرض الآن (360 ج.م)</span>
+            </button>
+            <a href="husayniya-store.html?store=baz" class="w-full py-2 rounded-xl text-xs font-bold text-white/80 hover:text-white glass flex items-center justify-center gap-1.5 no-underline transition">
+              <span>تصفح كامل منيو الباز</span>
+              <span>←</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Offer 2: كشري الزعيم -->
+        <div class="offer-card glass-card rounded-3xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="عرض كشري الزعيم" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-amber-500 text-black text-[10px] font-black shadow-lg">كومبو التوفير العائلي 🔥</span>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black">كشري الزعيم</span>
+            </div>
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <h3 class="font-bold text-base text-white leading-snug">كومبو العيلة (2 كشري + طاجن لحمة + 2 أرز بلبن)</h3>
+              <div class="text-right whitespace-nowrap">
+                <span class="text-base font-black text-amber-400">120 ج.م</span>
+                <span class="text-xs text-white/40 line-through block">155 ج.م</span>
+              </div>
+            </div>
+            <p class="text-xs text-white/60 mb-4 leading-relaxed">2 علبة كشري مخصوص + طاجن فرن لحمة مفرومة بلدي + 2 طاجن أرز باللبن وقشطة بلدي ودقة وشطة.</p>
+          </div>
+          <div class="space-y-2 pt-2 border-t border-white/10">
+            <button onclick="addOfferToCart('offer-kosh', 'كومبو كشري الزعيم (2 كشري + طاجن + 2 أرز بلبن)', 120, '🍲', 'كشري الزعيم والتحرير')" class="btn-fire w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+              <span>🛒 اطلب العرض الآن (120 ج.م)</span>
+            </button>
+            <a href="husayniya-store.html?store=koshary" class="w-full py-2 rounded-xl text-xs font-bold text-white/80 hover:text-white glass flex items-center justify-center gap-1.5 no-underline transition">
+              <span>تصفح كامل منيو كشري الزعيم</span>
+              <span>←</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Offer 3: بيتزا الرواد -->
+        <div class="offer-card glass-card rounded-3xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="عرض بيتزا الرواد" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-rose-600 text-white text-[10px] font-black shadow-lg">عرض الصحاب 🍕</span>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black">بيتزا الرواد</span>
+            </div>
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <h3 class="font-bold text-base text-white leading-snug">دوبل كريب زنجر كرانشي + بطاطس وكولا</h3>
+              <div class="text-right whitespace-nowrap">
+                <span class="text-base font-black text-rose-400">135 ج.م</span>
+                <span class="text-xs text-white/40 line-through block">170 ج.م</span>
+              </div>
+            </div>
+            <p class="text-xs text-white/60 mb-4 leading-relaxed">2 كريب زنجر سوبر كرانشي حار بالموزاريلا + علبة بطاطس فارم فريتس مقرمشة + لتر كوكاكولا بارد.</p>
+          </div>
+          <div class="space-y-2 pt-2 border-t border-white/10">
+            <button onclick="addOfferToCart('offer-piz', 'عرض الصحاب (2 كريب زنجر + بطاطس فارم + كولا)', 135, '🌯', 'بيتزا وكريب الرواد')" class="btn-fire w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+              <span>🛒 اطلب العرض الآن (135 ج.م)</span>
+            </button>
+            <a href="husayniya-store.html?store=pizza" class="w-full py-2 rounded-xl text-xs font-bold text-white/80 hover:text-white glass flex items-center justify-center gap-1.5 no-underline transition">
+              <span>تصفح كامل منيو الرواد</span>
+              <span>←</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Offer 4: حلواني شندل -->
+        <div class="offer-card glass-card rounded-3xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=600&q=80" alt="عرض حلواني شندل" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-purple-600 text-white text-[10px] font-black shadow-lg">سهرة العيلة 🍰</span>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black">حلواني شندل</span>
+            </div>
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <h3 class="font-bold text-base text-white leading-snug">صينية كنافة نابلسية + نصف بسبوسة سمن بلدي</h3>
+              <div class="text-right whitespace-nowrap">
+                <span class="text-base font-black text-purple-400">220 ج.م</span>
+                <span class="text-xs text-white/40 line-through block">260 ج.م</span>
+              </div>
+            </div>
+            <p class="text-xs text-white/60 mb-4 leading-relaxed">كنافة عكاوي نابلسية ساخنة ومطاطية مع فستق حلبي + نصف كيلو بسبوسة شندل المرملة بالسمن الفلاحي.</p>
+          </div>
+          <div class="space-y-2 pt-2 border-t border-white/10">
+            <button onclick="addOfferToCart('offer-shn', 'عرض سهرة الحلويات (كنافة نابلسية + نصف بسبوسة سمن بلدي)', 220, '🍰', 'حلواني شندل والبارون')" class="btn-fire w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+              <span>🛒 اطلب العرض الآن (220 ج.م)</span>
+            </button>
+            <a href="husayniya-store.html?store=shendel" class="w-full py-2 rounded-xl text-xs font-bold text-white/80 hover:text-white glass flex items-center justify-center gap-1.5 no-underline transition">
+              <span>تصفح كامل حلويات شندل</span>
+              <span>←</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Offer 5: فول وفلافل البرنس -->
+        <div class="offer-card glass-card rounded-3xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=600&q=80" alt="عرض فطار البرنس" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-600 text-white text-[10px] font-black shadow-lg">فطار زمان الأصيل 🧆</span>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black">فول البرنس</span>
+            </div>
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <h3 class="font-bold text-base text-white leading-snug">صينية فطار العيلة الكبيرة (فول + فلافل كيري + مسقعة)</h3>
+              <div class="text-right whitespace-nowrap">
+                <span class="text-base font-black text-emerald-400">55 ج.م</span>
+                <span class="text-xs text-white/40 line-through block">75 ج.م</span>
+              </div>
+            </div>
+            <p class="text-xs text-white/60 mb-4 leading-relaxed">علبة فول فلاحي عائلية بالزيت الحار + 10 فلافل محشية كيري وسمسم + مسقعة بلدي + باذنجان مخلل و10 عيش ساخن.</p>
+          </div>
+          <div class="space-y-2 pt-2 border-t border-white/10">
+            <button onclick="addOfferToCart('offer-fal', 'صينية فطار العيلة (فول عائلي + 10 فلافل كيري + مسقعة ومخلل)', 55, '🧆', 'فول وفلافل البرنس')" class="btn-fire w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+              <span>🛒 اطلب العرض الآن (55 ج.م)</span>
+            </button>
+            <a href="husayniya-store.html?store=falafel" class="w-full py-2 rounded-xl text-xs font-bold text-white/80 hover:text-white glass flex items-center justify-center gap-1.5 no-underline transition">
+              <span>تصفح كامل منيو البرنس</span>
+              <span>←</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── 2. قسم المطاعم (اختر مطعم عشان تدخل عليه) ── -->
+    <section class="space-y-5 pt-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="text-lg sm:text-xl font-black text-white leading-tight">🏪 مطاعم وكافيهات الحسينية المعتمدة</h2>
+          <p class="text-[11px] sm:text-xs text-white/60">اختر مطعمك المفضل لاستعراض كامل قائمة المأكولات والأسعار والطلب المباشر</p>
+        </div>
+        <div class="text-xs text-emerald-400 font-bold glass px-3 py-1.5 rounded-xl self-start sm:self-auto">
+          ● جميع المطاعم جاهزة للتوصيل الفوري
+        </div>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="w-full max-w-full overflow-hidden">
+        <div class="flex items-center gap-2 overflow-x-auto scroll-touch pb-2 w-full max-w-full">
+          <button onclick="filterCategory('all', this)" class="filter-pill active">🍽️ جميع المطاعم (5)</button>
+          <button onclick="filterCategory('grills', this)" class="filter-pill">🍢 مشويات وكباب</button>
+          <button onclick="filterCategory('koshary', this)" class="filter-pill">🍲 كشري وطواجن</button>
+          <button onclick="filterCategory('pizza', this)" class="filter-pill">🍕 بيتزا وكريب</button>
+          <button onclick="filterCategory('dessert', this)" class="filter-pill">🍰 حلويات وتورتات</button>
+          <button onclick="filterCategory('breakfast', this)" class="filter-pill">🧆 فطور شعبي</button>
+        </div>
+      </div>
+
+      <!-- Restaurants Grid -->
+      <div id="stores-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Restaurant 1: مشويات الباز -->
+        <div class="store-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="grills" data-name="مشويات الباز والحسينية كباب كفتة">
+          <div>
+            <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="مشويات الباز" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.9</span>
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs px-2 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold">مشويات وأكلات بلدية</span>
+              <span class="text-xs text-white/40">• (+1,420 تقييم)</span>
+            </div>
+            <h3 class="font-bold text-lg text-white mb-1.5">مشويات الباز والحسينية</h3>
+            <p class="text-xs text-white/60 mb-3 leading-relaxed">كباب، كفتة حاتي بلدي على الفحم، طرب، حمام محشي، وطواجن فرن بلدي بأشهى التتبيلات.</p>
+            <div class="flex items-center justify-between text-xs text-white/70 py-2.5 border-y border-white/5 mb-4">
+              <span>⏱️ 25 - 35 دقيقة</span>
+              <span class="text-emerald-400 font-bold">توصيل 15 ج.م</span>
+              <span>📍 شارع المركز</span>
+            </div>
+          </div>
+          <a href="husayniya-store.html?store=baz" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 no-underline text-white">
+            <span>تصفح المنيو واطلب الآن</span>
+            <span>👈</span>
+          </a>
+        </div>
+
+        <!-- Restaurant 2: كشري الزعيم -->
+        <div class="store-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="koshary" data-name="كشري الزعيم والتحرير شارع المركز طواجن">
+          <div>
+            <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="كشري الزعيم" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.8</span>
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs px-2 py-0.5 rounded-lg bg-amber-500/20 text-amber-400 font-bold">كشري وطواجن فرن</span>
+              <span class="text-xs text-white/40">• (+980 تقييم)</span>
+            </div>
+            <h3 class="font-bold text-lg text-white mb-1.5">كشري الزعيم والتحرير</h3>
+            <p class="text-xs text-white/60 mb-3 leading-relaxed">أفضل كشري مصري مخصوص، طواجن فرن فخار باللحمة والفراخ، دقة وشطة كمون وأرز باللبن.</p>
+            <div class="flex items-center justify-between text-xs text-white/70 py-2.5 border-y border-white/5 mb-4">
+              <span>⏱️ 15 - 25 دقيقة</span>
+              <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
+              <span>📍 أمام المحاكم</span>
+            </div>
+          </div>
+          <a href="husayniya-store.html?store=koshary" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 no-underline text-white">
+            <span>تصفح المنيو واطلب الآن</span>
+            <span>👈</span>
+          </a>
+        </div>
+
+        <!-- Restaurant 3: بيتزا وكريب الرواد -->
+        <div class="store-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="pizza" data-name="بيتزا وكريب الرواد شارع المدارس شاورما برجر">
+          <div>
+            <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="بيتزا وكريب الرواد" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.7</span>
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs px-2 py-0.5 rounded-lg bg-rose-500/20 text-rose-400 font-bold">بيتزا وكريب وفاست فود</span>
+              <span class="text-xs text-white/40">• (+840 تقييم)</span>
+            </div>
+            <h3 class="font-bold text-lg text-white mb-1.5">بيتزا وكريب الرواد</h3>
+            <p class="text-xs text-white/60 mb-3 leading-relaxed">كريب كرانشي حار، شاورما سوري، بيتزا شرقي وإيطالي بالموزاريلا، وبرجر لحمة دوبل.</p>
+            <div class="flex items-center justify-between text-xs text-white/70 py-2.5 border-y border-white/5 mb-4">
+              <span>⏱️ 20 - 30 دقيقة</span>
+              <span class="text-emerald-400 font-bold">توصيل 12 ج.م</span>
+              <span>📍 شارع المدارس</span>
+            </div>
+          </div>
+          <a href="husayniya-store.html?store=pizza" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 no-underline text-white">
+            <span>تصفح المنيو واطلب الآن</span>
+            <span>👈</span>
+          </a>
+        </div>
+
+        <!-- Restaurant 4: حلواني شندل -->
+        <div class="store-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="dessert" data-name="حلواني شندل والبارون تورتات بسبوسة كنافة">
+          <div>
+            <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="حلواني شندل" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.9</span>
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs px-2 py-0.5 rounded-lg bg-purple-500/20 text-purple-400 font-bold">حلويات شرقية وتورتات</span>
+              <span class="text-xs text-white/40">• (+1,150 تقييم)</span>
+            </div>
+            <h3 class="font-bold text-lg text-white mb-1.5">حلواني شندل والبارون</h3>
+            <p class="text-xs text-white/60 mb-3 leading-relaxed">تورتات أعياد ميلاد، بسبوسة بالسمن البلدي، كنافة نابلسية، وجاتوهات شرقية وغربية فاخرة.</p>
+            <div class="flex items-center justify-between text-xs text-white/70 py-2.5 border-y border-white/5 mb-4">
+              <span>⏱️ 15 - 25 دقيقة</span>
+              <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
+              <span>📍 بجوار بنك مصر</span>
+            </div>
+          </div>
+          <a href="husayniya-store.html?store=shendel" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 no-underline text-white">
+            <span>تصفح المنيو واطلب الآن</span>
+            <span>👈</span>
+          </a>
+        </div>
+
+        <!-- Restaurant 5: فول وفلافل البرنس -->
+        <div class="store-card glass-card rounded-3xl p-5 flex flex-col justify-between" data-cat="breakfast" data-name="فول وفلافل البرنس فطار طعمية مسقعة">
+          <div>
+            <div class="h-44 rounded-2xl mb-4 relative overflow-hidden group">
+              <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=600&q=80" alt="فول وفلافل البرنس" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.9</span>
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs px-2 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold">فطور شعبي ومأكولات صباحية</span>
+              <span class="text-xs text-white/40">• (+1,320 تقييم)</span>
+            </div>
+            <h3 class="font-bold text-lg text-white mb-1.5">فول وفلافل البرنس</h3>
+            <p class="text-xs text-white/60 mb-3 leading-relaxed">فلافل مقرمشة محشية كيري، فول مدمس فلاحي بزيت حار، مسقعة بلدي، وباذنجان مخلل.</p>
+            <div class="flex items-center justify-between text-xs text-white/70 py-2.5 border-y border-white/5 mb-4">
+              <span>⏱️ 10 - 20 دقيقة</span>
+              <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
+              <span>📍 ترعة سراج</span>
+            </div>
+          </div>
+          <a href="husayniya-store.html?store=falafel" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 no-underline text-white">
+            <span>تصفح المنيو واطلب الآن</span>
+            <span>👈</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════ FLOATING CART BAR ══════════════════ -->
+  <div id="floating-cart" class="floating-cart hidden">
+    <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
+      <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg flex-shrink-0">
+        🛒
+      </div>
+      <div class="min-w-0">
+        <div class="text-xs text-white/60">سلة طلبات الحسينية</div>
+        <div class="text-sm font-extrabold text-white flex items-center gap-1.5 truncate">
+          <span id="cart-item-count">0 عناصر</span>
+          <span class="text-white/30">•</span>
+          <span id="cart-total-price" class="text-emerald-400">0 ج.م</span>
+        </div>
+      </div>
+    </div>
+    <a href="husayniya-checkout.html" class="btn-primary px-4 sm:px-6 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 whitespace-nowrap flex-shrink-0" style="text-decoration:none">
+      <span>إتمام الطلب</span>
+      <span>←</span>
+    </a>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <span class="text-base">✅</span>
+    <span id="toast-text">تمت إضافة العرض إلى سلة الطلبات!</span>
+  </div>
+
+  <!-- ══════════════ MOBILE BOTTOM NAVIGATION ══════════════ -->
+  <nav class="mobile-nav">
+    <a href="index.html" class="mobile-nav-item">
+      <span class="text-lg">🏠</span>
+      <span>الرئيسية</span>
+    </a>
+    <a href="husayniya-restaurants.html" class="mobile-nav-item active">
+      <span class="text-lg">🍖</span>
+      <span>المطاعم</span>
+    </a>
+    <a href="husayniya-checkout.html" class="mobile-nav-item relative">
+      <span class="text-lg">🛒</span>
+      <span>السلة</span>
+      <span id="mob-cart-badge" class="w-4 h-4 rounded-full bg-amber-400 text-black font-black text-[9px] flex items-center justify-center absolute top-1 left-2">0</span>
+    </a>
+    <a href="husayniya-tracking.html" class="mobile-nav-item">
+      <span class="text-lg">🛵</span>
+      <span>تتبّع</span>
+    </a>
+    <a href="husayniya-account.html" class="mobile-nav-item">
+      <span class="text-lg">👤</span>
+      <span>حسابي</span>
+    </a>
+  </nav>
+
+</div>
+
+<!-- ══════════════════ SCRIPTS ══════════════════ -->
+<script>
+// Filter Active Category
+let CURRENT_CAT = 'all';
+
+function filterCategory(cat, btn) {
+  CURRENT_CAT = cat;
+  document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  filterStores();
+}
+
+function filterStores() {
+  const query = (document.getElementById('store-search-input')?.value || '').trim().toLowerCase();
+  const cards = document.querySelectorAll('.store-card');
+
+  cards.forEach(card => {
+    const cardCat = card.getAttribute('data-cat');
+    const cardName = card.getAttribute('data-name').toLowerCase();
+
+    const matchesCat = (CURRENT_CAT === 'all') || (cardCat === CURRENT_CAT);
+    const matchesQuery = !query || cardName.includes(query);
+
+    if (matchesCat && matchesQuery) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Cart Engine
+function getCart() {
+  try {
+    return JSON.parse(localStorage.getItem('husayniya_cart')) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  try {
+    localStorage.setItem('husayniya_cart', JSON.stringify(cart));
+  } catch (e) {}
+}
+
+function addOfferToCart(offerId, offerTitle, price, icon, storeName) {
+  let cart = getCart();
+  const existingIdx = cart.findIndex(i => i.id === offerId);
+
+  if (existingIdx > -1) {
+    cart[existingIdx].qty += 1;
+    showToast(`تمت زيادة كمية "${offerTitle}" بالسلة!`);
+  } else {
+    cart.push({
+      id: offerId,
+      name: offerTitle,
+      price: price,
+      icon: icon || '🔥',
+      qty: 1,
+      store: storeName
+    });
+    showToast(`تمت إضافة "${offerTitle}" للسلة بنجاح!`);
+  }
+
+  saveCart(cart);
+  updateCartUI();
+}
+
+function updateCartUI() {
+  const cart = getCart();
+  const totalCount = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+  const totalPrice = cart.reduce((sum, item) => sum + ((item.price || 0) * (item.qty || 1)), 0);
+
+  const navBadge = document.getElementById('nav-cart-badge');
+  if (navBadge) navBadge.innerText = totalCount;
+
+  const mobBadge = document.getElementById('mob-cart-badge');
+  if (mobBadge) mobBadge.innerText = totalCount;
+
+  const floatingCart = document.getElementById('floating-cart');
+  const countEl = document.getElementById('cart-item-count');
+  const priceEl = document.getElementById('cart-total-price');
+
+  if (floatingCart) {
+    if (totalCount > 0) {
+      if (countEl) countEl.innerText = `${totalCount} ${totalCount === 1 ? 'عنصر' : 'عناصر'}`;
+      if (priceEl) priceEl.innerText = `${totalPrice} ج.م`;
+      floatingCart.classList.remove('hidden');
+    } else {
+      floatingCart.classList.add('hidden');
+    }
+  }
+}
+
+let toastTimer = null;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  const txt = document.getElementById('toast-text');
+  if (!t || !txt) return;
+
+  txt.innerText = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartUI();
+});
+</script>
+
+</body>
+</html>
