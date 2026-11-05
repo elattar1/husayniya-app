@@ -225,6 +225,12 @@ body {
 
       <!-- Action Buttons -->
       <div class="flex items-center gap-2">
+        <!-- Supabase Cloud Connection Button -->
+        <button onclick="openCloudModal()" class="glass px-2.5 sm:px-3 py-2 rounded-xl flex items-center gap-1.5 text-xs font-bold text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/10 transition" title="إعدادات ربط سحابة Supabase">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>⚡ <span class="hidden sm:inline">ربط</span> Supabase</span>
+        </button>
+
         <!-- Live Cart Badge -->
         <button onclick="navigateTo('checkout')" class="glass px-3.5 py-2 rounded-xl flex items-center gap-2 text-xs font-bold hover:bg-white/10 active:scale-95 transition">
           <span>🛒</span>
@@ -280,6 +286,9 @@ body {
       </button>
       <button onclick="navigateTo('merchant'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <span>🏪</span><span>بوابة التجار وأصحاب المطاعم</span>
+      </button>
+      <button onclick="openCloudModal(); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold flex items-center gap-3">
+        <span>⚡</span><span>ربط سحابة Supabase (لصق المفاتيح)</span>
       </button>
       <button onclick="navigateTo('dashboard'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <span>📊</span><span>لوحة الإدارة والتحكم</span>
@@ -594,7 +603,129 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js').catch(() => {});
   });
 }
+
+// ── Supabase Cloud Settings Modal Logic ──
+function openCloudModal() {
+  const m = document.getElementById('cloud-modal');
+  if (m) {
+    m.classList.remove('hidden');
+    m.classList.add('flex');
+  }
+  const url = localStorage.getItem('husayniya_supabase_url') || '';
+  const key = localStorage.getItem('husayniya_supabase_key') || '';
+  const uInput = document.getElementById('home-cfg-url');
+  const kInput = document.getElementById('home-cfg-key');
+  if (uInput) uInput.value = url;
+  if (kInput) kInput.value = key;
+  updateHomeCloudUI();
+}
+
+function closeCloudModal() {
+  const m = document.getElementById('cloud-modal');
+  if (m) {
+    m.classList.add('hidden');
+    m.classList.remove('flex');
+  }
+}
+
+function updateHomeCloudUI() {
+  const isConn = window.HusayniyaCloud && window.HusayniyaCloud.isConnected;
+  const statusEl = document.getElementById('home-cloud-status-text');
+  if (statusEl) {
+    if (isConn) {
+      statusEl.innerHTML = '<span class="text-emerald-400 font-bold">🟢 متصل بنجاح بسحابة Supabase ومزامنة الطلبات الحية مفعلة!</span>';
+    } else {
+      statusEl.innerHTML = '<span class="text-amber-300 font-bold">🟡 في انتظار إدخال Project URL و Anon Key أدناه للربط السحابي</span>';
+    }
+  }
+}
+
+async function saveHomeCloudSettings() {
+  const url = document.getElementById('home-cfg-url').value.trim();
+  const key = document.getElementById('home-cfg-key').value.trim();
+  if (!url || !key) {
+    alert('يرجى إدخال كل من Project URL و Anon Public Key');
+    return;
+  }
+  if (window.HusayniyaCloud) {
+    window.HusayniyaCloud.saveCredentials(url, key);
+    const test = await window.HusayniyaCloud.testConnection();
+    if (test.success) {
+      alert('تم الاتصال بنجاح بسحابة Supabase! 🎉 تم ربط جميع البوابات (العميل، المتجر، السائق، الإدارة).');
+    } else {
+      alert('تم حفظ البيانات بنجاح! ملاحظة: ' + (test.error || 'يرجى التأكد من تشغيل كود SQL للجداول داخل Supabase.'));
+    }
+    updateHomeCloudUI();
+    closeCloudModal();
+  }
+}
+
+function disconnectHomeCloud() {
+  if (confirm('هل ترغب في حذف بيانات الاتصال والعودة للوضع المحلي؟')) {
+    if (window.HusayniyaCloud) window.HusayniyaCloud.clearCredentials();
+    updateHomeCloudUI();
+    alert('تم قطع الاتصال والرجوع للوضع المحلي.');
+  }
+}
 </script>
+
+<!-- ══════════════ SUPABASE SETTINGS MODAL ══════════════ -->
+<div id="cloud-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+  <div class="glass-card max-w-lg w-full rounded-3xl p-6 sm:p-8 border border-emerald-400/40 shadow-2xl relative">
+    
+    <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+      <div class="flex items-center gap-2.5">
+        <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold">
+          ⚡
+        </div>
+        <div>
+          <h3 class="text-base font-extrabold text-white">إعدادات ربط سحابة Supabase</h3>
+          <p class="text-[11px] text-white/50">تزامن الطلبات اللحظية بين العميل والمطعم والكابتن</p>
+        </div>
+      </div>
+      <button onclick="closeCloudModal()" class="text-white/40 hover:text-white text-xl">✕</button>
+    </div>
+
+    <div id="home-cloud-status-text" class="bg-black/40 p-3 rounded-2xl border border-white/5 text-xs mb-4 text-center">
+      جاري فحص حالة الاتصال...
+    </div>
+
+    <div class="space-y-4 mb-5">
+      <div>
+        <label class="text-xs font-bold text-white/80 block mb-1.5">1. رابط المشروع (Project URL):</label>
+        <input id="home-cfg-url" type="text" placeholder="https://xyzcompany.supabase.co" class="w-full bg-black/40 border border-white/15 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-emerald-400" dir="ltr" />
+      </div>
+
+      <div>
+        <label class="text-xs font-bold text-white/80 block mb-1.5">2. المفتاح العام (Anon Public Key):</label>
+        <input id="home-cfg-key" type="password" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." class="w-full bg-black/40 border border-white/15 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-emerald-400" dir="ltr" />
+      </div>
+    </div>
+
+    <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-3 text-xs text-white/70 mb-5 leading-relaxed">
+      💡 <b>من أين تأتي بها مجاناً؟</b><br/>
+      ادخل على حسابك في <a href="https://supabase.com" target="_blank" class="text-emerald-400 font-bold underline">Supabase.com</a> ➔ افتح مشروعك ➔ اذهب إلى <b>Project Settings ➔ API</b> وانسخ الـ URL والـ anon public key والصقهما هنا.
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <button onclick="disconnectHomeCloud()" class="glass px-3.5 py-2.5 rounded-xl text-xs font-bold text-red-400 hover:bg-red-500/10">
+        فصل
+      </button>
+      <div class="flex items-center gap-2">
+        <button onclick="closeCloudModal()" class="glass px-4 py-2.5 rounded-xl text-xs font-bold text-white/70">
+          إلغاء
+        </button>
+        <button onclick="saveHomeCloudSettings()" class="btn-primary px-5 py-2.5 rounded-xl text-xs font-extrabold">
+          حفظ واختبار الاتصال ⚡
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
 
 </body>
 </html>
