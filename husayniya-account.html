@@ -61,24 +61,24 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <div class="page">
 
 <!-- ══════════════════ NAVBAR ══════════════════ -->
-<nav class="glass sticky top-0 z-50 px-6 py-4" style="background:rgba(4,14,30,.65);border-bottom:1px solid rgba(255,255,255,.08)">
-  <div class="max-w-6xl mx-auto flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
-      <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">←</div>
-      <div>
-        <span class="text-xs text-emerald-400 font-semibold">الرئيسية</span>
-        <div class="text-sm font-bold">خدمات الحسينية</div>
+<nav class="glass sticky top-0 z-50 px-3 sm:px-6 py-3 sm:py-4" style="background:rgba(4,14,30,.85);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
+    <a href="index.html" class="flex items-center gap-2 sm:gap-3 text-white/80 hover:text-white transition" style="text-decoration:none">
+      <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl glass flex items-center justify-center font-bold text-sm flex-shrink-0">←</div>
+      <div class="min-w-0">
+        <span class="text-[10px] sm:text-xs text-emerald-400 font-semibold block leading-tight">الرئيسية</span>
+        <div class="text-xs sm:text-sm font-bold truncate max-w-[140px] sm:max-w-none">خدمات الحسينية</div>
       </div>
     </a>
-    <div class="flex items-center gap-4 text-xs font-semibold">
-      <a href="husayniya-checkout.html" class="glass px-3.5 py-1.5 rounded-full text-white/80 hover:text-white transition" style="text-decoration:none">🛒 السلة</a>
-      <a href="husayniya-login.html" class="text-rose-400 hover:underline">تسجيل الخروج</a>
+    <div class="flex items-center gap-2 sm:gap-4 text-xs font-semibold flex-shrink-0">
+      <a href="husayniya-checkout.html" class="glass px-3 py-1.5 rounded-full text-white/80 hover:text-white transition" style="text-decoration:none">🛒 السلة</a>
+      <a href="husayniya-login.html" class="text-rose-400 hover:underline">خروج</a>
     </div>
   </div>
 </nav>
 
 <!-- ══════════════════ MAIN CONTENT ══════════════════ -->
-<main class="max-w-6xl mx-auto px-6 py-8 flex-1">
+<main class="max-w-6xl mx-auto px-3 sm:px-6 py-4 sm:py-8 pb-32 sm:pb-16 flex-1 w-full overflow-hidden">
 
   <!-- Header Profile Card -->
   <div class="glass-card rounded-3xl p-6 md:p-8 mb-8 flex flex-col md:flex-row items-center justify-between gap-6">
@@ -397,6 +397,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
 
   </div>
+
+  <!-- Footer Clearance -->
+  <footer class="mt-12 pt-6 pb-8 border-t border-white/10 text-center text-xs text-white/40">
+    <p>خدمات الحسينية — حساب العميل والطلبات والعناوين المسجلة</p>
+  </footer>
 
 </main>
 
