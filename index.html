@@ -596,6 +596,23 @@ body {
     <!-- ── 2. STORE DETAIL (SPA EMBED / LINK) ── -->
     </main>
 
+  <!-- Floating PWA Install App Banner -->
+  <div id="pwa-install-banner" class="fixed bottom-20 left-4 right-4 max-w-md mx-auto z-40 glass-card rounded-2xl p-3.5 flex items-center justify-between gap-3 border border-emerald-400/40 shadow-2xl transition-all duration-300 hidden">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-xl shadow-md flex-shrink-0">
+        📲
+      </div>
+      <div>
+        <div class="font-extrabold text-xs text-white">تثبيت تطبيق خدمات الحسينية</div>
+        <div class="text-[10px] text-white/60">أضفه لشاشتك الرئيسية لتصفح وطلب فوري</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-1.5 flex-shrink-0">
+      <button onclick="dismissInstallBanner()" class="text-white/40 hover:text-white text-xs px-2 py-1">لاحقاً</button>
+      <button onclick="triggerPWAInstall()" class="btn-primary px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap">تثبيت 📥</button>
+    </div>
+  </div>
+
   <!-- ══════════════ MOBILE BOTTOM NAVIGATION ══════════════ -->
   <nav class="mobile-nav">
     <div onclick="navigateTo('home')" id="mob-home" class="mobile-nav-item active">
@@ -609,7 +626,7 @@ body {
     <div onclick="navigateTo('checkout')" id="mob-checkout" class="mobile-nav-item relative">
       <span class="text-lg">🛒</span>
       <span>السلة</span>
-      <span class="w-4 h-4 rounded-full bg-amber-400 text-black font-black text-[9px] flex items-center justify-center absolute top-1 left-2">2</span>
+      <span id="mob-cart-badge" class="w-4 h-4 rounded-full bg-amber-400 text-black font-black text-[9px] flex items-center justify-center absolute top-1 left-2">0</span>
     </div>
     <div onclick="navigateTo('tracking')" id="mob-tracking" class="mobile-nav-item">
       <span class="text-lg">🛵</span>
@@ -852,6 +869,35 @@ window.addEventListener('load', () => {
   syncHomeCartBadge();
   window.addEventListener('storage', syncHomeCartBadge);
 });
+
+// ── PWA Install Prompt Logic ──
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const banner = document.getElementById('pwa-install-banner');
+  if (banner && !localStorage.getItem('pwa_banner_dismissed')) {
+    banner.classList.remove('hidden');
+  }
+});
+
+function triggerPWAInstall() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+      dismissInstallBanner();
+    });
+  } else {
+    alert('📱 لتثبيت تطبيق خدمات الحسينية على هاتفك:\n\n• أندرويد (Google Chrome): اضغط على القائمة (⋮) أعلى المتصفح ثم اختر "تثبيت التطبيق" أو "إضافة إلى الشاشة الرئيسية".\n\n• آيفون (Safari): اضغط على زر المشاركة (⎙) بالأسفل ثم اختر "إضافة إلى الصفحة الرئيسية (Add to Home Screen)".');
+  }
+}
+
+function dismissInstallBanner() {
+  const banner = document.getElementById('pwa-install-banner');
+  if (banner) banner.classList.add('hidden');
+  localStorage.setItem('pwa_banner_dismissed', 'true');
+}
 </script>
 
 <!-- ══════════════ SUPABASE SETTINGS MODAL ══════════════ -->
