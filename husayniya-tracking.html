@@ -4,6 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>تتبع مسار الطلب المباشر — خدمات الحسينية</title>
+<link rel="stylesheet" href="theme.css"/>
+<script src="theme.js"></script>
 <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -140,6 +142,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
     <!-- Order Tag -->
     <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+      <!-- Theme Toggle (Light / Dark) -->
+      <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
+        <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+        <span id="theme-toggle-label" class="theme-label hidden md:inline">ليلي</span>
+      </button>
+
       <div class="glass px-3 py-1.5 rounded-full text-xs font-bold text-emerald-300 flex items-center gap-1.5">
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
         <span id="tracking-order-badge">#ORD-LIVE</span>

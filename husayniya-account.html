@@ -4,6 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>حسابي الشخصي — خدمات الحسينية</title>
+<link rel="stylesheet" href="theme.css"/>
+<script src="theme.js"></script>
 <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -113,6 +115,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       </div>
     </a>
     <div class="flex items-center gap-2 sm:gap-4 text-xs font-semibold flex-shrink-0">
+      <!-- Theme Toggle (Light / Dark) -->
+      <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
+        <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+        <span id="theme-toggle-label" class="theme-label hidden sm:inline">ليلي</span>
+      </button>
       <a href="husayniya-checkout.html" class="glass px-3 py-1.5 rounded-full text-white/80 hover:text-white transition" style="text-decoration:none">🛒 السلة</a>
       <button onclick="handleSignOut()" class="text-rose-400 hover:text-rose-300 font-bold bg-transparent border-none cursor-pointer">تسجيل خروج</button>
     </div>

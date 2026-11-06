@@ -4,6 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>سلة التسوق وإتمام الطلب — خدمات الحسينية</title>
+<link rel="stylesheet" href="theme.css"/>
+<script src="theme.js"></script>
 <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -156,11 +158,19 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       </div>
     </div>
 
-    <!-- Help / Safe Badge -->
-    <div class="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-bold text-emerald-400 flex-shrink-0" style="background:rgba(0,176,155,.12);border:1px solid rgba(0,176,155,.3)">
-      <span>🔒</span>
-      <span class="hidden sm:inline">دفع آمن 100%</span>
-      <span class="sm:hidden">آمن 100%</span>
+    <div class="flex items-center gap-2">
+      <!-- Theme Toggle (Light / Dark) -->
+      <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-1.5 rounded-xl flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
+        <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+        <span id="theme-toggle-label" class="theme-label hidden md:inline">ليلي</span>
+      </button>
+
+      <!-- Help / Safe Badge -->
+      <div class="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-bold text-emerald-400 flex-shrink-0" style="background:rgba(0,176,155,.12);border:1px solid rgba(0,176,155,.3)">
+        <span>🔒</span>
+        <span class="hidden sm:inline">دفع آمن 100%</span>
+        <span class="sm:hidden">آمن 100%</span>
+      </div>
     </div>
   </div>
 </nav>

@@ -4,6 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
 <title>خدمات الحسينية — المنصة الشاملة</title>
+<link rel="stylesheet" href="theme.css"/>
+<script src="theme.js"></script>
 <link rel="manifest" href="manifest.json"/>
 <meta name="theme-color" content="#00b09b"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -229,6 +231,12 @@ body {
 
       <!-- Action Buttons -->
       <div class="flex items-center gap-2">
+        <!-- Theme Toggle (Light / Dark) -->
+        <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
+          <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+          <span id="theme-toggle-label" class="theme-label hidden sm:inline">ليلي</span>
+        </button>
+
         <!-- Location Pill (GPS) -->
         <button id="navbar-location-pill" onclick="handleNavbarDetectLocation(this)" type="button" class="glass px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 text-xs font-semibold hover:bg-white/10 active:scale-95 transition" title="تحديد موقع التوصيل عبر GPS">
           <span>📍</span>
@@ -270,6 +278,15 @@ body {
     </div>
 
     <div class="space-y-1.5 flex-1">
+      <!-- Mobile Theme Switcher -->
+      <button onclick="toggleAppTheme()" class="w-full text-right p-3 rounded-xl bg-white/[0.08] text-xs font-bold flex items-center justify-between theme-toggle-btn border border-white/10 mb-2">
+        <span class="flex items-center gap-3">
+          <span class="theme-icon">🌙</span>
+          <span>مظهر التطبيق (نهاري / ليلي)</span>
+        </span>
+        <span class="theme-label px-2.5 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-300 text-[10px]">ليلي</span>
+      </button>
+
       <button onclick="navigateTo('home'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <span>🏠</span><span>الرئيسية</span>
       </button>

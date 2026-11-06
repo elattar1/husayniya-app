@@ -4,6 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
 <title>دليل مطاعم وعروض الحسينية — أقوى التخفيضات اليومية | خدمات الحسينية</title>
+<link rel="stylesheet" href="theme.css"/>
+<script src="theme.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -331,6 +333,12 @@ body {
 
       <!-- Actions -->
       <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Theme Toggle (Light / Dark) -->
+        <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-1.5 rounded-xl flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
+          <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+          <span id="theme-toggle-label" class="theme-label hidden md:inline">ليلي</span>
+        </button>
+
         <!-- Location Pill (GPS) -->
         <button id="navbar-location-pill" onclick="handleNavbarDetectLocation(this)" type="button" class="glass px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-semibold text-white/90 hover:bg-white/10 active:scale-95 transition hidden sm:flex items-center gap-1.5" title="تحديد موقع التوصيل عبر GPS">
           <span>📍</span>

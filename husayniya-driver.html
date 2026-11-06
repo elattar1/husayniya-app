@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>تطبيق ومساعد الكابتن | دليفري الحسينية (الشرقية)</title>
+<link rel="stylesheet" href="theme.css"/>
+<script src="theme.js"></script>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -210,6 +212,12 @@
 
     <!-- Left side: Online Toggle & Audio -->
     <div class="flex items-center gap-2">
+      <!-- Theme Toggle (Light / Dark) -->
+      <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-2 rounded-xl flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
+        <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+        <span id="theme-toggle-label" class="theme-label hidden sm:inline">ليلي</span>
+      </button>
+
       <button onclick="toggleAudio()" id="audio-toggle-btn" class="glass p-2.5 rounded-xl text-xs font-bold hover:bg-white/10 transition text-amber-300" title="تفعيل/كتم التنبيهات الصوتية">
         🔊
       </button>

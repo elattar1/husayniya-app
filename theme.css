@@ -1,0 +1,433 @@
+/**
+ * خدمات الحسينية — نظام المظهر الكامل (الوضع الفاتح الافتراضي والوضع الليلي)
+ * Al-Husayniya Services — Dual Light & Dark Theme System
+ * Default: LIGHT THEME (الافتراضي هو الوضع الفاتح)
+ */
+
+/* ── ☀️ LIGHT MODE (DEFAULT) ── */
+html[data-theme="light"],
+html:not([data-theme="dark"]) {
+  color-scheme: light;
+}
+
+html[data-theme="light"] body,
+html:not([data-theme="dark"]) body {
+  background: #f6f8fb !important;
+  color: #0f172a !important;
+}
+
+/* Background Scene & Orbs in Light Mode */
+html[data-theme="light"] .bg-scene,
+html:not([data-theme="dark"]) .bg-scene {
+  opacity: 0.55 !important;
+}
+
+html[data-theme="light"] .orb.o1,
+html:not([data-theme="dark"]) .orb.o1 {
+  background: radial-gradient(circle, #7dd3fc, #6ee7b7) !important;
+  opacity: 0.45 !important;
+}
+
+html[data-theme="light"] .orb.o2,
+html:not([data-theme="dark"]) .orb.o2 {
+  background: radial-gradient(circle, #fde68a, #fdba74) !important;
+  opacity: 0.4 !important;
+}
+
+html[data-theme="light"] .orb.o3,
+html:not([data-theme="dark"]) .orb.o3 {
+  background: radial-gradient(circle, #c4b5fd, #93c5fd) !important;
+  opacity: 0.35 !important;
+}
+
+/* Glass Panels & Topbars */
+html[data-theme="light"] .glass,
+html:not([data-theme="dark"]) .glass {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-color: rgba(226, 232, 240, 0.95) !important;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05) !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] header.glass,
+html[data-theme="light"] nav.glass,
+html:not([data-theme="dark"]) header.glass,
+html:not([data-theme="dark"]) nav.glass {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04) !important;
+}
+
+/* Glass Cards */
+html[data-theme="light"] .glass-card,
+html:not([data-theme="dark"]) .glass-card {
+  background: #ffffff !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03) !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .glass-card:hover,
+html:not([data-theme="dark"]) .glass-card:hover {
+  border-color: rgba(0, 176, 155, 0.45) !important;
+  box-shadow: 0 12px 30px -4px rgba(0, 176, 155, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.05) !important;
+}
+
+/* Forms & Modal Containers */
+html[data-theme="light"] .glass-form,
+html:not([data-theme="dark"]) .glass-form {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.12) !important;
+  color: #0f172a !important;
+}
+
+/* Input Fields across all pages */
+html[data-theme="light"] input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+html[data-theme="light"] select,
+html[data-theme="light"] textarea,
+html[data-theme="light"] .input-glass,
+html:not([data-theme="dark"]) input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+html:not([data-theme="dark"]) select,
+html:not([data-theme="dark"]) textarea,
+html:not([data-theme="dark"]) .input-glass {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] input::placeholder,
+html[data-theme="light"] textarea::placeholder,
+html:not([data-theme="dark"]) input::placeholder,
+html:not([data-theme="dark"]) textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+html[data-theme="light"] input:focus,
+html[data-theme="light"] select:focus,
+html[data-theme="light"] textarea:focus,
+html[data-theme="light"] .input-glass:focus,
+html:not([data-theme="dark"]) input:focus,
+html:not([data-theme="dark"]) select:focus,
+html:not([data-theme="dark"]) textarea:focus,
+html:not([data-theme="dark"]) .input-glass:focus {
+  border-color: #00b09b !important;
+  box-shadow: 0 0 0 3px rgba(0, 176, 155, 0.18) !important;
+  background: #ffffff !important;
+}
+
+/* Headings and Base Text Contrast */
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4,
+html[data-theme="light"] h5,
+html[data-theme="light"] h6,
+html:not([data-theme="dark"]) h1,
+html:not([data-theme="dark"]) h2,
+html:not([data-theme="dark"]) h3,
+html:not([data-theme="dark"]) h4,
+html:not([data-theme="dark"]) h5,
+html:not([data-theme="dark"]) h6 {
+  color: #0f172a !important;
+}
+
+/* Semi-transparent text overrides in Light Mode */
+html[data-theme="light"] .text-white,
+html:not([data-theme="dark"]) .text-white {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .text-white\/90,
+html[data-theme="light"] .text-white\/80,
+html[data-theme="light"] .text-white\/70,
+html:not([data-theme="dark"]) .text-white\/90,
+html:not([data-theme="dark"]) .text-white\/80,
+html:not([data-theme="dark"]) .text-white\/70 {
+  color: #334155 !important;
+}
+
+html[data-theme="light"] .text-white\/60,
+html[data-theme="light"] .text-white\/50,
+html:not([data-theme="dark"]) .text-white\/60,
+html:not([data-theme="dark"]) .text-white\/50 {
+  color: #64748b !important;
+}
+
+html[data-theme="light"] .text-white\/40,
+html[data-theme="light"] .text-white\/35,
+html[data-theme="light"] .text-white\/30,
+html[data-theme="light"] .text-white\/20,
+html:not([data-theme="dark"]) .text-white\/40,
+html:not([data-theme="dark"]) .text-white\/35,
+html:not([data-theme="dark"]) .text-white\/30,
+html:not([data-theme="dark"]) .text-white\/20 {
+  color: #94a3b8 !important;
+}
+
+/* Preserve White Text on Solid / Gradient Buttons & Badges */
+html[data-theme="light"] .btn-primary,
+html[data-theme="light"] .btn-primary *,
+html[data-theme="light"] .btn-fire,
+html[data-theme="light"] .btn-fire *,
+html[data-theme="light"] .btn-emerald,
+html[data-theme="light"] .btn-emerald *,
+html[data-theme="light"] [class*="bg-emerald-"]:not([class*="bg-emerald-500/10"]):not([class*="bg-emerald-500/20"]),
+html[data-theme="light"] [class*="bg-teal-"]:not([class*="bg-teal-500/10"]):not([class*="bg-teal-500/20"]),
+html[data-theme="light"] [class*="bg-rose-"]:not([class*="bg-rose-500/10"]):not([class*="bg-rose-500/20"]),
+html[data-theme="light"] [class*="bg-red-"]:not([class*="bg-red-500/10"]):not([class*="bg-red-500/20"]),
+html[data-theme="light"] [class*="bg-blue-"]:not([class*="bg-blue-500/10"]):not([class*="bg-blue-500/20"]),
+html:not([data-theme="dark"]) .btn-primary,
+html:not([data-theme="dark"]) .btn-primary *,
+html:not([data-theme="dark"]) .btn-fire,
+html:not([data-theme="dark"]) .btn-fire *,
+html:not([data-theme="dark"]) .btn-emerald,
+html:not([data-theme="dark"]) .btn-emerald *,
+html:not([data-theme="dark"]) [class*="bg-emerald-"]:not([class*="bg-emerald-500/10"]):not([class*="bg-emerald-500/20"]),
+html:not([data-theme="dark"]) [class*="bg-teal-"]:not([class*="bg-teal-500/10"]):not([class*="bg-teal-500/20"]),
+html:not([data-theme="dark"]) [class*="bg-rose-"]:not([class*="bg-rose-500/10"]):not([class*="bg-rose-500/20"]),
+html:not([data-theme="dark"]) [class*="bg-red-"]:not([class*="bg-red-500/10"]):not([class*="bg-red-500/20"]),
+html:not([data-theme="dark"]) [class*="bg-blue-"]:not([class*="bg-blue-500/10"]):not([class*="bg-blue-500/20"]) {
+  color: #ffffff !important;
+}
+
+/* Contrast enhancement for colored text */
+html[data-theme="light"] .text-emerald-400,
+html:not([data-theme="dark"]) .text-emerald-400 {
+  color: #059669 !important;
+}
+
+html[data-theme="light"] .text-rose-400,
+html:not([data-theme="dark"]) .text-rose-400 {
+  color: #e11d48 !important;
+}
+
+html[data-theme="light"] .text-amber-400,
+html:not([data-theme="dark"]) .text-amber-400 {
+  color: #d97706 !important;
+}
+
+/* Semi-transparent borders in Light Mode */
+html[data-theme="light"] [class*="border-white/"],
+html:not([data-theme="dark"]) [class*="border-white/"] {
+  border-color: #e2e8f0 !important;
+}
+
+/* Filter Pills */
+html[data-theme="light"] .filter-pill,
+html:not([data-theme="dark"]) .filter-pill {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05) !important;
+}
+
+html[data-theme="light"] .filter-pill:hover,
+html[data-theme="light"] .filter-pill.active,
+html:not([data-theme="dark"]) .filter-pill:hover,
+html:not([data-theme="dark"]) .filter-pill.active {
+  background: #059669 !important;
+  border-color: #059669 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25) !important;
+}
+
+/* Tabs */
+html[data-theme="light"] .btn-tab,
+html:not([data-theme="dark"]) .btn-tab {
+  background: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #475569 !important;
+}
+
+html[data-theme="light"] .btn-tab:hover,
+html[data-theme="light"] .btn-tab.active,
+html:not([data-theme="dark"]) .btn-tab:hover,
+html:not([data-theme="dark"]) .btn-tab.active {
+  background: #ecfdf5 !important;
+  color: #059669 !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15) !important;
+}
+
+/* Sidebar & Drawers */
+html[data-theme="light"] .sidebar,
+html[data-theme="light"] .drawer,
+html:not([data-theme="dark"]) .sidebar,
+html:not([data-theme="dark"]) .drawer {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-left: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: -8px 0 30px rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-theme="light"] .nav-item,
+html:not([data-theme="dark"]) .nav-item {
+  color: #475569 !important;
+}
+
+html[data-theme="light"] .nav-item:hover,
+html[data-theme="light"] .nav-item.active,
+html:not([data-theme="dark"]) .nav-item:hover,
+html:not([data-theme="dark"]) .nav-item.active {
+  background: #ecfdf5 !important;
+  color: #059669 !important;
+  border-color: #10b981 !important;
+}
+
+/* Floating Cart Bar */
+html[data-theme="light"] .floating-cart,
+html:not([data-theme="dark"]) .floating-cart {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border: 1.5px solid #10b981 !important;
+  box-shadow: 0 16px 40px -10px rgba(15, 23, 42, 0.2), 0 0 25px rgba(16, 185, 129, 0.15) !important;
+  color: #0f172a !important;
+}
+
+/* Offer Card */
+html[data-theme="light"] .offer-card,
+html:not([data-theme="dark"]) .offer-card {
+  background: linear-gradient(135deg, #fff1f2 0%, #fff7ed 50%, #ffffff 100%) !important;
+  border: 1.5px solid #fecdd3 !important;
+  box-shadow: 0 10px 30px rgba(244, 63, 94, 0.08) !important;
+}
+
+/* Bottom Mobile Bar */
+html[data-theme="light"] .mobile-nav,
+html:not([data-theme="dark"]) .mobile-nav {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-top: 1px solid #e2e8f0 !important;
+  box-shadow: 0 -10px 25px rgba(15, 23, 42, 0.06) !important;
+}
+
+html[data-theme="light"] .mobile-nav-item,
+html:not([data-theme="dark"]) .mobile-nav-item {
+  color: #64748b !important;
+}
+
+html[data-theme="light"] .mobile-nav-item.active,
+html:not([data-theme="dark"]) .mobile-nav-item.active {
+  color: #059669 !important;
+}
+
+/* Modals */
+html[data-theme="light"] .modal-overlay,
+html:not([data-theme="dark"]) .modal-overlay {
+  background: rgba(15, 23, 42, 0.65) !important;
+}
+
+/* Tables */
+html[data-theme="light"] table.tbl th,
+html:not([data-theme="dark"]) table.tbl th {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border-bottom: 2px solid #e2e8f0 !important;
+}
+
+html[data-theme="light"] table.tbl td,
+html:not([data-theme="dark"]) table.tbl td {
+  border-bottom: 1px solid #f1f5f9 !important;
+  color: #1e293b !important;
+}
+
+/* Theme Toggle Button Styling */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.25s ease;
+}
+.theme-toggle-btn:hover {
+  transform: scale(1.04);
+}
+.theme-toggle-btn:active {
+  transform: scale(0.96);
+}
+
+/* ── 🌙 DARK MODE ── */
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+html[data-theme="dark"] body {
+  background: #06091a !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .bg-scene {
+  opacity: 1 !important;
+}
+
+html[data-theme="dark"] .orb.o1 {
+  background: radial-gradient(circle, #00b09b, #045353) !important;
+  opacity: 0.35 !important;
+}
+
+html[data-theme="dark"] .orb.o2 {
+  background: radial-gradient(circle, #f7971e, #e4a832) !important;
+  opacity: 0.35 !important;
+}
+
+html[data-theme="dark"] .orb.o3 {
+  background: radial-gradient(circle, #e11d48, #881337) !important;
+  opacity: 0.35 !important;
+}
+
+html[data-theme="dark"] .glass {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] header.glass,
+html[data-theme="dark"] nav.glass {
+  background: rgba(4, 14, 30, 0.88) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html[data-theme="dark"] .glass-card {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .input-glass,
+html[data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .filter-pill {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+html[data-theme="dark"] .filter-pill:hover,
+html[data-theme="dark"] .filter-pill.active {
+  background: rgba(0, 176, 155, 0.25) !important;
+  color: #00e5c8 !important;
+  border-color: rgba(0, 176, 155, 0.6) !important;
+  box-shadow: 0 0 18px rgba(0, 176, 155, 0.25) !important;
+}
+
+html[data-theme="dark"] .floating-cart {
+  background: rgba(4, 14, 30, 0.94) !important;
+  border: 1px solid rgba(0, 229, 200, 0.4) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .mobile-nav {
+  background: rgba(4, 14, 30, 0.96) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+}

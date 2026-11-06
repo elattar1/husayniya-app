@@ -4,6 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>تسجيل الدخول — خدمات الحسينية</title>
+<link rel="stylesheet" href="theme.css"/>
+<script src="theme.js"></script>
 <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -85,10 +87,18 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="text-[10px] text-emerald-400 font-semibold">بوابة تسجيل الدخول السحابي</div>
       </div>
     </a>
-    <a href="index.html" class="text-xs text-white/60 hover:text-emerald-400 transition flex items-center gap-1.5" style="text-decoration:none">
-      <span>🏠</span>
-      <span>الرئيسية</span>
-    </a>
+    <div class="flex items-center gap-2">
+      <!-- Theme Toggle (Light / Dark) -->
+      <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-1.5 rounded-xl flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
+        <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+        <span id="theme-toggle-label" class="theme-label hidden sm:inline">ليلي</span>
+      </button>
+
+      <a href="index.html" class="glass px-3 py-1.5 rounded-xl text-xs text-white/80 hover:text-emerald-400 transition flex items-center gap-1.5" style="text-decoration:none">
+        <span>🏠</span>
+        <span class="hidden sm:inline">الرئيسية</span>
+      </a>
+    </div>
   </nav>
 
   <!-- ══════════════ MAIN CONTENT ══════════════ -->

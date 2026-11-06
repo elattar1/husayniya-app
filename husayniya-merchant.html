@@ -4,6 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>لوحة إدارة المتاجر والمطاعم — خدمات الحسينية</title>
+<link rel="stylesheet" href="theme.css"/>
+<script src="theme.js"></script>
 <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
 <script src="stores-data.js"></script>
 <style>
@@ -93,6 +95,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
     <!-- Store Status Live Toggle & Actions -->
     <div class="flex items-center gap-2 sm:gap-4 self-end md:self-auto flex-wrap">
+      <!-- Theme Toggle (Light / Dark) -->
+      <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-1.5 rounded-2xl flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
+        <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+        <span id="theme-toggle-label" class="theme-label hidden sm:inline">ليلي</span>
+      </button>
+
       <button onclick="window.HusayniyaCloud && window.HusayniyaCloud.requestNotificationPermission()" type="button" class="glass px-3 py-1.5 rounded-2xl flex items-center gap-1.5 text-xs font-bold text-white/80 hover:text-white" title="تفعيل صوت وتنبيهات الطلبات الواردة">
         <span>🔔</span>
         <span class="hidden sm:inline">صوت وتنبيهات المطبخ</span>

@@ -25,8 +25,8 @@
   class HusayniyaCloudEngine {
     constructor() {
       // One-time clean wipe of old accounts, mock orders, and assign Super Admin to the first user
-      if (!localStorage.getItem('husayniya_wipe_v2_done')) {
-        console.log('🧹 [Husayniya Cloud] مسح كافة الحسابات والطلبات التجريبية وتهيئة أول حساب للأدمن...');
+      if (!localStorage.getItem('husayniya_wipe_v4_done')) {
+        console.log('🧹 [Husayniya Cloud] مسح كافة الحسابات والطلبات التجريبية وتصفير النظام بالكامل...');
         localStorage.removeItem('husayniya_registered_users');
         localStorage.removeItem('husayniya_current_user');
         localStorage.removeItem('husayniya_admin_claimed');
@@ -36,7 +36,7 @@
         localStorage.removeItem(STORAGE_KEYS.ORDERS);
         localStorage.removeItem('last_order_code');
         localStorage.removeItem('husayniya_cart');
-        localStorage.setItem('husayniya_wipe_v2_done', 'true');
+        localStorage.setItem('husayniya_wipe_v4_done', 'true');
       }
 
       this.supabaseUrl = localStorage.getItem(STORAGE_KEYS.URL) || DEFAULT_CONFIG.URL;
@@ -296,6 +296,7 @@
           const { data, error } = await this.client
             .from('orders')
             .select('*')
+            .neq('status', 'deleted')
             .order('created_at', { ascending: false })
             .limit(50);
           if (!error && data) return data;
@@ -701,7 +702,24 @@
       localStorage.removeItem(STORAGE_KEYS.ORDERS);
       localStorage.removeItem('last_order_code');
       localStorage.removeItem('husayniya_cart');
+      this.clearAllOrders();
       this.syncNavbarAuth();
+      return { success: true };
+    }
+
+    // Clear all orders from both Supabase and Local
+    async clearAllOrders() {
+      if (this.isConnected && this.client) {
+        try {
+          await this.client
+            .from('orders')
+            .update({ status: 'deleted' })
+            .neq('id', '00000000-0000-0000-0000-000000000000');
+        } catch (e) {}
+      }
+      localStorage.removeItem(STORAGE_KEYS.ORDERS);
+      localStorage.removeItem('last_order_code');
+      this.broadcastLocal('orders_cleared', {});
       return { success: true };
     }
 
@@ -734,7 +752,8 @@
     getLocalOrders() {
       try {
         const raw = localStorage.getItem(STORAGE_KEYS.ORDERS);
-        return raw ? JSON.parse(raw) : [];
+        const list = raw ? JSON.parse(raw) : [];
+        return list.filter(o => o.status !== 'deleted');
       } catch (e) {
         return [];
       }
