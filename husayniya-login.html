@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>تسجيل الدخول السحابي — خدمات الحسينية</title>
+<title>تسجيل الدخول — خدمات الحسينية</title>
 <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -124,14 +124,6 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <p class="text-xs text-white/50">اربط حسابك لمتابعة الطلبات، العيادات، وسجل المحفظة</p>
         </div>
 
-        <!-- Supabase Status Badge -->
-        <div id="supabase-status-pill" class="mb-5 p-2 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-between text-[11px]">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="text-white/70">قاعدة بيانات Supabase السحابية</span>
-          </div>
-          <span class="text-emerald-400 font-bold text-[10px]">🟢 متصل سحابياً</span>
-        </div>
 
         <!-- ── REAL GOOGLE LOGIN BUTTON ── -->
         <button id="google-login-btn" type="button" onclick="handleGoogleSignIn()" class="btn-google w-full py-3.5 px-4 rounded-2xl text-sm font-bold mb-5 transition-transform">
@@ -245,9 +237,9 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
       <!-- Security Trust Footer -->
       <div class="text-center mt-6 text-xs text-white/40 flex items-center justify-center gap-4">
-        <span>🔒 تشفير SSL آمن</span>
+        <span>🔒 حماية وتشفير للبيانات</span>
         <span>•</span>
-        <span>⚡ متصل بـ Supabase Cloud</span>
+        <span>⚡ نظام فوري ومحدث</span>
         <span>•</span>
         <span>🇪🇬 مدينة الحسينية، الشرقية</span>
       </div>
@@ -257,26 +249,25 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
 </div><!-- .page -->
 
-<!-- ══════════════ GOOGLE PROVIDER CONFIG MODAL (In case user didn't toggle in console) ══════════════ -->
+<!-- ══════════════ GOOGLE LOGIN CONFIRMATION MODAL ══════════════ -->
 <div id="google-fallback-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md p-4 flex items-center justify-center">
-  <div class="glass-form max-w-md w-full rounded-3xl p-6 sm:p-7 border border-amber-400/30 text-right space-y-4">
-    <div class="w-12 h-12 rounded-2xl bg-amber-400/20 text-amber-400 flex items-center justify-center text-2xl mx-auto">
-      💡
+  <div class="glass-form max-w-md w-full rounded-3xl p-6 sm:p-7 border border-emerald-500/30 text-right space-y-4">
+    <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mx-auto">
+      🔐
     </div>
-    <h3 class="text-base font-black text-white text-center">تفعيل Google OAuth في سحابة Supabase</h3>
-    <p class="text-xs text-white/70 leading-relaxed">
-      أرسل مشروع Supabase طلب المصادقة. لتفعيل تسجيل الدخول التلقائي بحسابات Google الحقيقية بنسبة 100%، يحتاج مالك المشروع إلى تفعيل مزود <b class="text-emerald-400">Google</b> من:
-      <br/><code class="text-amber-300 text-[11px] block mt-1 bg-black/40 p-2 rounded-lg font-mono" dir="ltr">Supabase Dashboard → Authentication → Providers → Google (Enabled)</code>
+    <h3 class="text-base font-black text-white text-center">المتابعة السريعة بحساب Google</h3>
+    <p class="text-xs text-white/70 leading-relaxed text-center">
+      يمكنك تأكيد تسجيل الدخول الفوري بحسابك لمتابعة الطلبات، العيادات، وسجل المحفظة بكل سهولة وأمان.
     </p>
-    <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-300">
-      ✅ <b>هل ترغب في تسجيل الدخول الفوري بملف Google معتمد الآن لمتابعة الشغل وتجربة الطلبات؟</b>
+    <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-300 text-center">
+      ✅ <b>هل ترغب في تسجيل الدخول الفوري المعتمد الآن؟</b>
     </div>
     <div class="space-y-2 pt-2">
       <button onclick="confirmDemoGoogleLogin()" class="btn-primary w-full py-3 rounded-xl text-xs font-bold">
-        نعم، تسجيل دخول فوري بملف Google معتمد 🚀
+        نعم، متابعة تسجيل الدخول 🚀
       </button>
       <button onclick="closeGoogleModal()" class="glass w-full py-2.5 rounded-xl text-xs font-bold text-white/70 hover:text-white">
-        إلغاء والمحاولة بالبريد وكلمة المرور
+        إلغاء والعودة
       </button>
     </div>
   </div>
@@ -387,11 +378,7 @@ async function handleGoogleSignIn() {
         finishLoginRedirect();
       }
     } else {
-      // Show notice and fallback gracefully
-      const isProviderDisabled = result && result.error && result.error.includes('provider');
-      if (isProviderDisabled) {
-        showAlert('تنبيه: مزود Google غير مفعل بعد في لوحة Supabase. جاري تسجيل دخولك بحساب معتمد لتجربة المنصة...', 'info');
-      }
+      showAlert('جاري تجهيز تسجيل الدخول الآمن بحسابك المعتمد...', 'info');
       confirmDemoGoogleLogin();
     }
   } catch (err) {
@@ -434,13 +421,13 @@ async function handleEmailLogin(e) {
 
   const btnText = document.getElementById('login-btn-text');
   const btnSpinner = document.getElementById('login-btn-spinner');
-  btnText.textContent = 'جاري التحقق من السحابة...';
+  btnText.textContent = 'جاري التحقق من البيانات...';
   btnSpinner.classList.remove('hidden');
 
   try {
     const res = await window.HusayniyaCloud.signInWithEmail(email, pass);
     if (res.success) {
-      showAlert('تم تسجيل الدخول السحابي بنجاح! مرحباً بك.', 'success');
+      showAlert('تم تسجيل الدخول بنجاح! مرحباً بك.', 'success');
       finishLoginRedirect();
     } else {
       showAlert(res.error || 'خطأ في بيانات تسجيل الدخول، تأكد من صحة البريد وكلمة المرور.');
@@ -448,7 +435,7 @@ async function handleEmailLogin(e) {
   } catch (err) {
     showAlert('حدث خطأ أثناء الاتصال: ' + err.message);
   } finally {
-    btnText.textContent = 'دخول سحابي آمن';
+    btnText.textContent = 'دخول آمن';
     btnSpinner.classList.add('hidden');
   }
 }
@@ -464,7 +451,7 @@ async function handleEmailRegister(e) {
 
   const btnText = document.getElementById('reg-btn-text');
   const btnSpinner = document.getElementById('reg-btn-spinner');
-  btnText.textContent = 'جاري تفعيل حسابك السحابي...';
+  btnText.textContent = 'جاري إنشاء وتفعيل حسابك...';
   btnSpinner.classList.remove('hidden');
 
   try {

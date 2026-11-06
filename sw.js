@@ -3,7 +3,7 @@
  * استراتيجية: Network-First (جلب أحدث التحديثات دائماً من الإنترنت مع حفظ نسخة للطوارئ فقط)
  */
 
-const CACHE_NAME = 'husayniya-v23-google-auth-enabled';
+const CACHE_NAME = 'husayniya-v24-white-label';
 
 self.addEventListener('install', (event) => {
   // التفعيل الفوري للنسخة الجديدة دون انتظار إغلاق التبويبات
