@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>حسابي الشخصي — خدمات الحسينية</title>
+<title>حسابي الشخصي — أرياف - ARYAF</title>
 <link rel="stylesheet" href="theme.css"/>
 <script src="theme.js"></script>
 <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background: #060b18;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
 
 /* ── Animated Background ── */
 .bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35;animation:drift 18s ease-in-out infinite alternate}
-.o1{width:600px;height:600px;background:radial-gradient(circle,#00b09b,#045353);top:-150px;right:-150px}
-.o2{width:500px;height:500px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-150px;left:-150px;animation-delay:-6s}
-.o3{width:400px;height:400px;background:radial-gradient(circle,#667eea,#764ba2);top:40%;left:30%;animation-delay:-10s}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#05d6a0,#045340);top:-150px;right:-150px}
+.o2{width:500px;height:500px;background:radial-gradient(circle,#ff7828,#9a3412);bottom:-150px;left:-150px;animation-delay:-6s}
+.o3{width:400px;height:400px;background:radial-gradient(circle,#1e293b,#060b18);top:40%;left:30%;animation-delay:-10s}
 @keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-15px) scale(1.05)}100%{transform:translate(-20px,20px) scale(.95)}}
 
 .page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
@@ -28,11 +28,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 .glass-card:hover{border-color:rgba(0,176,155,.45);box-shadow:0 14px 40px rgba(0,176,155,.15)}
 
 /* ── Gradients ── */
-.gt{background:linear-gradient(135deg,#00e5c8 0%,#43cea2 45%,#f7c948 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt{background:linear-gradient(135deg, #05d6a0 0%, #00e5c8 35%, #ff8a3d 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .gt-gold{background:linear-gradient(135deg,#f7c948,#f7971e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* ── Buttons ── */
-.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-primary{background:linear-gradient(135deg, #ff7828, #f95700);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
 .btn-primary:hover{transform:scale(1.02);box-shadow:0 0 25px rgba(0,176,155,.45)}
 
 .btn-tab{padding:12px 18px;border-radius:16px;cursor:pointer;font-size:.88rem;font-weight:600;transition:all .3s;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);display:flex;align-items:center;gap:10px;width:100%;text-align:right}
@@ -111,7 +111,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl glass flex items-center justify-center font-bold text-sm flex-shrink-0">←</div>
       <div class="min-w-0">
         <span class="text-[10px] sm:text-xs text-emerald-400 font-semibold block leading-tight">الرئيسية</span>
-        <div class="text-xs sm:text-sm font-bold truncate max-w-[140px] sm:max-w-none">خدمات الحسينية</div>
+        <div class="text-xs sm:text-sm font-extrabold flex items-center gap-1.5"><span class="gt">أرياف</span><span class="text-[10px] px-1.5 py-0.5 rounded bg-[#05d6a0]/20 text-[#05d6a0] font-black border border-[#05d6a0]/30">ARYAF</span></div>
       </div>
     </a>
     <div class="flex items-center gap-2 sm:gap-4 text-xs font-semibold flex-shrink-0">
@@ -135,13 +135,13 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <img id="profile-avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80" alt="صورة المستخدم" class="w-20 h-20 rounded-2xl object-cover shadow-xl border-2 border-emerald-400/40 flex-shrink-0" />
       <div class="min-w-0 flex-1">
         <div class="flex items-center gap-3 flex-wrap">
-          <h1 id="profile-name" class="text-xl sm:text-2xl font-black truncate">عميل الحسينية</h1>
+          <h1 id="profile-name" class="text-xl sm:text-2xl font-black truncate">عميل أرياف</h1>
           <span id="profile-provider-badge" class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold flex items-center gap-1">
             <i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i>
             <span id="provider-name">حساب معتمد</span>
           </span>
         </div>
-        <p id="profile-subtitle" class="text-xs text-white/50 mt-1">عضو معتمد • مدينة الحسينية، الشرقية</p>
+        <p id="profile-subtitle" class="text-xs text-white/50 mt-1">عضو معتمد • منصة أرياف والمراكز الذكية</p>
         <div class="flex items-center gap-3 sm:gap-4 mt-3 text-xs text-white/70 flex-wrap">
           <span id="profile-phone" class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-emerald-400 text-xs"></i> <span>01012345678</span></span>
           <span>•</span>
@@ -154,7 +154,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="glass px-6 py-4 rounded-2xl flex items-center gap-4 border border-emerald-500/30 text-right w-full md:w-auto justify-between md:justify-start">
       <div class="text-2xl text-emerald-400"><i class="fa-solid fa-wallet"></i></div>
       <div>
-        <div class="text-[11px] text-white/50">رصيد محفظة الحسينية</div>
+        <div class="text-[11px] text-white/50">رصيد محفظة أرياف</div>
         <div class="text-2xl font-black gt" id="wallet-balance-val">0.00 ج.م</div>
         <button onclick="switchTab('wallet')" class="text-[11px] text-emerald-400 font-bold hover:underline mt-0.5 block">شحن المحفظة +</button>
       </div>
@@ -173,7 +173,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
             <h3 class="text-base font-black text-white">المدير العام للنظام والمنصة</h3>
             <span class="px-2.5 py-0.5 rounded-full bg-amber-400 text-black text-[10px] font-black">Super Admin</span>
           </div>
-          <p class="text-xs text-white/70 mt-0.5">حسابك مفعل بصلاحية كاملة لإدارة جميع المطاعم والمنيو والسائقين والخدمات المتاحة بالحسينية.</p>
+          <p class="text-xs text-white/70 mt-0.5">حسابك مفعل بصلاحية كاملة لإدارة جميع المطاعم والمنيو والسائقين والخدمات المتاحة في أرياف ومراكزها.</p>
         </div>
       </div>
       <div class="flex items-center gap-2 w-full sm:w-auto">
@@ -263,7 +263,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
               <span class="font-bold text-sm text-white flex items-center gap-1.5"><i class="fa-solid fa-house text-emerald-400"></i> <span>المنزل الرئيسي (افتراضي)</span></span>
               <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold">افتراضي</span>
             </div>
-            <p class="text-xs text-white/70 mb-3 leading-relaxed">الحسينية، شارع المركز بجوار بنك مصر، عمارة الأمل، الدور الثالث شقة 6</p>
+            <p class="text-xs text-white/70 mb-3 leading-relaxed">أرياف — شارع المركز بجوار بنك مصر، عمارة الأمل، الدور الثالث</p>
             <div class="flex items-center gap-3 text-xs text-white/50">
               <span class="flex items-center gap-1"><i class="fa-solid fa-phone text-xs text-white/40"></i> <span>01012345678</span></span>
               <span>•</span>
@@ -277,7 +277,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
               <span class="font-bold text-sm text-white flex items-center gap-1.5"><i class="fa-solid fa-building text-indigo-400"></i> <span>مقر العمل</span></span>
               <button onclick="alert('تم التعيين كافتراضي')" class="text-[10px] text-white/40 hover:text-white">تعيين كافتراضي</button>
             </div>
-            <p class="text-xs text-white/70 mb-3 leading-relaxed">الحسينية، شارع بورسعيد، أمام مجلس المدينة، برج السلام</p>
+            <p class="text-xs text-white/70 mb-3 leading-relaxed">أرياف — شارع بورسعيد، أمام مجلس المدينة، برج السلام</p>
             <div class="flex items-center gap-3 text-xs text-white/50">
               <span class="flex items-center gap-1"><i class="fa-solid fa-phone text-xs text-white/40"></i> <span>01012345678</span></span>
               <span>•</span>
@@ -319,7 +319,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
             <div class="flex items-center gap-3">
               <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" class="w-12 h-12 rounded-xl object-cover" alt="مشويات الباز"/>
               <div>
-                <div class="font-bold text-sm text-white">مشويات الباز والحسينية</div>
+                <div class="font-bold text-sm text-white">مشويات الباز الريفية</div>
                 <div class="text-[10px] text-emerald-400 flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.9 • كباب وكفتة حاتي</span></div>
               </div>
             </div>
@@ -405,7 +405,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
             </label>
             <label class="flex items-center justify-between p-3 rounded-xl bg-white/[0.04] cursor-pointer">
               <div>
-                <div class="font-bold text-white">عروض وتخفيضات مطاعم الحسينية</div>
+                <div class="font-bold text-white">عروض وتخفيضات مطاعم أرياف</div>
                 <div class="text-[10px] text-white/40">تلقي عروض نهاية الأسبوع وخصومات الكوبونات الحصرية</div>
               </div>
               <input type="checkbox" checked class="w-4 h-4 accent-emerald-500"/>
@@ -425,7 +425,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <div id="account-gps-display" class="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-between">
             <div>
               <div class="text-[10px] text-white/40">الموقع المسجل حالياً:</div>
-              <div id="account-gps-address" class="font-bold text-emerald-400 mt-0.5">الحسينية — شارع المركز (افتراضي)</div>
+              <div id="account-gps-address" class="font-bold text-emerald-400 mt-0.5">أرياف — شارع المركز (افتراضي)</div>
             </div>
             <button onclick="detectAccountGPS(this)" class="btn-primary px-4 py-2 rounded-xl text-[11px] font-bold flex items-center gap-1.5">
               <i class="fa-solid fa-location-crosshairs"></i>
@@ -441,7 +441,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
   <!-- Footer Clearance -->
   <footer class="mt-12 pt-6 pb-8 border-t border-white/10 text-center text-xs text-white/40">
-    <p>خدمات الحسينية — التطبيق الموحد لأهالي ومركز الحسينية</p>
+    <p>أرياف - ARYAF — المنصة الذكية لخدمات وتوصيل الريف والمراكز</p>
   </footer>
 
 </main>
@@ -450,7 +450,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <div id="address-modal" class="modal-overlay">
   <div class="glass-card rounded-3xl p-6 md:p-8 max-w-md w-full relative border border-white/20">
     <button onclick="closeAddressModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-base"><i class="fa-solid fa-xmark"></i></button>
-    <h3 class="text-base font-bold mb-4">إضافة عنوان جديد في الحسينية</h3>
+    <h3 class="text-base font-bold mb-4">إضافة عنوان جديد في أرياف</h3>
     <div class="space-y-3 text-xs mb-5">
       <div>
         <label class="block font-semibold mb-1 text-white/70">اسم العنوان (مثلاً: بيت العائلة)</label>
@@ -459,11 +459,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <div>
         <label class="block font-semibold mb-1 text-white/70">المنطقة / الشارع</label>
         <select id="new-addr-zone" class="input-glass w-full rounded-xl px-3 py-2">
-          <option class="bg-slate-900">الحسينية — شارع المركز</option>
-          <option class="bg-slate-900">الحسينية — شارع بورسعيد</option>
-          <option class="bg-slate-900">الحسينية — شارع ترعة سراج</option>
-          <option class="bg-slate-900">الحسينية — شارع المدارس</option>
-          <option class="bg-slate-900">قرى الحسينية — جزيرة سعود / الأخيوة</option>
+          <option class="bg-slate-900">أرياف — شارع المركز</option>
+          <option class="bg-slate-900">أرياف — شارع بورسعيد</option>
+          <option class="bg-slate-900">أرياف — شارع ترعة سراج</option>
+          <option class="bg-slate-900">أرياف — شارع المدارس</option>
+          <option class="bg-slate-900">قرى أرياف — جزيرة سعود / الأخيوة</option>
         </select>
       </div>
       <div>
@@ -535,7 +535,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // If not logged in, prompt or fallback to friendly default
     currentUser = {
       id: 'usr_guest',
-      name: 'عميل الحسينية الزائر',
+      name: 'عميل أرياف الزائر',
       email: 'guest@husayniya.com',
       avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80',
       phone: '01012345678',
@@ -569,7 +569,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function bindUserProfile(user) {
   const meta = user.user_metadata || {};
-  const name = meta.full_name || meta.name || user.name || (user.email ? user.email.split('@')[0] : 'عميل الحسينية');
+  const name = meta.full_name || meta.name || user.name || (user.email ? user.email.split('@')[0] : 'عميل أرياف');
   const email = user.email || meta.email || 'غير مسجل';
   const phone = meta.phone || user.phone || '01012345678';
   const avatar = meta.avatar_url || meta.picture || user.avatar || '';
@@ -626,7 +626,7 @@ async function loadUserOrders() {
         <div class="glass-card rounded-2xl p-8 text-center">
           <div class="text-4xl mb-3 text-emerald-400"><i class="fa-solid fa-basket-shopping"></i></div>
           <h3 class="text-base font-bold text-white mb-1">لا توجد طلبات سابقة مسجلة حتى الآن</h3>
-          <p class="text-xs text-white/50 mb-5">استكشف مطاعم وكافيهات الحسينية واطلب وجبتك الأولى الآن لتصلك ساخنة في دقائق!</p>
+          <p class="text-xs text-white/50 mb-5">استكشف مطاعم وكافيهات أرياف واطلب وجبتك الأولى الآن لتصلك ساخنة في دقائق!</p>
           <a href="husayniya-restaurants.html" class="btn-primary inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold no-underline">
             <span>تصفح المطاعم والعروض اليومية</span>
             <i class="fa-solid fa-arrow-left"></i>
@@ -658,7 +658,7 @@ async function loadUserOrders() {
                 <span class="font-extrabold text-sm text-white">#${ord.order_code || ord.id || 'ORD'}</span>
                 <span class="${statusInfo.class} text-[11px] px-2.5 py-0.5 rounded-full font-bold">${statusInfo.text}</span>
               </div>
-              <div class="text-xs text-white/50 mt-1">${ord.store_name || 'مطعم الحسينية'} • ${formatTime(ord.created_at)}</div>
+              <div class="text-xs text-white/50 mt-1">${ord.store_name || 'مطعم أرياف'} • ${formatTime(ord.created_at)}</div>
             </div>
             <div class="text-left">
               <div class="text-base font-black gt">${ord.total_amount || 0} ج.م</div>
@@ -752,7 +752,7 @@ function saveNewAddress() {
 }
 
 function chargeWalletModal() {
-  alert('لشحن محفظة الحسينية، يمكنك تحويل المبلغ عبر فودافون كاش أو إنستاباي إلى رقم الدعم: 01012345678 مع كتابة كود الحساب، وسيتم إضافة الرصيد فورياً.');
+  alert('لشحن محفظة أرياف، يمكنك تحويل المبلغ عبر فودافون كاش أو إنستاباي إلى رقم الدعم: 01012345678 مع كتابة كود الحساب، وسيتم إضافة الرصيد فورياً.');
 }
 
 // ── Notification & GPS Handlers for Account ──

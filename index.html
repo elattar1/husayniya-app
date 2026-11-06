@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
-<title>خدمات الحسينية — المنصة الشاملة</title>
+<title>أرياف - ARYAF — المنصة الذكية لخدمات وتوصيل الريف والمراكز</title>
 <link rel="stylesheet" href="theme.css"/>
 <script src="theme.js"></script>
 <link rel="manifest" href="manifest.json"/>
-<meta name="theme-color" content="#00b09b"/>
+<meta name="theme-color" content="#05d6a0"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <link rel="apple-touch-icon" href="icon-192.png"/>
@@ -22,7 +22,7 @@ if ('serviceWorker' in navigator) {
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background: #06091a;
+  background: #060b18;
   color: #fff;
   overflow-x: hidden;
   direction: rtl;
@@ -38,9 +38,9 @@ body {
   opacity: .35;
   animation: drift 15s ease-in-out infinite alternate;
 }
-.o1 { width: min(500px, 80vw); height: min(500px, 80vw); background: radial-gradient(circle,#00b09b,#045353); top: -100px; right: -80px; }
-.o2 { width: min(400px, 70vw); height: min(400px, 70vw); background: radial-gradient(circle,#f7971e,#e4a832); bottom: -80px; left: -80px; animation-delay: -5s; }
-.o3 { width: min(300px, 60vw); height: min(300px, 60vw); background: radial-gradient(circle,#667eea,#764ba2); top: 40%; left: 30%; animation-delay: -9s; }
+.o1 { width: min(500px, 80vw); height: min(500px, 80vw); background: radial-gradient(circle,#05d6a0,#045340); top: -100px; right: -80px; }
+.o2 { width: min(400px, 70vw); height: min(400px, 70vw); background: radial-gradient(circle,#ff7828,#9a3412); bottom: -80px; left: -80px; animation-delay: -5s; }
+.o3 { width: min(300px, 60vw); height: min(300px, 60vw); background: radial-gradient(circle,#1e293b,#060b18); top: 40%; left: 30%; animation-delay: -9s; }
 @keyframes drift {
   0% { transform: translate(0,0) scale(1); }
   50% { transform: translate(15px,-12px) scale(1.04); }
@@ -84,13 +84,13 @@ body {
 
 /* ── Gradients & Typography ── */
 .gt {
-  background: linear-gradient(135deg, #00e5c8 0%, #43cea2 45%, #f7c948 100%);
+  background: linear-gradient(135deg, #05d6a0 0%, #00e5c8 35%, #ff8a3d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .btn-primary {
-  background: linear-gradient(135deg, #00b09b, #06d6a0);
+  background: linear-gradient(135deg, #ff7828, #f95700);
   border: none;
   cursor: pointer;
   color: #fff;
@@ -205,12 +205,8 @@ body {
         </button>
 
         <div onclick="navigateTo('home')" class="flex items-center gap-2.5 cursor-pointer">
-          <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center text-base shadow-lg text-white" style="background:linear-gradient(135deg,#00b09b,#06d6a0)">
-            <i class="fa-solid fa-house"></i>
-          </div>
-          <div>
-            <div class="text-sm md:text-base font-extrabold gt leading-tight">خدمات الحسينية</div>
-            <div class="text-[10px] text-emerald-400/80 font-semibold">تطبيق المنطقة الموحد</div>
+          <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center text-base shadow-lg text-white" style="background:linear-gradient(135deg, #ff7828, #f95700)">
+            <i class="fa-solid fa-leaf"></i></div><div><div class="text-sm md:text-base font-extrabold flex items-center gap-1.5 leading-tight"><span class="gt">أرياف</span><span class="text-[10px] px-1.5 py-0.5 rounded bg-[#05d6a0]/20 text-[#05d6a0] font-black border border-[#05d6a0]/30">ARYAF</span></div><div class="text-[10px] text-emerald-400/80 font-semibold">منصة الخدمات وتوصيل الريف والمراكز</div>
           </div>
         </div>
       </div>
@@ -272,7 +268,7 @@ body {
     <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
       <div class="flex items-center gap-2">
         <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-sm text-white"><i class="fa-solid fa-house"></i></div>
-        <span class="font-bold text-sm text-white">خدمات الحسينية</span>
+        <span class="font-bold text-sm text-white flex items-center gap-1.5"><span class="gt">أرياف</span><span class="text-[10px] px-1.5 py-0.5 rounded bg-[#05d6a0]/20 text-[#05d6a0] font-black border border-[#05d6a0]/30">ARYAF</span></span>
       </div>
       <button onclick="toggleDrawer()" class="text-white/40 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
     </div>
@@ -294,16 +290,16 @@ body {
         <i class="fa-solid fa-utensils text-amber-400 w-5 text-center"></i><span>المطاعم وقائمة الوجبات</span>
       </button>
       <button onclick="navigateTo('pharmacy'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <i class="fa-solid fa-pills text-rose-400 w-5 text-center"></i><span>صيدليات الحسينية ورفع الروشتة</span>
+        <i class="fa-solid fa-pills text-rose-400 w-5 text-center"></i><span>صيدليات أرياف ورفع الروشتة</span>
       </button>
       <button onclick="navigateTo('medical'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <i class="fa-solid fa-stethoscope text-sky-400 w-5 text-center"></i><span>دليل الأطباء والعيادات بالحسينية</span>
+        <i class="fa-solid fa-stethoscope text-sky-400 w-5 text-center"></i><span>دليل الأطباء والعيادات في أرياف</span>
       </button>
       <button onclick="navigateTo('realestate'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <i class="fa-solid fa-building text-amber-400 w-5 text-center"></i><span>عقارات وشقق الحسينية (بيع وإيجار)</span>
+        <i class="fa-solid fa-building text-amber-400 w-5 text-center"></i><span>عقارات وشقق أرياف (بيع وإيجار)</span>
       </button>
       <button onclick="navigateTo('lost'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <i class="fa-solid fa-magnifying-glass text-teal-400 w-5 text-center"></i><span>أمانات ومفقودات الحسينية</span>
+        <i class="fa-solid fa-magnifying-glass text-teal-400 w-5 text-center"></i><span>أمانات ومفقودات أرياف</span>
       </button>
       <button onclick="navigateTo('checkout'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
         <i class="fa-solid fa-cart-shopping text-emerald-400 w-5 text-center"></i><span>سلة التسوق وإتمام الدفع</span>
@@ -332,7 +328,7 @@ body {
     </div>
 
     <div class="pt-4 border-t border-white/10 text-xs text-white/40 text-center">
-      الحسينية، الشرقية، مصر • دعم 24/7
+      أرياف ومراكزها الذكية • دعم فوري 24/7
     </div>
   </aside>
 
@@ -347,10 +343,10 @@ body {
         <div class="max-w-2xl relative z-10">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold mb-4">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>+250 متجر ومزود خدمة داخل الحسينية</span>
+            <span>+250 متجر ومزود خدمة داخل أرياف والمراكز</span>
           </div>
           <h1 class="text-2xl sm:text-4xl md:text-5xl font-black leading-tight mb-4">
-            كل خدمات الحسينية<br/><span class="gt">أسرع وأقرب ليك دائماً!</span>
+            كل خدمات أرياف والمراكز<br/><span class="gt">أسرع وأقرب ليك دائماً!</span>
           </h1>
           <p class="text-xs sm:text-sm text-white/60 mb-6 leading-relaxed">
             من أفضل مشاوي ومطاعم، إلى التسوق المنزلي والدليل الطبي وحجز النقل — اطلب الآن واستلم في دقائق.
@@ -369,7 +365,7 @@ body {
       <!-- Category Filter Chips (Touch Friendly) -->
       <div>
         <div class="flex items-center justify-between mb-3">
-          <h2 class="text-base sm:text-lg font-bold">أقسام الخدمات في الحسينية</h2>
+          <h2 class="text-base sm:text-lg font-bold">أقسام الخدمات في أرياف</h2>
           <span class="text-xs text-emerald-400">اسحب للتصفح ←</span>
         </div>
         <div class="flex items-center gap-2.5 scroll-touch pb-2">
@@ -388,7 +384,7 @@ body {
             <!-- Responsive Stores Cards Grid (Real Al-Husayniya Sharkia Egypt Stores) -->
       <div id="stores-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
-        <!-- Store 1: مشويات الباز والحسينية -->
+        <!-- Store 1: مشويات الباز الريفية -->
         <div onclick="navigateTo('store-baz')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="مشويات الباز">
           <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
             <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="مشويات الباز" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
@@ -396,7 +392,7 @@ body {
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
             <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.9</span></span>
           </div>
-          <h3 class="font-bold text-base text-white mb-1">مشويات الباز (سعود والحسينية)</h3>
+          <h3 class="font-bold text-base text-white mb-1">مشويات الباز (أرياف والمراكز)</h3>
           <p class="text-xs text-white/50 mb-3">كباب، كفتة بلدي، طرب، ريش ضاني، ودجاج مشوي ع الفحم</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
             <span><i class="fa-solid fa-clock text-white/40 ml-1"></i> 20 - 30 دقيقة</span>
@@ -421,7 +417,7 @@ body {
         </div>
 
         <!-- Store 3: كريب وبيتزا شارع المدارس -->
-        <div onclick="navigateTo('store-pizza')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="بيتزا وكريب الحسينية">
+        <div onclick="navigateTo('store-pizza')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="بيتزا وكريب أرياف">
           <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
             <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="بيتزا وكريب الرواد" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -484,15 +480,15 @@ body {
           </div>
         </div>
 
-        <!-- Store 6B: بروستد وشاورما الحسينية -->
-        <div onclick="navigateTo('store-broast')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="بروستد وشاورما الحسينية كريسبي">
+        <!-- Store 6B: بروستد وشاورما أرياف -->
+        <div onclick="navigateTo('store-broast')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="بروستد وشاورما أرياف كريسبي">
           <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
-            <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80" alt="بروستد الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80" alt="بروستد أرياف" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
             <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.8</span></span>
           </div>
-          <h3 class="font-bold text-base text-white mb-1">بروستد وشاورما الحسينية — شارع المركز</h3>
+          <h3 class="font-bold text-base text-white mb-1">بروستد وشاورما أرياف — شارع المركز</h3>
           <p class="text-xs text-white/50 mb-3">دجاج مقرمش كريسبي، فتة شاورما سوري، ساندوتشات كرانشي، وتومية أصلية</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
             <span><i class="fa-solid fa-clock text-white/40 ml-1"></i> 20 - 30 دقيقة</span>
@@ -503,7 +499,7 @@ body {
         <!-- Store 6C: أسماك وسيفود القنال والبردويل -->
         <div onclick="navigateTo('store-fish')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="food" data-name="أسماك وسيفود القنال البردويل">
           <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
-            <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" alt="أسماك وسيفود الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" alt="أسماك وسيفود أرياف" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
             <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.9</span></span>
@@ -516,15 +512,15 @@ body {
           </div>
         </div>
 
-        <!-- Store 7: صيدليات الحسينية ورفع الروشتة -->
-        <div onclick="navigateTo('pharmacy')" class="store-card glass-card rounded-3xl p-5 cursor-pointer border-2 border-emerald-500/30" data-cat="pharmacy" data-name="صيدليات الحسينية وطلب الروشتة">
+        <!-- Store 7: صيدليات أرياف ورفع الروشتة -->
+        <div onclick="navigateTo('pharmacy')" class="store-card glass-card rounded-3xl p-5 cursor-pointer border-2 border-emerald-500/30" data-cat="pharmacy" data-name="صيدليات أرياف وطلب الروشتة">
           <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
-            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=600&q=80" alt="صيدليات الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=600&q=80" alt="صيدليات أرياف" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-blue-500 text-white text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-camera"></i> <span>تصوير الروشتة أونلاين</span></span>
             <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-emerald-400 text-[10px] font-black shadow-lg">24 ساعة</span>
           </div>
-          <h3 class="font-bold text-base text-white mb-1">صيدليات الحسينية — تصوير وطلب الروشتة</h3>
+          <h3 class="font-bold text-base text-white mb-1">صيدليات أرياف — تصوير وطلب الروشتة</h3>
           <p class="text-xs text-white/50 mb-3">صيدلية العطار، السلام، والجمهورية — صور الروشتة بالكاميرا واستلم الدواء في دقائق</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
             <span><i class="fa-solid fa-clock text-white/50 ml-1"></i> 10 - 20 دقيقة</span>
@@ -533,9 +529,9 @@ body {
         </div>
 
         <!-- Store 8: مجمع عيادات الأطباء -->
-        <div onclick="navigateTo('medical')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="medical" data-name="عيادات أطباء الحسينية">
+        <div onclick="navigateTo('medical')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="medical" data-name="عيادات أطباء أرياف">
           <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
-            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80" alt="عيادات أطباء الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80" alt="عيادات أطباء أرياف" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● حجز فوري</span>
             <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.9</span></span>
@@ -548,15 +544,15 @@ body {
           </div>
         </div>
 
-        <!-- Store 9: تكسي وتوصيل قرى الحسينية -->
-        <div onclick="navigateTo('driver')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="ride" data-name="تكسي الحسينية وتوك توك دليفري">
+        <!-- Store 9: تكسي وتوصيل قرى أرياف -->
+        <div onclick="navigateTo('driver')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="ride" data-name="تكسي وكباتن أرياف وتوصيل دليفري">
           <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
-            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80" alt="تكسي ومشاوير الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80" alt="تكسي ومشاوير أرياف" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-amber-500 text-black text-[10px] font-black shadow-lg">● كباتن جاهزون</span>
             <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.8</span></span>
           </div>
-          <h3 class="font-bold text-base text-white mb-1">تكسي ومشاوير الحسينية وقرى المركز</h3>
+          <h3 class="font-bold text-base text-white mb-1">كباتن ومشاوير أرياف والقرى والمراكز</h3>
           <p class="text-xs text-white/50 mb-3">مشاوير داخلية بالمدينة، جزيرة سعود، الأخيوة، بحر البقر، وتوصيل طلبات</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
             <span><i class="fa-solid fa-clock text-white/50 ml-1"></i> 5 - 10 دقائق</span>
@@ -564,15 +560,15 @@ body {
           </div>
         </div>
 
-        <!-- Store 10: عقارات وشقق الحسينية -->
-        <div onclick="navigateTo('realestate')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="realty" data-name="عقارات وشقق الحسينية">
+        <!-- Store 10: عقارات وشقق أرياف -->
+        <div onclick="navigateTo('realestate')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="realty" data-name="عقارات وشقق أرياف">
           <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
-            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80" alt="عقارات الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80" alt="عقارات أرياف" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-cyan-500 text-black text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-building"></i> <span>إيجار وتمليك</span></span>
             <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-white text-[10px] font-black shadow-lg">أحدث العروض</span>
           </div>
-          <h3 class="font-bold text-base text-white mb-1">عقارات الحسينية — شارع جمال عبد الناصر</h3>
+          <h3 class="font-bold text-base text-white mb-1">عقارات أرياف — شارع جمال عبد الناصر</h3>
           <p class="text-xs text-white/50 mb-3">شقق للإيجار، أراضي للبناء، محلات تجارية، ومنازل للبيع بحي المحجوب والمعاشات</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
             <span class="flex items-center gap-1"><i class="fa-solid fa-location-dot text-emerald-400"></i> <span>جميع أحياء وقرى المركز</span></span>
@@ -580,15 +576,15 @@ body {
           </div>
         </div>
 
-        <!-- Store 11: أمانات ومفقودات الحسينية -->
-        <div onclick="navigateTo('lost')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="lost" data-name="أمانات ومفقودات الحسينية">
+        <!-- Store 11: أمانات ومفقودات أرياف -->
+        <div onclick="navigateTo('lost')" class="store-card glass-card rounded-3xl p-5 cursor-pointer" data-cat="lost" data-name="أمانات ومفقودات أرياف">
           <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
-            <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=600&q=80" alt="أمانات ومفقودات الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=600&q=80" alt="أمانات ومفقودات أرياف" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-rose-500 text-white text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-shield-halved"></i> <span>خدمة الأهالي مجاناً</span></span>
             <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">أمانات</span>
           </div>
-          <h3 class="font-bold text-base text-white mb-1">أمانات ومفقودات الحسينية</h3>
+          <h3 class="font-bold text-base text-white mb-1">أمانات ومفقودات أرياف</h3>
           <p class="text-xs text-white/50 mb-3">محافظ وبطاقات رقم قومي، موبايلات مفقودة، ومفاتيح تم العثور عليها بالمركز</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
             <span class="flex items-center gap-1"><i class="fa-solid fa-hand-holding-heart text-rose-400"></i> <span>لوجه الله تعالى</span></span>
@@ -602,10 +598,10 @@ body {
       <footer class="mt-12 pt-8 pb-10 border-t border-white/10 text-center text-xs text-white/40 space-y-2">
         <div class="flex items-center justify-center gap-2 text-white/60 font-bold">
           <i class="fa-solid fa-landmark text-amber-300"></i>
-          <span>خدمات الحسينية — دليلك الشامل لمركز الحسينية ومحافظة الشرقية</span>
+          <span>أرياف - ARYAF — دليلك الشامل لمنصة خدمات وتوصيل الريف والمراكز الذكية</span>
         </div>
         <p>توصيل فوري • دعم فني 24/7 • أطباء وعقارات ومطاعم</p>
-        <p class="text-[11px] text-white/30">© 2026 جميع الحقوق محفوظة لمركز الحسينية</p>
+        <p class="text-[11px] text-white/30">© 2026 جميع الحقوق محفوظة لمنصة أرياف - ARYAF</p>
       </footer>
 
     </div>
@@ -620,7 +616,7 @@ body {
         <i class="fa-solid fa-mobile-screen-button"></i>
       </div>
       <div>
-        <div class="font-extrabold text-xs text-white">تثبيت تطبيق خدمات الحسينية</div>
+        <div class="font-extrabold text-xs text-white">تثبيت تطبيق أرياف - ARYAF</div>
         <div class="text-[10px] text-white/60">أضفه لشاشتك الرئيسية لتصفح وطلب فوري</div>
       </div>
     </div>
@@ -842,7 +838,7 @@ function triggerPWAInstall() {
       dismissInstallBanner();
     });
   } else {
-    alert('لتثبيت تطبيق خدمات الحسينية على هاتفك:\n\n• أندرويد (Google Chrome): اضغط على القائمة (⋮) أعلى المتصفح ثم اختر "تثبيت التطبيق" أو "إضافة إلى الشاشة الرئيسية".\n\n• آيفون (Safari): اضغط على زر المشاركة (⎙) بالأسفل ثم اختر "إضافة إلى الصفحة الرئيسية (Add to Home Screen)".');
+    alert('لتثبيت تطبيق أرياف - ARYAF على هاتفك:\n\n• أندرويد (Google Chrome): اضغط على القائمة (⋮) أعلى المتصفح ثم اختر "تثبيت التطبيق" أو "إضافة إلى الشاشة الرئيسية".\n\n• آيفون (Safari): اضغط على زر المشاركة (⎙) بالأسفل ثم اختر "إضافة إلى الصفحة الرئيسية (Add to Home Screen)".');
   }
 }
 

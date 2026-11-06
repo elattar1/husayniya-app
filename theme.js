@@ -1,6 +1,6 @@
 /**
- * خدمات الحسينية — محرك تبديل المظهر النهاري والليلي
- * Al-Husayniya Services — Theme Engine (Default: Light Mode)
+ * أرياف - ARYAF — محرك تبديل المظهر النهاري والليلي
+ * ARYAF Smart Services — Theme Engine (Default: Light Mode)
  */
 
 (function () {
@@ -8,7 +8,7 @@
 
   // 1. Get current theme (Default is ALWAYS LIGHT)
   function getTheme() {
-    return localStorage.getItem('husayniya_theme') || 'light';
+    return localStorage.getItem('aryaf_theme') || localStorage.getItem('husayniya_theme') || 'light';
   }
 
   // 2. Apply theme to <html>
@@ -43,7 +43,10 @@
   window.toggleAppTheme = function () {
     var current = getTheme();
     var next = current === 'dark' ? 'light' : 'dark';
-    localStorage.setItem('husayniya_theme', next);
+    try {
+      localStorage.setItem('aryaf_theme', next);
+      localStorage.setItem('husayniya_theme', next);
+    } catch (e) {}
     applyTheme(next);
   };
 

@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>تتبع مسار الطلب المباشر — خدمات الحسينية</title>
+<title>تتبع مسار الطلب المباشر — أرياف - ARYAF</title>
 <link rel="stylesheet" href="theme.css"/>
 <script src="theme.js"></script>
 <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background: #060b18;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
 
 /* ── Animated Background ── */
 .bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35;animation:drift 18s ease-in-out infinite alternate}
-.o1{width:600px;height:600px;background:radial-gradient(circle,#00b09b,#045353);top:-150px;right:-150px}
-.o2{width:500px;height:500px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-150px;left:-150px;animation-delay:-6s}
-.o3{width:400px;height:400px;background:radial-gradient(circle,#667eea,#764ba2);top:40%;left:30%;animation-delay:-10s}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#05d6a0,#045340);top:-150px;right:-150px}
+.o2{width:500px;height:500px;background:radial-gradient(circle,#ff7828,#9a3412);bottom:-150px;left:-150px;animation-delay:-6s}
+.o3{width:400px;height:400px;background:radial-gradient(circle,#1e293b,#060b18);top:40%;left:30%;animation-delay:-10s}
 @keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-15px) scale(1.05)}100%{transform:translate(-20px,20px) scale(.95)}}
 
 .page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
@@ -26,11 +26,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 .glass-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.12);transition:all .3s ease}
 
 /* ── Gradients ── */
-.gt{background:linear-gradient(135deg,#00e5c8 0%,#43cea2 45%,#f7c948 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt{background:linear-gradient(135deg, #05d6a0 0%, #00e5c8 35%, #ff8a3d 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .gt-gold{background:linear-gradient(135deg,#f7c948,#f7971e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* ── Buttons ── */
-.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-primary{background:linear-gradient(135deg, #ff7828, #f95700);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
 .btn-primary:hover{transform:scale(1.03);box-shadow:0 0 25px rgba(0,176,155,.45)}
 
 .btn-action{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);cursor:pointer;transition:all .25s;color:#fff;border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600}
@@ -53,7 +53,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 @keyframes dash{to{stroke-dashoffset:-1000}}
 
 /* Moving Scooter Pin */
-.scooter-pin{position:absolute;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#00b09b,#06d6a0);border:2px solid #fff;display:flex;align-items:center;justify-content:center;box-shadow:0 0 25px rgba(0,229,200,.8);z-index:30;transition:all 1.5s cubic-bezier(.25,.1,.25,1)}
+.scooter-pin{position:absolute;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg, #ff7828, #f95700);border:2px solid #fff;display:flex;align-items:center;justify-content:center;box-shadow:0 0 25px rgba(0,229,200,.8);z-index:30;transition:all 1.5s cubic-bezier(.25,.1,.25,1)}
 .scooter-pulse{position:absolute;inset:-8px;border-radius:50%;background:rgba(0,229,200,.3);animation:pulseWave 2s infinite}
 @keyframes pulseWave{0%{transform:scale(.8);opacity:1}100%{transform:scale(1.8);opacity:0}}
 
@@ -63,10 +63,10 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 /* ── Live Step Stepper ── */
 .stepper-step{display:flex;align-items:center;gap:14px;position:relative}
 .stepper-step:not(:last-child)::after{content:'';position:absolute;top:34px;right:17px;width:2px;height:calc(100% - 10px);background:rgba(255,255,255,.15);z-index:1}
-.stepper-step.completed:not(:last-child)::after{background:linear-gradient(to bottom, #00d6a0, #00b09b)}
+.stepper-step.completed:not(:last-child)::after{background:linear-gradient(to bottom, #00d6a0, #05d6a0)}
 .step-circle{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.2);z-index:2;flex-shrink:0;transition:all .3s}
 .stepper-step.completed .step-circle{background:#00d6a0;border-color:#00d6a0;color:#000}
-.stepper-step.active .step-circle{background:linear-gradient(135deg,#00b09b,#06d6a0);border-color:#fff;box-shadow:0 0 20px rgba(0,229,200,.6);color:#fff;animation:pingGlow 2s infinite alternate}
+.stepper-step.active .step-circle{background:linear-gradient(135deg, #ff7828, #f95700);border-color:#fff;box-shadow:0 0 20px rgba(0,229,200,.6);color:#fff;animation:pingGlow 2s infinite alternate}
 @keyframes pingGlow{from{box-shadow:0 0 10px rgba(0,229,200,.4)}to{box-shadow:0 0 25px rgba(0,229,200,.9)}}
 
 /* ── Modals & Drawers ── */
@@ -136,7 +136,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       </div>
       <div class="min-w-0">
         <span class="text-[10px] sm:text-xs text-emerald-400 font-semibold block leading-tight">تتبع مباشر</span>
-        <div class="text-xs sm:text-sm font-bold truncate max-w-[140px] sm:max-w-none">خدمات الحسينية</div>
+        <div class="text-xs sm:text-sm font-extrabold flex items-center gap-1.5"><span class="gt">أرياف</span><span class="text-[10px] px-1.5 py-0.5 rounded bg-[#05d6a0]/20 text-[#05d6a0] font-black border border-[#05d6a0]/30">ARYAF</span></div>
       </div>
     </a>
 
@@ -170,7 +170,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
     <h2 class="text-xl sm:text-2xl font-black text-white">لا توجد طلبات جارية قيد التوصيل</h2>
     <p class="text-xs sm:text-sm text-white/60 leading-relaxed max-w-md mx-auto">
-      لم تقم بإجراء أي طلب حالياً، أو تم تسليم طلباتك السابقة بنجاح. تصفح أشهى مطاعم الحسينية واطلب وجبتك المفضلة لتتبع خط سير الكابتن فورياً على الخريطة!
+      لم تقم بإجراء أي طلب حالياً، أو تم تسليم طلباتك السابقة بنجاح. تصفح أشهى مطاعم أرياف واطلب وجبتك المفضلة لتتبع خط سير الكابتن فورياً على الخريطة!
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
       <a href="husayniya-restaurants.html" class="btn-primary w-full sm:w-auto px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold no-underline flex items-center justify-center gap-2">
@@ -201,7 +201,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <span>طلبك <span class="gt">في الطريق إليك!</span></span>
         <i class="fa-solid fa-motorcycle text-emerald-400 text-2xl"></i>
       </h1>
-      <p class="text-xs sm:text-sm text-white/50 leading-relaxed">مندوب التوصيل يقترب من موقعك في الحسينية، يمكنك متابعة موقعه لحظة بلحظة.</p>
+      <p class="text-xs sm:text-sm text-white/50 leading-relaxed">مندوب التوصيل يقترب من موقعك في أرياف ومراكزها، يمكنك متابعة موقعه لحظة بلحظة.</p>
     </div>
 
     <!-- ETA Counter Box -->
@@ -289,7 +289,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
               <span class="px-2 py-0.5 rounded-md bg-amber-400/20 text-amber-300 text-[10px] font-extrabold flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> 4.95</span>
             </div>
             <p class="text-xs text-white/50 mb-1">موتوسيكل دليفري — دايون أسود (رقم: 1845 ط أ ص الشرقية)</p>
-            <div class="text-[11px] text-emerald-400 font-semibold flex items-center gap-1"><i class="fa-solid fa-check"></i> <span>أكمل أكثر من 1,280 توصيلة في الحسينية</span></div>
+            <div class="text-[11px] text-emerald-400 font-semibold flex items-center gap-1"><i class="fa-solid fa-check"></i> <span>أكمل أكثر من 1,280 توصيلة في أرياف والمراكز</span></div>
           </div>
         </div>
 
@@ -352,7 +352,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
             <div class="step-circle"><i class="fa-solid fa-motorcycle"></i></div>
             <div>
               <div class="text-sm font-bold text-white/50">السائق في الطريق إليك</div>
-              <div id="step-4-desc" class="text-xs text-white/30">خط السير بالحسينية</div>
+              <div id="step-4-desc" class="text-xs text-white/30">خط السير في أرياف</div>
             </div>
           </div>
 
@@ -380,7 +380,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <div class="glass rounded-2xl p-4 flex items-center gap-3 border border-white/10 text-xs">
         <i class="fa-solid fa-shield-halved text-2xl text-emerald-400 flex-shrink-0"></i>
         <div class="text-white/60 leading-relaxed">
-          هل واجهت مشكلة؟ يمكنك التواصل مباشرة مع <span class="text-white font-bold">فريق دعم خدمات الحسينية</span> على مدار الساعة.
+          هل واجهت مشكلة؟ يمكنك التواصل مباشرة مع <span class="text-white font-bold">فريق دعم منصة أرياف - ARYAF</span> على مدار الساعة.
         </div>
       </div>
 
@@ -392,7 +392,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
   <!-- Footer Clearance -->
   <footer class="mt-12 pt-6 pb-8 border-t border-white/10 text-center text-xs text-white/40">
-    <p>خدمات الحسينية — تتبع مباشر لمندوبي التوصيل والطلبات لحظة بلحظة</p>
+    <p>أرياف - ARYAF — تتبع مباشر لمندوبي التوصيل والطلبات لحظة بلحظة</p>
   </footer>
 
 </main>
@@ -520,7 +520,7 @@ function centerScooter() {
 }
 
 function recalculateRoute() {
-  alert('تم تحديث مسار الـ GPS بأحدث بيانات المرور الحية في الحسينية!');
+  alert('تم تحديث مسار الـ GPS بأحدث بيانات المرور الحية في أرياف!');
 }
 
 // ── Order Details Modal ──
@@ -594,12 +594,12 @@ function updateTrackingUI(order) {
   if (modalCodeEl) modalCodeEl.textContent = displayCode;
 
   // 2. Store & Destination Pins
-  const storeName = order.store_name || 'مطعم بالحسينية';
+  const storeName = order.store_name || 'مطعم في أرياف';
   const mapStoreEl = document.getElementById('map-store-name');
   if (mapStoreEl) mapStoreEl.textContent = storeName;
 
   const mapAddrEl = document.getElementById('map-address');
-  if (mapAddrEl) mapAddrEl.textContent = order.delivery_address || 'الحسينية';
+  if (mapAddrEl) mapAddrEl.textContent = order.delivery_address || 'أرياف ومراكزها';
 
   const step1Desc = document.getElementById('step-1-desc');
   if (step1Desc) step1Desc.textContent = `استلمه ${storeName} بنجاح`;
@@ -745,7 +745,7 @@ window.addEventListener('load', () => {
         updateTrackingUI(order);
         if (order.status === 'delivered') {
           window.HusayniyaCloud.sendNotification('تم تسليم طلبك بنجاح!', {
-            body: 'بالهناء والشفاء! شكراً لطلبك عبر خدمات الحسينية.',
+            body: 'بالهناء والشفاء! شكراً لطلبك عبر منصة أرياف - ARYAF.',
             soundType: 'success'
           });
         } else if (order.status === 'ready' || order.status === 'on_the_way') {

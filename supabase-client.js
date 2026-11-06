@@ -1,6 +1,6 @@
 /**
- * خدمات الحسينية — محرك الربط السحابي بقاعدة بيانات Supabase
- * Al-Husayniya Services — Supabase Cloud & Realtime Synchronization Engine
+ * أرياف - ARYAF — محرك الربط السحابي بقاعدة بيانات Supabase
+ * ARYAF Smart Services — Supabase Cloud & Realtime Synchronization Engine
  */
 
 (function (window) {
@@ -179,7 +179,7 @@
           const statusLabels = {
             'preparing': 'مطعمك بدأ في إعداد الوجبة وتجهيزها الآن',
             'ready': 'تم الانتهاء من تجهيز طلبك واستلمه مندوب التوصيل',
-            'on_the_way': 'الكابتن في الطريق إليك الآن بالحسينية',
+            'on_the_way': 'الكابتن في الطريق إليك الآن عبر أرياف',
             'delivered': 'تم تسليم طلبك بنجاح! بالهناء والشفاء'
           };
           const label = statusLabels[orderData.status];
@@ -222,13 +222,13 @@
       const newOrder = {
         order_code: orderCode,
         store_name: orderPayload.store_name || 'مشويات الباز',
-        customer_name: orderPayload.customer_name || 'عميل الحسينية',
+        customer_name: orderPayload.customer_name || 'عميل أرياف',
         customer_phone: orderPayload.customer_phone || '01012345678',
         items: orderPayload.items || [],
         total_amount: orderPayload.total_amount || 0,
         delivery_fee: orderPayload.delivery_fee || 15,
         payment_method: orderPayload.payment_method || 'كاش عند الاستلام',
-        delivery_address: orderPayload.delivery_address || 'الحسينية، الشرقية',
+        delivery_address: orderPayload.delivery_address || 'أرياف ومراكزها',
         notes: orderPayload.notes || '',
         status: 'pending', // pending -> preparing -> on_the_way -> delivered -> cancelled
         driver_name: null,
@@ -315,10 +315,10 @@
       const appt = {
         doctor_name: payload.doctor_name || 'طبيب استشاري',
         specialty: payload.specialty || 'عام',
-        patient_name: payload.patient_name || 'مريض الحسينية',
+        patient_name: payload.patient_name || 'مريض أرياف',
         patient_phone: payload.patient_phone || '',
         appointment_date: payload.appointment_date || new Date().toISOString().split('T')[0],
-        clinic_address: payload.clinic_address || 'الحسينية — شارع المستشفى',
+        clinic_address: payload.clinic_address || 'أرياف — مجمع العيادات الطبي',
         status: 'confirmed',
         created_at: new Date().toISOString()
       };
@@ -359,7 +359,7 @@
     // ── 5. Real Estate Properties API ──
     async createProperty(payload) {
       const prop = {
-        title: payload.title || 'عقار جديد بالحسينية',
+        title: payload.title || 'عقار جديد في أرياف',
         prop_type: payload.prop_type || 'rent',
         area_name: payload.area_name || 'شارع المركز',
         price: parseFloat(payload.price) || 0,
@@ -407,7 +407,7 @@
         title: payload.title || 'مفقود/معثور عليه',
         item_type: payload.item_type || 'lost',
         category: payload.category || 'أوراق ومحافظ',
-        location_desc: payload.location_desc || 'الحسينية',
+        location_desc: payload.location_desc || 'أرياف ومراكزها',
         phone: payload.phone || '',
         details: payload.details || '',
         status: 'open',
@@ -492,7 +492,7 @@
         id: 'usr_g_' + Date.now(),
         email: 'user.google@gmail.com',
         user_metadata: {
-          full_name: 'مستخدم Google بالحسينية',
+          full_name: 'مستخدم Google في أرياف',
           avatar_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
           provider: 'google'
         }
@@ -576,7 +576,7 @@
             password: password,
             options: {
               data: {
-                full_name: fullName || 'عميل الحسينية',
+                full_name: fullName || 'عميل أرياف',
                 phone: phone || cleanId
               }
             }
@@ -593,10 +593,10 @@
         id: 'usr_' + Date.now(),
         email: normalizedEmail,
         password: password,
-        name: fullName || 'عميل الحسينية',
+        name: fullName || 'عميل أرياف',
         phone: phone || cleanId,
         user_metadata: {
-          full_name: fullName || 'عميل الحسينية',
+          full_name: fullName || 'عميل أرياف',
           phone: phone || cleanId
         },
         created_at: new Date().toISOString()
@@ -644,7 +644,7 @@
       if (!user) return;
       const email = user.email || user.user_metadata?.email || '';
       const id = user.id || 'usr_' + Date.now();
-      const name = user.user_metadata?.full_name || user.user_metadata?.name || user.name || (email ? email.split('@')[0] : 'أهالي الحسينية');
+      const name = user.user_metadata?.full_name || user.user_metadata?.name || user.name || (email ? email.split('@')[0] : 'أهالي أرياف');
       const avatar = user.user_metadata?.avatar_url || user.user_metadata?.picture || user.avatar || '';
       const phone = user.user_metadata?.phone || user.phone || '';
       const provider = user.app_metadata?.provider || user.user_metadata?.provider || user.provider || (email && email.includes('google') ? 'google' : 'email');
@@ -793,7 +793,7 @@
             const accuracy = Math.round(pos.coords.accuracy || 10);
 
             let address = `إحداثيات GPS: ${lat.toFixed(4)}, ${lon.toFixed(4)}`;
-            let area = 'الحسينية — شارع المركز';
+            let area = 'أرياف — المركز الرئيسي';
 
             // Attempt free reverse geocode with fast 3.5s timeout
             try {
@@ -810,17 +810,17 @@
                   const road = data.address?.road || '';
                   const suburb = data.address?.suburb || data.address?.neighbourhood || data.address?.village || data.address?.town || '';
                   if (road && suburb) {
-                    area = `الحسينية — ${suburb} (${road})`;
+                    area = `أرياف — ${suburb} (${road})`;
                   } else if (suburb) {
-                    area = `الحسينية — ${suburb}`;
+                    area = `أرياف — ${suburb}`;
                   } else if (road) {
-                    area = `الحسينية — ${road}`;
+                    area = `أرياف — ${road}`;
                   }
                 }
               }
             } catch (e) {
-              // Proximity estimation around Al-Husayniya Center
-              area = 'الحسينية — موقع GPS تم تحديده بدقة';
+              // Proximity estimation around Rural Center
+              area = 'أرياف — موقع GPS تم تحديده بدقة';
             }
 
             const locData = {

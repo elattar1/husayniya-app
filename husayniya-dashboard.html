@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-<title>لوحة الإدارة السحابية — خدمات الحسينية</title>
+<title>لوحة الإدارة السحابية — أرياف - ARYAF</title>
 <link rel="stylesheet" href="theme.css"/>
 <script src="theme.js"></script>
 <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
@@ -11,14 +11,14 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans-serif;direction:rtl;min-height:100vh;width:100%;max-width:100vw;overflow-x:hidden}
+html,body{background: #060b18;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans-serif;direction:rtl;min-height:100vh;width:100%;max-width:100vw;overflow-x:hidden}
 
 /* ── BG ── */
 .bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.32;animation:drift 16s ease-in-out infinite alternate}
-.o1{width:450px;height:450px;background:radial-gradient(circle,#00b09b,#045353);top:-150px;right:20%}
-.o2{width:380px;height:380px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-100px;left:10%;animation-delay:-6s}
-.o3{width:300px;height:300px;background:radial-gradient(circle,#667eea,#764ba2);top:40%;left:50%;animation-delay:-10s}
+.o1{width:450px;height:450px;background:radial-gradient(circle,#05d6a0,#045340);top:-150px;right:20%}
+.o2{width:380px;height:380px;background:radial-gradient(circle,#ff7828,#9a3412);bottom:-100px;left:10%;animation-delay:-6s}
+.o3{width:300px;height:300px;background:radial-gradient(circle,#1e293b,#060b18);top:40%;left:50%;animation-delay:-10s}
 @keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-15px) scale(1.05)}100%{transform:translate(-15px,20px) scale(.97)}}
 
 /* ── Liquid Glass ── */
@@ -32,7 +32,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
 .gt{background:linear-gradient(135deg,#00e5c8,#43cea2,#f7c948);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* ── Buttons ── */
-.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;color:#fff;font-weight:700;transition:all .25s}
+.btn-primary{background:linear-gradient(135deg, #ff7828, #f95700);border:none;cursor:pointer;color:#fff;font-weight:700;transition:all .25s}
 .btn-primary:active{transform:scale(0.97)}
 
 /* ── Input ── */
@@ -94,7 +94,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
         <i class="fa-solid fa-bolt"></i>
       </div>
       <div>
-        <div class="text-sm font-extrabold text-white leading-tight">خدمات الحسينية</div>
+        <div class="text-sm font-extrabold flex items-center gap-1.5"><span class="gt">أرياف</span><span class="text-[10px] px-1.5 py-0.5 rounded bg-[#05d6a0]/20 text-[#05d6a0] font-black border border-[#05d6a0]/30">ARYAF</span></div>
         <div class="text-[10px] text-emerald-400 font-semibold">لوحة الإدارة السحابية</div>
       </div>
     </div>
@@ -128,7 +128,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
     </a>
     <a href="husayniya-medical.html" class="nav-item">
       <span class="text-base"><i class="fa-solid fa-stethoscope text-red-400"></i></span>
-      <span>عيادات أطباء الحسينية</span>
+      <span>عيادات أطباء أرياف</span>
     </a>
     <a href="husayniya-pharmacy.html" class="nav-item">
       <span class="text-base"><i class="fa-solid fa-prescription-bottle-medical text-emerald-400"></i></span>
@@ -136,7 +136,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
     </a>
     <a href="husayniya-realestate.html" class="nav-item">
       <span class="text-base"><i class="fa-solid fa-building text-amber-400"></i></span>
-      <span>عقارات الحسينية</span>
+      <span>عقارات أرياف</span>
     </a>
     <a href="husayniya-lost.html" class="nav-item">
       <span class="text-base"><i class="fa-solid fa-magnifying-glass text-teal-400"></i></span>
@@ -179,7 +179,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
       
       <div class="min-w-0">
         <h1 class="text-xs sm:text-base font-extrabold text-white truncate leading-tight">
-          لوحة إدارة <span class="gt">خدمات الحسينية</span>
+          لوحة إدارة <span class="gt">أرياف - ARYAF</span>
         </h1>
         <p class="text-[10px] sm:text-xs text-white/50 truncate hidden sm:block">متابعة الطلبات، الإيرادات، والمتاجر في الوقت الفعلي</p>
       </div>
@@ -252,7 +252,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
           <div id="stat-stores" class="text-base sm:text-2xl font-black text-blue-300">8</div>
           <div class="text-[10px] text-blue-400 mt-1 flex items-center gap-1">
             <span>●</span>
-            <span>مطاعم وهايبر الحسينية</span>
+            <span>مطاعم ومتاجر أرياف</span>
           </div>
         </div>
       </div>
@@ -329,7 +329,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
           <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
             <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
               <i class="fa-solid fa-trophy text-amber-400"></i>
-              <span>أداء المطاعم الأكثر طلباً بالحسينية</span>
+              <span>أداء المطاعم الأكثر طلباً في أرياف</span>
             </h3>
             <span class="text-[11px] text-white/40">بيانات فعلية</span>
           </div>
@@ -348,7 +348,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
           <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
             <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
               <i class="fa-solid fa-motorcycle text-emerald-400"></i>
-              <span>كباتن ومندوبي توصيل الحسينية</span>
+              <span>كباتن ومندوبي توصيل أرياف</span>
             </h3>
             <span class="text-[11px] text-emerald-400 font-bold flex items-center gap-1">جاهزون للطلبات <i class="fa-solid fa-bolt text-xs"></i></span>
           </div>
@@ -358,7 +358,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold"><i class="fa-solid fa-motorcycle"></i></div>
                 <div>
-                  <div class="font-bold text-white">كابتن مشاوير الحسينية والقرى</div>
+                  <div class="font-bold text-white">كابتن مشاوير أرياف والقرى</div>
                   <div class="text-[10px] text-white/40">شارع المركز وميدان المحطة</div>
                 </div>
               </div>
@@ -380,7 +380,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold"><i class="fa-solid fa-car"></i></div>
                 <div>
-                  <div class="font-bold text-white">سيارات تكسي الحسينية وسعود والأخيوة</div>
+                  <div class="font-bold text-white">سيارات وكباتن أرياف وسعود والأخيوة</div>
                   <div class="text-[10px] text-white/40">مشاوير خارجية وطلبات كبيرة</div>
                 </div>
               </div>
@@ -406,7 +406,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
               <h2 class="text-base sm:text-lg font-black text-white">إدارة كافة المطاعم والخدمات (صلاحية المدير العام)</h2>
               <span class="px-2.5 py-0.5 rounded-full bg-amber-400 text-black text-[10px] font-black">All Stores Admin</span>
             </div>
-            <p class="text-xs text-white/60 mt-0.5">صلاحيات كاملة للتحكم في قوائم المأكولات، تعديل الأسعار، ومتابعة الطلبات لجميع المتاجر والخدمات بالحسينية.</p>
+            <p class="text-xs text-white/60 mt-0.5">صلاحيات كاملة للتحكم في قوائم المأكولات، تعديل الأسعار، ومتابعة الطلبات لجميع المتاجر والخدمات في أرياف والمراكز.</p>
           </div>
         </div>
         <div class="flex items-center gap-2 flex-wrap">
@@ -426,7 +426,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
         <div class="flex items-center justify-between mb-3">
           <h3 class="text-sm font-bold text-amber-300 flex items-center gap-1.5">
             <i class="fa-solid fa-utensils"></i>
-            <span>المطاعم والمتاجر الـ 8 المتاحة بالحسينية:</span>
+            <span>المطاعم والمتاجر الـ 8 المتاحة في أرياف:</span>
           </h3>
           <span class="text-[11px] text-white/40">تحكم كامل في المنيو والطلبات</span>
         </div>
@@ -441,7 +441,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
         <div class="flex items-center justify-between mb-3">
           <h3 class="text-sm font-bold text-emerald-400 flex items-center gap-1.5">
             <i class="fa-solid fa-building-columns"></i>
-            <span>الخدمات والمرافق العامة بالحسينية:</span>
+            <span>الخدمات والمرافق العامة في أرياف:</span>
           </h3>
           <span class="text-[11px] text-white/40">إدارة مباشرة للبوابات</span>
         </div>
@@ -452,7 +452,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
             <div class="flex items-center gap-2.5">
               <span class="text-xl text-emerald-400"><i class="fa-solid fa-prescription-bottle-medical"></i></span>
               <div>
-                <h4 class="font-bold text-xs text-white">صيدليات الحسينية</h4>
+                <h4 class="font-bold text-xs text-white">صيدليات أرياف</h4>
                 <p class="text-[10px] text-white/50">طلب الروشتات والأدوية</p>
               </div>
             </div>
@@ -480,7 +480,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
             <div class="flex items-center gap-2.5">
               <span class="text-xl text-amber-400"><i class="fa-solid fa-building"></i></span>
               <div>
-                <h4 class="font-bold text-xs text-white">عقارات الحسينية</h4>
+                <h4 class="font-bold text-xs text-white">عقارات أرياف</h4>
                 <p class="text-[10px] text-white/50">الشقق والمحلات والأراضي</p>
               </div>
             </div>
@@ -629,8 +629,8 @@ async function loadRealDashboardData(notifyUser = false) {
         return `
           <tr>
             <td class="font-extrabold text-emerald-400">#${ord.order_code || ord.id || 'ORD'}</td>
-            <td class="font-semibold text-white">${ord.customer_name || 'عميل الحسينية'}</td>
-            <td class="text-white/80">${ord.store_name || 'مطعم الحسينية'}</td>
+            <td class="font-semibold text-white">${ord.customer_name || 'عميل أرياف'}</td>
+            <td class="text-white/80">${ord.store_name || 'مطعم أرياف'}</td>
             <td class="font-black text-white">${Number(ord.total_amount || 0).toFixed(2)} ج.م</td>
             <td class="text-white/60 text-xs">${ord.payment_method || 'كاش عند الاستلام'}</td>
             <td><span class="tbl-badge ${s.class}">${s.text}</span></td>
@@ -724,7 +724,7 @@ function renderAdminStoresGrid() {
             <img src="${s.avatar || 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80'}" class="w-10 h-10 rounded-xl object-cover border border-white/20" alt="${s.name}"/>
             <div class="min-w-0 flex-1">
               <h4 class="font-bold text-xs text-white truncate">${s.name}</h4>
-              <span class="text-[10px] text-white/50 block">${s.category || 'مطعم بالحسينية'}</span>
+              <span class="text-[10px] text-white/50 block">${s.category || 'مطعم في أرياف'}</span>
             </div>
           </div>
           <div class="flex items-center justify-between text-[11px] text-white/60 pt-1 border-t border-white/5">

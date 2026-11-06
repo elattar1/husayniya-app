@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>لوحة إدارة المتاجر والمطاعم — خدمات الحسينية</title>
+<title>بوابة إدارة المتاجر والمطابخ — أرياف - ARYAF</title>
 <link rel="stylesheet" href="theme.css"/>
 <script src="theme.js"></script>
 <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
 <script src="stores-data.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background: #060b18;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
 
 /* ── Background Scene ── */
 .bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35;animation:drift 18s ease-in-out infinite alternate}
-.o1{width:600px;height:600px;background:radial-gradient(circle,#00b09b,#045353);top:-150px;right:-150px}
-.o2{width:500px;height:500px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-150px;left:-150px;animation-delay:-6s}
-.o3{width:400px;height:400px;background:radial-gradient(circle,#667eea,#764ba2);top:40%;left:30%;animation-delay:-10s}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#05d6a0,#045340);top:-150px;right:-150px}
+.o2{width:500px;height:500px;background:radial-gradient(circle,#ff7828,#9a3412);bottom:-150px;left:-150px;animation-delay:-6s}
+.o3{width:400px;height:400px;background:radial-gradient(circle,#1e293b,#060b18);top:40%;left:30%;animation-delay:-10s}
 @keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-15px) scale(1.05)}100%{transform:translate(-20px,20px) scale(.95)}}
 
 .page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
@@ -28,11 +28,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 .glass-card:hover{border-color:rgba(0,176,155,.45);box-shadow:0 14px 40px rgba(0,176,155,.15)}
 
 /* ── Gradients ── */
-.gt{background:linear-gradient(135deg,#00e5c8 0%,#43cea2 45%,#f7c948 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt{background:linear-gradient(135deg, #05d6a0 0%, #00e5c8 35%, #ff8a3d 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .gt-gold{background:linear-gradient(135deg,#f7c948,#f7971e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* ── Buttons ── */
-.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-primary{background:linear-gradient(135deg, #ff7828, #f95700);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
 .btn-primary:hover{transform:scale(1.02);box-shadow:0 0 25px rgba(0,176,155,.45)}
 
 .btn-tab{padding:10px 18px;border-radius:14px;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .25s;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);display:inline-flex;align-items:center;gap:8px}
@@ -44,7 +44,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
 /* ── Toggle Switch (Store Open/Close) ── */
 .toggle-switch{position:relative;width:52px;height:28px;background:rgba(255,255,255,.15);border-radius:14px;cursor:pointer;transition:.3s}
-.toggle-switch.active{background:linear-gradient(135deg,#00b09b,#06d6a0);box-shadow:0 0 15px rgba(0,214,160,.4)}
+.toggle-switch.active{background:linear-gradient(135deg, #ff7828, #f95700);box-shadow:0 0 15px rgba(0,214,160,.4)}
 .toggle-slider{position:absolute;top:3px;right:3px;width:22px;height:22px;background:#fff;border-radius:50%;transition:.3s}
 .toggle-switch.active .toggle-slider{transform:translateX(-24px)}
 
@@ -77,8 +77,8 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <div>
         <div class="flex items-center gap-2 flex-wrap">
           <select id="merchant-store-select" onchange="changeActiveMerchantStore(this.value)" class="input-glass rounded-xl px-2.5 py-1 text-xs font-black text-amber-300 bg-slate-900 border border-amber-400/40 cursor-pointer shadow-md">
-            <option value="baz">مشويات الباز والحسينية</option>
-            <option value="broast">بروست الحسينية</option>
+            <option value="baz">مشويات الباز الريفية</option>
+            <option value="broast">بروستد أرياف</option>
             <option value="fish">أسماك بحري</option>
             <option value="pizza">بيتزا وفطائر السلطان</option>
             <option value="falafel">فلافل المدينة</option>
@@ -89,7 +89,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold">بائع معتمد <i class="fa-solid fa-circle-check text-emerald-400"></i></span>
           <span id="admin-badge-indicator" class="hidden text-[10px] px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-bold border border-amber-400/30"><i class="fa-solid fa-crown text-amber-300"></i> صلاحية المدير العام</span>
         </div>
-        <div id="merchant-store-address" class="text-[11px] text-white/50 mt-0.5">شارع المركز أمام بنك مصر، الحسينية</div>
+        <div id="merchant-store-address" class="text-[11px] text-white/50 mt-0.5">شارع المركز أمام بنك مصر، أرياف</div>
       </div>
     </div>
 
@@ -140,7 +140,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
             <h3 class="text-sm sm:text-base font-black text-white">إدارة المطاعم والخدمات الموحدة (صلاحية المدير العام)</h3>
             <span class="px-2.5 py-0.5 rounded-full bg-amber-400 text-black text-[10px] font-black">All Stores Admin</span>
           </div>
-          <p class="text-xs text-white/70 mt-0.5">لديك كامل الصلاحيات لتعديل المنيو والأسعار، وإضافة أصناف جديدة، وإدارة الطلبات الواردة لجميع مطاعم الحسينية المتاحة.</p>
+          <p class="text-xs text-white/70 mt-0.5">لديك كامل الصلاحيات لتعديل المنيو والأسعار، وإضافة أصناف جديدة، وإدارة الطلبات الواردة لجميع مطاعم أرياف المتاحة.</p>
         </div>
       </div>
       <div class="w-full lg:w-auto">
@@ -174,7 +174,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="glass-card rounded-2xl p-4 sm:p-5">
       <div class="text-white/40 text-xs mb-1">متوسط وقت التجهيز</div>
       <div class="text-xl sm:text-2xl font-black text-white" id="metric-time">15 دقيقة</div>
-      <div class="text-[10px] text-emerald-400 mt-1 font-semibold">تجهيز سريع في الحسينية</div>
+      <div class="text-[10px] text-emerald-400 mt-1 font-semibold">تجهيز سريع في أرياف</div>
     </div>
     <div class="glass-card rounded-2xl p-4 sm:p-5">
       <div class="text-white/40 text-xs mb-1">تقييم الزبائن</div>
@@ -219,7 +219,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <div id="no-merchant-orders" class="text-center py-12 text-white/50 glass-card rounded-3xl p-8">
         <div class="text-4xl mb-3 text-amber-400"><i class="fa-solid fa-kitchen-set"></i></div>
         <h3 class="text-base font-bold text-white mb-1">لا توجد طلبات واردة في المطبخ حالياً</h3>
-        <p class="text-xs text-white/40 max-w-sm mx-auto leading-relaxed">عند قيام أي عميل بطلب وجبة من مطاعم الحسينية ستصلك هنا فورياً مع تنبيه صوتي وتفاصيل الأصناف بدقة.</p>
+        <p class="text-xs text-white/40 max-w-sm mx-auto leading-relaxed">عند قيام أي عميل بطلب وجبة من مطاعم أرياف ستصلك هنا فورياً مع تنبيه صوتي وتفاصيل الأصناف بدقة.</p>
       </div>
     </div>
   </div>
@@ -232,7 +232,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <span id="menu-store-name-title">أصناف وجبات مشويات الباز</span>
           <span id="menu-items-count-badge" class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold"></span>
         </h2>
-        <p class="text-xs text-white/50">يمكنك تعديل الأسعار، تغيير التوفر، أو إضافة أصناف جديدة لأي مطعم بالحسينية</p>
+        <p class="text-xs text-white/50">يمكنك تعديل الأسعار، تغيير التوفر، أو إضافة أصناف جديدة لأي مطعم في أرياف</p>
       </div>
       <button onclick="openAddItemModal()" class="btn-primary px-4 py-2.5 rounded-xl text-xs font-bold">
         + إضافة وجبة جديدة للقائمة
@@ -247,7 +247,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
   <!-- ═══ 3. FINANCIAL & SALES REPORT TAB ═══ -->
   <div id="tab-sales-report" class="hidden space-y-6">
     <div class="glass-card rounded-3xl p-6">
-      <h3 class="text-base font-bold mb-4">تقرير أرباح هذا الأسبوع (الحسينية)</h3>
+      <h3 class="text-base font-bold mb-4">تقرير أرباح هذا الأسبوع (أرياف والمراكز)</h3>
       <div class="h-44 rounded-2xl bg-white/[0.02] border border-white/5 p-4 flex flex-col items-center justify-center text-center">
         <span class="text-3xl mb-2 text-cyan-400"><i class="fa-solid fa-chart-line"></i></span>
         <span class="text-xs text-white/50 font-bold">لا توجد مبيعات أو أرباح مسجلة لهذا الأسبوع حتى الآن</span>
@@ -296,7 +296,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       </div>
     </div>
     <button onclick="saveNewItem()" class="btn-primary w-full py-3 rounded-xl text-xs font-bold">
-      حفظ ونشر الوجبة في منيو الحسينية <i class="fa-solid fa-paper-plane mr-1"></i>
+      حفظ ونشر الوجبة في منيو أرياف <i class="fa-solid fa-paper-plane mr-1"></i>
     </button>
   </div>
 </div>
@@ -350,7 +350,7 @@ function applyActiveStoreUI(storeKey) {
   if (imgEl && store.avatar) imgEl.src = store.avatar;
 
   var addrEl = document.getElementById('merchant-store-address');
-  if (addrEl) addrEl.textContent = store.address || 'الحسينية — الشرقية';
+  if (addrEl) addrEl.textContent = store.address || 'أرياف ومراكزها';
 
   var previewLink = document.getElementById('preview-customer-link');
   if (previewLink) previewLink.href = 'husayniya-store.html?store=' + storeKey;
@@ -439,7 +439,7 @@ function renderStoreMenuItems(storeKey) {
         '<div class="flex-1 min-w-0">' +
           '<h4 class="font-bold text-sm text-white truncate">' + item.title + '</h4>' +
           '<div class="text-xs text-emerald-400 font-black mt-0.5" id="item-price-' + item.id + '">' + price + ' ج.م</div>' +
-          '<p class="text-[11px] text-white/50 line-clamp-2 mt-1 leading-relaxed">' + (item.desc || 'وجبة طازجة من مطاعم الحسينية') + '</p>' +
+          '<p class="text-[11px] text-white/50 line-clamp-2 mt-1 leading-relaxed">' + (item.desc || 'وجبة طازجة من مطاعم أرياف') + '</p>' +
         '</div>' +
       '</div>' +
       '<div class="pt-3 border-t border-white/10 flex items-center justify-between gap-2 text-xs">' +
@@ -581,9 +581,9 @@ function renderIncomingOrderCard(order) {
 
   var code = order.order_code || ('ORD-' + Math.floor(1000 + Math.random() * 9000));
   var total = order.total_amount ? Number(order.total_amount).toFixed(2) : '0.00';
-  var customer = order.customer_name || 'عميل الحسينية';
-  var address = order.delivery_address || 'شارع المركز، الحسينية';
-  var storeName = order.store_name || (window.STORES_DATABASE[activeStoreKey] ? window.STORES_DATABASE[activeStoreKey].name : 'مطعم الحسينية');
+  var customer = order.customer_name || 'عميل أرياف';
+  var address = order.delivery_address || 'شارع المركز، أرياف';
+  var storeName = order.store_name || (window.STORES_DATABASE[activeStoreKey] ? window.STORES_DATABASE[activeStoreKey].name : 'مطعم أرياف');
   var itemsText = (Array.isArray(order.items) && order.items.length > 0)
     ? order.items.map(function(it) { return (it.title || it.name || 'صنف') + ' × ' + (it.qty || 1); }).join(' + ')
     : 'أصناف مختارة من المنيو';

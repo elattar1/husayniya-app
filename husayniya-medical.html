@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>الدليل الطبي وحجز العيادات — خدمات الحسينية (الشرقية)</title>
+<title>الدليل الطبي وحجز العيادات — عيادات أرياف - ARYAF</title>
 <link rel="stylesheet" href="theme.css"/>
 <script src="theme.js"></script>
 <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background: #060b18;color:#fff;overflow-x:hidden;min-height:100vh;direction:rtl}
 
 /* ── Background Scene ── */
 .bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35;animation:drift 18s ease-in-out infinite alternate}
-.o1{width:600px;height:600px;background:radial-gradient(circle,#00b09b,#045353);top:-150px;right:-150px}
-.o2{width:500px;height:500px;background:radial-gradient(circle,#f7971e,#e4a832);bottom:-150px;left:-150px;animation-delay:-6s}
-.o3{width:400px;height:400px;background:radial-gradient(circle,#667eea,#764ba2);top:40%;left:30%;animation-delay:-10s}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#05d6a0,#045340);top:-150px;right:-150px}
+.o2{width:500px;height:500px;background:radial-gradient(circle,#ff7828,#9a3412);bottom:-150px;left:-150px;animation-delay:-6s}
+.o3{width:400px;height:400px;background:radial-gradient(circle,#1e293b,#060b18);top:40%;left:30%;animation-delay:-10s}
 @keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-15px) scale(1.05)}100%{transform:translate(-20px,20px) scale(.95)}}
 
 .page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
@@ -27,15 +27,15 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 .glass-card:hover{border-color:rgba(0,176,155,.45);box-shadow:0 14px 40px rgba(0,176,155,.15);transform:translateY(-3px)}
 
 /* ── Gradients ── */
-.gt{background:linear-gradient(135deg,#00e5c8 0%,#43cea2 45%,#f7c948 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gt{background:linear-gradient(135deg, #05d6a0 0%, #00e5c8 35%, #ff8a3d 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .gt-gold{background:linear-gradient(135deg,#f7c948,#f7971e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* ── Buttons ── */
-.btn-primary{background:linear-gradient(135deg,#00b09b,#06d6a0);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
+.btn-primary{background:linear-gradient(135deg, #ff7828, #f95700);border:none;cursor:pointer;position:relative;overflow:hidden;transition:all .3s ease;color:#fff;font-weight:700}
 .btn-primary:hover{transform:scale(1.02);box-shadow:0 0 25px rgba(0,176,155,.45)}
 
 .btn-book{background:rgba(0,176,155,.18);border:1px solid rgba(0,176,155,.5);color:#00e5c8;font-weight:700;border-radius:12px;padding:8px 16px;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:6px}
-.btn-book:hover{background:linear-gradient(135deg,#00b09b,#06d6a0);color:#fff;box-shadow:0 0 16px rgba(0,176,155,.4);transform:scale(1.04)}
+.btn-book:hover{background:linear-gradient(135deg, #ff7828, #f95700);color:#fff;box-shadow:0 0 16px rgba(0,176,155,.4);transform:scale(1.04)}
 
 /* ── Filter Chips ── */
 .med-chip{padding:9px 18px;border-radius:14px;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .25s;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);white-space:nowrap}
@@ -76,7 +76,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl glass flex items-center justify-center font-bold text-sm flex-shrink-0">←</div>
       <div class="min-w-0">
         <span class="text-[10px] sm:text-xs text-emerald-400 font-semibold block leading-tight">الرئيسية</span>
-        <div class="text-xs sm:text-sm font-bold truncate max-w-[140px] sm:max-w-none">خدمات الحسينية (الشرقية)</div>
+        <div class="text-xs sm:text-sm font-extrabold flex items-center gap-1.5"><span class="gt">أرياف</span><span class="text-[10px] px-1.5 py-0.5 rounded bg-[#05d6a0]/20 text-[#05d6a0] font-black border border-[#05d6a0]/30">ARYAF</span></div>
       </div>
     </a>
 
@@ -100,10 +100,10 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="max-w-2xl relative z-10">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold mb-4">
         <i class="fa-solid fa-stethoscope"></i>
-        <span>دليل الأطباء والعيادات التخصصية بمركز الحسينية</span>
+        <span>دليل الأطباء والعيادات التخصصية في أرياف ومراكزها</span>
       </div>
       <h1 class="text-2xl sm:text-4xl font-black leading-tight mb-3">
-        احجز كشفك الطبي بسهولة<br/><span class="gt">مع نخبة أطباء الحسينية والشرقية</span>
+        احجز كشفك الطبي بسهولة<br/><span class="gt">مع نخبة أطباء أرياف والمراكز</span>
       </h1>
       <p class="text-xs sm:text-sm text-white/60 mb-6 leading-relaxed">
         تصفح مواعيد الأطباء، العيادات الخاصة، مراكز الأشعة، والتحاليل بشارع المستشفى، شارع بورسعيد، وشارع المركز، واحجز موعدك فوراً بدون انتظار.
@@ -160,7 +160,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3 rounded-2xl">
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-location-dot text-emerald-400"></i>
-            <span>الحسينية — شارع المركز أمام مجلس المدينة</span>
+            <span>أرياف — شارع المركز أمام مجلس المدينة</span>
           </div>
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-clock text-amber-400"></i>
@@ -199,7 +199,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3 rounded-2xl">
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-location-dot text-emerald-400"></i>
-            <span>الحسينية — شارع المستشفى المركزي</span>
+            <span>أرياف — شارع المستشفى المركزي</span>
           </div>
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-clock text-amber-400"></i>
@@ -238,7 +238,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3 rounded-2xl">
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-location-dot text-emerald-400"></i>
-            <span>الحسينية — شارع بورسعيد فوق صيدلية العزازي</span>
+            <span>أرياف — شارع بورسعيد فوق صيدلية العزازي</span>
           </div>
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-clock text-amber-400"></i>
@@ -277,7 +277,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3 rounded-2xl">
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-location-dot text-emerald-400"></i>
-            <span>الحسينية — شارع المدارس بجوار بنك القاهرة</span>
+            <span>أرياف — شارع المدارس بجوار بنك القاهرة</span>
           </div>
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-clock text-amber-400"></i>
@@ -296,13 +296,13 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
 
     <!-- Facility 5: مركز أشعة وتحاليل -->
-    <div class="doctor-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-specialty="labs" data-name="مركز الحسينية للأشعة ومعامل البرج">
+    <div class="doctor-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-specialty="labs" data-name="مركز أرياف للأشعة ومعامل البرج">
       <div>
         <div class="flex items-start gap-4 mb-4">
-          <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=300&q=80" alt="مركز الحسينية للأشعة" class="w-16 h-16 rounded-2xl object-cover shadow-lg border border-white/15 flex-shrink-0" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=300&q=80" alt="مركز أرياف للأشعة" class="w-16 h-16 rounded-2xl object-cover shadow-lg border border-white/15 flex-shrink-0" loading="lazy" />
           <div>
             <div class="flex items-center gap-2">
-              <h3 class="font-bold text-base text-white">مركز الحسينية للأشعة والتحاليل</h3>
+              <h3 class="font-bold text-base text-white">مركز أرياف للأشعة والتحاليل</h3>
               <span class="text-[10px] px-2 py-0.5 rounded bg-pink-500/20 text-pink-300 font-bold">معمل ومركز أشعة</span>
             </div>
             <p class="text-xs text-emerald-400 font-semibold mt-0.5">أشعة مقطعية، موجات صوتية، دوبلر، وسحب عينات منزلي</p>
@@ -316,7 +316,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3 rounded-2xl">
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-location-dot text-emerald-400"></i>
-            <span>الحسينية — شارع بورسعيد بجوار بنك مصر</span>
+            <span>أرياف — شارع بورسعيد بجوار بنك مصر</span>
           </div>
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-clock text-amber-400"></i>
@@ -324,24 +324,24 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           </div>
           <div class="flex items-center gap-2 text-emerald-300 font-bold">
             <i class="fa-solid fa-car text-blue-400"></i>
-            <span>متوفر خدمة إرسال فني لسحب العينات من المنزل بالحسينية</span>
+            <span>متوفر خدمة إرسال فني لسحب العينات من المنزل في أرياف</span>
           </div>
         </div>
       </div>
 
-      <button onclick="openBookingModal('مركز الحسينية للأشعة', 'فحوصات وأشعة وسحب عينات', 'حسب التحليل', 'شارع بورسعيد بجوار بنك مصر')" class="btn-book w-full justify-center py-2.5">
+      <button onclick="openBookingModal('مركز أرياف للأشعة', 'فحوصات وأشعة وسحب عينات', 'حسب التحليل', 'شارع بورسعيد بجوار بنك مصر')" class="btn-book w-full justify-center py-2.5">
         <span><i class="fa-solid fa-calendar-check ml-1"></i> حجز فحص أو سحب عينة</span>
       </button>
     </div>
 
-    <!-- Facility 6: مستشفى الحسينية المركزي -->
-    <div class="doctor-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-specialty="internal" data-name="مستشفى الحسينية المركزي">
+    <!-- Facility 6: مستشفى أرياف المركزي -->
+    <div class="doctor-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-specialty="internal" data-name="مستشفى أرياف المركزي">
       <div>
         <div class="flex items-start gap-4 mb-4">
-          <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=300&q=80" alt="مستشفى الحسينية المركزي" class="w-16 h-16 rounded-2xl object-cover shadow-lg border border-white/15 flex-shrink-0" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=300&q=80" alt="مستشفى أرياف المركزي" class="w-16 h-16 rounded-2xl object-cover shadow-lg border border-white/15 flex-shrink-0" loading="lazy" />
           <div>
             <div class="flex items-center gap-2">
-              <h3 class="font-bold text-base text-white">مستشفى الحسينية المركزي</h3>
+              <h3 class="font-bold text-base text-white">مستشفى أرياف المركزي</h3>
               <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">طوارئ 24/7</span>
             </div>
             <p class="text-xs text-emerald-400 font-semibold mt-0.5">طوارئ عامة، حضانات، بنك دم، غسيل كلوي، وعيادات خارجية</p>
@@ -355,7 +355,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3 rounded-2xl">
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-location-dot text-emerald-400"></i>
-            <span>الحسينية — شارع المستشفى والمعهد الديني</span>
+            <span>أرياف — شارع المستشفى والمعهد الديني</span>
           </div>
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-clock text-amber-400"></i>
@@ -377,7 +377,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
   <!-- Footer Clearance -->
   <footer class="mt-12 pt-6 pb-8 border-t border-white/10 text-center text-xs text-white/40">
-    <p>دليل أطباء وعيادات الحسينية — خدمة طبية متكاملة لأهالي مركز الحسينية</p>
+    <p>دليل أطباء وعيادات أرياف — خدمة طبية متكاملة لجميع الأهالي</p>
   </footer>
 
 </main>

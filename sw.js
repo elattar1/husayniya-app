@@ -1,9 +1,9 @@
 /**
- * خدمات الحسينية — ملف Service Worker المحدث
+ * أرياف - ARYAF — ملف Service Worker المحدث
  * استراتيجية: Network-First (جلب أحدث التحديثات دائماً من الإنترنت مع حفظ نسخة للطوارئ فقط)
  */
 
-const CACHE_NAME = 'husayniya-v28-fontawesome-icons';
+const CACHE_NAME = 'aryaf-v29-rebrand-deepnavy-mint';
 
 self.addEventListener('install', (event) => {
   // التفعيل الفوري للنسخة الجديدة دون انتظار إغلاق التبويبات
@@ -72,7 +72,7 @@ self.addEventListener('notificationclick', (event) => {
 });
 
 self.addEventListener('push', (event) => {
-  let data = { title: 'خدمات الحسينية', body: 'تحديث جديد بخصوص طلبك!' };
+  let data = { title: 'أرياف - ARYAF', body: 'تحديث جديد بخصوص طلبك من منصة أرياف!' };
   if (event.data) {
     try {
       data = event.data.json();

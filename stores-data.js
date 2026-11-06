@@ -1,19 +1,19 @@
 /**
- * خدمات الحسينية — قاعدة بيانات المطاعم والمتاجر المشتركة
+ * أرياف - ARYAF — قاعدة بيانات المطاعم والمتاجر المشتركة
  */
 window.STORES_DATABASE = {
   // ── 1. مشويات الباز ──
   'baz': {
     id: 'baz',
-    name: 'مشويات الباز والحسينية — كباب وكفتة بلدي',
+    name: 'مشويات الباز الريفية — كباب وكفتة بلدي',
     tagline: 'أشهى المشويات المصرية، كباب وكفتة حاتي، طرب، حمام محشي، وطواجن فرن بلدي',
     category: 'مشويات وأكلات بلدية',
     statusBadge: '● مفتوح الآن',
-    featureBadge: 'خيار الحسينية الأول',
+    featureBadge: 'خيار أرياف الأول',
     rating: '4.9',
     reviewsCount: '(+1,420 تقييم)',
     deliveryTime: '25 - 35 دقيقة',
-    address: 'شارع المركز أمام بنك مصر، الحسينية',
+    address: 'شارع المركز أمام بنك مصر، أرياف',
     deliveryFee: '15 ج.م',
     minOrder: '50 ج.م',
     paymentMethods: 'كاش • فودافون كاش • إنستاباي',
@@ -98,7 +98,7 @@ window.STORES_DATABASE = {
       },
       {
         id: 'baz-7',
-        title: 'عصير قصب / برتقال فريش من الحسينية',
+        title: 'عصير قصب / برتقال فريش من مزارع أرياف',
         price: 25,
         desc: 'عصير طبيعي فريش بارد ينعشك بعد الأكل في علبة محكمة الإغلاق.',
         image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80',
@@ -109,7 +109,7 @@ window.STORES_DATABASE = {
       }
     ],
     reviews: [
-      { author: 'أحمد الشرقاوي (شارع المركز)', text: 'أفضل كباب وكفتة في الحسينية، اللحمة بلدي طازة والتوصيل وصل في نص ساعة سخن ملهلب!', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يومين' },
+      { author: 'أحمد الشرقاوي (شارع المركز)', text: 'أفضل كباب وكفتة في أرياف، اللحمة بلدي طازة والتوصيل وصل في نص ساعة سخن ملهلب!', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يومين' },
       { author: 'د. محمود سليم (سعود)', text: 'الطرب والكفتة المشوية ريحتهم تجنن والتغليف محترم جداً.. استمروا على هذا المستوى الممتاز.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ 4 أيام' },
       { author: 'الحاج إبراهيم منصور', text: 'طاجن اللحمة بالبصل حكاية، تسلم إيدكم وتوصيل سريع ومحترم.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ أسبوع' }
     ]
@@ -126,7 +126,7 @@ window.STORES_DATABASE = {
     rating: '4.8',
     reviewsCount: '(+980 تقييم)',
     deliveryTime: '15 - 25 دقيقة',
-    address: 'شارع المركز أمام مجمع المحاكم، الحسينية',
+    address: 'شارع المركز أمام مجمع المحاكم، أرياف',
     deliveryFee: '10 ج.م',
     minOrder: '30 ج.م',
     paymentMethods: 'كاش • محافظ إلكترونية • إنستاباي',
@@ -233,7 +233,7 @@ window.STORES_DATABASE = {
     ],
     reviews: [
       { author: 'محمد يوسف (بحر البقر)', text: 'طاجن اللحمة المفرومة والكشري سخنين جداً والتقلية مقرمشة وزيت نقي!', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يوم' },
-      { author: 'كريم عبد الله (شارع المركز)', text: 'أحلى طاجن مكرونة فراخ بالموزاريلا في الحسينية، وسرعة في التوصيل ما شاء الله.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ 3 أيام' }
+      { author: 'كريم عبد الله (شارع المركز)', text: 'أحلى طاجن مكرونة فراخ بالموزاريلا في أرياف، وسرعة في التوصيل ما شاء الله.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ 3 أيام' }
     ]
   },
 
@@ -248,7 +248,7 @@ window.STORES_DATABASE = {
     rating: '4.7',
     reviewsCount: '(+840 تقييم)',
     deliveryTime: '20 - 30 دقيقة',
-    address: 'شارع المدارس أمام مدرسة التجارة، الحسينية',
+    address: 'شارع المدارس أمام مدرسة التجارة، أرياف',
     deliveryFee: '12 ج.م',
     minOrder: '40 ج.م',
     paymentMethods: 'كاش • محافظ إلكترونية • إنستاباي',
@@ -355,7 +355,7 @@ window.STORES_DATABASE = {
     ],
     reviews: [
       { author: 'عمر الخالد (شارع المدارس)', text: 'كريب الزنجر الكرانشي مقرمش وساخن جداً وجبنة بتمط لحد السقف!', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'أمس' },
-      { author: 'سارة إبراهيم', text: 'البيتزا عجينتها هشة وخفيفة ومش تقيلة، أفضل مطعم بيتزا بالحسينية بلا منازع.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يومين' }
+      { author: 'سارة إبراهيم', text: 'البيتزا عجينتها هشة وخفيفة ومش تقيلة، أفضل مطعم بيتزا في أرياف بلا منازع.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يومين' }
     ]
   },
 
@@ -370,7 +370,7 @@ window.STORES_DATABASE = {
     rating: '4.9',
     reviewsCount: '(+1,150 تقييم)',
     deliveryTime: '15 - 25 دقيقة',
-    address: 'شارع المركز بجوار بنك مصر، الحسينية',
+    address: 'شارع المركز بجوار بنك مصر، أرياف',
     deliveryFee: '10 ج.م',
     minOrder: '50 ج.م',
     paymentMethods: 'كاش • محافظ إلكترونية • إنستاباي',
@@ -488,11 +488,11 @@ window.STORES_DATABASE = {
     tagline: 'أشهى فلافل مقرمشة محشية، فول مدمس فلاحي بالزيت الحار والطحينة، مسقعة بلدي، وباذنجان مخلل',
     category: 'فطور شعبي ومأكولات صباحية',
     statusBadge: '● مفتوح الآن',
-    featureBadge: 'فطار الحسينية الأصيل',
+    featureBadge: 'فطار أرياف الأصيل',
     rating: '4.9',
     reviewsCount: '(+1,320 تقييم)',
     deliveryTime: '10 - 20 دقيقة',
-    address: 'شارع ترعة سراج أمام المعهد الديني، الحسينية',
+    address: 'شارع ترعة سراج أمام المعهد الديني، أرياف',
     deliveryFee: '10 ج.م',
     minOrder: '25 ج.م',
     paymentMethods: 'كاش • محافظ إلكترونية • إنستاباي',
@@ -598,15 +598,15 @@ window.STORES_DATABASE = {
       }
     ],
     reviews: [
-      { author: 'الحاج عاطف عبد الحميد (سراج)', text: 'أحسن فلافل بالجبنة الكيري ممكن تاكلها في حياتك، فول البرنس رقم واحد في الحسينية.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'اليوم' },
+      { author: 'الحاج عاطف عبد الحميد (سراج)', text: 'أحسن فلافل بالجبنة الكيري ممكن تاكلها في حياتك، فول البرنس رقم واحد في أرياف.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'اليوم' },
       { author: 'أحمد بدوي', text: 'سرعة توصيل الفطار في الصبح ممتازة، الأكل بيوصل سخن والعيش طازة.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يومين' }
     ]
   },
 
-  // ── 6. بروستد وشاورما الحسينية ──
+  // ── 6. بروستد وشاورما أرياف ──
   'broast': {
     id: 'broast',
-    name: 'بروستد وشاورما الحسينية — كريسبي ووجبات عائلية',
+    name: 'بروستد وشاورما أرياف — كريسبي ووجبات عائلية',
     tagline: 'دجاج مقرمش بخلطة الأعشاب السرية، فتة شاورما سوري، برجر ع الفحم، كول سلو وتومية بيضاء أصلية',
     category: 'بروستد وشاورما فاست فود',
     statusBadge: '● مفتوح الآن',
@@ -614,7 +614,7 @@ window.STORES_DATABASE = {
     rating: '4.8',
     reviewsCount: '(+1,580 تقييم)',
     deliveryTime: '20 - 35 دقيقة',
-    address: 'شارع المركز بجوار بنك الإسكندرية، الحسينية',
+    address: 'شارع المركز بجوار بنك الإسكندرية، أرياف',
     deliveryFee: '12 ج.م',
     minOrder: '50 ج.م',
     paymentMethods: 'كاش • فودافون كاش • إنستاباي',
@@ -699,14 +699,14 @@ window.STORES_DATABASE = {
     ],
     reviews: [
       { author: 'طارق صلاح الدين', text: 'البروستد طعمه خطير ومقرمش من برة وطري جداً من جوة، والتومية مظبوطة 10/10.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'اليوم' },
-      { author: 'حسام خليل', text: 'أحلى فتة شاورما فراخ في الحسينية، كمية محترمة وطعم سوري أصيل.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يومين' }
+      { author: 'حسام خليل', text: 'أحلى فتة شاورما فراخ في أرياف، كمية محترمة وطعم سوري أصيل.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يومين' }
     ]
   },
 
-  // ── 7. أسماك وسيفود الحسينية ──
+  // ── 7. أسماك وسيفود أرياف ──
   'fish': {
     id: 'fish',
-    name: 'أسماك وسيفود الحسينية — القنال والبردويل',
+    name: 'أسماك وسيفود أرياف — القنال والبردويل',
     tagline: 'أطازج أسماك البحر والبحيرات، جمبري مشوي ومقلي، بوري مشوي زيت وليمون، وطواجن سيفود بالموتزاريلا',
     category: 'مأكولات بحرية وسيفود',
     statusBadge: '● مفتوح الآن',
@@ -714,7 +714,7 @@ window.STORES_DATABASE = {
     rating: '4.9',
     reviewsCount: '(+1,240 تقييم)',
     deliveryTime: '25 - 40 دقيقة',
-    address: 'شارع جمال عبد الناصر أمام مجمع المصالح، الحسينية',
+    address: 'شارع جمال عبد الناصر أمام مجمع المصالح، أرياف',
     deliveryFee: '15 ج.م',
     minOrder: '60 ج.م',
     paymentMethods: 'كاش • فودافون كاش • إنستاباي',
@@ -799,7 +799,7 @@ window.STORES_DATABASE = {
     ],
     reviews: [
       { author: 'الدكتور عصام النجار', text: 'طاجن السيفود بالوايت صوص حكاية لا تفوت، السمك طازة جداً ورائحته تفتح النفس.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'أمس' },
-      { author: 'محمود عبد السلام', text: 'الجمبري المشوي مستوي صح والشوربة غنية جداً، أحسن مطعم سمك دخل الحسينية.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ 3 أيام' }
+      { author: 'محمود عبد السلام', text: 'الجمبري المشوي مستوي صح والشوربة غنية جداً، أحسن مطعم سمك في أرياف.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ 3 أيام' }
     ]
   },
 
@@ -814,7 +814,7 @@ window.STORES_DATABASE = {
     rating: '4.8',
     reviewsCount: '(+910 تقييم)',
     deliveryTime: '15 - 25 دقيقة',
-    address: 'شارع بورسعيد أمام مدرسة الصنايع، الحسينية',
+    address: 'شارع بورسعيد أمام مدرسة الصنايع، أرياف',
     deliveryFee: '10 ج.م',
     minOrder: '40 ج.م',
     paymentMethods: 'كاش • فودافون كاش • إنستاباي',
@@ -920,7 +920,7 @@ window.STORES_DATABASE = {
       }
     ],
     reviews: [
-      { author: 'المهندس كريم شريف', text: 'أفضل سوبر ماركت في الحسينية، الطلب وصلني خلال ربع ساعة وكل الحاجات طازة وتاريخ صلاحيتها جديد.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'اليوم' },
+      { author: 'المهندس كريم شريف', text: 'أفضل سوبر ماركت في أرياف، الطلب وصلني خلال ربع ساعة وكل الحاجات طازة وتاريخ صلاحيتها جديد.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'اليوم' },
       { author: 'أم زياد (شارع بورسعيد)', text: 'الأجبان والبيض عندهم دايماً طازة ومغلفة بشكل ممتاز، وتوصيل الدليفري محترم جداً.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يومين' }
     ]
   }
