@@ -457,6 +457,10 @@
             }
           });
           if (error) throw error;
+          if (data && data.url) {
+            window.location.href = data.url;
+            return { success: true, redirecting: true, data };
+          }
           return { success: true, data };
         } catch (err) {
           console.warn('⚠️ Supabase Google OAuth error:', err);

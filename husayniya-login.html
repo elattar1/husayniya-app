@@ -378,12 +378,20 @@ async function handleGoogleSignIn() {
     const result = await window.HusayniyaCloud.signInWithGoogle(customRedirect);
 
     if (result && result.success) {
+      if (result.redirecting) {
+        showAlert('جاري توجيهك إلى صفحة تسجيل دخول Google الرسمية... 🌐', 'info');
+        return;
+      }
       if (result.local) {
         showAlert('تم تسجيل الدخول بحساب Google بنجاح! جاري تحويلك...', 'success');
         finishLoginRedirect();
       }
     } else {
-      // Immediate seamless fallback so user never gets stuck
+      // Show notice and fallback gracefully
+      const isProviderDisabled = result && result.error && result.error.includes('provider');
+      if (isProviderDisabled) {
+        showAlert('تنبيه: مزود Google غير مفعل بعد في لوحة Supabase. جاري تسجيل دخولك بحساب معتمد لتجربة المنصة...', 'info');
+      }
       confirmDemoGoogleLogin();
     }
   } catch (err) {
