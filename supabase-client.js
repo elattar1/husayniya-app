@@ -25,18 +25,21 @@
   class HusayniyaCloudEngine {
     constructor() {
       // One-time clean wipe of old accounts, mock orders, and assign Super Admin to the first user
-      if (!localStorage.getItem('husayniya_wipe_v4_done')) {
-        console.log('🧹 [Husayniya Cloud] مسح كافة الحسابات والطلبات التجريبية وتصفير النظام بالكامل...');
+      if (!localStorage.getItem('husayniya_wipe_v5_done')) {
+        console.log('🧹 [Husayniya Cloud] مسح كافة الحسابات والطلبات التجريبية وتصفير النظام ورصيد المحافظ بالكامل...');
         localStorage.removeItem('husayniya_registered_users');
         localStorage.removeItem('husayniya_current_user');
         localStorage.removeItem('husayniya_admin_claimed');
         localStorage.removeItem('husayniya_admin_user_id');
         localStorage.removeItem('husayniya_admin_email');
         localStorage.removeItem('husayniya_admin_name');
+        localStorage.removeItem('husayniya_wallet_balance');
+        localStorage.removeItem('husayniya_driver_wallet');
+        localStorage.removeItem('husayniya_merchant_wallet');
         localStorage.removeItem(STORAGE_KEYS.ORDERS);
         localStorage.removeItem('last_order_code');
         localStorage.removeItem('husayniya_cart');
-        localStorage.setItem('husayniya_wipe_v4_done', 'true');
+        localStorage.setItem('husayniya_wipe_v5_done', 'true');
       }
 
       this.supabaseUrl = localStorage.getItem(STORAGE_KEYS.URL) || DEFAULT_CONFIG.URL;
