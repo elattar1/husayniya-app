@@ -154,6 +154,35 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <!-- ══════════════════ MAIN CONTENT ══════════════════ -->
 <main class="max-w-6xl mx-auto px-3 sm:px-6 py-4 sm:py-8 pb-32 sm:pb-16 flex-1 w-full overflow-hidden">
 
+  <!-- Empty State Container when no active order is being delivered -->
+  <div id="no-order-state" class="hidden glass-card rounded-3xl p-8 sm:p-12 text-center max-w-xl mx-auto my-8 border border-white/10 space-y-5">
+    <div class="w-20 h-20 rounded-3xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-4xl mx-auto border border-emerald-500/20">
+      🛵
+    </div>
+    <h2 class="text-xl sm:text-2xl font-black text-white">لا توجد طلبات جارية قيد التوصيل</h2>
+    <p class="text-xs sm:text-sm text-white/60 leading-relaxed max-w-md mx-auto">
+      لم تقم بإجراء أي طلب حالياً، أو تم تسليم طلباتك السابقة بنجاح. تصفح أشهى مطاعم الحسينية واطلب وجبتك المفضلة لتتبع خط سير الكابتن فورياً على الخريطة!
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+      <a href="husayniya-restaurants.html" class="btn-primary w-full sm:w-auto px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold no-underline">
+        🍔 تصفح المطاعم واطلب الآن
+      </a>
+      <a href="husayniya-account.html" class="glass w-full sm:w-auto px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold text-white/70 hover:text-white no-underline">
+        📦 مراجعة سجل طلباتي
+      </a>
+    </div>
+    <!-- Order Search by Code -->
+    <div class="pt-5 border-t border-white/10 max-w-sm mx-auto text-xs">
+      <label class="block text-white/50 mb-2 font-semibold">أو أدخل كود أي طلب سابق للتتبع:</label>
+      <div class="flex gap-2">
+        <input id="search-order-input" type="text" placeholder="مثال: ORD-7380" class="input-glass flex-1 rounded-xl px-3 py-2.5 text-center font-mono uppercase text-xs" />
+        <button onclick="searchOrderByCode()" class="btn-primary px-4 py-2.5 rounded-xl font-bold text-xs">بحث وتتبع</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Active Tracking View Container -->
+  <div id="active-tracking-content">
   <!-- Header Banner -->
   <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
     <div>
@@ -343,6 +372,8 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
 
   </div>
+
+  </div><!-- #active-tracking-content -->
 
   <!-- Footer Clearance -->
   <footer class="mt-12 pt-6 pb-8 border-t border-white/10 text-center text-xs text-white/40">
@@ -624,6 +655,27 @@ function updateTrackingUI(order) {
   }
 }
 
+function showActiveTracking() {
+  const activeEl = document.getElementById('active-tracking-content');
+  const emptyEl = document.getElementById('no-order-state');
+  if (activeEl) activeEl.classList.remove('hidden');
+  if (emptyEl) emptyEl.classList.add('hidden');
+}
+
+function showEmptyTrackingState() {
+  const activeEl = document.getElementById('active-tracking-content');
+  const emptyEl = document.getElementById('no-order-state');
+  if (activeEl) activeEl.classList.add('hidden');
+  if (emptyEl) emptyEl.classList.remove('hidden');
+}
+
+function searchOrderByCode() {
+  const input = document.getElementById('search-order-input')?.value.trim();
+  if (input) {
+    window.location.search = '?order=' + encodeURIComponent(input.replace(/^#/, ''));
+  }
+}
+
 async function initTracking() {
   const urlParam = new URLSearchParams(window.location.search).get('order');
   const targetCode = urlParam || localStorage.getItem('last_order_code') || '';
@@ -634,12 +686,15 @@ async function initTracking() {
       if (orders && orders.length > 0) {
         let found = null;
         if (targetCode) {
-          found = orders.find(o => o.order_code === targetCode || ('#' + o.order_code) === targetCode);
+          const norm = targetCode.replace(/^#/, '').toLowerCase();
+          found = orders.find(o => (o.order_code || '').replace(/^#/, '').toLowerCase() === norm);
         }
         if (!found) {
-          found = orders[0]; // Most recent order
+          // Check if there is an active delivering order
+          found = orders.find(o => o.status === 'on_the_way' || o.status === 'preparing' || o.status === 'pending');
         }
         if (found) {
+          showActiveTracking();
           updateTrackingUI(found);
           return;
         }
@@ -649,21 +704,8 @@ async function initTracking() {
     }
   }
 
-  // Fallback demo order if completely fresh
-  updateTrackingUI({
-    order_code: targetCode ? targetCode.replace(/^#/, '') : 'HS-9482',
-    store_name: 'مشويات الباز',
-    customer_name: 'عميل الحسينية',
-    delivery_address: 'الحسينية — شارع المركز أمام بنك مصر',
-    items: [
-      { title: 'كيلو مشكل كباب وكفتة حاتي', price: 340, qty: 1 },
-      { title: 'نصف دجاجة شواية مع أرز بسمتي', price: 120, qty: 1 }
-    ],
-    total_amount: 475,
-    delivery_fee: 15,
-    payment_method: 'الدفع نقدياً عند الاستلام (كاش)',
-    status: 'on_the_way'
-  });
+  // If no order exists and no active delivery, show clean empty state!
+  showEmptyTrackingState();
 }
 
 // Realtime Cloud Listener for Customer Tracking

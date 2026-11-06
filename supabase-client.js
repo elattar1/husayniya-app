@@ -24,6 +24,21 @@
 
   class HusayniyaCloudEngine {
     constructor() {
+      // One-time clean wipe of old accounts, mock orders, and assign Super Admin to the first user
+      if (!localStorage.getItem('husayniya_wipe_v2_done')) {
+        console.log('🧹 [Husayniya Cloud] مسح كافة الحسابات والطلبات التجريبية وتهيئة أول حساب للأدمن...');
+        localStorage.removeItem('husayniya_registered_users');
+        localStorage.removeItem('husayniya_current_user');
+        localStorage.removeItem('husayniya_admin_claimed');
+        localStorage.removeItem('husayniya_admin_user_id');
+        localStorage.removeItem('husayniya_admin_email');
+        localStorage.removeItem('husayniya_admin_name');
+        localStorage.removeItem(STORAGE_KEYS.ORDERS);
+        localStorage.removeItem('last_order_code');
+        localStorage.removeItem('husayniya_cart');
+        localStorage.setItem('husayniya_wipe_v2_done', 'true');
+      }
+
       this.supabaseUrl = localStorage.getItem(STORAGE_KEYS.URL) || DEFAULT_CONFIG.URL;
       this.supabaseKey = localStorage.getItem(STORAGE_KEYS.KEY) || DEFAULT_CONFIG.KEY;
       this.client = null;
@@ -623,17 +638,71 @@
 
     saveLocalUser(user) {
       if (!user) return;
+      const email = user.email || user.user_metadata?.email || '';
+      const id = user.id || 'usr_' + Date.now();
+      const name = user.user_metadata?.full_name || user.user_metadata?.name || user.name || (email ? email.split('@')[0] : 'أهالي الحسينية');
+      const avatar = user.user_metadata?.avatar_url || user.user_metadata?.picture || user.avatar || '';
+      const phone = user.user_metadata?.phone || user.phone || '';
+      const provider = user.app_metadata?.provider || user.user_metadata?.provider || user.provider || (email && email.includes('google') ? 'google' : 'email');
+
+      // ── Super Admin Privilege System ──
+      // The very first account that logs in or registers claims the Super Admin role across all restaurants and services!
+      const adminClaimed = localStorage.getItem('husayniya_admin_claimed') === 'true';
+      const adminUserId = localStorage.getItem('husayniya_admin_user_id');
+      const adminEmail = localStorage.getItem('husayniya_admin_email');
+
+      let isAdmin = false;
+      if (!adminClaimed || !adminUserId) {
+        isAdmin = true;
+        localStorage.setItem('husayniya_admin_claimed', 'true');
+        localStorage.setItem('husayniya_admin_user_id', id);
+        if (email) localStorage.setItem('husayniya_admin_email', email);
+        localStorage.setItem('husayniya_admin_name', name);
+      } else if (adminUserId === id || (adminEmail && email && adminEmail.toLowerCase() === email.toLowerCase())) {
+        isAdmin = true;
+      }
+
       const minimal = {
-        id: user.id || 'usr_' + Date.now(),
-        email: user.email || '',
-        name: user.user_metadata?.full_name || user.user_metadata?.name || user.name || (user.email ? user.email.split('@')[0] : 'عميل الحسينية'),
-        avatar: user.user_metadata?.avatar_url || user.user_metadata?.picture || user.avatar || '',
-        phone: user.user_metadata?.phone || user.phone || '',
-        provider: user.app_metadata?.provider || user.user_metadata?.provider || (user.email && user.email.includes('google') ? 'google' : 'email'),
+        id: id,
+        email: email,
+        name: name,
+        avatar: avatar,
+        phone: phone,
+        provider: provider,
+        role: isAdmin ? 'admin' : (user.role || 'customer'),
+        isAdmin: isAdmin,
+        admin_title: isAdmin ? 'المدير العام للمنصة 👑 (صلاحية كاملة لكافة المطاعم والخدمات)' : '',
+        permissions: isAdmin ? ['all_stores', 'all_services', 'orders_admin', 'menus_admin', 'drivers_admin', 'settings_admin'] : [],
         logged_in_at: new Date().toISOString()
       };
       localStorage.setItem('husayniya_current_user', JSON.stringify(minimal));
       this.syncNavbarAuth();
+      return minimal;
+    }
+
+    // Check if current user is admin
+    isCurrentUserAdmin() {
+      try {
+        const u = JSON.parse(localStorage.getItem('husayniya_current_user'));
+        return !!(u && (u.isAdmin || u.role === 'admin'));
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // Reset all accounts and initialize clean slate
+    resetAllAccounts() {
+      localStorage.removeItem('husayniya_registered_users');
+      localStorage.removeItem('husayniya_current_user');
+      localStorage.removeItem('husayniya_admin_claimed');
+      localStorage.removeItem('husayniya_admin_user_id');
+      localStorage.removeItem('husayniya_admin_email');
+      localStorage.removeItem('husayniya_admin_name');
+      localStorage.removeItem(STORAGE_KEYS.ORDERS);
+      localStorage.removeItem('last_order_code');
+      localStorage.removeItem('husayniya_cart');
+      this.syncNavbarAuth();
+      return { success: true };
     }
 
     // 6. Dynamic Navbar Auth Sync
@@ -647,12 +716,13 @@
           if (user && user.name) {
             const firstName = user.name.split(' ')[0];
             const initial = firstName.charAt(0);
+            const crown = user.isAdmin ? '👑 ' : '';
             const avatarHtml = user.avatar 
-              ? `<img src="${user.avatar}" class="w-6 h-6 rounded-lg object-cover" alt="${firstName}"/>`
-              : `<div class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px]">${initial}</div>`;
+              ? `<img src="${user.avatar}" class="w-6 h-6 rounded-lg object-cover ${user.isAdmin ? 'border border-amber-400' : ''}" alt="${firstName}"/>`
+              : `<div class="w-6 h-6 rounded-lg ${user.isAdmin ? 'bg-amber-500/20 text-amber-300' : 'bg-emerald-500/20 text-emerald-400'} flex items-center justify-center font-bold text-[10px]">${initial}</div>`;
             
             btn.innerHTML = `
-              <span class="truncate max-w-[90px] text-xs font-bold">${firstName}</span>
+              <span class="truncate max-w-[100px] text-xs font-bold ${user.isAdmin ? 'text-amber-300' : ''}">${crown}${firstName}</span>
               ${avatarHtml}
             `;
           }

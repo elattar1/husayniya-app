@@ -506,6 +506,18 @@ function checkStrength(val) {
 function finishLoginRedirect() {
   const redirectTarget = sessionStorage.getItem('husayniya_after_login_redirect');
   sessionStorage.removeItem('husayniya_after_login_redirect');
+
+  try {
+    const user = JSON.parse(localStorage.getItem('husayniya_current_user') || '{}');
+    if (user && user.isAdmin) {
+      showAlert('👑 مرحباً بك يا مدير عام المنصة! تم تفعيل حسابك كأدمن رسمي بصلاحية كاملة لكافة المطاعم والخدمات.', 'success');
+      setTimeout(() => {
+        window.location.href = redirectTarget === 'checkout' ? 'husayniya-checkout.html' : 'husayniya-account.html';
+      }, 1200);
+      return;
+    }
+  } catch (e) {}
+
   const dest = redirectTarget === 'checkout' ? 'husayniya-checkout.html' : 'husayniya-account.html';
   setTimeout(() => {
     window.location.href = dest;

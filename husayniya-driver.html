@@ -278,8 +278,21 @@
       </div>
     </div>
 
+    <!-- NO ACTIVE MISSION STANDBY STATE -->
+    <div id="no-mission-card" class="glass-card rounded-3xl p-8 sm:p-10 text-center border border-white/10 space-y-4">
+      <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-3xl mx-auto border border-emerald-500/20">
+        📡
+      </div>
+      <div>
+        <h3 class="text-base font-bold text-white mb-1">رادار الكابتن نشط 🟢 — لا توجد مشاوير قيد التوصيل حالياً</h3>
+        <p class="text-xs text-white/50 max-w-md mx-auto leading-relaxed">
+          أنت متصل بالخدمة وجاهز لاستقبال المشاوير الجديدة فور صدورها من مطاعم وتجار الحسينية.
+        </p>
+      </div>
+    </div>
+
     <!-- ACTIVE MISSION CONTAINER (4-STAGE FLOW) -->
-    <div id="active-mission-card" class="glass-card rounded-3xl p-5 sm:p-7 relative overflow-hidden border border-emerald-500/35 glass-glow-emerald">
+    <div id="active-mission-card" class="hidden glass-card rounded-3xl p-5 sm:p-7 relative overflow-hidden border border-emerald-500/35 glass-glow-emerald">
       
       <!-- Mission Header -->
       <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-5 border-b border-white/10">
@@ -1333,14 +1346,23 @@
       if (window.HusayniyaCloud) {
         try {
           const liveOrders = await window.HusayniyaCloud.getOrders();
-          if (liveOrders && liveOrders.length > 0) {
-            const active = liveOrders.find(o => o.status === 'on_the_way' || o.status === 'preparing');
-            if (active) {
-              const codeBadge = document.querySelector('#active-mission-card .font-mono');
-              if (codeBadge) codeBadge.innerText = '#' + active.order_code;
-              const storeEl = document.querySelector('#active-mission-card h4');
-              if (storeEl) storeEl.innerText = active.store_name + ' — الحسينية';
-            }
+          const active = (liveOrders && liveOrders.length > 0) 
+            ? liveOrders.find(o => o.status === 'on_the_way' || o.status === 'preparing')
+            : null;
+
+          const noMissionCard = document.getElementById('no-mission-card');
+          const activeCard = document.getElementById('active-mission-card');
+
+          if (active) {
+            if (noMissionCard) noMissionCard.classList.add('hidden');
+            if (activeCard) activeCard.classList.remove('hidden');
+            const codeBadge = document.querySelector('#active-mission-card .font-mono');
+            if (codeBadge) codeBadge.innerText = '#' + (active.order_code || 'ORD');
+            const storeEl = document.querySelector('#active-mission-card h4');
+            if (storeEl) storeEl.innerText = (active.store_name || 'مطعم الحسينية') + ' — الحسينية';
+          } else {
+            if (noMissionCard) noMissionCard.classList.remove('hidden');
+            if (activeCard) activeCard.classList.add('hidden');
           }
         } catch(e) {}
 
