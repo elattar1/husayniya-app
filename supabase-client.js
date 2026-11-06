@@ -26,7 +26,7 @@
     constructor() {
       // One-time clean wipe of old accounts, mock orders, and assign Super Admin to the first user
       if (!localStorage.getItem('husayniya_wipe_v5_done')) {
-        console.log('🧹 [Husayniya Cloud] مسح كافة الحسابات والطلبات التجريبية وتصفير النظام ورصيد المحافظ بالكامل...');
+        console.log('[Husayniya Cloud] مسح كافة الحسابات والطلبات التجريبية وتصفير النظام ورصيد المحافظ بالكامل...');
         localStorage.removeItem('husayniya_registered_users');
         localStorage.removeItem('husayniya_current_user');
         localStorage.removeItem('husayniya_admin_claimed');
@@ -57,12 +57,12 @@
         try {
           this.client = window.supabase.createClient(this.supabaseUrl, this.supabaseKey);
           this.isConnected = true;
-          console.log('⚡ [Husayniya Cloud] متصل بقاعدة بيانات Supabase بنجاح');
+          console.log('[Husayniya Cloud] متصل بقاعدة بيانات Supabase بنجاح');
           this.listenToSupabaseRealtime();
 
           // Auth State Change Listener (OAuth Google & Email/Password)
           this.client.auth.onAuthStateChange((event, session) => {
-            console.log('⚡ [Husayniya Cloud Auth]:', event, session?.user?.email || '');
+            console.log('[Husayniya Cloud Auth]:', event, session?.user?.email || '');
             if (session && session.user) {
               this.saveLocalUser(session.user);
             } else if (event === 'SIGNED_OUT') {
@@ -79,12 +79,12 @@
           }).catch(() => {});
 
         } catch (e) {
-          console.warn('⚠️ [Husayniya Cloud] فشل الاتصال المباشر بـ Supabase:', e);
+          console.warn('[Husayniya Cloud] فشل الاتصال المباشر بـ Supabase:', e);
           this.isConnected = false;
         }
       } else {
         this.isConnected = false;
-        console.log('ℹ️ [Husayniya Cloud] يعمل بنظام المزامنة الفورية المحلية (BroadcastChannel). اربط Supabase للتزامن بين الأجهزة المختلفة.');
+        console.log('[Husayniya Cloud] يعمل بنظام المزامنة الفورية المحلية (BroadcastChannel). اربط Supabase للتزامن بين الأجهزة المختلفة.');
       }
 
       // Sync navbar state (Auth, Location & Notifications) on initialization
@@ -169,7 +169,7 @@
           // If on merchant or driver portals, notify of new order
           const isMerchantOrDriver = window.location.pathname.includes('merchant') || window.location.pathname.includes('driver') || window.location.pathname.includes('dashboard');
           if (isMerchantOrDriver) {
-            this.sendNotification(`🔔 طلب جديد #${orderData.order_code}`, {
+            this.sendNotification(`طلب جديد #${orderData.order_code}`, {
               body: `${orderData.store_name} — الإجمالي: ${orderData.total_amount} ج.م`,
               soundType: 'order',
               url: 'husayniya-merchant.html'
@@ -177,10 +177,10 @@
           }
         } else if (eventType === 'order_updated' && isMyOrder) {
           const statusLabels = {
-            'preparing': '🍳 مطعمك بدأ في إعداد الوجبة وتجهيزها الآن',
-            'ready': '📦 تم الانتهاء من تجهيز طلبك واستلمه مندوب التوصيل',
-            'on_the_way': '🛵 الكابتن في الطريق إليك الآن بالحسينية',
-            'delivered': '🎉 تم تسليم طلبك بنجاح! بالهناء والشفاء'
+            'preparing': 'مطعمك بدأ في إعداد الوجبة وتجهيزها الآن',
+            'ready': 'تم الانتهاء من تجهيز طلبك واستلمه مندوب التوصيل',
+            'on_the_way': 'الكابتن في الطريق إليك الآن بالحسينية',
+            'delivered': 'تم تسليم طلبك بنجاح! بالهناء والشفاء'
           };
           const label = statusLabels[orderData.status];
           if (label) {
@@ -201,7 +201,7 @@
         this.client
           .channel('public:orders')
           .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, (payload) => {
-            console.log('⚡ Realtime event received from Supabase:', payload);
+            console.log('[Supabase Realtime] event received:', payload);
             if (payload.eventType === 'INSERT') {
               this.notifyListeners('order_created', payload.new);
             } else if (payload.eventType === 'UPDATE') {
@@ -245,7 +245,7 @@
           this.broadcastLocal('order_created', inserted);
           return { success: true, order: inserted, cloud: true };
         } catch (e) {
-          console.warn('⚠️ تعذر الحفظ في سحابة Supabase، جاري الحفظ المحلي:', e);
+          console.warn('[Husayniya Cloud] تعذر الحفظ في سحابة Supabase، جاري الحفظ المحلي:', e);
         }
       }
 
@@ -275,7 +275,7 @@
             return { success: true, order: data[0] };
           }
         } catch (e) {
-          console.warn('⚠️ فشل التحديث في Supabase، جاري التحديث محلياً:', e);
+          console.warn('[Husayniya Cloud] فشل التحديث في Supabase، جاري التحديث محلياً:', e);
         }
       }
 
@@ -304,7 +304,7 @@
             .limit(50);
           if (!error && data) return data;
         } catch (e) {
-          console.warn('⚠️ تعذر جلب الطلبات من السحابة:', e);
+          console.warn('[Husayniya Cloud] تعذر جلب الطلبات من السحابة:', e);
         }
       }
       return this.getLocalOrders();
@@ -330,7 +330,7 @@
           const inserted = (data && data[0]) ? data[0] : appt;
           return { success: true, appointment: inserted, cloud: true };
         } catch (e) {
-          console.warn('⚠️ تعذر حفظ الحجز في السحابة، حفظ محلي:', e);
+          console.warn('[Husayniya Cloud] تعذر حفظ الحجز في السحابة، حفظ محلي:', e);
         }
       }
 
@@ -350,7 +350,7 @@
             .limit(50);
           if (!error && data) return data;
         } catch (e) {
-          console.warn('⚠️ تعذر جلب الحجوزات من السحابة:', e);
+          console.warn('[Husayniya Cloud] تعذر جلب الحجوزات من السحابة:', e);
         }
       }
       return this.getLocal('husayniya_local_appointments');
@@ -375,7 +375,7 @@
           const inserted = (data && data[0]) ? data[0] : prop;
           return { success: true, property: inserted, cloud: true };
         } catch (e) {
-          console.warn('⚠️ تعذر حفظ العقار في السحابة، حفظ محلي:', e);
+          console.warn('[Husayniya Cloud] تعذر حفظ العقار في السحابة، حفظ محلي:', e);
         }
       }
 
@@ -395,7 +395,7 @@
             .limit(50);
           if (!error && data) return data;
         } catch (e) {
-          console.warn('⚠️ تعذر جلب العقارات من السحابة:', e);
+          console.warn('[Husayniya Cloud] تعذر جلب العقارات من السحابة:', e);
         }
       }
       return this.getLocal('husayniya_local_properties');
@@ -421,7 +421,7 @@
           const inserted = (data && data[0]) ? data[0] : item;
           return { success: true, item: inserted, cloud: true };
         } catch (e) {
-          console.warn('⚠️ تعذر حفظ الأمانات في السحابة، حفظ محلي:', e);
+          console.warn('[Husayniya Cloud] تعذر حفظ الأمانات في السحابة، حفظ محلي:', e);
         }
       }
 
@@ -441,7 +441,7 @@
             .limit(50);
           if (!error && data) return data;
         } catch (e) {
-          console.warn('⚠️ تعذر جلب المفقودات من السحابة:', e);
+          console.warn('[Husayniya Cloud] تعذر جلب المفقودات من السحابة:', e);
         }
       }
       return this.getLocal('husayniya_local_lost');
@@ -482,7 +482,7 @@
           }
           return { success: true, data };
         } catch (err) {
-          console.warn('⚠️ Supabase Google OAuth error:', err);
+          console.warn('[Husayniya Cloud] Supabase Google OAuth error:', err);
           return { success: false, error: err.message || 'تعذر بدء تسجيل الدخول بواسطة Google عبر السحابة' };
         }
       }
@@ -675,7 +675,7 @@
         provider: provider,
         role: isAdmin ? 'admin' : (user.role || 'customer'),
         isAdmin: isAdmin,
-        admin_title: isAdmin ? 'المدير العام للمنصة 👑 (صلاحية كاملة لكافة المطاعم والخدمات)' : '',
+        admin_title: isAdmin ? 'المدير العام للمنصة (صلاحية كاملة لكافة المطاعم والخدمات)' : '',
         permissions: isAdmin ? ['all_stores', 'all_services', 'orders_admin', 'menus_admin', 'drivers_admin', 'settings_admin'] : [],
         logged_in_at: new Date().toISOString()
       };
@@ -737,7 +737,7 @@
           if (user && user.name) {
             const firstName = user.name.split(' ')[0];
             const initial = firstName.charAt(0);
-            const crown = user.isAdmin ? '👑 ' : '';
+            const crown = user.isAdmin ? '<i class="fa-solid fa-crown text-amber-300 text-[10px] ml-1"></i>' : '';
             const avatarHtml = user.avatar 
               ? `<img src="${user.avatar}" class="w-6 h-6 rounded-lg object-cover ${user.isAdmin ? 'border border-amber-400' : ''}" alt="${firstName}"/>`
               : `<div class="w-6 h-6 rounded-lg ${user.isAdmin ? 'bg-amber-500/20 text-amber-300' : 'bg-emerald-500/20 text-emerald-400'} flex items-center justify-center font-bold text-[10px]">${initial}</div>`;
@@ -869,13 +869,13 @@
           if (!pill) return;
           if (loc && loc.area) {
             pill.innerHTML = `
-              <span class="text-emerald-400">📍</span>
+              <i class="fa-solid fa-location-dot text-emerald-400"></i>
               <span class="truncate max-w-[130px] sm:max-w-[180px] font-bold text-emerald-300">${loc.area}</span>
             `;
             pill.title = loc.address || loc.area;
           } else {
             pill.innerHTML = `
-              <span>📍</span>
+              <i class="fa-solid fa-location-dot"></i>
               <span class="font-bold">تحديد موقعي (GPS)</span>
             `;
           }
@@ -964,7 +964,7 @@
 
         if (perm === 'granted') {
           this.playChime('success');
-          this.sendNotification('🎉 تم تفعيل الإشعارات بنجاح!', {
+          this.sendNotification('تم تفعيل الإشعارات بنجاح!', {
             body: 'ستتلقى تنبيهاً فورياً عند إعداد وتوصيل وجبتك بمجرد تحرك المندوب.',
             tag: 'welcome-notification'
           });
@@ -1025,14 +1025,14 @@
       toast.style.cssText = 'background:rgba(4,14,30,0.96);backdrop-filter:blur(22px);border:1px solid rgba(0,229,200,0.5);box-shadow:0 12px 35px rgba(0,0,0,0.65),0 0 25px rgba(0,229,200,0.25);border-radius:18px;padding:12px 16px;color:#fff;display:flex;align-items:center;gap:12px;pointer-events:auto;transition:all .35s cubic-bezier(.175,.885,.32,1.275);';
 
       toast.innerHTML = `
-        <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#00b09b,#06d6a0);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;box-shadow:0 0 15px rgba(0,229,200,0.4);">
-          🔔
+        <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#00b09b,#06d6a0);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;box-shadow:0 0 15px rgba(0,229,200,0.4);color:#fff;">
+          <i class="fa-solid fa-bell"></i>
         </div>
         <div style="flex:1;min-width:0;">
           <div style="font-weight:800;font-size:13px;color:#fff;line-height:1.3;">${title}</div>
           ${body ? `<div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:2px;line-height:1.3;">${body}</div>` : ''}
         </div>
-        <button onclick="this.parentElement.remove()" style="background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:16px;cursor:pointer;padding:4px;line-height:1;">✕</button>
+        <button onclick="this.parentElement.remove()" style="background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:14px;cursor:pointer;padding:4px;line-height:1;"><i class="fa-solid fa-xmark"></i></button>
       `;
 
       toastContainer.appendChild(toast);
@@ -1051,7 +1051,7 @@
           if (!btn) return;
           if (isGranted) {
             btn.classList.add('text-emerald-400');
-            btn.title = 'الإشعارات مفعلة ✓';
+            btn.title = 'الإشعارات مفعلة';
           } else {
             btn.classList.remove('text-emerald-400');
             btn.title = 'تفعيل الإشعارات';

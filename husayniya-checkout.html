@@ -161,13 +161,13 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="flex items-center gap-2">
       <!-- Theme Toggle (Light / Dark) -->
       <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-1.5 rounded-xl flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
-        <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+        <span id="theme-toggle-icon" class="theme-icon"><i class="fa-solid fa-moon text-indigo-400"></i></span>
         <span id="theme-toggle-label" class="theme-label hidden md:inline">ليلي</span>
       </button>
 
       <!-- Help / Safe Badge -->
       <div class="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-bold text-emerald-400 flex-shrink-0" style="background:rgba(0,176,155,.12);border:1px solid rgba(0,176,155,.3)">
-        <span>🔒</span>
+        <i class="fa-solid fa-shield-halved"></i>
         <span class="hidden sm:inline">دفع آمن 100%</span>
         <span class="sm:hidden">آمن 100%</span>
       </div>
@@ -180,8 +180,9 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
   <!-- Header -->
   <div class="mb-6 sm:mb-8 fade-up">
-    <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold mb-1">
-      سلة المشتريات <span class="gt">وإتمام الطلب</span> 🛍️
+    <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold mb-1 flex items-center gap-2">
+      <span>سلة المشتريات <span class="gt">وإتمام الطلب</span></span>
+      <i class="fa-solid fa-basket-shopping text-emerald-400 text-xl"></i>
     </h1>
     <p class="text-xs sm:text-sm text-white/50">راجع طلباتك، حدد عنوان التوصيل في الحسينية، واختر وسيلة الدفع المفضلة لديك.</p>
   </div>
@@ -195,7 +196,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <section class="glass-card rounded-3xl p-4 sm:p-6 fade-up d1">
         <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
           <div class="flex items-center gap-3">
-            <span class="text-xl">🏪</span>
+            <i class="fa-solid fa-store text-emerald-400 text-lg"></i>
             <div>
               <h2 id="checkout-store-name" class="text-base font-bold">مشويات الباز والحسينية — شارع المركز</h2>
               <p class="text-xs text-white/40">التوصيل التقديري: 25 - 35 دقيقة</p>
@@ -206,12 +207,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
         <div id="cart-list" class="space-y-4">
           <div class="text-center py-12 px-4 rounded-2xl glass border border-white/5">
-            <div class="text-4xl mb-3">🛒</div>
+            <div class="text-4xl mb-3 text-emerald-400"><i class="fa-solid fa-cart-shopping"></i></div>
             <h4 class="text-base font-bold text-white mb-1">سلتك فارغة تماماً</h4>
             <p class="text-xs text-white/50 mb-5 leading-relaxed">لم تقم بإضافة أي وجبة أو منتج إلى السلة بعد. اختر مطعمك المفضل وتصفح المنيو لإضافة طلباتك.</p>
             <a href="husayniya-restaurants.html" class="btn-primary inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold no-underline">
               <span>تصفح مطاعم وعروض الحسينية</span>
-              <span>←</span>
+              <i class="fa-solid fa-arrow-left"></i>
             </a>
           </div>
         </div>
@@ -221,7 +222,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <section class="glass-card rounded-3xl p-6 fade-up d2">
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-2">
-            <span class="text-xl">📍</span>
+            <i class="fa-solid fa-location-dot text-emerald-400 text-lg"></i>
             <h2 class="text-base font-bold">عنوان وموقع التوصيل</h2>
           </div>
           <span class="text-xs text-emerald-400">الحسينية، الشرقية، مصر</span>
@@ -239,11 +240,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
               موقع التوصيل المختار
             </div>
             <div class="w-8 h-8 rounded-full bg-emerald-400/20 flex items-center justify-center animate-ping absolute top-4"></div>
-            <div class="text-2xl drop-shadow-md">📍</div>
+            <div class="text-2xl drop-shadow-md text-emerald-400"><i class="fa-solid fa-location-dot"></i></div>
           </div>
           <!-- Change pin button -->
           <button id="gps-detect-btn" onclick="handleDetectLocation(this)" type="button" class="glass absolute bottom-3 left-3 px-3 py-1.5 rounded-xl text-xs font-semibold text-white/90 hover:bg-white/20 transition flex items-center gap-1.5 shadow-lg">
-            <span id="gps-btn-icon">🎯</span>
+            <span id="gps-btn-icon"><i class="fa-solid fa-location-crosshairs text-emerald-400"></i></span>
             <span id="gps-btn-text">تحديد موقعي الحالي (GPS)</span>
           </button>
         </div>
@@ -285,7 +286,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <!-- 3. PAYMENT METHOD -->
       <section class="glass-card rounded-3xl p-6 fade-up d3">
         <div class="flex items-center gap-2 mb-4">
-          <span class="text-xl">💳</span>
+          <i class="fa-solid fa-credit-card text-emerald-400 text-lg"></i>
           <h2 class="text-base font-bold">طريقة الدفع</h2>
         </div>
 
@@ -296,7 +297,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
             <div class="flex-1">
               <div class="font-bold text-sm flex items-center justify-between">
                 <span>الدفع نقدياً عند الاستلام (كاش)</span>
-                <span class="text-lg">💵</span>
+                <span class="text-emerald-400"><i class="fa-solid fa-money-bill-wave"></i></span>
               </div>
               <p class="text-xs text-white/40 mt-0.5">ادفع مباشرة لمندوب التوصيل فور وصول الطلب</p>
             </div>
@@ -320,7 +321,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
             <div class="flex-1">
               <div class="font-bold text-sm flex items-center justify-between">
                 <span>إنستاباي (InstaPay)</span>
-                <span class="text-lg">📲</span>
+                <span class="text-violet-400"><i class="fa-solid fa-bolt"></i></span>
               </div>
               <p class="text-xs text-white/40 mt-0.5">تحويل لحظي فوري عبر إنستاباي لجميع البنوك والمحافظ</p>
             </div>
@@ -332,7 +333,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
             <div class="flex-1">
               <div class="font-bold text-sm flex items-center justify-between">
                 <span>بطاقة إلكترونية (Visa / Mastercard)</span>
-                <span class="text-lg">💳</span>
+                <span class="text-blue-400"><i class="fa-solid fa-credit-card"></i></span>
               </div>
               <p class="text-xs text-white/40 mt-0.5">فيزا كارد، ماستركارد، ميزة (Meeza)</p>
             </div>
@@ -397,7 +398,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <!-- Checkout Button -->
         <button id="submit-order-btn" onclick="submitOrder()" class="btn-primary w-full py-4 rounded-2xl text-base font-extrabold flex items-center justify-center gap-2 shadow-xl">
           <span>تأكيد وإرسال الطلب الآن</span>
-          <span class="text-lg">←</span>
+          <i class="fa-solid fa-arrow-left"></i>
         </button>
 
         <p class="text-center text-[11px] text-white/40 mt-4 leading-relaxed">
@@ -407,7 +408,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
       <!-- Driver Guarantee Card -->
       <div class="glass rounded-2xl p-4 flex items-center gap-3 fade-up d3 border border-white/10">
-        <div class="text-3xl">🛵</div>
+        <div class="text-3xl text-emerald-400"><i class="fa-solid fa-motorcycle"></i></div>
         <div>
           <div class="text-xs font-bold text-emerald-300">ضمان سرعة التوصيل</div>
           <div class="text-[11px] text-white/50 leading-tight">طلبك مضمون أن يصل ساخناً وبحالة ممتازة خلال الوقت المحدد، أو ستحصل على توصيل مجاني للمرة القادمة.</div>
@@ -428,10 +429,10 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <!-- ══════════════════ SUCCESS MODAL ══════════════════ -->
 <div id="success-modal" class="modal-overlay">
   <div class="glass-card rounded-3xl p-8 max-w-md w-full text-center relative border border-emerald-400/30">
-    <div class="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl" style="background:linear-gradient(135deg,#00b09b,#06d6a0);box-shadow:0 0 35px rgba(0,176,155,.5)">
-      ✓
+    <div class="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl text-black" style="background:linear-gradient(135deg,#00b09b,#06d6a0);box-shadow:0 0 35px rgba(0,176,155,.5)">
+      <i class="fa-solid fa-check"></i>
     </div>
-    <h3 class="text-2xl font-black mb-2">تم تأكيد طلبك بنجاح! 🎉</h3>
+    <h3 class="text-2xl font-black mb-2">تم تأكيد طلبك بنجاح!</h3>
     <p class="text-sm text-white/60 mb-6 leading-relaxed">
       رقم الطلب الخاص بك هو <span id="confirmed-order-code" class="font-extrabold text-emerald-400">#HS-9482</span>.<br/>
       تم إرسال الطلب للمتجر والمندوب في طريقه للتحضير.
@@ -453,8 +454,9 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
 
     <div class="flex gap-3">
-      <button onclick="goToTracking()" class="btn-primary flex-1 py-3.5 rounded-2xl text-sm font-bold">
-        تتبع مسار الطلب 🗺️
+      <button onclick="goToTracking()" class="btn-primary flex-1 py-3.5 rounded-2xl text-sm font-bold flex items-center justify-center gap-2">
+        <span>تتبع مسار الطلب</span>
+        <i class="fa-solid fa-arrow-left"></i>
       </button>
       <button onclick="window.location.href='index.html'" class="px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-xs font-bold transition">
         الرئيسية
@@ -466,23 +468,23 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <!-- ══════════════ MOBILE BOTTOM NAVIGATION ══════════════ -->
 <nav class="mobile-nav">
   <a href="index.html" class="mobile-nav-item">
-    <span class="text-lg">🏠</span>
+    <i class="fa-solid fa-house text-base mb-1"></i>
     <span>الرئيسية</span>
   </a>
   <a href="husayniya-restaurants.html" class="mobile-nav-item">
-    <span class="text-lg">🍖</span>
+    <i class="fa-solid fa-utensils text-base mb-1"></i>
     <span>المطاعم</span>
   </a>
   <a href="husayniya-checkout.html" class="mobile-nav-item active relative">
-    <span class="text-lg">🛒</span>
+    <i class="fa-solid fa-cart-shopping text-base mb-1"></i>
     <span>السلة</span>
   </a>
   <a href="husayniya-tracking.html" class="mobile-nav-item">
-    <span class="text-lg">🛵</span>
+    <i class="fa-solid fa-motorcycle text-base mb-1"></i>
     <span>تتبّع</span>
   </a>
   <a href="husayniya-account.html" class="mobile-nav-item">
-    <span class="text-lg">👤</span>
+    <i class="fa-solid fa-user text-base mb-1"></i>
     <span>حسابي</span>
   </a>
 </nav>
@@ -514,7 +516,7 @@ function initCheckoutCart() {
               title: it.title || it.name || 'صنف مختار',
               price: Number(it.price) || 0,
               qty: Number(it.qty) || 1,
-              icon: it.icon || '🛍️'
+              icon: it.icon || 'fa-utensils'
             };
             if (it.storeName) activeStoreName = it.storeName;
           }
@@ -568,12 +570,12 @@ function renderCartList() {
   if (itemKeys.length === 0) {
     listEl.innerHTML = `
       <div class="text-center py-12 px-4 rounded-2xl glass border border-white/5">
-        <div class="text-4xl mb-3">🛒</div>
+        <div class="text-4xl mb-3 text-emerald-400"><i class="fa-solid fa-cart-shopping"></i></div>
         <h4 class="text-base font-bold text-white mb-1">سلتك فارغة تماماً</h4>
         <p class="text-xs text-white/50 mb-5 leading-relaxed">لم تقم بإضافة أي وجبة أو منتج إلى السلة بعد. اختر مطعمك المفضل وتصفح المنيو لإضافة طلباتك.</p>
         <a href="husayniya-restaurants.html" class="btn-primary inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold no-underline">
           <span>تصفح مطاعم وعروض الحسينية</span>
-          <span>←</span>
+          <i class="fa-solid fa-arrow-left"></i>
         </a>
       </div>
     `;
@@ -583,11 +585,15 @@ function renderCartList() {
   let html = '';
   for (let id in items) {
     const it = items[id];
+    const iconHtml = (it.icon && it.icon.startsWith('fa-')) 
+      ? `<i class="fa-solid ${it.icon} text-emerald-400"></i>` 
+      : `<i class="fa-solid fa-utensils text-emerald-400"></i>`;
+
     html += `
       <div class="cart-item flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.04] border border-white/5" data-id="${id}" data-price="${it.price}">
         <div class="flex items-center gap-4">
-          <div class="w-14 h-14 rounded-xl flex items-center justify-center text-3xl" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">
-            ${it.icon || '🛍️'}
+          <div class="w-14 h-14 rounded-xl flex items-center justify-center text-2xl" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)">
+            ${iconHtml}
           </div>
           <div>
             <h3 class="font-bold text-sm text-white">${it.title}</h3>
@@ -597,11 +603,11 @@ function renderCartList() {
         </div>
         <!-- Qty control -->
         <div class="flex items-center gap-2">
-          <button onclick="updateQty('${id}', -1)" class="btn-icon text-base font-bold ${it.qty === 1 ? 'text-rose-400 hover:bg-rose-500/20' : ''}" title="${it.qty === 1 ? 'حذف من السلة' : 'تقليل'}">
-            ${it.qty === 1 ? '🗑️' : '−'}
+          <button onclick="updateQty('${id}', -1)" class="btn-icon text-sm font-bold ${it.qty === 1 ? 'text-rose-400 hover:bg-rose-500/20' : ''}" title="${it.qty === 1 ? 'حذف من السلة' : 'تقليل'}">
+            ${it.qty === 1 ? '<i class="fa-solid fa-trash-can"></i>' : '−'}
           </button>
           <span id="qty-${id}" class="qty-display font-black text-emerald-400 px-2 min-w-[20px] text-center">${it.qty}</span>
-          <button onclick="updateQty('${id}', 1)" class="btn-icon text-base font-bold" title="زيادة">+</button>
+          <button onclick="updateQty('${id}', 1)" class="btn-icon text-sm font-bold" title="زيادة"><i class="fa-solid fa-plus text-xs"></i></button>
         </div>
       </div>
     `;
@@ -677,11 +683,11 @@ function applyCoupon() {
     discount = 40.00;
     document.getElementById('discount-val').textContent = discount.toFixed(2);
     document.getElementById('discount-row').classList.remove('hidden');
-    msg.textContent = '✓ تم تطبيق خصم بقيمة 40.00 ج.م بنجاح!';
+    msg.textContent = 'تم تطبيق خصم بقيمة 40.00 ج.م بنجاح!';
     msg.className = 'text-[11px] mt-1.5 text-emerald-400 font-semibold block';
     calculateTotal();
   } else {
-    msg.textContent = '✕ كود الخصم غير صحيح أو منتهي الصلاحية.';
+    msg.textContent = 'كود الخصم غير صحيح أو منتهي الصلاحية.';
     msg.className = 'text-[11px] mt-1.5 text-rose-400 font-semibold block';
   }
 }
@@ -774,7 +780,7 @@ async function submitOrder() {
   // Trigger Notification Permission & Confirmation Alert
   if (window.HusayniyaCloud) {
     window.HusayniyaCloud.requestNotificationPermission().then(() => {
-      window.HusayniyaCloud.sendNotification(`🎉 تم استلام طلبك #${createdOrderCode} بنجاح!`, {
+      window.HusayniyaCloud.sendNotification(`تم استلام طلبك #${createdOrderCode} بنجاح!`, {
         body: `${activeStoreName} — سنقوم بإشعارك عند بدء التجهيز وخروج المندوب.`,
         soundType: 'order',
         url: `husayniya-tracking.html?order=${createdOrderCode}`
@@ -787,14 +793,14 @@ async function submitOrder() {
 async function handleDetectLocation(btn) {
   const icon = document.getElementById('gps-btn-icon');
   const txt = document.getElementById('gps-btn-text');
-  if (icon) icon.textContent = '⏳';
+  if (icon) icon.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-emerald-400"></i>';
   if (txt) txt.textContent = 'جاري تحديد موقعك عبر GPS...';
   if (btn) btn.disabled = true;
 
   if (window.HusayniyaCloud) {
     const res = await window.HusayniyaCloud.detectUserLocation();
     if (res.success) {
-      if (icon) icon.textContent = '✓';
+      if (icon) icon.innerHTML = '<i class="fa-solid fa-check text-emerald-400"></i>';
       if (txt) txt.textContent = 'تم تحديد الموقع بنجاح!';
       
       const detailInput = document.getElementById('checkout-address-detail');
@@ -819,16 +825,16 @@ async function handleDetectLocation(btn) {
       }
 
       window.HusayniyaCloud.playChime('success');
-      window.HusayniyaCloud.showInAppToast('✓ تم تحديد موقعك الحالي بنجاح', `تم رصد إحداثياتك في ${res.area} بدقة`);
+      window.HusayniyaCloud.showInAppToast('تم تحديد موقعك الحالي بنجاح', `تم رصد إحداثياتك في ${res.area} بدقة`);
     } else {
-      if (icon) icon.textContent = '⚠️';
+      if (icon) icon.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-amber-400"></i>';
       if (txt) txt.textContent = 'تحديد يدوي';
       alert(res.error || 'تعذر تحديد الموقع تلقائياً. يمكنك اختيار منطقتك يدوياً من القائمة.');
     }
   }
 
   setTimeout(() => {
-    if (icon) icon.textContent = '🎯';
+    if (icon) icon.innerHTML = '<i class="fa-solid fa-location-crosshairs text-emerald-400"></i>';
     if (txt) txt.textContent = 'تحديد موقعي الحالي (GPS)';
     if (btn) btn.disabled = false;
   }, 3500);

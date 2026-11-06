@@ -90,66 +90,66 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
   <!-- Brand Header -->
   <div class="p-4 flex items-center justify-between border-b border-white/10">
     <div class="flex items-center gap-3">
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center font-bold text-sm shadow-lg shadow-emerald-500/20">
-        ⚡
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center font-bold text-sm shadow-lg shadow-emerald-500/20 text-white">
+        <i class="fa-solid fa-bolt"></i>
       </div>
       <div>
         <div class="text-sm font-extrabold text-white leading-tight">خدمات الحسينية</div>
         <div class="text-[10px] text-emerald-400 font-semibold">لوحة الإدارة السحابية</div>
       </div>
     </div>
-    <button onclick="toggleSidebar()" class="lg:hidden text-white/50 hover:text-white p-1 text-sm">✕</button>
+    <button onclick="toggleSidebar()" class="lg:hidden text-white/50 hover:text-white p-1 text-sm"><i class="fa-solid fa-xmark"></i></button>
   </div>
 
   <!-- Navigation Links -->
   <nav class="flex-1 overflow-y-auto py-3 space-y-1">
     <div class="px-4 py-1 text-[10px] text-white/35 font-bold uppercase tracking-wider">الرئيسية</div>
     <a href="husayniya-dashboard.html" class="nav-item active">
-      <span class="text-base">📊</span>
+      <span class="text-base"><i class="fa-solid fa-chart-line text-emerald-400"></i></span>
       <span>لوحة التحكم المباشرة</span>
     </a>
     <a href="husayniya-restaurants.html" class="nav-item">
-      <span class="text-base">🏪</span>
+      <span class="text-base"><i class="fa-solid fa-utensils text-amber-400"></i></span>
       <span>المطاعم والمنيو</span>
     </a>
     <a href="husayniya-checkout.html" class="nav-item">
-      <span class="text-base">🛒</span>
+      <span class="text-base"><i class="fa-solid fa-cart-shopping text-cyan-400"></i></span>
       <span>سلة الطلبات</span>
     </a>
 
     <div class="px-4 pt-3 py-1 text-[10px] text-white/35 font-bold uppercase tracking-wider">الخدمات السحابية</div>
     <a href="husayniya-driver.html" class="nav-item">
-      <span class="text-base">🚗</span>
+      <span class="text-base"><i class="fa-solid fa-motorcycle text-indigo-400"></i></span>
       <span>بوابة السائقين والتوصيل</span>
     </a>
     <a href="husayniya-merchant.html" class="nav-item">
-      <span class="text-base">👨‍🍳</span>
+      <span class="text-base"><i class="fa-solid fa-kitchen-set text-orange-400"></i></span>
       <span>بوابة المطاعم والتجار</span>
     </a>
     <a href="husayniya-medical.html" class="nav-item">
-      <span class="text-base">🩺</span>
+      <span class="text-base"><i class="fa-solid fa-stethoscope text-red-400"></i></span>
       <span>عيادات أطباء الحسينية</span>
     </a>
     <a href="husayniya-pharmacy.html" class="nav-item">
-      <span class="text-base">💊</span>
+      <span class="text-base"><i class="fa-solid fa-prescription-bottle-medical text-emerald-400"></i></span>
       <span>صيدليات وطلب الروشتة</span>
     </a>
     <a href="husayniya-realestate.html" class="nav-item">
-      <span class="text-base">🏢</span>
+      <span class="text-base"><i class="fa-solid fa-building text-amber-400"></i></span>
       <span>عقارات الحسينية</span>
     </a>
     <a href="husayniya-lost.html" class="nav-item">
-      <span class="text-base">🔍</span>
+      <span class="text-base"><i class="fa-solid fa-magnifying-glass text-teal-400"></i></span>
       <span>المفقودات والأمانات</span>
     </a>
 
     <div class="px-4 pt-3 py-1 text-[10px] text-white/35 font-bold uppercase tracking-wider">الحساب والإدارة</div>
     <a href="husayniya-account.html" class="nav-item">
-      <span class="text-base">👤</span>
+      <span class="text-base"><i class="fa-solid fa-user-gear text-purple-400"></i></span>
       <span>حسابي الشخصي</span>
     </a>
     <button onclick="openCloudModal()" class="nav-item w-full text-right bg-emerald-500/10 text-emerald-300 border border-emerald-500/25">
-      <span class="text-base">⚡</span>
+      <span class="text-base"><i class="fa-solid fa-cloud text-emerald-400"></i></span>
       <span>إعدادات سحابة Supabase</span>
     </button>
   </nav>
@@ -157,7 +157,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
   <!-- User / Logout Footer -->
   <div class="p-3 border-t border-white/10 flex items-center justify-between">
     <a href="index.html" class="text-xs text-white/60 hover:text-white flex items-center gap-1.5 no-underline">
-      <span>🏠</span>
+      <span><i class="fa-solid fa-house"></i></span>
       <span>الموقع الرئيسي</span>
     </a>
     <button onclick="handleDashboardSignOut()" class="text-xs text-rose-400 hover:text-rose-300 font-bold bg-transparent border-none cursor-pointer">
@@ -174,7 +174,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
     <div class="flex items-center gap-2.5 min-w-0">
       <!-- Toggle Mobile Drawer -->
       <button onclick="toggleSidebar()" class="w-8 h-8 rounded-xl glass flex items-center justify-center text-white/80 hover:text-white flex-shrink-0 lg:hidden">
-        ☰
+        <i class="fa-solid fa-bars"></i>
       </button>
       
       <div class="min-w-0">
@@ -189,19 +189,19 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
     <div class="flex items-center gap-2 flex-shrink-0">
       <!-- Theme Toggle (Light / Dark) -->
       <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-1.5 rounded-xl flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
-        <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+        <i id="theme-toggle-icon" class="fa-solid fa-moon"></i>
         <span id="theme-toggle-label" class="theme-label hidden md:inline">ليلي</span>
       </button>
 
       <button onclick="openCloudModal()" class="glass px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 transition">
         <span id="cloud-status-dot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
         <span id="cloud-status-label" class="hidden sm:inline">سحابة Supabase متصلة</span>
-        <span class="sm:hidden">سحابي 🟢</span>
+        <span class="sm:hidden">سحابي <i class="fa-solid fa-circle text-emerald-400 text-[8px]"></i></span>
       </button>
 
       <!-- Refresh Orders -->
       <button onclick="loadRealDashboardData(true)" title="تحديث البيانات اللحظية" class="w-8 h-8 rounded-xl glass flex items-center justify-center text-xs text-white/80 hover:text-white">
-        🔄
+        <i class="fa-solid fa-arrows-rotate"></i>
       </button>
     </div>
   </header>
@@ -216,7 +216,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
       <div class="glass-card rounded-2xl p-3.5 sm:p-5 flex flex-col justify-between border-t-2 border-t-emerald-400">
         <div class="flex items-center justify-between mb-1 sm:mb-2">
           <span class="text-[11px] sm:text-xs text-white/50 font-bold">إجمالي الإيرادات</span>
-          <span class="text-base sm:text-xl">💰</span>
+          <span class="text-base sm:text-xl text-emerald-400"><i class="fa-solid fa-wallet"></i></span>
         </div>
         <div>
           <div id="stat-revenue" class="text-base sm:text-2xl font-black gt truncate">0.00 ج.م</div>
@@ -231,7 +231,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
       <div class="glass-card rounded-2xl p-3.5 sm:p-5 flex flex-col justify-between border-t-2 border-t-amber-400">
         <div class="flex items-center justify-between mb-1 sm:mb-2">
           <span class="text-[11px] sm:text-xs text-white/50 font-bold">طلبات اليوم</span>
-          <span class="text-base sm:text-xl">📦</span>
+          <span class="text-base sm:text-xl text-amber-400"><i class="fa-solid fa-box"></i></span>
         </div>
         <div>
           <div id="stat-today-orders" class="text-base sm:text-2xl font-black text-amber-300">0</div>
@@ -246,7 +246,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
       <div class="glass-card rounded-2xl p-3.5 sm:p-5 flex flex-col justify-between border-t-2 border-t-blue-400">
         <div class="flex items-center justify-between mb-1 sm:mb-2">
           <span class="text-[11px] sm:text-xs text-white/50 font-bold">المتاجر النشطة</span>
-          <span class="text-base sm:text-xl">🏪</span>
+          <span class="text-base sm:text-xl text-blue-400"><i class="fa-solid fa-store"></i></span>
         </div>
         <div>
           <div id="stat-stores" class="text-base sm:text-2xl font-black text-blue-300">8</div>
@@ -261,7 +261,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
       <div class="glass-card rounded-2xl p-3.5 sm:p-5 flex flex-col justify-between border-t-2 border-t-rose-400">
         <div class="flex items-center justify-between mb-1 sm:mb-2">
           <span class="text-[11px] sm:text-xs text-white/50 font-bold">متوسط قيمة الطلب</span>
-          <span class="text-base sm:text-xl">📈</span>
+          <span class="text-base sm:text-xl text-rose-400"><i class="fa-solid fa-arrow-trend-up"></i></span>
         </div>
         <div>
           <div id="stat-avg-order" class="text-base sm:text-2xl font-black text-rose-300">0.00 ج.م</div>
@@ -278,7 +278,10 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-4 border-b border-white/10 mb-4">
         <div>
           <div class="flex items-center gap-2">
-            <h2 class="text-sm sm:text-base font-extrabold text-white">📦 سجل الطلبات السحابية المباشر</h2>
+            <h2 class="text-sm sm:text-base font-extrabold text-white flex items-center gap-2">
+              <i class="fa-solid fa-box text-emerald-400"></i>
+              <span>سجل الطلبات السحابية المباشر</span>
+            </h2>
             <span id="orders-live-pulse" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           </div>
           <p class="text-[11px] text-white/50">تحديث فوري لطلبات العملاء من سحابة Supabase ومزامنتها لحظياً</p>
@@ -325,7 +328,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
         <div>
           <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
             <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-              <span>🏆</span>
+              <i class="fa-solid fa-trophy text-amber-400"></i>
               <span>أداء المطاعم الأكثر طلباً بالحسينية</span>
             </h3>
             <span class="text-[11px] text-white/40">بيانات فعلية</span>
@@ -344,16 +347,16 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
         <div>
           <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
             <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-              <span>🛵</span>
+              <i class="fa-solid fa-motorcycle text-emerald-400"></i>
               <span>كباتن ومندوبي توصيل الحسينية</span>
             </h3>
-            <span class="text-[11px] text-emerald-400 font-bold">جاهزون للطلبات ⚡</span>
+            <span class="text-[11px] text-emerald-400 font-bold flex items-center gap-1">جاهزون للطلبات <i class="fa-solid fa-bolt text-xs"></i></span>
           </div>
           
           <div class="space-y-2.5 text-xs">
             <div class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.04] border border-white/5">
               <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">🛵</div>
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold"><i class="fa-solid fa-motorcycle"></i></div>
                 <div>
                   <div class="font-bold text-white">كابتن مشاوير الحسينية والقرى</div>
                   <div class="text-[10px] text-white/40">شارع المركز وميدان المحطة</div>
@@ -364,7 +367,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
 
             <div class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.04] border border-white/5">
               <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">🛵</div>
+                <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold"><i class="fa-solid fa-motorcycle"></i></div>
                 <div>
                   <div class="font-bold text-white">كابتن دليفري ترعة سراج والمدارس</div>
                   <div class="text-[10px] text-white/40">تغطية مطاعم الكريب والفول</div>
@@ -375,7 +378,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
 
             <div class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.04] border border-white/5">
               <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">🚗</div>
+                <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold"><i class="fa-solid fa-car"></i></div>
                 <div>
                   <div class="font-bold text-white">سيارات تكسي الحسينية وسعود والأخيوة</div>
                   <div class="text-[10px] text-white/40">مشاوير خارجية وطلبات كبيرة</div>
@@ -389,14 +392,14 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
 
     </div>
 
-    <!-- ━━━ 👑 SUPER ADMIN: ALL RESTAURANTS & SERVICES MANAGEMENT ━━━ -->
+    <!-- ━━━ SUPER ADMIN: ALL RESTAURANTS & SERVICES MANAGEMENT ━━━ -->
     <div class="glass-card rounded-3xl p-5 sm:p-7 w-full border border-amber-400/35 shadow-2xl space-y-6">
       
       <!-- Header -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/10">
         <div class="flex items-center gap-3">
-          <div class="w-11 h-11 rounded-2xl bg-amber-400/20 text-amber-300 flex items-center justify-center text-2xl font-black border border-amber-400/30 flex-shrink-0">
-            👑
+          <div class="w-11 h-11 rounded-2xl bg-amber-400/20 text-amber-300 flex items-center justify-center text-xl font-black border border-amber-400/30 flex-shrink-0">
+            <i class="fa-solid fa-crown"></i>
           </div>
           <div>
             <div class="flex items-center gap-2 flex-wrap">
@@ -408,11 +411,11 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
         </div>
         <div class="flex items-center gap-2 flex-wrap">
           <a href="husayniya-merchant.html" class="btn-primary px-3.5 py-2 rounded-xl text-xs font-bold no-underline flex items-center gap-1.5">
-            <span>👨‍🍳</span>
+            <i class="fa-solid fa-kitchen-set"></i>
             <span>بوابة المطبخ والطلبات الحية</span>
           </a>
           <button onclick="confirmResetAllAccounts()" class="px-3.5 py-2 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-300 text-xs font-bold transition flex items-center gap-1.5" title="مسح كافة الحسابات والبيانات التجريبية">
-            <span>🧹</span>
+            <i class="fa-solid fa-broom"></i>
             <span>مسح جميع الحسابات وإعادة الضبط</span>
           </button>
         </div>
@@ -422,7 +425,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
       <div>
         <div class="flex items-center justify-between mb-3">
           <h3 class="text-sm font-bold text-amber-300 flex items-center gap-1.5">
-            <span>🍔</span>
+            <i class="fa-solid fa-utensils"></i>
             <span>المطاعم والمتاجر الـ 8 المتاحة بالحسينية:</span>
           </h3>
           <span class="text-[11px] text-white/40">تحكم كامل في المنيو والطلبات</span>
@@ -437,7 +440,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
       <div class="pt-4 border-t border-white/10">
         <div class="flex items-center justify-between mb-3">
           <h3 class="text-sm font-bold text-emerald-400 flex items-center gap-1.5">
-            <span>🏛️</span>
+            <i class="fa-solid fa-building-columns"></i>
             <span>الخدمات والمرافق العامة بالحسينية:</span>
           </h3>
           <span class="text-[11px] text-white/40">إدارة مباشرة للبوابات</span>
@@ -447,56 +450,56 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
           <!-- Pharmacy -->
           <div class="glass p-3.5 rounded-2xl flex flex-col justify-between gap-3 border border-emerald-500/20">
             <div class="flex items-center gap-2.5">
-              <span class="text-2xl">💊</span>
+              <span class="text-xl text-emerald-400"><i class="fa-solid fa-prescription-bottle-medical"></i></span>
               <div>
                 <h4 class="font-bold text-xs text-white">صيدليات الحسينية</h4>
                 <p class="text-[10px] text-white/50">طلب الروشتات والأدوية</p>
               </div>
             </div>
             <a href="husayniya-pharmacy.html" class="btn-primary w-full py-1.5 rounded-xl text-center text-[11px] font-bold no-underline">
-              إدارة الصيدليات ↗
+              إدارة الصيدليات <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </a>
           </div>
 
           <!-- Clinics -->
           <div class="glass p-3.5 rounded-2xl flex flex-col justify-between gap-3 border border-blue-500/20">
             <div class="flex items-center gap-2.5">
-              <span class="text-2xl">🩺</span>
+              <span class="text-xl text-red-400"><i class="fa-solid fa-stethoscope"></i></span>
               <div>
                 <h4 class="font-bold text-xs text-white">عيادات الأطباء</h4>
                 <p class="text-[10px] text-white/50">الحجوزات ومواعيد الكشف</p>
               </div>
             </div>
             <a href="husayniya-medical.html" class="btn-primary w-full py-1.5 rounded-xl text-center text-[11px] font-bold no-underline">
-              إدارة العيادات ↗
+              إدارة العيادات <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </a>
           </div>
 
           <!-- Real Estate -->
           <div class="glass p-3.5 rounded-2xl flex flex-col justify-between gap-3 border border-amber-500/20">
             <div class="flex items-center gap-2.5">
-              <span class="text-2xl">🏢</span>
+              <span class="text-xl text-amber-400"><i class="fa-solid fa-building"></i></span>
               <div>
                 <h4 class="font-bold text-xs text-white">عقارات الحسينية</h4>
                 <p class="text-[10px] text-white/50">الشقق والمحلات والأراضي</p>
               </div>
             </div>
             <a href="husayniya-realestate.html" class="btn-primary w-full py-1.5 rounded-xl text-center text-[11px] font-bold no-underline">
-              إدارة العقارات ↗
+              إدارة العقارات <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </a>
           </div>
 
           <!-- Lost and Found -->
           <div class="glass p-3.5 rounded-2xl flex flex-col justify-between gap-3 border border-purple-500/20">
             <div class="flex items-center gap-2.5">
-              <span class="text-2xl">🔍</span>
+              <span class="text-xl text-purple-400"><i class="fa-solid fa-magnifying-glass"></i></span>
               <div>
                 <h4 class="font-bold text-xs text-white">الأمانات والمفقودات</h4>
                 <p class="text-[10px] text-white/50">بلاغات العثور والفقدان</p>
               </div>
             </div>
             <a href="husayniya-lost.html" class="btn-primary w-full py-1.5 rounded-xl text-center text-[11px] font-bold no-underline">
-              إدارة الأمانات ↗
+              إدارة الأمانات <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </a>
           </div>
         </div>
@@ -512,10 +515,10 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
   <div class="glass-card rounded-3xl p-6 sm:p-7 max-w-md w-full border border-emerald-500/40 shadow-2xl text-right space-y-4">
     <div class="flex items-center justify-between pb-3 border-b border-white/10">
       <div class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">⚡</div>
+        <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold"><i class="fa-solid fa-bolt"></i></div>
         <h3 class="text-sm font-bold text-white">إعدادات سحابة Supabase</h3>
       </div>
-      <button onclick="closeCloudModal()" class="text-white/50 hover:text-white text-sm">✕</button>
+      <button onclick="closeCloudModal()" class="text-white/50 hover:text-white text-sm"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
     <div id="modal-cloud-status" class="p-2.5 rounded-xl bg-white/[0.04] text-[11px] text-white/70">
@@ -535,7 +538,7 @@ html,body{background:#06091a;color:#fff;font-family:'Segoe UI',Tahoma,Arial,sans
 
     <div class="pt-2 flex items-center justify-end gap-2 text-xs">
       <button onclick="disconnectCloud()" class="px-4 py-2 rounded-xl glass text-rose-400 hover:bg-rose-500/10">فصل</button>
-      <button onclick="saveCloudSettings()" class="btn-primary px-5 py-2.5 rounded-xl font-bold">حفظ واختبار الاتصال ⚡</button>
+      <button onclick="saveCloudSettings()" class="btn-primary px-5 py-2.5 rounded-xl font-bold">حفظ واختبار الاتصال <i class="fa-solid fa-bolt mr-1"></i></button>
     </div>
   </div>
 </div>
@@ -604,21 +607,21 @@ async function loadRealDashboardData(notifyUser = false) {
       tableBody.innerHTML = `
         <tr>
           <td colspan="8" class="text-center py-10 text-white/50">
-            <div class="text-3xl mb-2">📦</div>
+            <div class="text-3xl mb-2 text-white/40"><i class="fa-solid fa-box-open"></i></div>
             <div class="text-sm font-bold text-white mb-1">لا توجد طلبات مسجلة حتى الآن</div>
             <div class="text-xs text-white/40 max-w-sm mx-auto leading-relaxed">
-              عند قيام العملاء بطلب وجبات من المطاعم ستظهر هنا فورياً وتتحدث تلقائياً عبر سحابة Supabase ⚡
+              عند قيام العملاء بطلب وجبات من المطاعم ستظهر هنا فورياً وتتحدث تلقائياً عبر سحابة Supabase
             </div>
           </td>
         </tr>
       `;
     } else {
       const statusMap = {
-        'pending': { text: '⏳ قيد المراجعة', class: 'b-new' },
-        'preparing': { text: '🍳 قيد التحضير', class: 'b-prep' },
-        'on_the_way': { text: '🛵 في الطريق', class: 'b-del' },
-        'delivered': { text: '✅ تم التسليم', class: 'b-done' },
-        'cancelled': { text: '❌ ملغي', class: 'b-cancel' }
+        'pending': { text: 'قيد المراجعة', class: 'b-new' },
+        'preparing': { text: 'قيد التحضير', class: 'b-prep' },
+        'on_the_way': { text: 'في الطريق', class: 'b-del' },
+        'delivered': { text: 'تم التسليم', class: 'b-done' },
+        'cancelled': { text: 'ملغي', class: 'b-cancel' }
       };
 
       tableBody.innerHTML = realOrdersCache.slice(0, 25).map(ord => {
@@ -634,7 +637,7 @@ async function loadRealDashboardData(notifyUser = false) {
             <td class="text-white/40 text-xs">${formatOrderDate(ord.created_at)}</td>
             <td>
               <a href="husayniya-tracking.html?order=${ord.order_code || ''}" class="text-emerald-400 hover:underline text-xs font-bold no-underline">
-                تتبع 🗺️
+                تتبع <i class="fa-solid fa-location-crosshairs mr-1"></i>
               </a>
             </td>
           </tr>
@@ -691,10 +694,10 @@ function formatOrderDate(dateStr) {
 
 // ── Admin Multi-Store Management & Reset All Accounts ──
 function confirmResetAllAccounts() {
-  if (confirm('⚠️ تحذير المدير العام:\n\nهل ترغب في مسح جميع الحسابات المسجلة والطلبات المحلية وإعادة تعيين النظام بالكامل؟\n\n(أول حساب يسجل دخول لاحقاً سيصبح هو المدير العام تلقائياً بصلاحية شاملة لكافة المطاعم والخدمات).')) {
+  if (confirm('تحذير المدير العام:\n\nهل ترغب في مسح جميع الحسابات المسجلة والطلبات المحلية وإعادة تعيين النظام بالكامل؟\n\n(أول حساب يسجل دخول لاحقاً سيصبح هو المدير العام تلقائياً بصلاحية شاملة لكافة المطاعم والخدمات).')) {
     if (window.HusayniyaCloud) {
       window.HusayniyaCloud.resetAllAccounts();
-      alert('تم مسح جميع الحسابات والطلبات المحلية بنجاح! 🧹\nجاري إعادة التوجيه...');
+      alert('تم مسح جميع الحسابات والطلبات المحلية بنجاح!\nجاري إعادة التوجيه...');
       window.location.href = 'index.html';
     }
   }
@@ -710,7 +713,7 @@ function renderAdminStoresGrid() {
   container.innerHTML = storeKeys.map(key => {
     const s = stores[key];
     const isClosed = localStorage.getItem('husayniya_store_status_' + key) === 'closed';
-    const statusText = isClosed ? '🔴 مغلق مؤقتاً' : '🟢 يستقبل الطلبات';
+    const statusText = isClosed ? 'مغلق مؤقتاً' : 'يستقبل الطلبات';
     const statusClass = isClosed ? 'text-rose-400 bg-rose-500/15' : 'text-emerald-400 bg-emerald-500/15';
     const itemsCount = (s.items && s.items.length) || 0;
 
@@ -732,7 +735,7 @@ function renderAdminStoresGrid() {
 
         <div class="space-y-1.5 pt-1">
           <a href="husayniya-merchant.html?store=${key}" class="btn-primary w-full py-1.5 rounded-xl text-center text-[11px] font-bold block no-underline">
-            👨‍🍳 إدارة المنيو والطلبات
+            <i class="fa-solid fa-kitchen-set ml-1"></i> إدارة المنيو والطلبات
           </a>
           <div class="flex items-center gap-1.5">
             <a href="husayniya-store.html?store=${key}" class="glass flex-1 py-1 rounded-xl text-center text-[10px] text-white/70 hover:text-white no-underline">
@@ -776,12 +779,12 @@ function updateCloudUI() {
   
   if (isConn) {
     if (dot) dot.className = 'w-2 h-2 rounded-full bg-emerald-400 animate-pulse';
-    if (label) label.innerText = 'سحابة Supabase متصلة 🟢';
-    if (modalStatus) modalStatus.innerHTML = '<span class="text-emerald-400 font-bold">🟢 متصل بقاعدة بيانات Supabase السحابية في الوقت الفعلي</span>';
+    if (label) label.innerText = 'سحابة Supabase متصلة';
+    if (modalStatus) modalStatus.innerHTML = '<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check ml-1"></i> متصل بقاعدة بيانات Supabase السحابية في الوقت الفعلي</span>';
   } else {
     if (dot) dot.className = 'w-2 h-2 rounded-full bg-amber-400';
-    if (label) label.innerText = 'سحابة Supabase (محلي 🟡)';
-    if (modalStatus) modalStatus.innerHTML = '<span class="text-amber-300 font-bold">🟡 يعمل محلياً — أدخل بيانات Supabase للتزامن الفوري</span>';
+    if (label) label.innerText = 'سحابة Supabase (محلي)';
+    if (modalStatus) modalStatus.innerHTML = '<span class="text-amber-300 font-bold"><i class="fa-solid fa-circle-info ml-1"></i> يعمل محلياً — أدخل بيانات Supabase للتزامن الفوري</span>';
   }
 }
 
@@ -796,7 +799,7 @@ async function saveCloudSettings() {
     window.HusayniyaCloud.saveCredentials(url, key);
     const test = await window.HusayniyaCloud.testConnection();
     if (test.success) {
-      alert('تم الاتصال بنجاح بقاعدة بيانات Supabase! 🎉');
+      alert('تم الاتصال بنجاح بقاعدة بيانات Supabase!');
     } else {
       alert('تم الحفظ، تعذر الاتصال:\n' + test.error);
     }
@@ -830,7 +833,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Auto update when new order is placed from checkout
   if (window.HusayniyaCloud) {
     window.HusayniyaCloud.onOrderEvent((event, order) => {
-      console.log('⚡ Dashboard live order event:', event, order);
+      console.log('[Dashboard] live order event:', event, order);
       loadRealDashboardData();
     });
   }

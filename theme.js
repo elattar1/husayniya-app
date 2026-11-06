@@ -1,6 +1,6 @@
 /**
  * خدمات الحسينية — محرك تبديل المظهر النهاري والليلي
- * Al-Husayniya Services — Theme Engine (Default: Light Mode ☀️)
+ * Al-Husayniya Services — Theme Engine (Default: Light Mode)
  */
 
 (function () {
@@ -30,7 +30,7 @@
       var label = btn.querySelector('.theme-label') || btn.querySelector('#theme-toggle-label');
       
       if (icon) {
-        icon.textContent = isDark ? '☀️' : '🌙';
+        icon.innerHTML = isDark ? '<i class="fa-solid fa-sun text-amber-500"></i>' : '<i class="fa-solid fa-moon text-indigo-400"></i>';
       }
       if (label) {
         label.textContent = isDark ? 'فاتح' : 'ليلي';
@@ -68,7 +68,7 @@
       btn.onclick = window.toggleAppTheme;
       btn.className = 'glass px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95';
       btn.title = isDark ? 'التحويل للمظهر الفاتح (النهاري)' : 'التحويل للمظهر الليلي (الداكن)';
-      btn.innerHTML = '<span id="theme-toggle-icon" class="theme-icon">' + (isDark ? '☀️' : '🌙') + '</span>' +
+      btn.innerHTML = '<span id="theme-toggle-icon" class="theme-icon">' + (isDark ? '<i class="fa-solid fa-sun text-amber-500"></i>' : '<i class="fa-solid fa-moon text-indigo-400"></i>') + '</span>' +
         '<span id="theme-toggle-label" class="theme-label hidden sm:inline">' + (isDark ? 'فاتح' : 'ليلي') + '</span>';
       
       // Insert as first or second action button

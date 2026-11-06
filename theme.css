@@ -1,10 +1,12 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
 /**
  * خدمات الحسينية — نظام المظهر الكامل (الوضع الفاتح الافتراضي والوضع الليلي)
  * Al-Husayniya Services — Dual Light & Dark Theme System
  * Default: LIGHT THEME (الافتراضي هو الوضع الفاتح)
  */
 
-/* ── ☀️ LIGHT MODE (DEFAULT) ── */
+/* ── LIGHT MODE (DEFAULT) ── */
 html[data-theme="light"],
 html:not([data-theme="dark"]) {
   color-scheme: light;
@@ -350,7 +352,7 @@ html:not([data-theme="dark"]) table.tbl td {
   transform: scale(0.96);
 }
 
-/* ── 🌙 DARK MODE ── */
+/* ── DARK MODE ── */
 html[data-theme="dark"] {
   color-scheme: dark;
 }

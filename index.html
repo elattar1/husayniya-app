@@ -205,8 +205,8 @@ body {
         </button>
 
         <div onclick="navigateTo('home')" class="flex items-center gap-2.5 cursor-pointer">
-          <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center text-xl shadow-lg" style="background:linear-gradient(135deg,#00b09b,#06d6a0)">
-            🏠
+          <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center text-base shadow-lg text-white" style="background:linear-gradient(135deg,#00b09b,#06d6a0)">
+            <i class="fa-solid fa-house"></i>
           </div>
           <div>
             <div class="text-sm md:text-base font-extrabold gt leading-tight">خدمات الحسينية</div>
@@ -217,41 +217,41 @@ body {
 
       <!-- Desktop Nav Links -->
       <nav class="hidden lg:flex items-center gap-1.5 text-xs font-bold text-white/70">
-        <button onclick="navigateTo('home')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">الرئيسية</button>
-        <button onclick="navigateTo('store')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">المطاعم 🍖</button>
-        <button onclick="navigateTo('pharmacy')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">صيدليات وروشتة 💊</button>
-        <button onclick="navigateTo('medical')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">دليل الأطباء 🏥</button>
-        <button onclick="navigateTo('realestate')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">عقارات 🏠</button>
-        <button onclick="navigateTo('lost')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">أمانات 🔍</button>
-        <button onclick="navigateTo('tracking')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">تتبع 🛵</button>
-        <button onclick="navigateTo('merchant')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">بوابة التجار 🏪</button>
-        <button onclick="navigateTo('driver')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">الكباتن ⚡</button>
-        <button onclick="navigateTo('dashboard')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition">لوحة الإدارة 📊</button>
+        <button onclick="navigateTo('home')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition flex items-center gap-1.5"><i class="fa-solid fa-house"></i> <span>الرئيسية</span></button>
+        <button onclick="navigateTo('store')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition flex items-center gap-1.5"><i class="fa-solid fa-utensils text-emerald-400"></i> <span>المطاعم</span></button>
+        <button onclick="navigateTo('pharmacy')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition flex items-center gap-1.5"><i class="fa-solid fa-pills text-rose-400"></i> <span>صيدليات وروشتة</span></button>
+        <button onclick="navigateTo('medical')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition flex items-center gap-1.5"><i class="fa-solid fa-stethoscope text-sky-400"></i> <span>دليل الأطباء</span></button>
+        <button onclick="navigateTo('realestate')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition flex items-center gap-1.5"><i class="fa-solid fa-building text-amber-400"></i> <span>عقارات</span></button>
+        <button onclick="navigateTo('lost')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition flex items-center gap-1.5"><i class="fa-solid fa-magnifying-glass text-teal-400"></i> <span>أمانات</span></button>
+        <button onclick="navigateTo('tracking')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition flex items-center gap-1.5"><i class="fa-solid fa-motorcycle text-emerald-400"></i> <span>تتبع</span></button>
+        <button onclick="navigateTo('merchant')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition flex items-center gap-1.5"><i class="fa-solid fa-shop text-amber-400"></i> <span>بوابة التجار</span></button>
+        <button onclick="navigateTo('driver')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition flex items-center gap-1.5"><i class="fa-solid fa-bolt text-amber-400"></i> <span>الكباتن</span></button>
+        <button onclick="navigateTo('dashboard')" class="px-3 py-2 rounded-xl hover:text-emerald-400 hover:bg-white/5 transition flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-purple-400"></i> <span>لوحة الإدارة</span></button>
       </nav>
 
       <!-- Action Buttons -->
       <div class="flex items-center gap-2">
         <!-- Theme Toggle (Light / Dark) -->
         <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
-          <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+          <span id="theme-toggle-icon" class="theme-icon"><i class="fa-solid fa-moon text-indigo-400"></i></span>
           <span id="theme-toggle-label" class="theme-label hidden sm:inline">ليلي</span>
         </button>
 
         <!-- Location Pill (GPS) -->
         <button id="navbar-location-pill" onclick="handleNavbarDetectLocation(this)" type="button" class="glass px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 text-xs font-semibold hover:bg-white/10 active:scale-95 transition" title="تحديد موقع التوصيل عبر GPS">
-          <span>📍</span>
+          <i class="fa-solid fa-location-dot text-emerald-400"></i>
           <span class="truncate max-w-[100px] sm:max-w-[150px]">تحديد موقعي</span>
         </button>
 
         <!-- Notification Bell -->
         <button id="navbar-notif-btn" onclick="handleNavbarNotification(this)" type="button" class="glass p-2 sm:px-3 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 text-xs font-bold text-white/80 hover:text-white hover:bg-white/10 active:scale-95 transition" title="تفعيل الإشعارات وتنبيهات الطلب">
-          <span>🔔</span>
+          <i class="fa-solid fa-bell text-white/80"></i>
           <span class="hidden md:inline">الإشعارات</span>
         </button>
 
         <!-- Live Cart Badge -->
         <button onclick="navigateTo('checkout')" class="glass px-3 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 sm:gap-2 text-xs font-bold hover:bg-white/10 active:scale-95 transition">
-          <span>🛒</span>
+          <i class="fa-solid fa-cart-shopping"></i>
           <span class="hidden sm:inline">السلة</span>
           <span id="global-cart-qty" class="w-5 h-5 rounded-full bg-amber-400 text-black font-black text-[10px] flex items-center justify-center">0</span>
         </button>
@@ -259,7 +259,7 @@ body {
         <!-- Account Pill -->
         <button onclick="navigateTo('account')" class="hidden sm:flex glass p-1.5 pr-3 rounded-xl items-center gap-2 text-xs font-semibold hover:bg-white/10 transition">
           <span>حسابي</span>
-          <div class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px]">👤</div>
+          <div class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs"><i class="fa-solid fa-user"></i></div>
         </button>
       </div>
 
@@ -271,63 +271,63 @@ body {
   <aside id="drawer" class="drawer">
     <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
       <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-sm">🏠</div>
+        <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-sm text-white"><i class="fa-solid fa-house"></i></div>
         <span class="font-bold text-sm text-white">خدمات الحسينية</span>
       </div>
-      <button onclick="toggleDrawer()" class="text-white/40 hover:text-white text-lg">✕</button>
+      <button onclick="toggleDrawer()" class="text-white/40 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
     <div class="space-y-1.5 flex-1">
       <!-- Mobile Theme Switcher -->
       <button onclick="toggleAppTheme()" class="w-full text-right p-3 rounded-xl bg-white/[0.08] text-xs font-bold flex items-center justify-between theme-toggle-btn border border-white/10 mb-2">
         <span class="flex items-center gap-3">
-          <span class="theme-icon">🌙</span>
+          <span class="theme-icon"><i class="fa-solid fa-moon text-indigo-400"></i></span>
           <span>مظهر التطبيق (نهاري / ليلي)</span>
         </span>
         <span class="theme-label px-2.5 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-300 text-[10px]">ليلي</span>
       </button>
 
       <button onclick="navigateTo('home'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>🏠</span><span>الرئيسية</span>
+        <i class="fa-solid fa-house text-emerald-400 w-5 text-center"></i><span>الرئيسية</span>
       </button>
       <button onclick="navigateTo('store'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>🍖</span><span>المطاعم وقائمة الوجبات</span>
+        <i class="fa-solid fa-utensils text-amber-400 w-5 text-center"></i><span>المطاعم وقائمة الوجبات</span>
       </button>
       <button onclick="navigateTo('pharmacy'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>💊</span><span>صيدليات الحسينية ورفع الروشتة</span>
+        <i class="fa-solid fa-pills text-rose-400 w-5 text-center"></i><span>صيدليات الحسينية ورفع الروشتة</span>
       </button>
       <button onclick="navigateTo('medical'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>🏥</span><span>دليل الأطباء والعيادات بالحسينية</span>
+        <i class="fa-solid fa-stethoscope text-sky-400 w-5 text-center"></i><span>دليل الأطباء والعيادات بالحسينية</span>
       </button>
       <button onclick="navigateTo('realestate'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>🏠</span><span>عقارات وشقق الحسينية (بيع وإيجار)</span>
+        <i class="fa-solid fa-building text-amber-400 w-5 text-center"></i><span>عقارات وشقق الحسينية (بيع وإيجار)</span>
       </button>
       <button onclick="navigateTo('lost'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>🔍</span><span>أمانات ومفقودات الحسينية</span>
+        <i class="fa-solid fa-magnifying-glass text-teal-400 w-5 text-center"></i><span>أمانات ومفقودات الحسينية</span>
       </button>
       <button onclick="navigateTo('checkout'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>🛒</span><span>سلة التسوق وإتمام الدفع</span>
+        <i class="fa-solid fa-cart-shopping text-emerald-400 w-5 text-center"></i><span>سلة التسوق وإتمام الدفع</span>
       </button>
       <button onclick="navigateTo('tracking'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>🛵</span><span>تتبع مسار السائق الحي</span>
+        <i class="fa-solid fa-motorcycle text-emerald-400 w-5 text-center"></i><span>تتبع مسار السائق الحي</span>
       </button>
       <button onclick="navigateTo('driver'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>⚡</span><span>بوابة الكباتن والدليفري</span>
+        <i class="fa-solid fa-bolt text-amber-400 w-5 text-center"></i><span>بوابة الكباتن والدليفري</span>
       </button>
       <button onclick="navigateTo('merchant'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>🏪</span><span>بوابة التجار وأصحاب المطاعم</span>
+        <i class="fa-solid fa-shop text-amber-400 w-5 text-center"></i><span>بوابة التجار وأصحاب المطاعم</span>
       </button>
       <button onclick="navigateTo('dashboard'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>📊</span><span>لوحة الإدارة والتحكم</span>
+        <i class="fa-solid fa-chart-line text-purple-400 w-5 text-center"></i><span>لوحة الإدارة والتحكم</span>
       </button>
       <button onclick="navigateTo('account'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>👤</span><span>حسابي الشخصي وسجل الطلبات</span>
+        <i class="fa-solid fa-user text-sky-400 w-5 text-center"></i><span>حسابي الشخصي وسجل الطلبات</span>
       </button>
       <button onclick="navigateTo('login'); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-white/[0.04] text-xs font-bold flex items-center gap-3">
-        <span>🔐</span><span>تسجيل الدخول / إنشاء حساب</span>
+        <i class="fa-solid fa-lock text-rose-400 w-5 text-center"></i><span>تسجيل الدخول / إنشاء حساب</span>
       </button>
       <button onclick="forceAppUpdate(); toggleDrawer();" class="w-full text-right p-3 rounded-xl bg-amber-400/10 border border-amber-400/20 text-amber-300 text-xs font-bold flex items-center gap-3">
-        <span>🔄</span><span>تحديث التطبيق ومسح الكاش</span>
+        <i class="fa-solid fa-rotate text-amber-400 w-5 text-center"></i><span>تحديث التطبيق ومسح الكاش</span>
       </button>
     </div>
 
@@ -359,8 +359,8 @@ body {
           <!-- Search box -->
           <div class="glass p-1.5 rounded-2xl flex items-center gap-2 max-w-lg border border-white/20">
             <input id="home-search" oninput="dynamicSearch(this.value)" type="text" placeholder="ابحث عن مطعم، صيدلية، أو خدمة..." class="flex-1 bg-transparent px-3 text-xs sm:text-sm text-white focus:outline-none"/>
-            <button onclick="navigateTo('store')" class="btn-primary px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap">
-              استكشف 🔍
+            <button onclick="navigateTo('store')" class="btn-primary px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap flex items-center gap-1.5">
+              <span>استكشف</span> <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
         </div>
@@ -373,14 +373,14 @@ body {
           <span class="text-xs text-emerald-400">اسحب للتصفح ←</span>
         </div>
         <div class="flex items-center gap-2.5 scroll-touch pb-2">
-          <button onclick="filterCategory('all', this)" class="cat-pill active px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white whitespace-nowrap">🌟 الكل</button>
-          <button onclick="filterCategory('food', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🍔 مطاعم ومشاوي</button>
-          <button onclick="filterCategory('grocery', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🛒 سوبر ماركت</button>
-          <button onclick="filterCategory('pharmacy', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">💊 صيدليات 24h</button>
-          <button onclick="filterCategory('ride', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🚖 تكسي وتوصيل</button>
-          <button onclick="navigateTo('medical')" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🏥 دليل الأطباء</button>
-          <button onclick="navigateTo('realestate')" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">🏠 عقارات المنطقة</button>
-          <button onclick="navigateTo('driver')" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap">⚡ كباتن التوصيل</button>
+          <button onclick="filterCategory('all', this)" class="cat-pill active px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white whitespace-nowrap flex items-center gap-1.5"><i class="fa-solid fa-layer-group text-emerald-400"></i> <span>الكل</span></button>
+          <button onclick="filterCategory('food', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap flex items-center gap-1.5"><i class="fa-solid fa-utensils text-amber-400"></i> <span>مطاعم ومشاوي</span></button>
+          <button onclick="filterCategory('grocery', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap flex items-center gap-1.5"><i class="fa-solid fa-basket-shopping text-emerald-400"></i> <span>سوبر ماركت</span></button>
+          <button onclick="filterCategory('pharmacy', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap flex items-center gap-1.5"><i class="fa-solid fa-pills text-rose-400"></i> <span>صيدليات 24h</span></button>
+          <button onclick="filterCategory('ride', this)" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap flex items-center gap-1.5"><i class="fa-solid fa-car text-emerald-400"></i> <span>تكسي وتوصيل</span></button>
+          <button onclick="navigateTo('medical')" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap flex items-center gap-1.5"><i class="fa-solid fa-stethoscope text-sky-400"></i> <span>دليل الأطباء</span></button>
+          <button onclick="navigateTo('realestate')" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap flex items-center gap-1.5"><i class="fa-solid fa-building text-amber-400"></i> <span>عقارات المنطقة</span></button>
+          <button onclick="navigateTo('driver')" class="cat-pill px-4 py-2.5 rounded-2xl glass text-xs font-bold text-white/70 whitespace-nowrap flex items-center gap-1.5"><i class="fa-solid fa-bolt text-amber-400"></i> <span>كباتن التوصيل</span></button>
         </div>
       </div>
 
@@ -394,12 +394,12 @@ body {
             <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="مشويات الباز" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.9</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.9</span></span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">مشويات الباز (سعود والحسينية)</h3>
           <p class="text-xs text-white/50 mb-3">كباب، كفتة بلدي، طرب، ريش ضاني، ودجاج مشوي ع الفحم</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ 20 - 30 دقيقة</span>
+            <span><i class="fa-solid fa-clock text-white/40 ml-1"></i> 20 - 30 دقيقة</span>
             <span class="text-emerald-400 font-bold">توصيل 15 ج.م</span>
           </div>
         </div>
@@ -410,12 +410,12 @@ body {
             <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="كشري الزعيم" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.8</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.8</span></span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">كشري الزعيم والتحرير — شارع المركز</h3>
           <p class="text-xs text-white/50 mb-3">كشري مخصوص، طواجن فراخ ولحمة في الفرن، كماليات وأرز باللبن</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ 15 - 25 دقيقة</span>
+            <span><i class="fa-solid fa-clock text-white/40 ml-1"></i> 15 - 25 دقيقة</span>
             <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
           </div>
         </div>
@@ -426,12 +426,12 @@ body {
             <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="بيتزا وكريب الرواد" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.7</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.7</span></span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">بيتزا وكريب الرواد — شارع المدارس</h3>
           <p class="text-xs text-white/50 mb-3">كريب زنجر، كرانشي، شاورما سوري، بيتزا شرقي وإيطالي، وبطاطس فارم</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ 25 - 35 دقيقة</span>
+            <span><i class="fa-solid fa-clock text-white/40 ml-1"></i> 25 - 35 دقيقة</span>
             <span class="text-emerald-400 font-bold">توصيل 12 ج.م</span>
           </div>
         </div>
@@ -442,12 +442,12 @@ body {
             <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="حلواني شندل" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.9</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.9</span></span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">حلواني شندل والبارون — شارع المركز</h3>
           <p class="text-xs text-white/50 mb-3">تورتات أعياد ميلاد، بسبوسة، كنافة نابلسية، وجاتوهات شرقية وغربية</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ 15 - 25 دقيقة</span>
+            <span><i class="fa-solid fa-clock text-white/40 ml-1"></i> 15 - 25 دقيقة</span>
             <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
           </div>
         </div>
@@ -458,12 +458,12 @@ body {
             <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=600&q=80" alt="فول وفلافل البرنس" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.9</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.9</span></span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">فول وفلافل البرنس — ترعة سراج</h3>
           <p class="text-xs text-white/50 mb-3">ساندوتشات فلافل محشية كيري، فول فلاحي زيت حار، مسقعة، وباذنجان مخلل</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ 10 - 20 دقيقة</span>
+            <span><i class="fa-solid fa-clock text-white/40 ml-1"></i> 10 - 20 دقيقة</span>
             <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
           </div>
         </div>
@@ -474,12 +474,12 @@ body {
             <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" alt="هايبر الفرسان" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● متاح للتسوق</span>
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.8</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.8</span></span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">هايبر الفرسان — شارع بورسعيد</h3>
           <p class="text-xs text-white/50 mb-3">منتجات ألبان، جبن رومي وموزاريلا، بقالة تموينية، مجمدات، وعصائر</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ 15 - 20 دقيقة</span>
+            <span><i class="fa-solid fa-clock text-white/40 ml-1"></i> 15 - 20 دقيقة</span>
             <span class="text-emerald-400 font-bold">توصيل 10 ج.م</span>
           </div>
         </div>
@@ -490,12 +490,12 @@ body {
             <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80" alt="بروستد الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.8</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.8</span></span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">بروستد وشاورما الحسينية — شارع المركز</h3>
           <p class="text-xs text-white/50 mb-3">دجاج مقرمش كريسبي، فتة شاورما سوري، ساندوتشات كرانشي، وتومية أصلية</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ 20 - 30 دقيقة</span>
+            <span><i class="fa-solid fa-clock text-white/40 ml-1"></i> 20 - 30 دقيقة</span>
             <span class="text-emerald-400 font-bold">توصيل 12 ج.م</span>
           </div>
         </div>
@@ -506,12 +506,12 @@ body {
             <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" alt="أسماك وسيفود الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● مفتوح الآن</span>
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.9</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.9</span></span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">أسماك وسيفود القنال والبردويل — جمال عبد الناصر</h3>
           <p class="text-xs text-white/50 mb-3">جمبري مشوي، بوري سنجاري، طواجن سيفود بالوايت صوص، وشوربة مخلية</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ 25 - 40 دقيقة</span>
+            <span><i class="fa-solid fa-clock text-white/40 ml-1"></i> 25 - 40 دقيقة</span>
             <span class="text-emerald-400 font-bold">توصيل 15 ج.م</span>
           </div>
         </div>
@@ -521,14 +521,14 @@ body {
           <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
             <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=600&q=80" alt="صيدليات الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-blue-500 text-white text-[10px] font-black shadow-lg">💊 تصوير الروشتة أونلاين</span>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-blue-500 text-white text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-camera"></i> <span>تصوير الروشتة أونلاين</span></span>
             <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-emerald-400 text-[10px] font-black shadow-lg">24 ساعة</span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">صيدليات الحسينية — تصوير وطلب الروشتة</h3>
           <p class="text-xs text-white/50 mb-3">صيدلية العطار، السلام، والجمهورية — صور الروشتة بالكاميرا واستلم الدواء في دقائق</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ 10 - 20 دقيقة</span>
-            <span class="text-emerald-400 font-bold">توصيل منزلي فوري 🛵</span>
+            <span><i class="fa-solid fa-clock text-white/50 ml-1"></i> 10 - 20 دقيقة</span>
+            <span class="text-emerald-400 font-bold flex items-center gap-1"><span>توصيل منزلي فوري</span> <i class="fa-solid fa-motorcycle"></i></span>
           </div>
         </div>
 
@@ -538,12 +538,12 @@ body {
             <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80" alt="عيادات أطباء الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[10px] font-black shadow-lg">● حجز فوري</span>
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.9</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.9</span></span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">مجمع عيادات الأطباء — شارع المستشفى</h3>
           <p class="text-xs text-white/50 mb-3">باطنة، أطفال، عظام، رمد، نساء وتوليد، أسنان، ومعامل تحاليل ومراكز أشعة</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ حجز أونلاين مؤكد</span>
+            <span><i class="fa-solid fa-calendar-check text-white/50 ml-1"></i> حجز أونلاين مؤكد</span>
             <span class="text-emerald-400 font-bold">كشف من 100 ج.م</span>
           </div>
         </div>
@@ -554,12 +554,12 @@ body {
             <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80" alt="تكسي ومشاوير الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-amber-500 text-black text-[10px] font-black shadow-lg">● كباتن جاهزون</span>
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">★ 4.8</span>
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.8</span></span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">تكسي ومشاوير الحسينية وقرى المركز</h3>
           <p class="text-xs text-white/50 mb-3">مشاوير داخلية بالمدينة، جزيرة سعود، الأخيوة، بحر البقر، وتوصيل طلبات</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>⏱️ 5 - 10 دقائق</span>
+            <span><i class="fa-solid fa-clock text-white/50 ml-1"></i> 5 - 10 دقائق</span>
             <span class="text-emerald-400 font-bold">يبدأ من 15 ج.م</span>
           </div>
         </div>
@@ -569,13 +569,13 @@ body {
           <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
             <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80" alt="عقارات الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-cyan-500 text-black text-[10px] font-black shadow-lg">🏢 إيجار وتمليك</span>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-cyan-500 text-black text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-building"></i> <span>إيجار وتمليك</span></span>
             <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-white text-[10px] font-black shadow-lg">أحدث العروض</span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">عقارات الحسينية — شارع جمال عبد الناصر</h3>
           <p class="text-xs text-white/50 mb-3">شقق للإيجار، أراضي للبناء، محلات تجارية، ومنازل للبيع بحي المحجوب والمعاشات</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>📍 جميع أحياء وقرى المركز</span>
+            <span class="flex items-center gap-1"><i class="fa-solid fa-location-dot text-emerald-400"></i> <span>جميع أحياء وقرى المركز</span></span>
             <span class="text-emerald-400 font-bold">استعراض وإضافة عقار</span>
           </div>
         </div>
@@ -585,13 +585,13 @@ body {
           <div class="h-40 rounded-2xl mb-4 relative overflow-hidden group">
             <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=600&q=80" alt="أمانات ومفقودات الحسينية" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-rose-500 text-white text-[10px] font-black shadow-lg">🔍 خدمة الأهالي مجاناً</span>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-rose-500 text-white text-[10px] font-black shadow-lg flex items-center gap-1"><i class="fa-solid fa-shield-halved"></i> <span>خدمة الأهالي مجاناً</span></span>
             <span class="absolute top-3 left-3 px-2.5 py-1 rounded-xl bg-black/60 text-amber-300 text-[10px] font-black shadow-lg">أمانات</span>
           </div>
           <h3 class="font-bold text-base text-white mb-1">أمانات ومفقودات الحسينية</h3>
           <p class="text-xs text-white/50 mb-3">محافظ وبطاقات رقم قومي، موبايلات مفقودة، ومفاتيح تم العثور عليها بالمركز</p>
           <div class="flex items-center justify-between text-xs text-white/60 pt-3 border-t border-white/5">
-            <span>🤝 لوجه الله تعالى</span>
+            <span class="flex items-center gap-1"><i class="fa-solid fa-hand-holding-heart text-rose-400"></i> <span>لوجه الله تعالى</span></span>
             <span class="text-emerald-400 font-bold">إبلاغ أو استرجاع</span>
           </div>
         </div>
@@ -601,7 +601,7 @@ body {
       <!-- Footer Info Spacer (Guarantees Content Never Obscured by Bottom Nav) -->
       <footer class="mt-12 pt-8 pb-10 border-t border-white/10 text-center text-xs text-white/40 space-y-2">
         <div class="flex items-center justify-center gap-2 text-white/60 font-bold">
-          <span>🏛️</span>
+          <i class="fa-solid fa-landmark text-amber-300"></i>
           <span>خدمات الحسينية — دليلك الشامل لمركز الحسينية ومحافظة الشرقية</span>
         </div>
         <p>توصيل فوري • دعم فني 24/7 • أطباء وعقارات ومطاعم</p>
@@ -616,8 +616,8 @@ body {
   <!-- Floating PWA Install App Banner -->
   <div id="pwa-install-banner" class="fixed bottom-20 left-4 right-4 max-w-md mx-auto z-40 glass-card rounded-2xl p-3.5 flex items-center justify-between gap-3 border border-emerald-400/40 shadow-2xl transition-all duration-300 hidden">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-xl shadow-md flex-shrink-0">
-        📲
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-lg shadow-md flex-shrink-0 text-white">
+        <i class="fa-solid fa-mobile-screen-button"></i>
       </div>
       <div>
         <div class="font-extrabold text-xs text-white">تثبيت تطبيق خدمات الحسينية</div>
@@ -626,31 +626,31 @@ body {
     </div>
     <div class="flex items-center gap-1.5 flex-shrink-0">
       <button onclick="dismissInstallBanner()" class="text-white/40 hover:text-white text-xs px-2 py-1">لاحقاً</button>
-      <button onclick="triggerPWAInstall()" class="btn-primary px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap">تثبيت 📥</button>
+      <button onclick="triggerPWAInstall()" class="btn-primary px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap flex items-center gap-1"><span>تثبيت</span> <i class="fa-solid fa-download"></i></button>
     </div>
   </div>
 
   <!-- ══════════════ MOBILE BOTTOM NAVIGATION ══════════════ -->
   <nav class="mobile-nav">
     <div onclick="navigateTo('home')" id="mob-home" class="mobile-nav-item active">
-      <span class="text-lg">🏠</span>
+      <i class="fa-solid fa-house text-base mb-1"></i>
       <span>الرئيسية</span>
     </div>
     <div onclick="navigateTo('store')" id="mob-store" class="mobile-nav-item">
-      <span class="text-lg">🍖</span>
+      <i class="fa-solid fa-utensils text-base mb-1"></i>
       <span>المطاعم</span>
     </div>
     <div onclick="navigateTo('checkout')" id="mob-checkout" class="mobile-nav-item relative">
-      <span class="text-lg">🛒</span>
+      <i class="fa-solid fa-cart-shopping text-base mb-1"></i>
       <span>السلة</span>
       <span id="mob-cart-badge" class="w-4 h-4 rounded-full bg-amber-400 text-black font-black text-[9px] flex items-center justify-center absolute top-1 left-2">0</span>
     </div>
     <div onclick="navigateTo('tracking')" id="mob-tracking" class="mobile-nav-item">
-      <span class="text-lg">🛵</span>
+      <i class="fa-solid fa-motorcycle text-base mb-1"></i>
       <span>تتبّع</span>
     </div>
     <div onclick="navigateTo('account')" id="mob-account" class="mobile-nav-item">
-      <span class="text-lg">👤</span>
+      <i class="fa-solid fa-user text-base mb-1"></i>
       <span>حسابي</span>
     </div>
   </nav>
@@ -759,7 +759,7 @@ async function forceAppUpdate() {
         await r.unregister();
       }
     }
-    alert('تم مسح الذاكرة المؤقتة القديمة بنجاح! 🔄 سيتم إعادة تحميل أحدث نسخة من الموقع.');
+    alert('تم مسح الذاكرة المؤقتة القديمة بنجاح! سيتم إعادة تحميل أحدث نسخة من الموقع.');
     window.location.reload(true);
   } catch(e) {
     window.location.reload(true);
@@ -769,16 +769,16 @@ async function forceAppUpdate() {
 // ── Topbar GPS Location Detection Handler ──
 async function handleNavbarDetectLocation(btn) {
   const origHtml = btn ? btn.innerHTML : '';
-  if (btn) btn.innerHTML = `<span>⏳</span><span class="truncate max-w-[120px]">جاري التحديد...</span>`;
+  if (btn) btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-emerald-400"></i><span class="truncate max-w-[120px]">جاري التحديد...</span>`;
   
   if (window.HusayniyaCloud) {
     const res = await window.HusayniyaCloud.detectUserLocation();
     if (res.success) {
       if (btn) {
-        btn.innerHTML = `<span>📍</span><span class="truncate max-w-[120px] text-emerald-300 font-bold">${res.area}</span>`;
+        btn.innerHTML = `<i class="fa-solid fa-location-dot text-emerald-400"></i><span class="truncate max-w-[120px] text-emerald-300 font-bold">${res.area}</span>`;
       }
       window.HusayniyaCloud.playChime('success');
-      window.HusayniyaCloud.showInAppToast('✓ تم تحديد موقعك الحالي', `${res.area} (${res.address || 'GPS'})`);
+      window.HusayniyaCloud.showInAppToast('تم تحديد موقعك الحالي', `${res.area} (${res.address || 'GPS'})`);
     } else {
       if (btn) btn.innerHTML = origHtml;
       alert(res.error || 'يرجى السماح بصلاحية الموقع من إعدادات المتصفح.');
@@ -842,7 +842,7 @@ function triggerPWAInstall() {
       dismissInstallBanner();
     });
   } else {
-    alert('📱 لتثبيت تطبيق خدمات الحسينية على هاتفك:\n\n• أندرويد (Google Chrome): اضغط على القائمة (⋮) أعلى المتصفح ثم اختر "تثبيت التطبيق" أو "إضافة إلى الشاشة الرئيسية".\n\n• آيفون (Safari): اضغط على زر المشاركة (⎙) بالأسفل ثم اختر "إضافة إلى الصفحة الرئيسية (Add to Home Screen)".');
+    alert('لتثبيت تطبيق خدمات الحسينية على هاتفك:\n\n• أندرويد (Google Chrome): اضغط على القائمة (⋮) أعلى المتصفح ثم اختر "تثبيت التطبيق" أو "إضافة إلى الشاشة الرئيسية".\n\n• آيفون (Safari): اضغط على زر المشاركة (⎙) بالأسفل ثم اختر "إضافة إلى الصفحة الرئيسية (Add to Home Screen)".');
   }
 }
 

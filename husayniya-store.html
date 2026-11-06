@@ -350,7 +350,7 @@ body {
       <!-- Back to Restaurants & Offers Hub -->
       <a href="husayniya-restaurants.html" class="flex items-center gap-2.5 text-white/80 hover:text-white transition flex-shrink-0" style="text-decoration:none">
         <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl glass flex items-center justify-center font-bold text-sm">
-          ←
+          <i class="fa-solid fa-arrow-right"></i>
         </div>
         <div class="min-w-0">
           <span class="text-[10px] sm:text-xs text-emerald-400 font-semibold block leading-tight">عروض ومطاعم</span>
@@ -361,7 +361,7 @@ body {
       <!-- Search in menu (desktop) -->
       <div class="hidden md:flex items-center relative w-72">
         <input id="menu-search" oninput="filterMenuItems()" type="text" placeholder="ابحث في قائمة المطعم..." class="w-full rounded-2xl px-4 py-2 pr-10 text-xs bg-white/[0.07] border border-white/15 focus:outline-none focus:border-emerald-400 text-white"/>
-        <span class="absolute right-3 text-white/40 text-xs">🔍</span>
+        <span class="absolute right-3 text-white/40 text-xs"><i class="fa-solid fa-magnifying-glass"></i></span>
       </div>
 
       <!-- Actions: Switch Store & View Cart -->
@@ -369,42 +369,42 @@ body {
         <!-- Switch Store Dropdown -->
         <div class="relative">
           <button id="store-selector-btn" onclick="toggleStoreMenu(event)" class="glass px-2.5 sm:px-3 py-2 rounded-2xl flex items-center gap-1.5 text-xs font-bold text-white/90 hover:bg-white/10 transition">
-            <span class="text-xs">🏪</span>
+            <i class="fa-solid fa-store text-xs text-emerald-400"></i>
             <span class="hidden sm:inline text-xs">تغيير المطعم</span>
-            <span class="text-[10px] text-emerald-400">▼</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-emerald-400"></i>
           </button>
           <div id="store-selector-dropdown" class="hidden absolute left-0 mt-2 w-64 glass-card rounded-2xl p-2 z-50 shadow-2xl border border-white/20 bg-[#091124]/95 backdrop-blur-xl">
             <div class="text-[10px] text-white/50 px-2 py-1 font-bold">مطاعم ومتاجر الحسينية:</div>
-            <a href="husayniya-store.html?store=baz" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
-              <span class="text-base">🍖</span>
+            <a href="husayniya-store.html?store=baz" class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="w-6 text-center text-amber-500"><i class="fa-solid fa-drumstick-bite"></i></span>
               <div class="min-w-0 flex-1 truncate font-semibold">مشويات الباز والحسينية</div>
             </a>
-            <a href="husayniya-store.html?store=koshary" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
-              <span class="text-base">🍲</span>
+            <a href="husayniya-store.html?store=koshary" class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="w-6 text-center text-emerald-400"><i class="fa-solid fa-bowl-rice"></i></span>
               <div class="min-w-0 flex-1 truncate font-semibold">كشري الزعيم والتحرير</div>
             </a>
-            <a href="husayniya-store.html?store=pizza" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
-              <span class="text-base">🍕</span>
+            <a href="husayniya-store.html?store=pizza" class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="w-6 text-center text-rose-500"><i class="fa-solid fa-pizza-slice"></i></span>
               <div class="min-w-0 flex-1 truncate font-semibold">بيتزا وكريب الرواد</div>
             </a>
-            <a href="husayniya-store.html?store=shendel" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
-              <span class="text-base">🍰</span>
+            <a href="husayniya-store.html?store=shendel" class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="w-6 text-center text-purple-400"><i class="fa-solid fa-cake-candles"></i></span>
               <div class="min-w-0 flex-1 truncate font-semibold">حلواني شندل والبارون</div>
             </a>
-            <a href="husayniya-store.html?store=falafel" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
-              <span class="text-base">🧆</span>
+            <a href="husayniya-store.html?store=falafel" class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="w-6 text-center text-emerald-400"><i class="fa-solid fa-bread-slice"></i></span>
               <div class="min-w-0 flex-1 truncate font-semibold">فول وفلافل البرنس</div>
             </a>
-            <a href="husayniya-store.html?store=broast" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
-              <span class="text-base">🍗</span>
+            <a href="husayniya-store.html?store=broast" class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="w-6 text-center text-amber-500"><i class="fa-solid fa-drumstick-bite"></i></span>
               <div class="min-w-0 flex-1 truncate font-semibold">بروستد وشاورما الحسينية</div>
             </a>
-            <a href="husayniya-store.html?store=fish" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
-              <span class="text-base">🐟</span>
+            <a href="husayniya-store.html?store=fish" class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="w-6 text-center text-blue-400"><i class="fa-solid fa-fish"></i></span>
               <div class="min-w-0 flex-1 truncate font-semibold">أسماك وسيفود الحسينية</div>
             </a>
-            <a href="husayniya-store.html?store=forsan" class="flex items-center gap-2 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
-              <span class="text-base">🛒</span>
+            <a href="husayniya-store.html?store=forsan" class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/10 text-xs text-white no-underline transition">
+              <span class="w-6 text-center text-teal-400"><i class="fa-solid fa-basket-shopping"></i></span>
               <div class="min-w-0 flex-1 truncate font-semibold">هايبر وسوبر ماركت الفرسان</div>
             </a>
           </div>
@@ -412,13 +412,13 @@ body {
 
         <!-- Theme Toggle (Light / Dark) -->
         <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-2 rounded-2xl flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
-          <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+          <span id="theme-toggle-icon" class="theme-icon"><i class="fa-solid fa-moon text-indigo-400"></i></span>
           <span id="theme-toggle-label" class="theme-label hidden sm:inline">ليلي</span>
         </button>
 
         <!-- View Cart Pill -->
         <a href="husayniya-checkout.html" class="glass px-3 sm:px-4 py-2 rounded-2xl flex items-center gap-2 text-xs font-bold hover:bg-white/10 transition flex-shrink-0" style="text-decoration:none;color:#fff">
-          <span>🛒</span>
+          <i class="fa-solid fa-cart-shopping text-emerald-400"></i>
           <span class="hidden sm:inline">السلة</span>
           <span id="nav-cart-badge" class="px-2 py-0.5 rounded-full bg-amber-400 text-black font-extrabold text-[10px]">0</span>
         </a>
@@ -438,10 +438,10 @@ body {
       <div class="relative z-10 flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-2 flex-wrap">
           <span id="store-status" class="b-open px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold">● مفتوح الآن</span>
-          <span id="store-badge" class="b-feature px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold">🔥 خيار الحسينية الأول</span>
+          <span id="store-badge" class="b-feature px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold flex items-center gap-1.5"><i class="fa-solid fa-fire text-amber-400"></i> <span>خيار الحسينية الأول</span></span>
         </div>
         <div class="text-[11px] text-white/80 glass px-2.5 py-1 rounded-xl flex items-center gap-1 sm:hidden">
-          <span id="store-time-mobile">⏱️ 25 - 35 د</span>
+          <span id="store-time-mobile" class="flex items-center gap-1"><i class="fa-solid fa-clock text-white/50 text-[10px]"></i> <span>25 - 35 د</span></span>
         </div>
       </div>
 
@@ -452,12 +452,12 @@ body {
           <h1 id="store-name" class="text-xl sm:text-2xl md:text-3xl font-black text-white leading-tight mb-1 break-words">اسم المطعم</h1>
           <p id="store-tagline" class="text-xs sm:text-sm text-white/70 mb-2 leading-relaxed break-words">وصف المطعم والمأكولات المتوفرة</p>
           <div class="flex flex-wrap items-center gap-2 sm:gap-3 text-xs text-white/80">
-            <span id="store-rating" class="font-bold text-amber-400">★ 4.9</span>
+            <span id="store-rating" class="font-bold text-amber-400 flex items-center gap-1"><i class="fa-solid fa-star text-[11px]"></i> <span>4.9</span></span>
             <span id="store-reviews-count" class="text-white/50">(+1,420 تقييم)</span>
             <span>•</span>
-            <span id="store-time-desktop" class="hidden sm:inline">⏱️ 25 - 35 دقيقة</span>
+            <span id="store-time-desktop" class="hidden sm:inline-flex items-center gap-1"><i class="fa-solid fa-clock text-white/50 text-[11px]"></i> <span>25 - 35 دقيقة</span></span>
             <span class="hidden sm:inline">•</span>
-            <span id="store-address">📍 شارع المركز، الحسينية</span>
+            <span id="store-address" class="flex items-center gap-1"><i class="fa-solid fa-location-dot text-emerald-400 text-[11px]"></i> <span>شارع المركز، الحسينية</span></span>
             <span>•</span>
             <span id="store-delivery-fee" class="text-emerald-400 font-bold">توصيل 15 ج.م</span>
           </div>
@@ -496,7 +496,7 @@ body {
         <div class="flex flex-col md:flex-row items-center gap-8 pb-6 border-b border-white/10">
           <div class="text-center md:text-right">
             <div id="reviews-avg-rating" class="text-5xl font-black text-amber-400 mb-1">4.9</div>
-            <div class="text-amber-400 text-lg mb-1">★★★★★</div>
+            <div class="text-amber-400 text-sm mb-1 flex items-center justify-center md:justify-start gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
             <div id="reviews-summary-text" class="text-xs text-white/50">بناءً على التقييمات الموثقة لأهالي الحسينية</div>
           </div>
           <div class="flex-1 w-full space-y-2 text-xs">
@@ -530,7 +530,7 @@ body {
   <div id="floating-cart" class="floating-cart hidden">
     <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
       <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg flex-shrink-0">
-        🛒
+        <i class="fa-solid fa-cart-shopping"></i>
       </div>
       <div class="min-w-0">
         <div class="text-xs text-white/60">سلة طلبات الحسينية</div>
@@ -543,13 +543,13 @@ body {
     </div>
     <a href="husayniya-checkout.html" class="btn-primary px-4 sm:px-6 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 whitespace-nowrap flex-shrink-0" style="text-decoration:none">
       <span>إتمام الطلب</span>
-      <span>←</span>
+      <i class="fa-solid fa-arrow-left"></i>
     </a>
   </div>
 
   <!-- Toast Notification -->
   <div id="toast" class="toast">
-    <span class="text-base">✅</span>
+    <i class="fa-solid fa-circle-check text-base"></i>
     <span id="toast-text">تمت إضافة الوجبة للسلة!</span>
   </div>
 
@@ -635,11 +635,11 @@ function renderStore(store) {
   document.getElementById('store-tagline').innerText = store.tagline;
   document.getElementById('store-status').innerText = store.statusBadge;
   document.getElementById('store-badge').innerText = store.featureBadge;
-  document.getElementById('store-rating').innerText = store.rating;
+  document.getElementById('store-rating').innerHTML = `<i class="fa-solid fa-star text-[11px] ml-1"></i> ${store.rating}`;
   document.getElementById('store-reviews-count').innerText = store.reviewsCount;
-  document.getElementById('store-time-desktop').innerText = `⏱️ ${store.deliveryTime}`;
-  document.getElementById('store-time-mobile').innerText = `⏱️ ${store.deliveryTime}`;
-  document.getElementById('store-address').innerText = `📍 ${store.address}`;
+  document.getElementById('store-time-desktop').innerHTML = `<i class="fa-solid fa-clock text-white/50 ml-1"></i> ${store.deliveryTime}`;
+  document.getElementById('store-time-mobile').innerHTML = `<i class="fa-solid fa-clock text-white/50 ml-1"></i> ${store.deliveryTime}`;
+  document.getElementById('store-address').innerHTML = `<i class="fa-solid fa-location-dot text-emerald-400 ml-1"></i> ${store.address}`;
   document.getElementById('store-delivery-fee').innerText = `توصيل ${store.deliveryFee}`;
   document.getElementById('store-min-order').innerText = store.minOrder;
   document.getElementById('store-payments').innerText = store.paymentMethods;
@@ -722,7 +722,7 @@ function renderMenuItems(items) {
 function renderReviews(reviews, avgRating) {
   const listContainer = document.getElementById('reviews-list-container');
   const avgRatingEl = document.getElementById('reviews-avg-rating');
-  if (avgRatingEl) avgRatingEl.innerText = avgRating.replace('★', '').trim();
+  if (avgRatingEl) avgRatingEl.innerText = String(avgRating).replace(/[^\d.]/g, '').trim();
 
   if (!listContainer) return;
   listContainer.innerHTML = reviews.map(rev => `
@@ -773,7 +773,7 @@ function updateItemControl(itemId) {
   if (qty > 0) {
     const isSingle = (qty === 1);
     const minusBtnClass = isSingle ? 'qty-btn qty-btn-delete' : 'qty-btn qty-btn-minus';
-    const minusBtnContent = isSingle ? '🗑️' : '−';
+    const minusBtnContent = isSingle ? '<i class="fa-solid fa-trash-can text-rose-300 text-xs"></i>' : '−';
 
     ctrl.innerHTML = `
       <div class="qty-stepper">
@@ -785,7 +785,7 @@ function updateItemControl(itemId) {
           <span class="qty-unit">طلب</span>
         </div>
         <button onclick="changeQty('${itemId}', '', 0, '', 1)" class="qty-btn qty-btn-plus" title="زيادة الكمية">
-          +
+          <i class="fa-solid fa-plus text-xs"></i>
         </button>
       </div>
     `;
@@ -794,11 +794,12 @@ function updateItemControl(itemId) {
     const itemData = ACTIVE_STORE ? ACTIVE_STORE.items.find(i => i.id === itemId) : null;
     const safeTitle = itemData ? itemData.title.replace(/'/g, "\\'") : '';
     const safePrice = itemData ? itemData.price : 0;
-    const safeIcon = itemData ? itemData.icon : '🍽️';
+    const safeIcon = itemData ? itemData.icon : 'fa-utensils';
 
     ctrl.innerHTML = `
       <button onclick="changeQty('${itemId}', '${safeTitle}', ${safePrice}, '${safeIcon}', 1)" class="btn-primary w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-        <span>+ أضف للسلة</span>
+        <i class="fa-solid fa-plus"></i>
+        <span>أضف للسلة</span>
       </button>
     `;
   }
@@ -833,7 +834,7 @@ function changeQty(itemId, title, price, icon, delta) {
       id: itemId,
       name: title || 'وجبة مخصوصة',
       price: price || 0,
-      icon: icon || '🍽️',
+      icon: icon || 'fa-utensils',
       qty: 1,
       store: ACTIVE_STORE ? ACTIVE_STORE.name : 'مطاعم الحسينية'
     });

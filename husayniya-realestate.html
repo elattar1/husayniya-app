@@ -93,7 +93,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
   <div class="glass-card rounded-3xl p-4 sm:p-6 md:p-10 mb-6 sm:mb-8 relative overflow-hidden">
     <div class="max-w-2xl relative z-10">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold mb-4">
-        <span>🏠</span>
+        <i class="fa-solid fa-building text-amber-400"></i>
         <span>بوابة عقارات وشقق مركز الحسينية ومحافظة الشرقية</span>
       </div>
       <h1 class="text-2xl sm:text-4xl font-black leading-tight mb-3">
@@ -107,7 +107,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <div class="glass p-1.5 rounded-2xl flex items-center gap-2 max-w-lg border border-white/20">
         <input id="prop-search" oninput="filterProperties()" type="text" placeholder="ابحث بالمنطقة، نوع العقار (شقة، محل، أرض)..." class="flex-1 bg-transparent px-3 text-xs sm:text-sm text-white focus:outline-none"/>
         <button class="btn-primary px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap">
-          بحث 🔍
+          بحث <i class="fa-solid fa-magnifying-glass mr-1"></i>
         </button>
       </div>
     </div>
@@ -115,11 +115,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
   <!-- Filter Buttons (All, Rent, Sale, Commercial, Lands) -->
   <div class="flex items-center gap-2 mb-8 scroll-touch pb-2">
-    <button onclick="filterPropType('all', this)" class="btn-tab active">🌟 جميع العقارات (<span id="total-props">6</span>)</button>
-    <button onclick="filterPropType('rent', this)" class="btn-tab">🔑 شقق للإيجار</button>
-    <button onclick="filterPropType('sale', this)" class="btn-tab">🏷️ شقق ومنازل للبيع</button>
-    <button onclick="filterPropType('commercial', this)" class="btn-tab">🏪 محلات ومقرات تجارية</button>
-    <button onclick="filterPropType('land', this)" class="btn-tab">📐 أراضي بناء واستثمار</button>
+    <button onclick="filterPropType('all', this)" class="btn-tab active"><i class="fa-solid fa-star text-amber-400 ml-1"></i> جميع العقارات (<span id="total-props">6</span>)</button>
+    <button onclick="filterPropType('rent', this)" class="btn-tab"><i class="fa-solid fa-key text-emerald-400 ml-1"></i> شقق للإيجار</button>
+    <button onclick="filterPropType('sale', this)" class="btn-tab"><i class="fa-solid fa-tag text-amber-400 ml-1"></i> شقق ومنازل للبيع</button>
+    <button onclick="filterPropType('commercial', this)" class="btn-tab"><i class="fa-solid fa-store text-cyan-400 ml-1"></i> محلات ومقرات تجارية</button>
+    <button onclick="filterPropType('land', this)" class="btn-tab"><i class="fa-solid fa-ruler-combined text-purple-400 ml-1"></i> أراضي بناء واستثمار</button>
   </div>
 
   <!-- Properties Grid -->
@@ -131,7 +131,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="h-48 relative overflow-hidden group">
           <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80" alt="شقة حي المعاشات" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <span class="b-rent text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3 shadow-lg">🔑 للإيجار الشهري</span>
+          <span class="b-rent text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3 shadow-lg"><i class="fa-solid fa-key ml-1"></i> للإيجار الشهري</span>
           <span class="text-xs font-black text-white px-3 py-1 rounded-xl bg-black/60 absolute bottom-3 left-3 shadow-lg">2,200 ج.م / شهر</span>
         </div>
 
@@ -140,9 +140,9 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <h3 class="font-bold text-base text-white mb-2">شقة 130 متر سوبر لوكس (3 غرف ورسبشن)</h3>
           
           <div class="grid grid-cols-3 gap-2 text-[11px] text-white/60 mb-4 bg-white/[0.03] p-2.5 rounded-xl text-center">
-            <div>🛏️ 3 غرف نوم</div>
-            <div>🚿 1 حمام</div>
-            <div>🪜 الدور الثالث (أسانسير)</div>
+            <div><i class="fa-solid fa-bed ml-1 text-emerald-400"></i> 3 غرف نوم</div>
+            <div><i class="fa-solid fa-shower ml-1 text-blue-400"></i> 1 حمام</div>
+            <div><i class="fa-solid fa-elevator ml-1 text-amber-400"></i> الدور الثالث (أسانسير)</div>
           </div>
 
           <p class="text-xs text-white/50 leading-relaxed mb-4">
@@ -153,7 +153,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
       <div class="p-5 pt-0">
         <button onclick="contactOwner('الحاج فريد النجار', '01012345678', 'شقة حي المعاشات 2200 ج')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
-          <span>📞 التواصل مع المالك للمعاينة</span>
+          <span><i class="fa-solid fa-phone ml-1"></i> التواصل مع المالك للمعاينة</span>
         </button>
       </div>
     </div>
@@ -164,7 +164,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="h-48 relative overflow-hidden group">
           <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80" alt="منزل شارع المركز" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <span class="b-sale text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3 shadow-lg">🏷️ للبيع كاش</span>
+          <span class="b-sale text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3 shadow-lg"><i class="fa-solid fa-tag ml-1"></i> للبيع كاش</span>
           <span class="text-xs font-black text-amber-300 px-3 py-1 rounded-xl bg-black/60 absolute bottom-3 left-3 shadow-lg">1,850,000 ج.م</span>
         </div>
 
@@ -173,9 +173,9 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <h3 class="font-bold text-base text-white mb-2">منزل كامل 3 أدوار + محل تجاري مرخص</h3>
           
           <div class="grid grid-cols-3 gap-2 text-[11px] text-white/60 mb-4 bg-white/[0.03] p-2.5 rounded-xl text-center">
-            <div>📐 مساحة 110 م²</div>
-            <div>🏪 محل بالدور الأرضي</div>
-            <div>📜 مسجل شهر عقاري</div>
+            <div><i class="fa-solid fa-ruler-combined ml-1 text-amber-400"></i> مساحة 110 م²</div>
+            <div><i class="fa-solid fa-store ml-1 text-emerald-400"></i> محل بالدور الأرضي</div>
+            <div><i class="fa-solid fa-file-contract ml-1 text-blue-400"></i> مسجل شهر عقاري</div>
           </div>
 
           <p class="text-xs text-white/50 leading-relaxed mb-4">
@@ -186,7 +186,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
       <div class="p-5 pt-0">
         <button onclick="contactOwner('أ/ إبراهيم الشرقاوي', '01122334455', 'منزل شارع المركز 1.85 م')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
-          <span>📞 الاتصال بالمالك للتفاوض</span>
+          <span><i class="fa-solid fa-phone ml-1"></i> الاتصال بالمالك للتفاوض</span>
         </button>
       </div>
     </div>
@@ -197,7 +197,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="h-48 relative overflow-hidden group">
           <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80" alt="محل شارع بورسعيد" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <span class="b-rent text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3 shadow-lg">🔑 إيجار تجاري</span>
+          <span class="b-rent text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3 shadow-lg"><i class="fa-solid fa-key ml-1"></i> إيجار تجاري</span>
           <span class="text-xs font-black text-white px-3 py-1 rounded-xl bg-black/60 absolute bottom-3 left-3 shadow-lg">4,500 ج.م / شهر</span>
         </div>
 
@@ -206,9 +206,9 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <h3 class="font-bold text-base text-white mb-2">محل تجاري 45 م واجهة زجاجية</h3>
           
           <div class="grid grid-cols-3 gap-2 text-[11px] text-white/60 mb-4 bg-white/[0.03] p-2.5 rounded-xl text-center">
-            <div>📐 45 متر صافي</div>
-            <div>💡 كهرباء تجاري ومياه</div>
-            <div>🛍️ شارع تجاري نشط</div>
+            <div><i class="fa-solid fa-ruler-combined ml-1 text-amber-400"></i> 45 متر صافي</div>
+            <div><i class="fa-solid fa-bolt ml-1 text-yellow-400"></i> كهرباء تجاري ومياه</div>
+            <div><i class="fa-solid fa-bag-shopping ml-1 text-rose-400"></i> شارع تجاري نشط</div>
           </div>
 
           <p class="text-xs text-white/50 leading-relaxed mb-4">
@@ -219,7 +219,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
       <div class="p-5 pt-0">
         <button onclick="contactOwner('الحاج سالم الباز', '01234567890', 'محل شارع بورسعيد 4500 ج')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
-          <span>📞 الاستفسار ومعاينة المحل</span>
+          <span><i class="fa-solid fa-phone ml-1"></i> الاستفسار ومعاينة المحل</span>
         </button>
       </div>
     </div>
@@ -230,7 +230,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="h-48 relative overflow-hidden group">
           <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=600&q=80" alt="شقة حي المحجوب" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <span class="b-sale text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3 shadow-lg">🏷️ للبيع بتسهيلات</span>
+          <span class="b-sale text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3 shadow-lg"><i class="fa-solid fa-tag ml-1"></i> للبيع بتسهيلات</span>
           <span class="text-xs font-black text-amber-300 px-3 py-1 rounded-xl bg-black/60 absolute bottom-3 left-3 shadow-lg">650,000 ج.م</span>
         </div>
 
@@ -239,9 +239,9 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <h3 class="font-bold text-base text-white mb-2">شقة 115 م² نصف تشطيب برج حديث</h3>
           
           <div class="grid grid-cols-3 gap-2 text-[11px] text-white/60 mb-4 bg-white/[0.03] p-2.5 rounded-xl text-center">
-            <div>📐 115 متر</div>
-            <div>🛏️ 2 نوم + رسبشن كبير</div>
-            <div>🪜 الدور الرابع (أسانسير)</div>
+            <div><i class="fa-solid fa-ruler-combined ml-1 text-amber-400"></i> 115 متر</div>
+            <div><i class="fa-solid fa-bed ml-1 text-emerald-400"></i> 2 نوم + رسبشن كبير</div>
+            <div><i class="fa-solid fa-elevator ml-1 text-blue-400"></i> الدور الرابع (أسانسير)</div>
           </div>
 
           <p class="text-xs text-white/50 leading-relaxed mb-4">
@@ -252,7 +252,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
       <div class="p-5 pt-0">
         <button onclick="contactOwner('م/ عصام خليل', '01099887766', 'شقة حي المحجوب 650 ألف')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
-          <span>📞 الاتصال لحساب الأقساط</span>
+          <span><i class="fa-solid fa-phone ml-1"></i> الاتصال لحساب الأقساط</span>
         </button>
       </div>
     </div>
@@ -263,7 +263,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="h-48 relative overflow-hidden group">
           <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="أرض ترعة سراج" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <span class="b-sale text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3 shadow-lg">🏷️ أرض للبيع</span>
+          <span class="b-sale text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3 shadow-lg"><i class="fa-solid fa-tag ml-1"></i> أرض للبيع</span>
           <span class="text-xs font-black text-amber-300 px-3 py-1 rounded-xl bg-black/60 absolute bottom-3 left-3 shadow-lg">12,000 ج.م / المتر</span>
         </div>
 
@@ -272,9 +272,9 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <h3 class="font-bold text-base text-white mb-2">قطعة أرض فضاء 175 م² كردون مباني</h3>
           
           <div class="grid grid-cols-3 gap-2 text-[11px] text-white/60 mb-4 bg-white/[0.03] p-2.5 rounded-xl text-center">
-            <div>📐 175 م²</div>
-            <div>🛣️ شارع عرض 10 أمتار</div>
-            <div>⚡ كاملة المرافق</div>
+            <div><i class="fa-solid fa-ruler-combined ml-1 text-amber-400"></i> 175 م²</div>
+            <div><i class="fa-solid fa-road ml-1 text-cyan-400"></i> شارع عرض 10 أمتار</div>
+            <div><i class="fa-solid fa-bolt ml-1 text-amber-400"></i> كاملة المرافق</div>
           </div>
 
           <p class="text-xs text-white/50 leading-relaxed mb-4">
@@ -285,7 +285,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
       <div class="p-5 pt-0">
         <button onclick="contactOwner('الحاج طارق العزازي', '01066554433', 'أرض ترعة سراج')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
-          <span>📞 التواصل للمعاينة على الطبيعة</span>
+          <span><i class="fa-solid fa-phone ml-1"></i> التواصل للمعاينة على الطبيعة</span>
         </button>
       </div>
     </div>
@@ -296,7 +296,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="h-48 relative overflow-hidden group">
           <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=600&q=80" alt="شقة شارع المدارس" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <span class="b-rent text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3 shadow-lg">🔑 للإيجار</span>
+          <span class="b-rent text-[11px] px-3 py-1 rounded-full font-bold absolute top-3 right-3 shadow-lg"><i class="fa-solid fa-key ml-1"></i> للإيجار</span>
           <span class="text-xs font-black text-white px-3 py-1 rounded-xl bg-black/60 absolute bottom-3 left-3 shadow-lg">1,600 ج.م / شهر</span>
         </div>
 
@@ -305,9 +305,9 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <h3 class="font-bold text-base text-white mb-2">شقة 90 م² قريبة من الموقف والمعهد الديني</h3>
           
           <div class="grid grid-cols-3 gap-2 text-[11px] text-white/60 mb-4 bg-white/[0.03] p-2.5 rounded-xl text-center">
-            <div>🛏️ 2 غرف نوم</div>
-            <div>🚿 1 حمام ومطبخ</div>
-            <div>🪜 الدور الثاني</div>
+            <div><i class="fa-solid fa-bed ml-1 text-emerald-400"></i> 2 غرف نوم</div>
+            <div><i class="fa-solid fa-shower ml-1 text-blue-400"></i> 1 حمام ومطبخ</div>
+            <div><i class="fa-solid fa-stairs ml-1 text-amber-400"></i> الدور الثاني</div>
           </div>
 
           <p class="text-xs text-white/50 leading-relaxed mb-4">
@@ -318,7 +318,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
       <div class="p-5 pt-0">
         <button onclick="contactOwner('كابتن مصطفى', '01144556677', 'شقة شارع المدارس 1600 ج')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
-          <span>📞 التواصل مع المالك</span>
+          <span><i class="fa-solid fa-phone ml-1"></i> التواصل مع المالك</span>
         </button>
       </div>
     </div>
@@ -335,7 +335,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <!-- ══════════════════ ADD PROPERTY MODAL ══════════════════ -->
 <div id="prop-modal" class="modal-overlay">
   <div class="glass-card rounded-3xl p-5 sm:p-8 max-w-md w-full max-h-[90vh] overflow-y-auto relative border border-white/20">
-    <button onclick="closePropertyModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg">✕</button>
+    <button onclick="closePropertyModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
 
     <h3 class="font-bold text-base text-white mb-1">أضف عقارك للبيع أو الإيجار في الحسينية</h3>
     <p class="text-xs text-white/50 mb-4">إعلانك سيظهر مباشرة لآلاف الباحثين عن عقارات بالمركز</p>
@@ -346,8 +346,8 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div>
           <label class="block font-semibold mb-1 text-white/70">نوع المعاملة</label>
           <select id="new-prop-deal" class="input-glass w-full rounded-xl px-3 py-2 bg-slate-900 text-white">
-            <option value="rent">🔑 للإيجار الشهري</option>
-            <option value="sale">🏷️ للبيع كاش أو قسط</option>
+            <option value="rent">للإيجار الشهري</option>
+            <option value="sale">للبيع كاش أو قسط</option>
           </select>
         </div>
         <div>
@@ -405,7 +405,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
 
     <button onclick="submitNewProperty()" class="btn-primary w-full py-3 rounded-2xl text-xs font-bold flex items-center justify-center gap-2">
-      <span>نشر العقار في المنصة الآن 🚀</span>
+      <span>نشر العقار في المنصة الآن <i class="fa-solid fa-paper-plane mr-1"></i></span>
     </button>
   </div>
 </div>
@@ -480,13 +480,13 @@ async function submitNewProperty() {
       details: `${owner} - ${desc}`
     });
     if (res && res.cloud) {
-      cloudMsg = '\n⚡ تم حفظ العقار ونشره في المنصة مباشرة!';
+      cloudMsg = '\nتم حفظ العقار ونشره في المنصة مباشرة!';
     }
   }
 
   const isRent = deal === 'rent';
   const badgeClass = isRent ? 'b-rent' : 'b-sale';
-  const badgeText = isRent ? '🔑 للإيجار' : '🏷️ للبيع';
+  const badgeText = isRent ? '<i class="fa-solid fa-key ml-1"></i> للإيجار' : '<i class="fa-solid fa-tag ml-1"></i> للبيع';
 
   const newCard = `
     <div class="prop-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between" data-type="${cat}">
@@ -510,7 +510,7 @@ async function submitNewProperty() {
 
       <div class="p-5 pt-0">
         <button onclick="contactOwner('${owner}', '${phone}', '${title}')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
-          <span>📞 التواصل مع المالك للمعاينة</span>
+          <span><i class="fa-solid fa-phone ml-1"></i> التواصل مع المالك للمعاينة</span>
         </button>
       </div>
     </div>
@@ -524,7 +524,7 @@ async function submitNewProperty() {
   countEl.textContent = parseInt(countEl.textContent) + 1;
 
   closePropertyModal();
-  alert(`تم نشر عقارك بنجاح في بوابة عقارات الحسينية! 🎉${cloudMsg}\nسيتم إشعار المهتمين للتواصل معك.`);
+  alert(`تم نشر عقارك بنجاح في بوابة عقارات الحسينية!${cloudMsg}\nسيتم إشعار المهتمين للتواصل معك.`);
 }
 </script>
 

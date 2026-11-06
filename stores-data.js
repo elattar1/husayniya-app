@@ -9,8 +9,8 @@ window.STORES_DATABASE = {
     tagline: 'أشهى المشويات المصرية، كباب وكفتة حاتي، طرب، حمام محشي، وطواجن فرن بلدي',
     category: 'مشويات وأكلات بلدية',
     statusBadge: '● مفتوح الآن',
-    featureBadge: '🔥 خيار الحسينية الأول',
-    rating: '★ 4.9',
+    featureBadge: 'خيار الحسينية الأول',
+    rating: '4.9',
     reviewsCount: '(+1,420 تقييم)',
     deliveryTime: '25 - 35 دقيقة',
     address: 'شارع المركز أمام بنك مصر، الحسينية',
@@ -21,13 +21,13 @@ window.STORES_DATABASE = {
     cover: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
     themeGradient: 'linear-gradient(135deg, #0d3826 0%, #154d37 50%, #092419 100%)',
     categories: [
-      { id: 'all', name: '🍽️ الكل' },
-      { id: 'grills', name: '🍢 المشاوي والكباب' },
-      { id: 'rice', name: '🍚 القوزي والأرز' },
-      { id: 'fastfood', name: '🍔 الوجبات السريعة' },
-      { id: 'appetizers', name: '🥗 المقبلات والسلطات' },
-      { id: 'drinks', name: '🥤 المشروبات والعصائر' },
-      { id: 'reviews', name: '⭐ آراء العملاء (4.9)' }
+      { id: 'all', name: '<i class="fa-solid fa-utensils ml-1.5"></i> الكل' },
+      { id: 'grills', name: '<i class="fa-solid fa-drumstick-bite ml-1.5"></i> المشاوي والكباب' },
+      { id: 'rice', name: '<i class="fa-solid fa-bowl-rice ml-1.5"></i> القوزي والأرز' },
+      { id: 'fastfood', name: '<i class="fa-solid fa-burger ml-1.5"></i> الوجبات السريعة' },
+      { id: 'appetizers', name: '<i class="fa-solid fa-leaf ml-1.5"></i> المقبلات والسلطات' },
+      { id: 'drinks', name: '<i class="fa-solid fa-bottle-water ml-1.5"></i> المشروبات والعصائر' },
+      { id: 'reviews', name: '<i class="fa-solid fa-star text-amber-400 ml-1.5"></i> آراء العملاء (4.9)' }
     ],
     items: [
       {
@@ -36,10 +36,10 @@ window.STORES_DATABASE = {
         price: 380,
         desc: 'كباب ضاني وكفتة بلدي مشوية على الفحم مع طحينة، سلطة خضراء، عيش بلدي ساخن، ومخلل.',
         image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80',
-        badge: 'الأكثر طلباً 🔥',
+        badge: 'الأكثر طلباً ',
         badgeColor: 'bg-emerald-500 text-black',
         cat: 'grills',
-        icon: '🍢'
+        icon: 'fa-drumstick-bite'
       },
       {
         id: 'baz-2',
@@ -47,10 +47,10 @@ window.STORES_DATABASE = {
         price: 240,
         desc: 'قطع لحم بلدي طازجة مع أرز بسمتي بالمكسرات وشوربة لسان عصفور وطحينة.',
         image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
-        badge: 'وجبة فاخرة 👑',
+        badge: 'وجبة فاخرة ',
         badgeColor: 'bg-amber-400 text-black',
         cat: 'rice',
-        icon: '🍖'
+        icon: 'fa-drumstick-bite'
       },
       {
         id: 'baz-3',
@@ -58,10 +58,10 @@ window.STORES_DATABASE = {
         price: 190,
         desc: 'فرخة متبلة بالخلطة السرية مشوية على الفحم مع أرز بسمتي، تومية، سلطة، وبطاطس.',
         image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=600&q=80',
-        badge: 'عرض خاص 🔥',
+        badge: 'عرض خاص ',
         badgeColor: 'bg-rose-500 text-white',
         cat: 'grills',
-        icon: '🍗'
+        icon: 'fa-drumstick-bite'
       },
       {
         id: 'baz-4',
@@ -72,7 +72,7 @@ window.STORES_DATABASE = {
         badge: 'طرب حاتي',
         badgeColor: 'bg-emerald-500 text-black',
         cat: 'grills',
-        icon: '🥩'
+        icon: 'fa-drumstick-bite'
       },
       {
         id: 'baz-5',
@@ -80,10 +80,10 @@ window.STORES_DATABASE = {
         price: 85,
         desc: 'قطع دجاج زنجر مقرمشة مع جبنة موزاريلا سايحة، صوص شيدر، ومايونيز في عيش كريب مقرمش.',
         image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80',
-        badge: 'سريع ⚡',
+        badge: 'سريع',
         badgeColor: 'bg-blue-500 text-white',
         cat: 'fastfood',
-        icon: '🍔'
+        icon: 'fa-burger'
       },
       {
         id: 'baz-6',
@@ -94,7 +94,7 @@ window.STORES_DATABASE = {
         badge: 'مقبلات',
         badgeColor: 'bg-amber-500 text-black',
         cat: 'appetizers',
-        icon: '🥗'
+        icon: 'fa-leaf'
       },
       {
         id: 'baz-7',
@@ -105,13 +105,13 @@ window.STORES_DATABASE = {
         badge: 'عصائر فريش',
         badgeColor: 'bg-emerald-500 text-black',
         cat: 'drinks',
-        icon: '🥤'
+        icon: 'fa-bottle-water'
       }
     ],
     reviews: [
-      { author: 'أحمد الشرقاوي (شارع المركز)', text: 'أفضل كباب وكفتة في الحسينية، اللحمة بلدي طازة والتوصيل وصل في نص ساعة سخن ملهلب!', rating: '★★★★★', time: 'منذ يومين' },
-      { author: 'د. محمود سليم (سعود)', text: 'الطرب والكفتة المشوية ريحتهم تجنن والتغليف محترم جداً.. استمروا على هذا المستوى الممتاز.', rating: '★★★★★', time: 'منذ 4 أيام' },
-      { author: 'الحاج إبراهيم منصور', text: 'طاجن اللحمة بالبصل حكاية، تسلم إيدكم وتوصيل سريع ومحترم.', rating: '★★★★★', time: 'منذ أسبوع' }
+      { author: 'أحمد الشرقاوي (شارع المركز)', text: 'أفضل كباب وكفتة في الحسينية، اللحمة بلدي طازة والتوصيل وصل في نص ساعة سخن ملهلب!', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يومين' },
+      { author: 'د. محمود سليم (سعود)', text: 'الطرب والكفتة المشوية ريحتهم تجنن والتغليف محترم جداً.. استمروا على هذا المستوى الممتاز.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ 4 أيام' },
+      { author: 'الحاج إبراهيم منصور', text: 'طاجن اللحمة بالبصل حكاية، تسلم إيدكم وتوصيل سريع ومحترم.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ أسبوع' }
     ]
   },
 
@@ -122,8 +122,8 @@ window.STORES_DATABASE = {
     tagline: 'أفضل كشري مصري مخصوص، طواجن فرن فخار باللحمة والفراخ، دقة وشطة كمون وصلصة مميزة',
     category: 'كشري وطواجن فرن',
     statusBadge: '● مفتوح الآن',
-    featureBadge: '🍲 كشري أصلي',
-    rating: '★ 4.8',
+    featureBadge: 'كشري أصلي',
+    rating: '4.8',
     reviewsCount: '(+980 تقييم)',
     deliveryTime: '15 - 25 دقيقة',
     address: 'شارع المركز أمام مجمع المحاكم، الحسينية',
@@ -134,12 +134,12 @@ window.STORES_DATABASE = {
     cover: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1200&q=80',
     themeGradient: 'linear-gradient(135deg, #3d1c06 0%, #572909 50%, #291102 100%)',
     categories: [
-      { id: 'all', name: '🌟 كامل المنيو' },
-      { id: 'koshary', name: '🍲 علب الكشري' },
-      { id: 'tajin', name: '🥘 طواجن الفرن الساخنة' },
-      { id: 'extras', name: '🧅 إضافات ودقات' },
-      { id: 'dessert', name: '🍨 حلويات ومشروبات' },
-      { id: 'reviews', name: '⭐ آراء الزبائن' }
+      { id: 'all', name: '<i class="fa-solid fa-layer-group ml-1.5"></i> كامل المنيو' },
+      { id: 'koshary', name: '<i class="fa-solid fa-bowl-rice ml-1.5"></i> علب الكشري' },
+      { id: 'tajin', name: '<i class="fa-solid fa-fire ml-1.5"></i> طواجن الفرن الساخنة' },
+      { id: 'extras', name: '<i class="fa-solid fa-mortar-pestle ml-1.5"></i> إضافات ودقات' },
+      { id: 'dessert', name: '<i class="fa-solid fa-ice-cream ml-1.5"></i> حلويات ومشروبات' },
+      { id: 'reviews', name: '<i class="fa-solid fa-star text-amber-400 ml-1.5"></i> آراء الزبائن' }
     ],
     items: [
       {
@@ -148,10 +148,10 @@ window.STORES_DATABASE = {
         price: 35,
         desc: 'أرز مصري مفلفل، شعرية محمرة، مكرونة مقصوصة وإسباجيتي، عدس بجبة، حمص شامي، بصل مقرمش ذهبي، مع كيس دقة وصلصة حارة.',
         image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
-        badge: '🔥 الأكثر طلباً',
+        badge: ' الأكثر طلباً',
         badgeColor: 'bg-amber-500 text-black',
         cat: 'koshary',
-        icon: '🍲'
+        icon: 'fa-bowl-rice'
       },
       {
         id: 'kosh-2',
@@ -162,7 +162,7 @@ window.STORES_DATABASE = {
         badge: 'حجم عائلي',
         badgeColor: 'bg-emerald-500 text-black',
         cat: 'koshary',
-        icon: '🥣'
+        icon: 'fa-bowl-rice'
       },
       {
         id: 'kosh-3',
@@ -170,10 +170,10 @@ window.STORES_DATABASE = {
         price: 55,
         desc: 'علبة كشري مع طبقة كبدة إسكندراني بتتبيلة الثوم والفلفل الأخضر الحار والليمون والكمون.',
         image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
-        badge: 'سبايسي 🌶️',
+        badge: 'سبايسي ️',
         badgeColor: 'bg-rose-500 text-white',
         cat: 'koshary',
-        icon: '🥩'
+        icon: 'fa-drumstick-bite'
       },
       {
         id: 'kosh-4',
@@ -184,7 +184,7 @@ window.STORES_DATABASE = {
         badge: 'فرن فخار',
         badgeColor: 'bg-red-600 text-white',
         cat: 'tajin',
-        icon: '🥘'
+        icon: 'fa-bowl-rice'
       },
       {
         id: 'kosh-5',
@@ -195,7 +195,7 @@ window.STORES_DATABASE = {
         badge: 'جبنة سايحة',
         badgeColor: 'bg-amber-400 text-black',
         cat: 'tajin',
-        icon: '🍗'
+        icon: 'fa-drumstick-bite'
       },
       {
         id: 'kosh-6',
@@ -206,7 +206,7 @@ window.STORES_DATABASE = {
         badge: 'حار ونار',
         badgeColor: 'bg-red-500 text-white',
         cat: 'tajin',
-        icon: '🌶️'
+        icon: 'fa-utensils'
       },
       {
         id: 'kosh-7',
@@ -217,7 +217,7 @@ window.STORES_DATABASE = {
         badge: 'قشطة بلدي',
         badgeColor: 'bg-blue-500 text-white',
         cat: 'dessert',
-        icon: '🍮'
+        icon: 'fa-cake-candles'
       },
       {
         id: 'kosh-8',
@@ -228,12 +228,12 @@ window.STORES_DATABASE = {
         badge: 'مكسرات مشكلة',
         badgeColor: 'bg-amber-500 text-black',
         cat: 'dessert',
-        icon: '🥧'
+        icon: 'fa-cake-candles'
       }
     ],
     reviews: [
-      { author: 'محمد يوسف (بحر البقر)', text: 'طاجن اللحمة المفرومة والكشري سخنين جداً والتقلية مقرمشة وزيت نقي!', rating: '★★★★★', time: 'منذ يوم' },
-      { author: 'كريم عبد الله (شارع المركز)', text: 'أحلى طاجن مكرونة فراخ بالموزاريلا في الحسينية، وسرعة في التوصيل ما شاء الله.', rating: '★★★★★', time: 'منذ 3 أيام' }
+      { author: 'محمد يوسف (بحر البقر)', text: 'طاجن اللحمة المفرومة والكشري سخنين جداً والتقلية مقرمشة وزيت نقي!', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يوم' },
+      { author: 'كريم عبد الله (شارع المركز)', text: 'أحلى طاجن مكرونة فراخ بالموزاريلا في الحسينية، وسرعة في التوصيل ما شاء الله.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ 3 أيام' }
     ]
   },
 
@@ -244,8 +244,8 @@ window.STORES_DATABASE = {
     tagline: 'أقوى كريب كرانشي حار، شاورما سوري، بيتزا شرقي وإيطالي بالموزاريلا الطبيعية، وبرجر دوبل',
     category: 'كريب وبيتزا وفاست فود',
     statusBadge: '● مفتوح الآن',
-    featureBadge: '🍕 كريب وبيتزا إيطالي',
-    rating: '★ 4.7',
+    featureBadge: 'كريب وبيتزا إيطالي',
+    rating: '4.7',
     reviewsCount: '(+840 تقييم)',
     deliveryTime: '20 - 30 دقيقة',
     address: 'شارع المدارس أمام مدرسة التجارة، الحسينية',
@@ -256,12 +256,12 @@ window.STORES_DATABASE = {
     cover: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80',
     themeGradient: 'linear-gradient(135deg, #3d0e12 0%, #54191d 50%, #24070a 100%)',
     categories: [
-      { id: 'all', name: '🌟 كامل المنيو' },
-      { id: 'crepe', name: '🌯 كريب مالح مقرمش' },
-      { id: 'pizza', name: '🍕 بيتزا إيطالي وشرقي' },
-      { id: 'burger', name: '🍔 برجر وسندوتشات' },
-      { id: 'sweet', name: '🍫 كريب حلو ومشروبات' },
-      { id: 'reviews', name: '⭐ آراء الزبائن' }
+      { id: 'all', name: '<i class="fa-solid fa-layer-group ml-1.5"></i> كامل المنيو' },
+      { id: 'crepe', name: '<i class="fa-solid fa-pizza-slice ml-1.5"></i> كريب مالح مقرمش' },
+      { id: 'pizza', name: '<i class="fa-solid fa-pizza-slice ml-1.5"></i> بيتزا إيطالي وشرقي' },
+      { id: 'burger', name: '<i class="fa-solid fa-burger ml-1.5"></i> برجر وسندوتشات' },
+      { id: 'sweet', name: '<i class="fa-solid fa-cake-candles ml-1.5"></i> كريب حلو ومشروبات' },
+      { id: 'reviews', name: '<i class="fa-solid fa-star text-amber-400 ml-1.5"></i> آراء الزبائن' }
     ],
     items: [
       {
@@ -270,10 +270,10 @@ window.STORES_DATABASE = {
         price: 65,
         desc: 'قطع صدور فراخ كرانشي متبلة حارة، بطاطس فارم فريتس، ميكس جبن موزاريلا وشيدر، صوص رانش ومايونيز.',
         image: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=600&q=80',
-        badge: '🔥 الأكثر طلباً',
+        badge: ' الأكثر طلباً',
         badgeColor: 'bg-red-600 text-white',
         cat: 'crepe',
-        icon: '🌯'
+        icon: 'fa-pizza-slice'
       },
       {
         id: 'piz-2',
@@ -284,7 +284,7 @@ window.STORES_DATABASE = {
         badge: 'شاورما سوري',
         badgeColor: 'bg-amber-500 text-black',
         cat: 'crepe',
-        icon: '🌮'
+        icon: 'fa-pizza-slice'
       },
       {
         id: 'piz-3',
@@ -295,7 +295,7 @@ window.STORES_DATABASE = {
         badge: '4 جبن',
         badgeColor: 'bg-emerald-500 text-black',
         cat: 'crepe',
-        icon: '🧀'
+        icon: 'fa-cheese'
       },
       {
         id: 'piz-4',
@@ -306,7 +306,7 @@ window.STORES_DATABASE = {
         badge: 'حجم كبير L',
         badgeColor: 'bg-amber-400 text-black',
         cat: 'pizza',
-        icon: '🍕'
+        icon: 'fa-pizza-slice'
       },
       {
         id: 'piz-5',
@@ -317,7 +317,7 @@ window.STORES_DATABASE = {
         badge: 'باربكيو مدخن',
         badgeColor: 'bg-red-600 text-white',
         cat: 'pizza',
-        icon: '🍗'
+        icon: 'fa-drumstick-bite'
       },
       {
         id: 'piz-6',
@@ -325,10 +325,10 @@ window.STORES_DATABASE = {
         price: 75,
         desc: 'قطعتين برجر لحمة مفرومة بلدي مشوية على الجريل مع جبنة شيدر، خس، طماطم، صوص بيج تيستي وبطاطس.',
         image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80',
-        badge: 'دوبل بيف 🍔',
+        badge: 'دوبل بيف ',
         badgeColor: 'bg-amber-500 text-black',
         cat: 'burger',
-        icon: '🍔'
+        icon: 'fa-burger'
       },
       {
         id: 'piz-7',
@@ -339,7 +339,7 @@ window.STORES_DATABASE = {
         badge: 'نوتيلا وموز',
         badgeColor: 'bg-pink-500 text-white',
         cat: 'sweet',
-        icon: '🍫'
+        icon: 'fa-cookie-bite'
       },
       {
         id: 'piz-8',
@@ -350,12 +350,12 @@ window.STORES_DATABASE = {
         badge: 'لوتس كراميل',
         badgeColor: 'bg-amber-600 text-white',
         cat: 'sweet',
-        icon: '🧇'
+        icon: 'fa-cake-candles'
       }
     ],
     reviews: [
-      { author: 'عمر الخالد (شارع المدارس)', text: 'كريب الزنجر الكرانشي مقرمش وساخن جداً وجبنة بتمط لحد السقف!', rating: '★★★★★', time: 'أمس' },
-      { author: 'سارة إبراهيم', text: 'البيتزا عجينتها هشة وخفيفة ومش تقيلة، أفضل مطعم بيتزا بالحسينية بلا منازع.', rating: '★★★★★', time: 'منذ يومين' }
+      { author: 'عمر الخالد (شارع المدارس)', text: 'كريب الزنجر الكرانشي مقرمش وساخن جداً وجبنة بتمط لحد السقف!', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'أمس' },
+      { author: 'سارة إبراهيم', text: 'البيتزا عجينتها هشة وخفيفة ومش تقيلة، أفضل مطعم بيتزا بالحسينية بلا منازع.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يومين' }
     ]
   },
 
@@ -366,8 +366,8 @@ window.STORES_DATABASE = {
     tagline: 'تورتات أعياد ميلاد، بسبوسة بالسمن البلدي، كنافة نابلسية، وجاتوهات شرقية وغربية',
     category: 'حلويات شرقية وغربية وتورتات',
     statusBadge: '● مفتوح الآن',
-    featureBadge: '🍰 حلويات فاخرة',
-    rating: '★ 4.9',
+    featureBadge: 'حلويات فاخرة',
+    rating: '4.9',
     reviewsCount: '(+1,150 تقييم)',
     deliveryTime: '15 - 25 دقيقة',
     address: 'شارع المركز بجوار بنك مصر، الحسينية',
@@ -378,12 +378,12 @@ window.STORES_DATABASE = {
     cover: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80',
     themeGradient: 'linear-gradient(135deg, #2c0e3a 0%, #46165c 50%, #190524 100%)',
     categories: [
-      { id: 'all', name: '🌟 كامل المعروضات' },
-      { id: 'eastern', name: '🍯 حلويات شرقية بالسمن البلدي' },
-      { id: 'cakes', name: '🎂 تورتات ومناسبات' },
-      { id: 'gateau', name: '🧁 جاتوهات فاخرة' },
-      { id: 'cookies', name: '🍪 نواشف وسابليه' },
-      { id: 'reviews', name: '⭐ آراء الزبائن' }
+      { id: 'all', name: '<i class="fa-solid fa-layer-group ml-1.5"></i> كامل المعروضات' },
+      { id: 'eastern', name: '<i class="fa-solid fa-cake-candles ml-1.5"></i> حلويات شرقية بالسمن البلدي' },
+      { id: 'cakes', name: '<i class="fa-solid fa-cake-candles ml-1.5"></i> تورتات ومناسبات' },
+      { id: 'gateau', name: '<i class="fa-solid fa-cake-candles ml-1.5"></i> جاتوهات فاخرة' },
+      { id: 'cookies', name: '<i class="fa-solid fa-cookie-bite ml-1.5"></i> نواشف وسابليه' },
+      { id: 'reviews', name: '<i class="fa-solid fa-star text-amber-400 ml-1.5"></i> آراء الزبائن' }
     ],
     items: [
       {
@@ -392,10 +392,10 @@ window.STORES_DATABASE = {
         price: 140,
         desc: 'بسبوسة شندل الشهيرة بالسمن الفلاحي الطبيعي مرملة ودايبة مع اللوز المحمص وشربات العسل الخفيف.',
         image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80',
-        badge: '🔥 سمن بلدي',
+        badge: ' سمن بلدي',
         badgeColor: 'bg-amber-500 text-black',
         cat: 'eastern',
-        icon: '🍯'
+        icon: 'fa-jar'
       },
       {
         id: 'shn-2',
@@ -406,7 +406,7 @@ window.STORES_DATABASE = {
         badge: 'ساخنة وطازجة',
         badgeColor: 'bg-emerald-500 text-black',
         cat: 'eastern',
-        icon: '🧀'
+        icon: 'fa-cheese'
       },
       {
         id: 'shn-3',
@@ -417,7 +417,7 @@ window.STORES_DATABASE = {
         badge: 'ملوكي',
         badgeColor: 'bg-amber-500 text-black',
         cat: 'eastern',
-        icon: '🥮'
+        icon: 'fa-cake-candles'
       },
       {
         id: 'shn-4',
@@ -428,7 +428,7 @@ window.STORES_DATABASE = {
         badge: 'وسط مقاس 24',
         badgeColor: 'bg-pink-500 text-white',
         cat: 'cakes',
-        icon: '🎂'
+        icon: 'fa-cake-candles'
       },
       {
         id: 'shn-5',
@@ -439,7 +439,7 @@ window.STORES_DATABASE = {
         badge: 'طازجة اليوم',
         badgeColor: 'bg-amber-500 text-black',
         cat: 'cakes',
-        icon: '🍓'
+        icon: 'fa-apple-whole'
       },
       {
         id: 'shn-6',
@@ -450,7 +450,7 @@ window.STORES_DATABASE = {
         badge: '12 قطعة',
         badgeColor: 'bg-purple-500 text-white',
         cat: 'gateau',
-        icon: '🧁'
+        icon: 'fa-cake-candles'
       },
       {
         id: 'shn-7',
@@ -461,7 +461,7 @@ window.STORES_DATABASE = {
         badge: 'فاخر',
         badgeColor: 'bg-amber-500 text-black',
         cat: 'cookies',
-        icon: '🍪'
+        icon: 'fa-cookie-bite'
       },
       {
         id: 'shn-8',
@@ -472,12 +472,12 @@ window.STORES_DATABASE = {
         badge: 'بلجيكي',
         badgeColor: 'bg-pink-500 text-white',
         cat: 'gateau',
-        icon: '🍫'
+        icon: 'fa-cookie-bite'
       }
     ],
     reviews: [
-      { author: 'مدام نادية العوضي', text: 'بسبوسة شندل ملهاش حل، ريحة السمن البلدي طاغية وتذوب في البق.', rating: '★★★★★', time: 'منذ يومين' },
-      { author: 'المهندس تامر سمير', text: 'أخدت تورتة الفادج لعيد ميلاد بنتي وكانت تحفة وأبهرت كل المعازيم.', rating: '★★★★★', time: 'منذ 5 أيام' }
+      { author: 'مدام نادية العوضي', text: 'بسبوسة شندل ملهاش حل، ريحة السمن البلدي طاغية وتذوب في البق.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يومين' },
+      { author: 'المهندس تامر سمير', text: 'أخدت تورتة الفادج لعيد ميلاد بنتي وكانت تحفة وأبهرت كل المعازيم.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ 5 أيام' }
     ]
   },
 
@@ -488,8 +488,8 @@ window.STORES_DATABASE = {
     tagline: 'أشهى فلافل مقرمشة محشية، فول مدمس فلاحي بالزيت الحار والطحينة، مسقعة بلدي، وباذنجان مخلل',
     category: 'فطور شعبي ومأكولات صباحية',
     statusBadge: '● مفتوح الآن',
-    featureBadge: '🧆 فطار الحسينية الأصيل',
-    rating: '★ 4.9',
+    featureBadge: 'فطار الحسينية الأصيل',
+    rating: '4.9',
     reviewsCount: '(+1,320 تقييم)',
     deliveryTime: '10 - 20 دقيقة',
     address: 'شارع ترعة سراج أمام المعهد الديني، الحسينية',
@@ -500,12 +500,12 @@ window.STORES_DATABASE = {
     cover: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=1200&q=80',
     themeGradient: 'linear-gradient(135deg, #1b3820 0%, #28542f 50%, #112415 100%)',
     categories: [
-      { id: 'all', name: '🌟 كامل المنيو' },
-      { id: 'sandwiches', name: '🥪 ساندوتشات شعبية' },
-      { id: 'plates', name: '🥘 علب وأطباق عائلية' },
-      { id: 'falafel', name: '🧆 طعمية سخنة وعجينة' },
-      { id: 'pickles', name: '🥗 مقبلات ومخللات' },
-      { id: 'reviews', name: '⭐ آراء الزبائن' }
+      { id: 'all', name: '<i class="fa-solid fa-layer-group ml-1.5"></i> كامل المنيو' },
+      { id: 'sandwiches', name: '<i class="fa-solid fa-bread-slice ml-1.5"></i> ساندوتشات شعبية' },
+      { id: 'plates', name: '<i class="fa-solid fa-utensils ml-1.5"></i> علب وأطباق عائلية' },
+      { id: 'falafel', name: '<i class="fa-solid fa-bread-slice ml-1.5"></i> طعمية سخنة وعجينة' },
+      { id: 'pickles', name: '<i class="fa-solid fa-leaf ml-1.5"></i> مقبلات ومخللات' },
+      { id: 'reviews', name: '<i class="fa-solid fa-star text-amber-400 ml-1.5"></i> آراء الزبائن' }
     ],
     items: [
       {
@@ -514,10 +514,10 @@ window.STORES_DATABASE = {
         price: 8,
         desc: 'قرص فلافل مقرمش بالسمسم محشو جبنة كيري سايحة ودقة بصل وشطة مع سلطة خضراء وطحينة سمسم.',
         image: 'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=600&q=80',
-        badge: '🔥 الأكثر طلباً',
+        badge: ' الأكثر طلباً',
         badgeColor: 'bg-emerald-500 text-black',
         cat: 'sandwiches',
-        icon: '🧆'
+        icon: 'fa-bread-slice'
       },
       {
         id: 'fal-2',
@@ -528,7 +528,7 @@ window.STORES_DATABASE = {
         badge: 'فول زبدة',
         badgeColor: 'bg-amber-500 text-black',
         cat: 'sandwiches',
-        icon: '🥖'
+        icon: 'fa-bread-slice'
       },
       {
         id: 'fal-3',
@@ -539,7 +539,7 @@ window.STORES_DATABASE = {
         badge: 'مقرمش',
         badgeColor: 'bg-yellow-500 text-black',
         cat: 'sandwiches',
-        icon: '🍟'
+        icon: 'fa-drumstick-bite'
       },
       {
         id: 'fal-4',
@@ -550,7 +550,7 @@ window.STORES_DATABASE = {
         badge: 'تكفي 3 أفراد',
         badgeColor: 'bg-amber-500 text-black',
         cat: 'plates',
-        icon: '🍲'
+        icon: 'fa-bowl-rice'
       },
       {
         id: 'fal-5',
@@ -561,7 +561,7 @@ window.STORES_DATABASE = {
         badge: 'طاجن بلدي',
         badgeColor: 'bg-red-500 text-white',
         cat: 'plates',
-        icon: '🥘'
+        icon: 'fa-bowl-rice'
       },
       {
         id: 'fal-6',
@@ -572,7 +572,7 @@ window.STORES_DATABASE = {
         badge: 'مخلل مخصوص',
         badgeColor: 'bg-purple-500 text-white',
         cat: 'pickles',
-        icon: '🍆'
+        icon: 'fa-leaf'
       },
       {
         id: 'fal-7',
@@ -583,7 +583,7 @@ window.STORES_DATABASE = {
         badge: '10 أقراص',
         badgeColor: 'bg-emerald-500 text-black',
         cat: 'falafel',
-        icon: '🟢'
+        icon: 'fa-circle'
       },
       {
         id: 'fal-8',
@@ -594,12 +594,12 @@ window.STORES_DATABASE = {
         badge: 'نصف كيلو',
         badgeColor: 'bg-teal-500 text-black',
         cat: 'falafel',
-        icon: '📦'
+        icon: 'fa-box'
       }
     ],
     reviews: [
-      { author: 'الحاج عاطف عبد الحميد (سراج)', text: 'أحسن فلافل بالجبنة الكيري ممكن تاكلها في حياتك، فول البرنس رقم واحد في الحسينية.', rating: '★★★★★', time: 'اليوم' },
-      { author: 'أحمد بدوي', text: 'سرعة توصيل الفطار في الصبح ممتازة، الأكل بيوصل سخن والعيش طازة.', rating: '★★★★★', time: 'منذ يومين' }
+      { author: 'الحاج عاطف عبد الحميد (سراج)', text: 'أحسن فلافل بالجبنة الكيري ممكن تاكلها في حياتك، فول البرنس رقم واحد في الحسينية.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'اليوم' },
+      { author: 'أحمد بدوي', text: 'سرعة توصيل الفطار في الصبح ممتازة، الأكل بيوصل سخن والعيش طازة.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يومين' }
     ]
   },
 
@@ -610,8 +610,8 @@ window.STORES_DATABASE = {
     tagline: 'دجاج مقرمش بخلطة الأعشاب السرية، فتة شاورما سوري، برجر ع الفحم، كول سلو وتومية بيضاء أصلية',
     category: 'بروستد وشاورما فاست فود',
     statusBadge: '● مفتوح الآن',
-    featureBadge: '🍗 قرمشة سوبر كرانشي',
-    rating: '★ 4.8',
+    featureBadge: 'قرمشة سوبر كرانشي',
+    rating: '4.8',
     reviewsCount: '(+1,580 تقييم)',
     deliveryTime: '20 - 35 دقيقة',
     address: 'شارع المركز بجوار بنك الإسكندرية، الحسينية',
@@ -622,12 +622,12 @@ window.STORES_DATABASE = {
     cover: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=1200&q=80',
     themeGradient: 'linear-gradient(135deg, #3d1b06 0%, #5e2808 50%, #2b1103 100%)',
     categories: [
-      { id: 'all', name: '🍗 كامل الوجبات' },
-      { id: 'broast', name: '🍗 وجبات البروستد' },
-      { id: 'shawarma', name: '🌯 الشاورما والفتات' },
-      { id: 'strips', name: '🍟 الستريبس والكرانشي' },
-      { id: 'sides', name: '🥗 المقبلات والبطاطس' },
-      { id: 'reviews', name: '⭐ تجارب الزبائن' }
+      { id: 'all', name: '<i class="fa-solid fa-drumstick-bite ml-1.5"></i> كامل الوجبات' },
+      { id: 'broast', name: '<i class="fa-solid fa-drumstick-bite ml-1.5"></i> وجبات البروستد' },
+      { id: 'shawarma', name: '<i class="fa-solid fa-bowl-rice ml-1.5"></i> الشاورما والفتات' },
+      { id: 'strips', name: '<i class="fa-solid fa-drumstick-bite ml-1.5"></i> الستريبس والكرانشي' },
+      { id: 'sides', name: '<i class="fa-solid fa-leaf ml-1.5"></i> المقبلات والبطاطس' },
+      { id: 'reviews', name: '<i class="fa-solid fa-star text-amber-400 ml-1.5"></i> تجارب الزبائن' }
     ],
     items: [
       {
@@ -636,10 +636,10 @@ window.STORES_DATABASE = {
         price: 160,
         desc: '4 قطع دجاج ذهبي مقرمش مع بطاطس فارم فريتس، سلطة كول سلو، صوص تومية، و2 عيش كيزر.',
         image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=600&q=80',
-        badge: 'الأكثر مبيعاً 🔥',
+        badge: 'الأكثر مبيعاً ',
         badgeColor: 'bg-emerald-500 text-black',
         cat: 'broast',
-        icon: '🍗'
+        icon: 'fa-drumstick-bite'
       },
       {
         id: 'br-2',
@@ -647,10 +647,10 @@ window.STORES_DATABASE = {
         price: 295,
         desc: '8 قطع دجاج مقرمش مع طبق بطاطس عائلي، 2 كول سلو، 2 تومية، 4 عيش، وزجاجة كوكاكولا لتر.',
         image: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80',
-        badge: 'توفير العيلة 👑',
+        badge: 'توفير العيلة ',
         badgeColor: 'bg-amber-400 text-black',
         cat: 'broast',
-        icon: '🍗'
+        icon: 'fa-drumstick-bite'
       },
       {
         id: 'br-3',
@@ -661,7 +661,7 @@ window.STORES_DATABASE = {
         badge: 'شاورما سوري',
         badgeColor: 'bg-rose-500 text-white',
         cat: 'shawarma',
-        icon: '🌯'
+        icon: 'fa-pizza-slice'
       },
       {
         id: 'br-4',
@@ -672,7 +672,7 @@ window.STORES_DATABASE = {
         badge: 'ساندوتش صاروخ',
         badgeColor: 'bg-blue-500 text-white',
         cat: 'shawarma',
-        icon: '🌯'
+        icon: 'fa-pizza-slice'
       },
       {
         id: 'br-5',
@@ -683,7 +683,7 @@ window.STORES_DATABASE = {
         badge: 'ستريبس كرانشي',
         badgeColor: 'bg-amber-500 text-black',
         cat: 'strips',
-        icon: '🍟'
+        icon: 'fa-drumstick-bite'
       },
       {
         id: 'br-6',
@@ -694,12 +694,12 @@ window.STORES_DATABASE = {
         badge: 'شيدر لافرز',
         badgeColor: 'bg-teal-400 text-black',
         cat: 'sides',
-        icon: '🍟'
+        icon: 'fa-drumstick-bite'
       }
     ],
     reviews: [
-      { author: 'طارق صلاح الدين', text: 'البروستد طعمه خطير ومقرمش من برة وطري جداً من جوة، والتومية مظبوطة 10/10.', rating: '★★★★★', time: 'اليوم' },
-      { author: 'حسام خليل', text: 'أحلى فتة شاورما فراخ في الحسينية، كمية محترمة وطعم سوري أصيل.', rating: '★★★★★', time: 'منذ يومين' }
+      { author: 'طارق صلاح الدين', text: 'البروستد طعمه خطير ومقرمش من برة وطري جداً من جوة، والتومية مظبوطة 10/10.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'اليوم' },
+      { author: 'حسام خليل', text: 'أحلى فتة شاورما فراخ في الحسينية، كمية محترمة وطعم سوري أصيل.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يومين' }
     ]
   },
 
@@ -710,8 +710,8 @@ window.STORES_DATABASE = {
     tagline: 'أطازج أسماك البحر والبحيرات، جمبري مشوي ومقلي، بوري مشوي زيت وليمون، وطواجن سيفود بالموتزاريلا',
     category: 'مأكولات بحرية وسيفود',
     statusBadge: '● مفتوح الآن',
-    featureBadge: '🐟 طازج من البحر يومياً',
-    rating: '★ 4.9',
+    featureBadge: 'طازج من البحر يومياً',
+    rating: '4.9',
     reviewsCount: '(+1,240 تقييم)',
     deliveryTime: '25 - 40 دقيقة',
     address: 'شارع جمال عبد الناصر أمام مجمع المصالح، الحسينية',
@@ -722,12 +722,12 @@ window.STORES_DATABASE = {
     cover: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=80',
     themeGradient: 'linear-gradient(135deg, #082133 0%, #0d3c5e 50%, #071927 100%)',
     categories: [
-      { id: 'all', name: '🐟 كامل المنيو' },
-      { id: 'grills', name: '🔥 مشويات وجمبري' },
-      { id: 'tajin', name: '🍲 طواجن وسي فود' },
-      { id: 'fried', name: '🍤 مقليات مقرمشة' },
-      { id: 'soup', name: '🥣 شوربات ومقبلات' },
-      { id: 'reviews', name: '⭐ آراء عشاق الأسماك' }
+      { id: 'all', name: '<i class="fa-solid fa-fish ml-1.5"></i> كامل المنيو' },
+      { id: 'grills', name: '<i class="fa-solid fa-fire ml-1.5"></i> مشويات وجمبري' },
+      { id: 'tajin', name: '<i class="fa-solid fa-bowl-rice ml-1.5"></i> طواجن وسي فود' },
+      { id: 'fried', name: '<i class="fa-solid fa-fish ml-1.5"></i> مقليات مقرمشة' },
+      { id: 'soup', name: '<i class="fa-solid fa-bowl-rice ml-1.5"></i> شوربات ومقبلات' },
+      { id: 'reviews', name: '<i class="fa-solid fa-star text-amber-400 ml-1.5"></i> آراء عشاق الأسماك' }
     ],
     items: [
       {
@@ -736,10 +736,10 @@ window.STORES_DATABASE = {
         price: 135,
         desc: 'سمك بوري مبطرخ مشوي بالخلطة السنجاري الإسكندراني مع أرز صيادية بني، سلطة خضراء وطحينة.',
         image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80',
-        badge: 'الأكثر طلباً 🔥',
+        badge: 'الأكثر طلباً ',
         badgeColor: 'bg-emerald-500 text-black',
         cat: 'grills',
-        icon: '🐟'
+        icon: 'fa-fish'
       },
       {
         id: 'fish-2',
@@ -747,10 +747,10 @@ window.STORES_DATABASE = {
         price: 195,
         desc: 'جمبري، سبيط مقطع، سمك فيليه، وكابوريا في صوص كريمة غني مع جبنة موزاريلا محمرة في الفرن.',
         image: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80',
-        badge: 'طاجن مميز 👑',
+        badge: 'طاجن مميز ',
         badgeColor: 'bg-amber-400 text-black',
         cat: 'tajin',
-        icon: '🍲'
+        icon: 'fa-bowl-rice'
       },
       {
         id: 'fish-3',
@@ -761,7 +761,7 @@ window.STORES_DATABASE = {
         badge: 'جمبري جامبو',
         badgeColor: 'bg-rose-500 text-white',
         cat: 'grills',
-        icon: '🍤'
+        icon: 'fa-fish'
       },
       {
         id: 'fish-4',
@@ -772,7 +772,7 @@ window.STORES_DATABASE = {
         badge: 'شوربة ملوكي',
         badgeColor: 'bg-teal-400 text-black',
         cat: 'soup',
-        icon: '🥣'
+        icon: 'fa-bowl-rice'
       },
       {
         id: 'fish-5',
@@ -780,10 +780,10 @@ window.STORES_DATABASE = {
         price: 90,
         desc: 'سمك بلطي طازج مقلي ذهبي مقرمش بتتبيلة ثوم وكمون مع أرز صيادية وسلطة بلدي وعيش ساخن.',
         image: 'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=600&q=80',
-        badge: 'وجبة توفير ⚡',
+        badge: 'وجبة توفير',
         badgeColor: 'bg-blue-500 text-white',
         cat: 'fried',
-        icon: '🐟'
+        icon: 'fa-fish'
       },
       {
         id: 'fish-6',
@@ -794,12 +794,12 @@ window.STORES_DATABASE = {
         badge: 'ميكس القنال',
         badgeColor: 'bg-amber-500 text-black',
         cat: 'fried',
-        icon: '🍤'
+        icon: 'fa-fish'
       }
     ],
     reviews: [
-      { author: 'الدكتور عصام النجار', text: 'طاجن السيفود بالوايت صوص حكاية لا تفوت، السمك طازة جداً ورائحته تفتح النفس.', rating: '★★★★★', time: 'أمس' },
-      { author: 'محمود عبد السلام', text: 'الجمبري المشوي مستوي صح والشوربة غنية جداً، أحسن مطعم سمك دخل الحسينية.', rating: '★★★★★', time: 'منذ 3 أيام' }
+      { author: 'الدكتور عصام النجار', text: 'طاجن السيفود بالوايت صوص حكاية لا تفوت، السمك طازة جداً ورائحته تفتح النفس.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'أمس' },
+      { author: 'محمود عبد السلام', text: 'الجمبري المشوي مستوي صح والشوربة غنية جداً، أحسن مطعم سمك دخل الحسينية.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ 3 أيام' }
     ]
   },
 
@@ -810,8 +810,8 @@ window.STORES_DATABASE = {
     tagline: 'أكبر تشكيلة بقالة، منتجات ألبان طازجة، أجبان، تموين منزلي، ومجمدات وعصائر بأفضل الأسعار',
     category: 'سوبر ماركت وبقالة تموينية',
     statusBadge: '● متاح للتسوق والتوصيل',
-    featureBadge: '🛒 الهايبر الأكثر شمولاً',
-    rating: '★ 4.8',
+    featureBadge: 'الهايبر الأكثر شمولاً',
+    rating: '4.8',
     reviewsCount: '(+910 تقييم)',
     deliveryTime: '15 - 25 دقيقة',
     address: 'شارع بورسعيد أمام مدرسة الصنايع، الحسينية',
@@ -822,12 +822,12 @@ window.STORES_DATABASE = {
     cover: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80',
     themeGradient: 'linear-gradient(135deg, #062b1e 0%, #0d4a36 50%, #061c14 100%)',
     categories: [
-      { id: 'all', name: '🛒 جميع الأقسام' },
-      { id: 'dairy', name: '🧀 الأجبان والألبان' },
-      { id: 'pantry', name: '🌾 البقالة والتموين' },
-      { id: 'frozen', name: '❄️ المجمدات واللحوم' },
-      { id: 'drinks', name: '🧃 المشروبات والعصائر' },
-      { id: 'reviews', name: '⭐ تقييمات العملاء' }
+      { id: 'all', name: '<i class="fa-solid fa-basket-shopping ml-1.5"></i> جميع الأقسام' },
+      { id: 'dairy', name: '<i class="fa-solid fa-cheese ml-1.5"></i> الأجبان والألبان' },
+      { id: 'pantry', name: '<i class="fa-solid fa-basket-shopping ml-1.5"></i> البقالة والتموين' },
+      { id: 'frozen', name: '<i class="fa-solid fa-snowflake ml-1.5"></i> المجمدات واللحوم' },
+      { id: 'drinks', name: '<i class="fa-solid fa-bottle-water ml-1.5"></i> المشروبات والعصائر' },
+      { id: 'reviews', name: '<i class="fa-solid fa-star text-amber-400 ml-1.5"></i> تقييمات العملاء' }
     ],
     items: [
       {
@@ -839,7 +839,7 @@ window.STORES_DATABASE = {
         badge: 'الأكثر مبيعاً ⭐',
         badgeColor: 'bg-amber-400 text-black',
         cat: 'dairy',
-        icon: '🧀'
+        icon: 'fa-cheese'
       },
       {
         id: 'for-2',
@@ -850,7 +850,7 @@ window.STORES_DATABASE = {
         badge: 'مطاطية فاخرة',
         badgeColor: 'bg-emerald-500 text-black',
         cat: 'dairy',
-        icon: '🧀'
+        icon: 'fa-cheese'
       },
       {
         id: 'for-3',
@@ -861,7 +861,7 @@ window.STORES_DATABASE = {
         badge: 'طازج يومياً',
         badgeColor: 'bg-emerald-500 text-black',
         cat: 'dairy',
-        icon: '🥚'
+        icon: 'fa-egg'
       },
       {
         id: 'for-4',
@@ -872,7 +872,7 @@ window.STORES_DATABASE = {
         badge: 'تموين البيت',
         badgeColor: 'bg-blue-500 text-white',
         cat: 'pantry',
-        icon: '🌾'
+        icon: 'fa-wheat-awn'
       },
       {
         id: 'for-5',
@@ -883,7 +883,7 @@ window.STORES_DATABASE = {
         badge: 'عافية الأصلي',
         badgeColor: 'bg-amber-400 text-black',
         cat: 'pantry',
-        icon: '🍶'
+        icon: 'fa-bottle-water'
       },
       {
         id: 'for-6',
@@ -894,7 +894,7 @@ window.STORES_DATABASE = {
         badge: 'جهينة',
         badgeColor: 'bg-blue-400 text-black',
         cat: 'dairy',
-        icon: '🥛'
+        icon: 'fa-bottle-water'
       },
       {
         id: 'for-7',
@@ -905,7 +905,7 @@ window.STORES_DATABASE = {
         badge: 'مجمدات جاهزة',
         badgeColor: 'bg-rose-500 text-white',
         cat: 'frozen',
-        icon: '🥩'
+        icon: 'fa-drumstick-bite'
       },
       {
         id: 'for-8',
@@ -916,12 +916,12 @@ window.STORES_DATABASE = {
         badge: 'عرض كرتونة',
         badgeColor: 'bg-teal-500 text-black',
         cat: 'drinks',
-        icon: '💧'
+        icon: 'fa-droplet'
       }
     ],
     reviews: [
-      { author: 'المهندس كريم شريف', text: 'أفضل سوبر ماركت في الحسينية، الطلب وصلني خلال ربع ساعة وكل الحاجات طازة وتاريخ صلاحيتها جديد.', rating: '★★★★★', time: 'اليوم' },
-      { author: 'أم زياد (شارع بورسعيد)', text: 'الأجبان والبيض عندهم دايماً طازة ومغلفة بشكل ممتاز، وتوصيل الدليفري محترم جداً.', rating: '★★★★★', time: 'منذ يومين' }
+      { author: 'المهندس كريم شريف', text: 'أفضل سوبر ماركت في الحسينية، الطلب وصلني خلال ربع ساعة وكل الحاجات طازة وتاريخ صلاحيتها جديد.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'اليوم' },
+      { author: 'أم زياد (شارع بورسعيد)', text: 'الأجبان والبيض عندهم دايماً طازة ومغلفة بشكل ممتاز، وتوصيل الدليفري محترم جداً.', rating: '<span class="flex items-center gap-0.5 text-amber-400 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>', time: 'منذ يومين' }
     ]
   }
 };

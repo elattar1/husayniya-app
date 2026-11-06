@@ -94,7 +94,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
   <div class="glass-card rounded-3xl p-4 sm:p-6 md:p-10 mb-6 sm:mb-8 relative overflow-hidden">
     <div class="max-w-2xl relative z-10">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold mb-4">
-        <span>🤝</span>
+        <i class="fa-solid fa-handshake-angle text-emerald-400"></i>
         <span>بوابة الخير والأمانات المجتمعية بمركز الحسينية</span>
       </div>
       <h1 class="text-2xl sm:text-4xl font-black leading-tight mb-3">
@@ -108,7 +108,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <div class="glass p-1.5 rounded-2xl flex items-center gap-2 max-w-lg border border-white/20">
         <input id="item-search" oninput="filterItems()" type="text" placeholder="ابحث باسم المفقود، اسم صاحب البطاقة، أو المكان..." class="flex-1 bg-transparent px-3 text-xs sm:text-sm text-white focus:outline-none"/>
         <button class="btn-primary px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap">
-          بحث 🔍
+          بحث <i class="fa-solid fa-magnifying-glass mr-1"></i>
         </button>
       </div>
     </div>
@@ -116,10 +116,10 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
   <!-- Filter Buttons (All, Lost, Found, Returned) -->
   <div class="flex items-center gap-2 mb-8 scroll-touch pb-2">
-    <button onclick="filterType('all', this)" class="btn-tab active">🌟 جميع الإعلانات (<span id="total-count">6</span>)</button>
-    <button onclick="filterType('found', this)" class="btn-tab">🟢 معثور عليه (أمانات بانتظار أصحابها)</button>
-    <button onclick="filterType('lost', this)" class="btn-tab">🔴 مفقودات جاري البحث عنها</button>
-    <button onclick="filterType('returned', this)" class="btn-tab">🤝 تم التسليم لأصحابها بنجاح</button>
+    <button onclick="filterType('all', this)" class="btn-tab active"><i class="fa-solid fa-star text-amber-400 ml-1"></i> جميع الإعلانات (<span id="total-count">6</span>)</button>
+    <button onclick="filterType('found', this)" class="btn-tab"><i class="fa-solid fa-circle-check text-emerald-400 ml-1"></i> معثور عليه (أمانات بانتظار أصحابها)</button>
+    <button onclick="filterType('lost', this)" class="btn-tab"><i class="fa-solid fa-circle-question text-rose-400 ml-1"></i> مفقودات جاري البحث عنها</button>
+    <button onclick="filterType('returned', this)" class="btn-tab"><i class="fa-solid fa-handshake text-cyan-400 ml-1"></i> تم التسليم لأصحابها بنجاح</button>
   </div>
 
   <!-- Items Grid -->
@@ -129,7 +129,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-type="found">
       <div>
         <div class="flex items-center justify-between mb-3">
-          <span class="b-found text-[11px] px-3 py-1 rounded-full font-bold">🟢 تم العثور عليها</span>
+          <span class="b-found text-[11px] px-3 py-1 rounded-full font-bold"><i class="fa-solid fa-circle-check text-emerald-400 ml-1"></i> تم العثور عليها</span>
           <span class="text-[11px] text-white/40">اليوم، 11:30 ص</span>
         </div>
 
@@ -149,7 +149,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       </div>
 
       <button onclick="contactHolder('الأستاذ هاني', '01012345678', 'بطاقة إبراهيم محمود حسن')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
-        <span>📞 التواصل لاستلام الأمانة</span>
+        <span><i class="fa-solid fa-phone ml-1"></i> التواصل لاستلام الأمانة</span>
       </button>
     </div>
 
@@ -157,7 +157,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-type="lost">
       <div>
         <div class="flex items-center justify-between mb-3">
-          <span class="b-lost text-[11px] px-3 py-1 rounded-full font-bold">🔴 مفقود (مكافأة مالية)</span>
+          <span class="b-lost text-[11px] px-3 py-1 rounded-full font-bold"><i class="fa-solid fa-circle-question text-rose-400 ml-1"></i> مفقود (مكافأة مالية)</span>
           <span class="text-[11px] text-white/40">منذ يومين</span>
         </div>
 
@@ -177,7 +177,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       </div>
 
       <button onclick="contactHolder('أحمد علاء', '01123456789', 'موبايل سامسونج مفقود')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
-        <span>📞 الاتصال بصاحب الموبايل</span>
+        <span><i class="fa-solid fa-phone ml-1"></i> الاتصال بصاحب الموبايل</span>
       </button>
     </div>
 
@@ -185,7 +185,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-type="found">
       <div>
         <div class="flex items-center justify-between mb-3">
-          <span class="b-found text-[11px] px-3 py-1 rounded-full font-bold">🟢 تم العثور عليها</span>
+          <span class="b-found text-[11px] px-3 py-1 rounded-full font-bold"><i class="fa-solid fa-circle-check text-emerald-400 ml-1"></i> تم العثور عليها</span>
           <span class="text-[11px] text-white/40">أمس</span>
         </div>
 
@@ -205,7 +205,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       </div>
 
       <button onclick="contactHolder('كابتن تامر', '01234567890', 'مفاتيح سيارة تويوتا')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
-        <span>📞 التواصل لاستلام المفاتيح</span>
+        <span><i class="fa-solid fa-phone ml-1"></i> التواصل لاستلام المفاتيح</span>
       </button>
     </div>
 
@@ -213,7 +213,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between opacity-80" data-type="returned">
       <div>
         <div class="flex items-center justify-between mb-3">
-          <span class="b-returned text-[11px] px-3 py-1 rounded-full font-bold">🤝 تم التسليم لصاحبها</span>
+          <span class="b-returned text-[11px] px-3 py-1 rounded-full font-bold"><i class="fa-solid fa-handshake text-cyan-400 ml-1"></i> تم التسليم لصاحبها</span>
           <span class="text-[11px] text-white/40">3 نوفمبر 2026</span>
         </div>
 
@@ -227,12 +227,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
         <div class="space-y-1.5 text-xs text-white/60 mb-5 bg-white/[0.03] p-3.5 rounded-2xl">
           <div><strong class="text-white/80">مكان العثور:</strong> موقف سيارات الحسينية — الزقازيق</div>
-          <div class="text-emerald-400 font-bold">✓ تم التواصل بنجاح وتسليم الملف لصاحبه بفضل أهالي الحسينية.</div>
+          <div class="text-emerald-400 font-bold"><i class="fa-solid fa-check ml-1"></i> تم التواصل بنجاح وتسليم الملف لصاحبه بفضل أهالي الحسينية.</div>
         </div>
       </div>
 
       <div class="p-2 text-center text-xs text-white/40 font-bold">
-        تم إغلاق البلاغ بنجاح ✓
+        تم إغلاق البلاغ بنجاح <i class="fa-solid fa-check mr-1"></i>
       </div>
     </div>
 
@@ -240,7 +240,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-type="found">
       <div>
         <div class="flex items-center justify-between mb-3">
-          <span class="b-found text-[11px] px-3 py-1 rounded-full font-bold">🟢 تم العثور عليها</span>
+          <span class="b-found text-[11px] px-3 py-1 rounded-full font-bold"><i class="fa-solid fa-circle-check text-emerald-400 ml-1"></i> تم العثور عليها</span>
           <span class="text-[11px] text-white/40">منذ 3 ساعات</span>
         </div>
 
@@ -260,7 +260,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       </div>
 
       <button onclick="contactHolder('د. مصطفى (صيدلية الشفاء)', '01098765432', 'كارت فيزا الحاجة فاطمة')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
-        <span>📞 التواصل مع الصيدلية للاستلام</span>
+        <span><i class="fa-solid fa-phone ml-1"></i> التواصل مع الصيدلية للاستلام</span>
       </button>
     </div>
 
@@ -268,7 +268,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-type="lost">
       <div>
         <div class="flex items-center justify-between mb-3">
-          <span class="b-lost text-[11px] px-3 py-1 rounded-full font-bold">🔴 مفقود</span>
+          <span class="b-lost text-[11px] px-3 py-1 rounded-full font-bold"><i class="fa-solid fa-circle-question text-rose-400 ml-1"></i> مفقود</span>
           <span class="text-[11px] text-white/40">منذ 4 أيام</span>
         </div>
 
@@ -288,7 +288,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       </div>
 
       <button onclick="contactHolder('يوسف خالد', '01055554444', 'ساعة يد كاسيو')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
-        <span>📞 الاتصال بيوسف</span>
+        <span><i class="fa-solid fa-phone ml-1"></i> الاتصال بيوسف</span>
       </button>
     </div>
 
@@ -304,7 +304,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <!-- ══════════════════ ADD REPORT MODAL ══════════════════ -->
 <div id="report-modal" class="modal-overlay">
   <div class="glass-card rounded-3xl p-5 sm:p-8 max-w-md w-full max-h-[90vh] overflow-y-auto relative border border-white/20">
-    <button onclick="closeReportModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg">✕</button>
+    <button onclick="closeReportModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
 
     <h3 class="font-bold text-base text-white mb-1">إضافة إعلان مفقودات أو أمانة جديدة</h3>
     <p class="text-xs text-white/50 mb-4">سيتم نشر الإعلان فوراً لجميع أهالي مركز الحسينية</p>
@@ -314,8 +314,8 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <div>
         <label class="block font-semibold mb-1 text-white/70">نوع الإعلان</label>
         <select id="report-type" class="input-glass w-full rounded-xl px-3 py-2 bg-slate-900 text-white">
-          <option value="found">🟢 عثرت على أمانة (معثور عليه)</option>
-          <option value="lost">🔴 أبحث عن شيء فقدته (مفقود)</option>
+          <option value="found">عثرت على أمانة (معثور عليه)</option>
+          <option value="lost">أبحث عن شيء فقدته (مفقود)</option>
         </select>
       </div>
 
@@ -358,7 +358,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
 
     <button onclick="submitReport()" class="btn-primary w-full py-3 rounded-2xl text-xs font-bold flex items-center justify-center gap-2">
-      <span>نشر الإعلان في الحسينية الآن 📢</span>
+      <span>نشر الإعلان في الحسينية الآن <i class="fa-solid fa-bullhorn mr-1"></i></span>
     </button>
   </div>
 </div>
@@ -431,13 +431,13 @@ async function submitReport() {
       details: `${name} - ${desc}`
     });
     if (res && res.cloud) {
-      cloudMsg = '\n⚡ تم حفظ الإعلان ونشره فوراً لأهالي الحسينية!';
+      cloudMsg = '\nتم حفظ الإعلان ونشره فوراً لأهالي الحسينية!';
     }
   }
 
   const isFound = type === 'found';
   const badgeClass = isFound ? 'b-found' : 'b-lost';
-  const badgeText = isFound ? '🟢 تم العثور عليها' : '🔴 مفقود';
+  const badgeText = isFound ? '<i class="fa-solid fa-circle-check text-emerald-400 ml-1"></i> تم العثور عليها' : '<i class="fa-solid fa-circle-question text-rose-400 ml-1"></i> مفقود';
 
   const newCard = `
     <div class="lost-card glass-card rounded-3xl p-6 flex flex-col justify-between" data-type="${type}">
@@ -463,7 +463,7 @@ async function submitReport() {
       </div>
 
       <button onclick="contactHolder('${name}', '${phone}', '${title}')" class="btn-primary w-full py-2.5 text-xs font-bold flex items-center justify-center gap-2">
-        <span>📞 التواصل مع المعلن</span>
+        <span><i class="fa-solid fa-phone ml-1"></i> التواصل مع المعلن</span>
       </button>
     </div>
   `;
@@ -476,7 +476,7 @@ async function submitReport() {
   countEl.textContent = parseInt(countEl.textContent) + 1;
 
   closeReportModal();
-  alert(`تم نشر إعلانك بنجاح في قسم مفقودات الحسينية! 🎉${cloudMsg}\nسيتم إشعار أهالي المنطقة لمساعدتك.`);
+  alert(`تم نشر إعلانك بنجاح في قسم مفقودات الحسينية!${cloudMsg}\nسيتم إشعار أهالي المنطقة لمساعدتك.`);
 }
 </script>
 

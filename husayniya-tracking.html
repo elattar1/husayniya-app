@@ -144,7 +144,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
       <!-- Theme Toggle (Light / Dark) -->
       <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
-        <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+        <span id="theme-toggle-icon" class="theme-icon"><i class="fa-solid fa-moon text-indigo-400"></i></span>
         <span id="theme-toggle-label" class="theme-label hidden md:inline">ليلي</span>
       </button>
 
@@ -152,8 +152,9 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
         <span id="tracking-order-badge">#ORD-LIVE</span>
       </div>
-      <button onclick="openOrderDetails()" class="hidden sm:flex glass px-3.5 py-1.5 rounded-full text-xs font-semibold text-white/80 hover:bg-white/20 transition">
-        📄 تفاصيل الطلب
+      <button onclick="openOrderDetails()" class="hidden sm:flex glass px-3.5 py-1.5 rounded-full text-xs font-semibold text-white/80 hover:bg-white/20 transition items-center gap-1.5">
+        <i class="fa-solid fa-file-lines text-emerald-400"></i>
+        <span>تفاصيل الطلب</span>
       </button>
     </div>
   </div>
@@ -165,18 +166,20 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
   <!-- Empty State Container when no active order is being delivered -->
   <div id="no-order-state" class="hidden glass-card rounded-3xl p-8 sm:p-12 text-center max-w-xl mx-auto my-8 border border-white/10 space-y-5">
     <div class="w-20 h-20 rounded-3xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-4xl mx-auto border border-emerald-500/20">
-      🛵
+      <i class="fa-solid fa-motorcycle"></i>
     </div>
     <h2 class="text-xl sm:text-2xl font-black text-white">لا توجد طلبات جارية قيد التوصيل</h2>
     <p class="text-xs sm:text-sm text-white/60 leading-relaxed max-w-md mx-auto">
       لم تقم بإجراء أي طلب حالياً، أو تم تسليم طلباتك السابقة بنجاح. تصفح أشهى مطاعم الحسينية واطلب وجبتك المفضلة لتتبع خط سير الكابتن فورياً على الخريطة!
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-      <a href="husayniya-restaurants.html" class="btn-primary w-full sm:w-auto px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold no-underline">
-        🍔 تصفح المطاعم واطلب الآن
+      <a href="husayniya-restaurants.html" class="btn-primary w-full sm:w-auto px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold no-underline flex items-center justify-center gap-2">
+        <i class="fa-solid fa-utensils"></i>
+        <span>تصفح المطاعم واطلب الآن</span>
       </a>
-      <a href="husayniya-account.html" class="glass w-full sm:w-auto px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold text-white/70 hover:text-white no-underline">
-        📦 مراجعة سجل طلباتي
+      <a href="husayniya-account.html" class="glass w-full sm:w-auto px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold text-white/70 hover:text-white no-underline flex items-center justify-center gap-2">
+        <i class="fa-solid fa-box"></i>
+        <span>مراجعة سجل طلباتي</span>
       </a>
     </div>
     <!-- Order Search by Code -->
@@ -194,15 +197,16 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
   <!-- Header Banner -->
   <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
     <div>
-      <h1 class="text-xl sm:text-2xl md:text-3xl font-black mb-1">
-        طلبك <span class="gt">في الطريق إليك!</span> 🛵💨
+      <h1 class="text-xl sm:text-2xl md:text-3xl font-black mb-1 flex items-center gap-2">
+        <span>طلبك <span class="gt">في الطريق إليك!</span></span>
+        <i class="fa-solid fa-motorcycle text-emerald-400 text-2xl"></i>
       </h1>
       <p class="text-xs sm:text-sm text-white/50 leading-relaxed">مندوب التوصيل يقترب من موقعك في الحسينية، يمكنك متابعة موقعه لحظة بلحظة.</p>
     </div>
 
     <!-- ETA Counter Box -->
     <div class="glass px-4 py-2.5 sm:px-6 sm:py-3.5 rounded-2xl flex items-center gap-3 sm:gap-4 self-stretch sm:self-auto border border-emerald-500/30 shadow-lg justify-between sm:justify-start">
-      <div class="text-2xl sm:text-3xl">⏱️</div>
+      <div class="text-2xl sm:text-3xl text-emerald-400"><i class="fa-solid fa-clock"></i></div>
       <div>
         <div class="text-[10px] sm:text-[11px] text-white/50 font-semibold">الوقت المقدر للوصول</div>
         <div class="text-xl sm:text-2xl font-black text-emerald-400 font-mono tracking-wider"><span id="eta-mins">14</span>:<span id="eta-secs">30</span> دقيقة</div>
@@ -231,36 +235,38 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <!-- Restaurant Pin (Origin) -->
         <div class="static-pin" style="bottom:70px;right:70px">
           <div id="map-store-name" class="px-2.5 py-1 rounded-full bg-slate-900/90 border border-white/20 text-[10px] font-bold text-white mb-1 shadow-lg">
-            مشويات الباز 🍖
+            مشويات الباز
           </div>
-          <div class="w-10 h-10 rounded-2xl bg-emerald-600 flex items-center justify-center text-xl shadow-lg border border-white/30">
-            🏪
+          <div class="w-10 h-10 rounded-2xl bg-emerald-600 flex items-center justify-center text-lg shadow-lg border border-white/30 text-white">
+            <i class="fa-solid fa-store"></i>
           </div>
         </div>
 
         <!-- Customer Pin (Destination) -->
         <div class="static-pin" style="top:50px;left:70px">
           <div id="map-address" class="px-2.5 py-1 rounded-full bg-slate-900/90 border border-white/20 text-[10px] font-bold text-white mb-1 shadow-lg">
-            دارك — شارع المركز 🏠
+            دارك — شارع المركز
           </div>
-          <div class="w-10 h-10 rounded-2xl bg-amber-500 flex items-center justify-center text-xl shadow-lg border border-white/30">
-            📍
+          <div class="w-10 h-10 rounded-2xl bg-amber-500 flex items-center justify-center text-lg shadow-lg border border-white/30 text-black">
+            <i class="fa-solid fa-location-dot"></i>
           </div>
         </div>
 
         <!-- Dynamic Live Delivery Scooter Pin -->
         <div id="scooter-marker" class="scooter-pin" style="top:230px;right:260px">
           <div class="scooter-pulse"></div>
-          <span class="text-xl">🛵</span>
+          <span class="text-sm text-white"><i class="fa-solid fa-motorcycle"></i></span>
         </div>
 
         <!-- Map Controls -->
         <div class="absolute bottom-4 left-4 z-20 flex gap-2">
           <button onclick="centerScooter()" class="glass px-3 py-1.5 rounded-xl text-xs font-bold text-white/90 hover:bg-white/20 transition flex items-center gap-1.5">
-            🎯 ركز على السائق
+            <i class="fa-solid fa-crosshairs text-emerald-400"></i>
+            <span>ركز على السائق</span>
           </button>
           <button onclick="recalculateRoute()" class="glass px-3 py-1.5 rounded-xl text-xs font-bold text-white/90 hover:bg-white/20 transition flex items-center gap-1.5">
-            🔄 تحديث المسار
+            <i class="fa-solid fa-rotate text-emerald-400"></i>
+            <span>تحديث المسار</span>
           </button>
         </div>
 
@@ -280,21 +286,21 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <div>
             <div class="flex items-center gap-2">
               <h3 class="text-base font-bold text-white">عمر حسن (الكابتن)</h3>
-              <span class="px-2 py-0.5 rounded-md bg-amber-400/20 text-amber-300 text-[10px] font-extrabold">★ 4.95</span>
+              <span class="px-2 py-0.5 rounded-md bg-amber-400/20 text-amber-300 text-[10px] font-extrabold flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> 4.95</span>
             </div>
             <p class="text-xs text-white/50 mb-1">موتوسيكل دليفري — دايون أسود (رقم: 1845 ط أ ص الشرقية)</p>
-            <div class="text-[11px] text-emerald-400 font-semibold">أكمل أكثر من 1,280 توصيلة في الحسينية ✓</div>
+            <div class="text-[11px] text-emerald-400 font-semibold flex items-center gap-1"><i class="fa-solid fa-check"></i> <span>أكمل أكثر من 1,280 توصيلة في الحسينية</span></div>
           </div>
         </div>
 
         <!-- Action Buttons -->
         <div class="flex items-center gap-3 w-full sm:w-auto">
-          <a href="tel:01000000000" class="btn-action flex-1 sm:flex-initial justify-center" style="text-decoration:none">
-            <span>📞</span>
+          <a href="tel:01000000000" class="btn-action flex-1 sm:flex-initial justify-center flex items-center gap-2" style="text-decoration:none">
+            <i class="fa-solid fa-phone text-emerald-400"></i>
             <span>اتصال بالسائق</span>
           </a>
-          <button onclick="openChatModal()" class="btn-action flex-1 sm:flex-initial justify-center">
-            <span>💬</span>
+          <button onclick="openChatModal()" class="btn-action flex-1 sm:flex-initial justify-center flex items-center gap-2">
+            <i class="fa-solid fa-comments text-emerald-400"></i>
             <span>محادثة فورية</span>
           </button>
         </div>
@@ -316,7 +322,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
           <!-- Step 1: Confirmed -->
           <div id="step-1" class="stepper-step completed">
-            <div class="step-circle">✓</div>
+            <div class="step-circle"><i class="fa-solid fa-check"></i></div>
             <div>
               <div class="text-sm font-bold text-white">تم استلام وتأكيد الطلب</div>
               <div id="step-1-desc" class="text-xs text-white/40">استلمه المتجر بنجاح</div>
@@ -325,7 +331,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
           <!-- Step 2: Preparing -->
           <div id="step-2" class="stepper-step active">
-            <div class="step-circle">🍳</div>
+            <div class="step-circle"><i class="fa-solid fa-fire-burner"></i></div>
             <div>
               <div class="text-sm font-bold text-emerald-300">تجهيز وتحضير الوجبة</div>
               <div id="step-2-desc" class="text-xs text-white/40">جاري الإعداد والتغليف الحراري</div>
@@ -334,7 +340,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
           <!-- Step 3: Driver Picked Up -->
           <div id="step-3" class="stepper-step">
-            <div class="step-circle">📦</div>
+            <div class="step-circle"><i class="fa-solid fa-box"></i></div>
             <div>
               <div class="text-sm font-bold text-white/50">استلم السائق الطلب</div>
               <div id="step-3-desc" class="text-xs text-white/30">في انتظار استلام المندوب</div>
@@ -343,7 +349,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
           <!-- Step 4: On the way -->
           <div id="step-4" class="stepper-step">
-            <div class="step-circle">🛵</div>
+            <div class="step-circle"><i class="fa-solid fa-motorcycle"></i></div>
             <div>
               <div class="text-sm font-bold text-white/50">السائق في الطريق إليك</div>
               <div id="step-4-desc" class="text-xs text-white/30">خط السير بالحسينية</div>
@@ -352,7 +358,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
           <!-- Step 5: Delivered -->
           <div id="step-5" class="stepper-step">
-            <div class="step-circle">🏠</div>
+            <div class="step-circle"><i class="fa-solid fa-house-chimney-user"></i></div>
             <div>
               <div class="text-sm font-bold text-white/40">تم التسليم واستلام المبلغ</div>
               <div id="step-5-desc" class="text-xs text-white/30">المتوقع خلال دقائق</div>
@@ -363,15 +369,16 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
         <!-- Quick Summary Link -->
         <div class="mt-8 pt-4 border-t border-white/10 text-center">
-          <button onclick="openOrderDetails()" class="text-xs text-emerald-400 font-bold hover:underline">
-            عرض فاتورة ومحتويات الوجبة (<span id="total-summary-label">0.00 ج.م</span>) 📋
+          <button onclick="openOrderDetails()" class="text-xs text-emerald-400 font-bold hover:underline flex items-center justify-center gap-1.5 w-full">
+            <span>عرض فاتورة ومحتويات الوجبة (<span id="total-summary-label">0.00 ج.م</span>)</span>
+            <i class="fa-solid fa-file-invoice-dollar"></i>
           </button>
         </div>
       </div>
 
       <!-- Safety & Contact Banner -->
       <div class="glass rounded-2xl p-4 flex items-center gap-3 border border-white/10 text-xs">
-        <span class="text-2xl">🛡️</span>
+        <i class="fa-solid fa-shield-halved text-2xl text-emerald-400 flex-shrink-0"></i>
         <div class="text-white/60 leading-relaxed">
           هل واجهت مشكلة؟ يمكنك التواصل مباشرة مع <span class="text-white font-bold">فريق دعم خدمات الحسينية</span> على مدار الساعة.
         </div>
@@ -393,7 +400,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <!-- ══════════════════ ORDER DETAILS MODAL ══════════════════ -->
 <div id="details-modal" class="modal-overlay">
   <div class="glass-card rounded-3xl p-6 md:p-8 max-w-md w-full relative border border-white/20">
-    <button onclick="closeOrderDetails()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg">✕</button>
+    <button onclick="closeOrderDetails()" class="absolute top-5 left-5 text-white/40 hover:text-white text-base"><i class="fa-solid fa-xmark"></i></button>
 
     <h3 class="text-lg font-bold mb-4">تفاصيل الطلب <span id="modal-order-code">#ORD-LIVE</span></h3>
 
@@ -425,10 +432,10 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <!-- ══════════════════ QUICK CHAT MODAL ══════════════════ -->
 <div id="chat-modal" class="modal-overlay">
   <div class="glass-card rounded-3xl p-6 max-w-sm w-full relative border border-white/20">
-    <button onclick="closeChatModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg">✕</button>
+    <button onclick="closeChatModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-base"><i class="fa-solid fa-xmark"></i></button>
 
     <div class="flex items-center gap-3 mb-4">
-      <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-xl">👨‍✈️</div>
+      <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg"><i class="fa-solid fa-id-badge"></i></div>
       <div>
         <div class="font-bold text-sm">الكابتن عمر حسن</div>
         <div class="text-[10px] text-emerald-400">نشط الآن على الطريق</div>
@@ -451,23 +458,23 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <!-- ══════════════ MOBILE BOTTOM NAVIGATION ══════════════ -->
 <nav class="mobile-nav">
   <a href="index.html" class="mobile-nav-item">
-    <span class="text-lg">🏠</span>
+    <i class="fa-solid fa-house text-base mb-1"></i>
     <span>الرئيسية</span>
   </a>
   <a href="husayniya-restaurants.html" class="mobile-nav-item">
-    <span class="text-lg">🍖</span>
+    <i class="fa-solid fa-utensils text-base mb-1"></i>
     <span>المطاعم</span>
   </a>
   <a href="husayniya-checkout.html" class="mobile-nav-item relative">
-    <span class="text-lg">🛒</span>
+    <i class="fa-solid fa-cart-shopping text-base mb-1"></i>
     <span>السلة</span>
   </a>
   <a href="husayniya-tracking.html" class="mobile-nav-item active">
-    <span class="text-lg">🛵</span>
+    <i class="fa-solid fa-motorcycle text-base mb-1"></i>
     <span>تتبّع</span>
   </a>
   <a href="husayniya-account.html" class="mobile-nav-item">
-    <span class="text-lg">👤</span>
+    <i class="fa-solid fa-user text-base mb-1"></i>
     <span>حسابي</span>
   </a>
 </nav>
@@ -549,7 +556,7 @@ function sendChatMessage() {
   setTimeout(() => {
     container.innerHTML += `
       <div class="p-2 rounded-xl bg-white/10 max-w-[80%] text-right self-start">
-        تمام يا غالي، وصلت شارعكم الآن! 👍
+        تمام يا غالي، وصلت شارعكم الآن!
       </div>
     `;
     container.scrollTop = container.scrollHeight;
@@ -559,17 +566,17 @@ function sendChatMessage() {
 // Dynamic Order Tracking Engine
 let currentTrackingOrder = null;
 
-function setStepState(stepId, state, activeText) {
+function setStepState(stepId, state, activeIconHtml) {
   const el = document.getElementById(stepId);
   if (!el) return;
   el.classList.remove('completed', 'active');
   const circle = el.querySelector('.step-circle');
   if (state === 'completed') {
     el.classList.add('completed');
-    if (circle) circle.textContent = '✓';
+    if (circle) circle.innerHTML = '<i class="fa-solid fa-check"></i>';
   } else if (state === 'active') {
     el.classList.add('active');
-    if (circle && activeText) circle.textContent = activeText;
+    if (circle && activeIconHtml) circle.innerHTML = activeIconHtml;
   } else {
     // Inactive
   }
@@ -589,10 +596,10 @@ function updateTrackingUI(order) {
   // 2. Store & Destination Pins
   const storeName = order.store_name || 'مطعم بالحسينية';
   const mapStoreEl = document.getElementById('map-store-name');
-  if (mapStoreEl) mapStoreEl.textContent = `${storeName} 🏪`;
+  if (mapStoreEl) mapStoreEl.textContent = storeName;
 
   const mapAddrEl = document.getElementById('map-address');
-  if (mapAddrEl) mapAddrEl.textContent = `${order.delivery_address || 'الحسينية'} 📍`;
+  if (mapAddrEl) mapAddrEl.textContent = order.delivery_address || 'الحسينية';
 
   const step1Desc = document.getElementById('step-1-desc');
   if (step1Desc) step1Desc.textContent = `استلمه ${storeName} بنجاح`;
@@ -635,14 +642,14 @@ function updateTrackingUI(order) {
   // 5. Stepper Status
   const status = (order.status || 'pending').toLowerCase();
   if (status === 'pending') {
-    setStepState('step-1', 'active', '📝');
+    setStepState('step-1', 'active', '<i class="fa-solid fa-file-lines text-xs"></i>');
     setStepState('step-2', 'inactive');
     setStepState('step-3', 'inactive');
     setStepState('step-4', 'inactive');
     setStepState('step-5', 'inactive');
   } else if (status === 'preparing') {
     setStepState('step-1', 'completed');
-    setStepState('step-2', 'active', '🍳');
+    setStepState('step-2', 'active', '<i class="fa-solid fa-fire-burner text-xs"></i>');
     setStepState('step-3', 'inactive');
     setStepState('step-4', 'inactive');
     setStepState('step-5', 'inactive');
@@ -650,7 +657,18 @@ function updateTrackingUI(order) {
     setStepState('step-1', 'completed');
     setStepState('step-2', 'completed');
     setStepState('step-3', 'completed');
-    setStepState('step-4', 'active', '🛵');
+    setStepState('step-4', 'active', '<i class="fa-solid fa-motorcycle text-xs"></i>');
+    setStepState('step-5', 'inactive');
+  } else if (status === 'delivered') {
+    setStepState('step-1', 'completed');
+    setStepState('step-2', 'completed');
+    setStepState('step-3', 'completed');
+    setStepState('step-4', 'completed');
+    setStepState('step-5', 'completed');
+    document.getElementById('eta-mins').textContent = '00';
+    document.getElementById('eta-secs').textContent = '00';
+  }
+}
     setStepState('step-5', 'inactive');
   } else if (status === 'delivered') {
     setStepState('step-1', 'completed');
@@ -726,17 +744,17 @@ window.addEventListener('load', () => {
       if (currentTrackingOrder && (order.order_code === currentTrackingOrder.order_code)) {
         updateTrackingUI(order);
         if (order.status === 'delivered') {
-          window.HusayniyaCloud.sendNotification('🎉 تم تسليم طلبك بنجاح!', {
+          window.HusayniyaCloud.sendNotification('تم تسليم طلبك بنجاح!', {
             body: 'بالهناء والشفاء! شكراً لطلبك عبر خدمات الحسينية.',
             soundType: 'success'
           });
         } else if (order.status === 'ready' || order.status === 'on_the_way') {
-          window.HusayniyaCloud.sendNotification('🛵 المندوب في الطريق إليك!', {
+          window.HusayniyaCloud.sendNotification('المندوب في الطريق إليك!', {
             body: 'الكابتن استلم وجبتك من المطعم وهو يقترب من موقعك الآن.',
             soundType: 'order'
           });
         } else if (order.status === 'preparing') {
-          window.HusayniyaCloud.sendNotification('🍳 بدأ تحضير الوجبة!', {
+          window.HusayniyaCloud.sendNotification('بدأ تحضير الوجبة!', {
             body: 'المطعم يقوم الآن بطهي وتغليف طلبك حرارياً.',
             soundType: 'order'
           });

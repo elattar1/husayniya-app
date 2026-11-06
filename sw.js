@@ -3,7 +3,7 @@
  * استراتيجية: Network-First (جلب أحدث التحديثات دائماً من الإنترنت مع حفظ نسخة للطوارئ فقط)
  */
 
-const CACHE_NAME = 'husayniya-v27-zero-wallets-clean';
+const CACHE_NAME = 'husayniya-v28-fontawesome-icons';
 
 self.addEventListener('install', (event) => {
   // التفعيل الفوري للنسخة الجديدة دون انتظار إغلاق التبويبات
@@ -17,7 +17,7 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log('🧹 حذف كاش قديم:', cacheName);
+            console.log('[Cache] حذف كاش قديم:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -72,7 +72,7 @@ self.addEventListener('notificationclick', (event) => {
 });
 
 self.addEventListener('push', (event) => {
-  let data = { title: 'خدمات الحسينية 🛵', body: 'تحديث جديد بخصوص طلبك!' };
+  let data = { title: 'خدمات الحسينية', body: 'تحديث جديد بخصوص طلبك!' };
   if (event.data) {
     try {
       data = event.data.json();

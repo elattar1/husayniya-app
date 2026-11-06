@@ -117,10 +117,10 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="flex items-center gap-2 sm:gap-4 text-xs font-semibold flex-shrink-0">
       <!-- Theme Toggle (Light / Dark) -->
       <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
-        <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+        <span id="theme-toggle-icon" class="theme-icon"><i class="fa-solid fa-moon text-indigo-400"></i></span>
         <span id="theme-toggle-label" class="theme-label hidden sm:inline">ليلي</span>
       </button>
-      <a href="husayniya-checkout.html" class="glass px-3 py-1.5 rounded-full text-white/80 hover:text-white transition" style="text-decoration:none">🛒 السلة</a>
+      <a href="husayniya-checkout.html" class="glass px-3 py-1.5 rounded-full text-white/80 hover:text-white transition flex items-center gap-1.5" style="text-decoration:none"><i class="fa-solid fa-cart-shopping text-emerald-400"></i> <span>السلة</span></a>
       <button onclick="handleSignOut()" class="text-rose-400 hover:text-rose-300 font-bold bg-transparent border-none cursor-pointer">تسجيل خروج</button>
     </div>
   </div>
@@ -137,22 +137,22 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="flex items-center gap-3 flex-wrap">
           <h1 id="profile-name" class="text-xl sm:text-2xl font-black truncate">عميل الحسينية</h1>
           <span id="profile-provider-badge" class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold flex items-center gap-1">
-            <span>🟢</span>
+            <i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i>
             <span id="provider-name">حساب معتمد</span>
           </span>
         </div>
         <p id="profile-subtitle" class="text-xs text-white/50 mt-1">عضو معتمد • مدينة الحسينية، الشرقية</p>
         <div class="flex items-center gap-3 sm:gap-4 mt-3 text-xs text-white/70 flex-wrap">
-          <span id="profile-phone">📱 01012345678</span>
+          <span id="profile-phone" class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-emerald-400 text-xs"></i> <span>01012345678</span></span>
           <span>•</span>
-          <span id="profile-email" class="truncate max-w-[200px] sm:max-w-none">✉️ user@husayniya.com</span>
+          <span id="profile-email" class="truncate max-w-[200px] sm:max-w-none flex items-center gap-1.5"><i class="fa-solid fa-envelope text-white/50 text-xs"></i> <span>user@husayniya.com</span></span>
         </div>
       </div>
     </div>
 
     <!-- Wallet Balance Widget -->
     <div class="glass px-6 py-4 rounded-2xl flex items-center gap-4 border border-emerald-500/30 text-right w-full md:w-auto justify-between md:justify-start">
-      <div class="text-3xl">💳</div>
+      <div class="text-2xl text-emerald-400"><i class="fa-solid fa-wallet"></i></div>
       <div>
         <div class="text-[11px] text-white/50">رصيد محفظة الحسينية</div>
         <div class="text-2xl font-black gt" id="wallet-balance-val">0.00 ج.م</div>
@@ -161,12 +161,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
   </div>
 
-  <!-- 👑 SUPER ADMIN PRIVILEGES BANNER (Only displayed if current user is Admin) ── -->
+  <!-- SUPER ADMIN PRIVILEGES BANNER (Only displayed if current user is Admin) ── -->
   <div id="admin-privileges-banner" class="hidden mb-8 p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-amber-500/20 via-emerald-500/20 to-teal-500/20 border-2 border-amber-400/40 relative overflow-hidden shadow-xl">
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
       <div class="flex items-center gap-3.5">
-        <div class="w-12 h-12 rounded-2xl bg-amber-400/20 text-amber-300 flex items-center justify-center text-2xl border border-amber-400/30 flex-shrink-0">
-          👑
+        <div class="w-12 h-12 rounded-2xl bg-amber-400/20 text-amber-300 flex items-center justify-center text-xl border border-amber-400/30 flex-shrink-0">
+          <i class="fa-solid fa-crown"></i>
         </div>
         <div>
           <div class="flex items-center gap-2 flex-wrap">
@@ -177,11 +177,13 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         </div>
       </div>
       <div class="flex items-center gap-2 w-full sm:w-auto">
-        <a href="husayniya-dashboard.html" class="btn-primary flex-1 sm:flex-initial px-4 py-2.5 rounded-xl text-xs font-bold text-center no-underline">
-          📊 لوحة الإدارة الشاملة
+        <a href="husayniya-dashboard.html" class="btn-primary flex-1 sm:flex-initial px-4 py-2.5 rounded-xl text-xs font-bold text-center no-underline flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>لوحة الإدارة الشاملة</span>
         </a>
-        <a href="husayniya-merchant.html" class="glass flex-1 sm:flex-initial px-4 py-2.5 rounded-xl text-xs font-bold text-center text-amber-300 hover:text-white no-underline border border-amber-400/30">
-          👨‍🍳 إدارة كافة المطاعم
+        <a href="husayniya-merchant.html" class="glass flex-1 sm:flex-initial px-4 py-2.5 rounded-xl text-xs font-bold text-center text-amber-300 hover:text-white no-underline border border-amber-400/30 flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-utensils"></i>
+          <span>إدارة كافة المطاعم</span>
         </a>
       </div>
     </div>
@@ -193,31 +195,31 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <!-- ── LEFT NAVIGATION TABS ── -->
     <div class="space-y-2">
       <button onclick="switchTab('orders')" id="tab-btn-orders" class="btn-tab active">
-        <span>📦</span>
+        <i class="fa-solid fa-box-open text-base ml-2"></i>
         <span>سجل الطلبات والوجبات</span>
       </button>
       <button onclick="switchTab('addresses')" id="tab-btn-addresses" class="btn-tab">
-        <span>📍</span>
+        <i class="fa-solid fa-location-dot text-base ml-2"></i>
         <span id="tab-addresses-count">العناوين المحفوظة (2)</span>
       </button>
       <button onclick="switchTab('wallet')" id="tab-btn-wallet" class="btn-tab">
-        <span>💳</span>
+        <i class="fa-solid fa-wallet text-base ml-2"></i>
         <span>المحفظة والمعاملات</span>
       </button>
       <button onclick="switchTab('favorites')" id="tab-btn-favorites" class="btn-tab">
-        <span>❤️</span>
+        <i class="fa-solid fa-heart text-base ml-2"></i>
         <span>المتاجر والوجبات المفضلة</span>
       </button>
       <button onclick="switchTab('security')" id="tab-btn-security" class="btn-tab">
-        <span>🔒</span>
+        <i class="fa-solid fa-shield-halved text-base ml-2"></i>
         <span>الأمان والبيانات الشخصية</span>
       </button>
       <button onclick="switchTab('notifications')" id="tab-btn-notifications" class="btn-tab">
-        <span>🔔</span>
+        <i class="fa-solid fa-bell text-base ml-2"></i>
         <span>إعدادات الإشعارات</span>
       </button>
       <button onclick="handleSignOut()" class="btn-tab text-rose-400 hover:bg-rose-500/15 border-rose-500/20">
-        <span>🚪</span>
+        <i class="fa-solid fa-arrow-right-from-bracket text-base ml-2"></i>
         <span>تسجيل الخروج من الحساب</span>
       </button>
     </div>
@@ -229,7 +231,8 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <div id="tab-orders" class="space-y-4">
         <div class="flex items-center justify-between mb-4">
           <h2 class="text-lg font-bold text-white flex items-center gap-2">
-            <span>📦 سجل طلباتي</span>
+            <i class="fa-solid fa-box-open text-emerald-400"></i>
+            <span>سجل طلباتي</span>
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           </h2>
           <span id="orders-count-badge" class="text-xs text-white/50 font-normal">جاري تحميل طلباتك...</span>
@@ -257,12 +260,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <!-- Address 1 -->
           <div class="glass-card rounded-2xl p-5 border border-emerald-500/30">
             <div class="flex items-center justify-between mb-2">
-              <span class="font-bold text-sm text-white">🏠 المنزل الرئيسي (افتراضي)</span>
+              <span class="font-bold text-sm text-white flex items-center gap-1.5"><i class="fa-solid fa-house text-emerald-400"></i> <span>المنزل الرئيسي (افتراضي)</span></span>
               <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold">افتراضي</span>
             </div>
             <p class="text-xs text-white/70 mb-3 leading-relaxed">الحسينية، شارع المركز بجوار بنك مصر، عمارة الأمل، الدور الثالث شقة 6</p>
             <div class="flex items-center gap-3 text-xs text-white/50">
-              <span>📱 01012345678</span>
+              <span class="flex items-center gap-1"><i class="fa-solid fa-phone text-xs text-white/40"></i> <span>01012345678</span></span>
               <span>•</span>
               <button onclick="alert('تم تعيينه كعنوان التوصيل السريع')" class="text-emerald-400 font-bold hover:underline">تعديل</button>
             </div>
@@ -271,12 +274,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
           <!-- Address 2 -->
           <div class="glass-card rounded-2xl p-5">
             <div class="flex items-center justify-between mb-2">
-              <span class="font-bold text-sm text-white">🏢 مقر العمل</span>
+              <span class="font-bold text-sm text-white flex items-center gap-1.5"><i class="fa-solid fa-building text-indigo-400"></i> <span>مقر العمل</span></span>
               <button onclick="alert('تم التعيين كافتراضي')" class="text-[10px] text-white/40 hover:text-white">تعيين كافتراضي</button>
             </div>
             <p class="text-xs text-white/70 mb-3 leading-relaxed">الحسينية، شارع بورسعيد، أمام مجلس المدينة، برج السلام</p>
             <div class="flex items-center gap-3 text-xs text-white/50">
-              <span>📱 01012345678</span>
+              <span class="flex items-center gap-1"><i class="fa-solid fa-phone text-xs text-white/40"></i> <span>01012345678</span></span>
               <span>•</span>
               <button onclick="alert('تم التعديل')" class="text-emerald-400 font-bold hover:underline">تعديل</button>
             </div>
@@ -293,8 +296,9 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
               <div class="text-3xl font-black gt">0.00 ج.م</div>
             </div>
             <div class="flex gap-2">
-              <button onclick="chargeWalletModal()" class="btn-primary px-5 py-2.5 rounded-xl text-xs font-bold">
-                شحن عبر فودافون كاش / إنستاباي ⚡
+              <button onclick="chargeWalletModal()" class="btn-primary px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5">
+                <span>شحن عبر فودافون كاش / إنستاباي</span>
+                <i class="fa-solid fa-bolt"></i>
               </button>
             </div>
           </div>
@@ -316,11 +320,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
               <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" class="w-12 h-12 rounded-xl object-cover" alt="مشويات الباز"/>
               <div>
                 <div class="font-bold text-sm text-white">مشويات الباز والحسينية</div>
-                <div class="text-[10px] text-emerald-400">★ 4.9 • كباب وكفتة حاتي</div>
+                <div class="text-[10px] text-emerald-400 flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.9 • كباب وكفتة حاتي</span></div>
               </div>
             </div>
-            <a href="husayniya-store.html?store=baz" class="btn-primary px-3 py-1.5 rounded-lg text-xs font-bold" style="text-decoration:none">
-              المنيو ←
+            <a href="husayniya-store.html?store=baz" class="btn-primary px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1" style="text-decoration:none">
+              <span>المنيو</span>
+              <i class="fa-solid fa-arrow-left"></i>
             </a>
           </div>
 
@@ -329,11 +334,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
               <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=150&q=80" class="w-12 h-12 rounded-xl object-cover" alt="بيتزا الرواد"/>
               <div>
                 <div class="font-bold text-sm text-white">بيتزا وكريب الرواد</div>
-                <div class="text-[10px] text-amber-400">★ 4.7 • زنجر وسوبر كرانشي</div>
+                <div class="text-[10px] text-amber-400 flex items-center gap-1"><i class="fa-solid fa-star text-[9px]"></i> <span>4.7 • زنجر وسوبر كرانشي</span></div>
               </div>
             </div>
-            <a href="husayniya-store.html?store=pizza" class="btn-primary px-3 py-1.5 rounded-lg text-xs font-bold" style="text-decoration:none">
-              المنيو ←
+            <a href="husayniya-store.html?store=pizza" class="btn-primary px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1" style="text-decoration:none">
+              <span>المنيو</span>
+              <i class="fa-solid fa-arrow-left"></i>
             </a>
           </div>
         </div>
@@ -368,7 +374,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="glass-card rounded-3xl p-6 max-w-xl space-y-4 text-xs">
           <div class="flex items-center justify-between border-b border-white/10 pb-3">
             <h2 class="text-base font-bold text-white flex items-center gap-2">
-              <span>🔔</span>
+              <i class="fa-solid fa-bell text-emerald-400"></i>
               <span>إشعارات وتنبيهات المتصفح الحية</span>
             </h2>
             <span id="account-notif-status" class="px-2.5 py-0.5 rounded-full bg-white/10 text-[10px] font-bold text-white/70">فحص الحالة...</span>
@@ -380,11 +386,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
           <div class="flex flex-col sm:flex-row gap-3 pt-2">
             <button onclick="requestBrowserNotification()" class="btn-primary flex-1 py-3 rounded-xl font-bold flex items-center justify-center gap-2">
-              <span>🔔</span>
+              <i class="fa-solid fa-bell"></i>
               <span>تفعيل إشعارات الموبايل والمتصفح</span>
             </button>
             <button onclick="testNotificationSound()" class="glass px-4 py-3 rounded-xl font-bold text-white/80 hover:bg-white/10 flex items-center justify-center gap-2">
-              <span>🎵</span>
+              <i class="fa-solid fa-volume-high text-emerald-400"></i>
               <span>تجربة صوت التنبيه</span>
             </button>
           </div>
@@ -411,7 +417,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <div class="glass-card rounded-3xl p-6 max-w-xl space-y-4 text-xs">
           <div class="flex items-center justify-between border-b border-white/10 pb-3">
             <h2 class="text-base font-bold text-white flex items-center gap-2">
-              <span>📍</span>
+              <i class="fa-solid fa-location-dot text-emerald-400"></i>
               <span>موقع التوصيل الافتراضي عبر الـ GPS</span>
             </h2>
           </div>
@@ -422,7 +428,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
               <div id="account-gps-address" class="font-bold text-emerald-400 mt-0.5">الحسينية — شارع المركز (افتراضي)</div>
             </div>
             <button onclick="detectAccountGPS(this)" class="btn-primary px-4 py-2 rounded-xl text-[11px] font-bold flex items-center gap-1.5">
-              <span>🎯</span>
+              <i class="fa-solid fa-location-crosshairs"></i>
               <span>تحديث موقعي (GPS)</span>
             </button>
           </div>
@@ -443,7 +449,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <!-- ══════════════════ ADD ADDRESS MODAL ══════════════════ -->
 <div id="address-modal" class="modal-overlay">
   <div class="glass-card rounded-3xl p-6 md:p-8 max-w-md w-full relative border border-white/20">
-    <button onclick="closeAddressModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg">✕</button>
+    <button onclick="closeAddressModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-base"><i class="fa-solid fa-xmark"></i></button>
     <h3 class="text-base font-bold mb-4">إضافة عنوان جديد في الحسينية</h3>
     <div class="space-y-3 text-xs mb-5">
       <div>
@@ -474,25 +480,26 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <!-- ══════════════ MOBILE BOTTOM NAVIGATION ══════════════ -->
 <nav class="mobile-nav">
   <a href="index.html" class="mobile-nav-item">
-    <span class="text-lg">🏠</span>
+    <i class="fa-solid fa-house text-base mb-1"></i>
     <span>الرئيسية</span>
   </a>
   <a href="husayniya-restaurants.html" class="mobile-nav-item">
-    <span class="text-lg">🍖</span>
+    <i class="fa-solid fa-utensils text-base mb-1"></i>
     <span>المطاعم</span>
   </a>
   <a href="husayniya-checkout.html" class="mobile-nav-item relative">
-    <span class="text-lg">🛒</span>
+    <i class="fa-solid fa-cart-shopping text-base mb-1"></i>
     <span>السلة</span>
   </a>
   <a href="husayniya-tracking.html" class="mobile-nav-item">
-    <span class="text-lg">🛵</span>
+    <i class="fa-solid fa-motorcycle text-base mb-1"></i>
     <span>تتبّع</span>
   </a>
   <a href="husayniya-account.html" class="mobile-nav-item active">
-    <span class="text-lg">👤</span>
+    <i class="fa-solid fa-user text-base mb-1"></i>
     <span>حسابي</span>
   </a>
+</nav>
 </nav>
 
 </div><!-- .page -->
@@ -555,7 +562,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Listen for realtime orders updates
   window.HusayniyaCloud.onOrderEvent((event, order) => {
-    console.log('⚡ Order event in account page:', event, order);
+    console.log('Order event in account page:', event, order);
     loadUserOrders();
   });
 });
@@ -568,8 +575,8 @@ function bindUserProfile(user) {
   const avatar = meta.avatar_url || meta.picture || user.avatar || '';
 
   document.getElementById('profile-name').textContent = name;
-  document.getElementById('profile-email').textContent = '✉️ ' + email;
-  document.getElementById('profile-phone').textContent = '📱 ' + phone;
+  document.getElementById('profile-email').innerHTML = '<i class="fa-solid fa-envelope text-white/50 text-xs ml-1.5"></i>' + email;
+  document.getElementById('profile-phone').innerHTML = '<i class="fa-solid fa-phone text-emerald-400 text-xs ml-1.5"></i>' + phone;
   
   if (avatar) {
     document.getElementById('profile-avatar').src = avatar;
@@ -581,17 +588,17 @@ function bindUserProfile(user) {
 
   if (user.isAdmin || user.role === 'admin') {
     if (adminBanner) adminBanner.classList.remove('hidden');
-    provEl.textContent = '👑 مدير عام المنصة (صلاحية شاملة)';
+    provEl.innerHTML = '<i class="fa-solid fa-crown ml-1"></i> مدير عام المنصة (صلاحية شاملة)';
     document.getElementById('profile-provider-badge').className = 'px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/40 text-xs font-black flex items-center gap-1 shadow-lg';
   } else {
     if (adminBanner) adminBanner.classList.add('hidden');
     if (prov === 'google' || (email && email.includes('gmail'))) {
-      provEl.textContent = 'حساب Google 🌐';
+      provEl.innerHTML = 'حساب Google <i class="fa-brands fa-google mr-1"></i>';
       document.getElementById('profile-provider-badge').className = 'px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold flex items-center gap-1';
     } else if (prov === 'guest') {
-      provEl.textContent = 'جلسة زائر مؤقتة ⚡';
+      provEl.innerHTML = 'جلسة زائر مؤقتة <i class="fa-solid fa-user-clock mr-1"></i>';
     } else {
-      provEl.textContent = 'حساب معتمد ✓';
+      provEl.innerHTML = 'حساب معتمد <i class="fa-solid fa-circle-check mr-1 text-emerald-400"></i>';
     }
   }
 
@@ -617,12 +624,12 @@ async function loadUserOrders() {
     if (!orders || orders.length === 0) {
       container.innerHTML = `
         <div class="glass-card rounded-2xl p-8 text-center">
-          <div class="text-4xl mb-3">🛍️</div>
+          <div class="text-4xl mb-3 text-emerald-400"><i class="fa-solid fa-basket-shopping"></i></div>
           <h3 class="text-base font-bold text-white mb-1">لا توجد طلبات سابقة مسجلة حتى الآن</h3>
           <p class="text-xs text-white/50 mb-5">استكشف مطاعم وكافيهات الحسينية واطلب وجبتك الأولى الآن لتصلك ساخنة في دقائق!</p>
           <a href="husayniya-restaurants.html" class="btn-primary inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold no-underline">
             <span>تصفح المطاعم والعروض اليومية</span>
-            <span>←</span>
+            <i class="fa-solid fa-arrow-left"></i>
           </a>
         </div>
       `;
@@ -632,11 +639,11 @@ async function loadUserOrders() {
     // Render list
     container.innerHTML = orders.map(ord => {
       const statusMap = {
-        'pending': { text: '⏳ قيد المراجعة', class: 'b-active' },
-        'preparing': { text: '🍳 قيد التحضير في المطعم', class: 'b-active' },
-        'on_the_way': { text: '🛵 في الطريق إليك الآن', class: 'b-active' },
-        'delivered': { text: '✅ تم التسليم بنجاح', class: 'b-done' },
-        'cancelled': { text: '❌ تم الإلغاء', class: 'b-cancel' }
+        'pending': { text: 'قيد المراجعة', class: 'b-active' },
+        'preparing': { text: 'قيد التحضير في المطعم', class: 'b-active' },
+        'on_the_way': { text: 'في الطريق إليك الآن', class: 'b-active' },
+        'delivered': { text: 'تم التسليم بنجاح', class: 'b-done' },
+        'cancelled': { text: 'تم الإلغاء', class: 'b-cancel' }
       };
 
       const statusInfo = statusMap[ord.status] || { text: ord.status || 'نشط', class: 'b-active' };
@@ -661,8 +668,9 @@ async function loadUserOrders() {
           <div class="pt-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
             <span class="text-white/60 truncate max-w-md">${itemsText}</span>
             <div class="flex items-center gap-2 self-end sm:self-auto">
-              <a href="husayniya-tracking.html?order=${ord.order_code || ''}" class="btn-primary px-4 py-2 rounded-xl text-xs font-bold no-underline">
-                تتبع المسار 🗺️
+              <a href="husayniya-tracking.html?order=${ord.order_code || ''}" class="btn-primary px-4 py-2 rounded-xl text-xs font-bold no-underline flex items-center gap-1.5">
+                <span>تتبع المسار</span>
+                <i class="fa-solid fa-arrow-left"></i>
               </a>
             </div>
           </div>
@@ -702,7 +710,7 @@ function saveProfileChanges() {
     currentUser.phone = phone;
     window.HusayniyaCloud.saveLocalUser(currentUser);
     bindUserProfile(currentUser);
-    alert('تم حفظ وتحديث بيانات حسابك بنجاح! ✅');
+    alert('تم حفظ وتحديث بيانات حسابك بنجاح!');
   }
 }
 
@@ -728,12 +736,12 @@ function saveNewAddress() {
   card.className = 'glass-card rounded-2xl p-5';
   card.innerHTML = `
     <div class="flex items-center justify-between mb-2">
-      <span class="font-bold text-sm text-white">📍 ${title}</span>
+      <span class="font-bold text-sm text-white flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-emerald-400"></i> <span>${title}</span></span>
       <span class="text-[10px] text-white/50">${zone}</span>
     </div>
     <p class="text-xs text-white/70 mb-3 leading-relaxed">${detail}</p>
     <div class="flex items-center gap-3 text-xs text-white/50">
-      <span>📱 ${currentUser ? currentUser.phone : '01012345678'}</span>
+      <span class="flex items-center gap-1"><i class="fa-solid fa-phone text-xs text-white/40"></i> <span>${currentUser ? currentUser.phone : '01012345678'}</span></span>
       <span>•</span>
       <button onclick="this.closest('.glass-card').remove()" class="text-rose-400 font-bold hover:underline">حذف</button>
     </div>
@@ -755,10 +763,10 @@ function syncAccountNotificationStatus() {
     statusEl.textContent = 'غير مدعوم بالمتصفح';
     statusEl.className = 'px-2.5 py-0.5 rounded-full bg-rose-500/20 text-[10px] font-bold text-rose-300';
   } else if (Notification.permission === 'granted') {
-    statusEl.textContent = 'مفعلة وشغالة ✓';
+    statusEl.textContent = 'مفعلة وشغالة';
     statusEl.className = 'px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-[10px] font-bold text-emerald-300';
   } else if (Notification.permission === 'denied') {
-    statusEl.textContent = 'معطلة بالمتصفح ✕';
+    statusEl.textContent = 'معطلة بالمتصفح';
     statusEl.className = 'px-2.5 py-0.5 rounded-full bg-rose-500/20 text-[10px] font-bold text-rose-300';
   } else {
     statusEl.textContent = 'بانتظار التفعيل';
@@ -785,19 +793,19 @@ async function requestBrowserNotification() {
 function testNotificationSound() {
   if (window.HusayniyaCloud) {
     window.HusayniyaCloud.playChime('order');
-    window.HusayniyaCloud.showInAppToast('🔔 تجربة نغمة الإشعارات', 'صوت التنبيه يعمل بكفاءة وبشكل فوري بدون تأخير.');
+    window.HusayniyaCloud.showInAppToast('تجربة نغمة الإشعارات', 'صوت التنبيه يعمل بكفاءة وبشكل فوري بدون تأخير.');
   }
 }
 
 async function detectAccountGPS(btn) {
   const origHtml = btn ? btn.innerHTML : '';
-  if (btn) btn.innerHTML = `<span>⏳</span><span>جاري الرصد...</span>`;
+  if (btn) btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-emerald-400"></i><span>جاري الرصد...</span>`;
   if (window.HusayniyaCloud) {
     const res = await window.HusayniyaCloud.detectUserLocation();
     if (res.success) {
       syncAccountNotificationStatus();
       window.HusayniyaCloud.playChime('success');
-      window.HusayniyaCloud.showInAppToast('✓ تم تحديد موقعك وتحديث الحساب', res.area);
+      window.HusayniyaCloud.showInAppToast('تم تحديد موقعك وتحديث الحساب', res.area);
     } else {
       alert(res.error || 'تعذر تحديد الموقع.');
     }

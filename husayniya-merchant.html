@@ -77,17 +77,17 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <div>
         <div class="flex items-center gap-2 flex-wrap">
           <select id="merchant-store-select" onchange="changeActiveMerchantStore(this.value)" class="input-glass rounded-xl px-2.5 py-1 text-xs font-black text-amber-300 bg-slate-900 border border-amber-400/40 cursor-pointer shadow-md">
-            <option value="baz">🥩 مشويات الباز والحسينية</option>
-            <option value="broast">🍗 بروست الحسينية</option>
-            <option value="fish">🐟 أسماك بحري</option>
-            <option value="pizza">🍕 بيتزا وفطائر السلطان</option>
-            <option value="falafel">🧆 فلافل المدينة</option>
-            <option value="koshary">🍛 كشري التحرير</option>
-            <option value="shendel">☕ حلواني وشندل كافيه</option>
-            <option value="forsan">🍖 مشويات الفرسان</option>
+            <option value="baz">مشويات الباز والحسينية</option>
+            <option value="broast">بروست الحسينية</option>
+            <option value="fish">أسماك بحري</option>
+            <option value="pizza">بيتزا وفطائر السلطان</option>
+            <option value="falafel">فلافل المدينة</option>
+            <option value="koshary">كشري التحرير</option>
+            <option value="shendel">حلواني وشندل كافيه</option>
+            <option value="forsan">مشويات الفرسان</option>
           </select>
-          <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold">بائع معتمد ✓</span>
-          <span id="admin-badge-indicator" class="hidden text-[10px] px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-bold border border-amber-400/30">👑 صلاحية المدير العام</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold">بائع معتمد <i class="fa-solid fa-circle-check text-emerald-400"></i></span>
+          <span id="admin-badge-indicator" class="hidden text-[10px] px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-bold border border-amber-400/30"><i class="fa-solid fa-crown text-amber-300"></i> صلاحية المدير العام</span>
         </div>
         <div id="merchant-store-address" class="text-[11px] text-white/50 mt-0.5">شارع المركز أمام بنك مصر، الحسينية</div>
       </div>
@@ -97,12 +97,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="flex items-center gap-2 sm:gap-4 self-end md:self-auto flex-wrap">
       <!-- Theme Toggle (Light / Dark) -->
       <button id="theme-toggle-btn" onclick="toggleAppTheme()" type="button" class="glass px-2.5 sm:px-3 py-1.5 rounded-2xl flex items-center gap-1.5 text-xs font-bold transition theme-toggle-btn active:scale-95" title="تبديل المظهر النهاري والليلي">
-        <span id="theme-toggle-icon" class="theme-icon">🌙</span>
+        <i id="theme-toggle-icon" class="fa-solid fa-moon"></i>
         <span id="theme-toggle-label" class="theme-label hidden sm:inline">ليلي</span>
       </button>
 
       <button onclick="window.HusayniyaCloud && window.HusayniyaCloud.requestNotificationPermission()" type="button" class="glass px-3 py-1.5 rounded-2xl flex items-center gap-1.5 text-xs font-bold text-white/80 hover:text-white" title="تفعيل صوت وتنبيهات الطلبات الواردة">
-        <span>🔔</span>
+        <i class="fa-solid fa-bell text-amber-400"></i>
         <span class="hidden sm:inline">صوت وتنبيهات المطبخ</span>
       </button>
 
@@ -115,11 +115,11 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 
       <a id="preview-customer-link" href="husayniya-store.html?store=baz" class="hidden sm:inline-flex items-center gap-1 glass px-3 py-1.5 rounded-2xl text-xs font-bold text-emerald-300 hover:text-white transition no-underline">
         <span>معاينة كزبون</span>
-        <span>↗</span>
+        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
       </a>
 
       <a href="husayniya-dashboard.html" class="btn-primary px-3 py-1.5 rounded-2xl text-xs font-bold no-underline">
-        📊 لوحة التحكم
+        <i class="fa-solid fa-chart-line ml-1"></i> لوحة التحكم
       </a>
     </div>
   </div>
@@ -128,12 +128,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <!-- ══════════════════ MAIN MERCHANT WORKSPACE ══════════════════ -->
 <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex-1 w-full">
 
-  <!-- 👑 Admin Multi-Store Switcher Banner -->
+  <!-- Admin Multi-Store Switcher Banner -->
   <div id="merchant-admin-banner" class="mb-6 p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-amber-500/15 via-emerald-500/15 to-teal-500/15 border border-amber-400/35 shadow-lg">
     <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
       <div class="flex items-center gap-3.5">
         <div class="w-11 h-11 rounded-2xl bg-amber-400/20 text-amber-300 flex items-center justify-center text-2xl font-black border border-amber-400/30 flex-shrink-0">
-          👑
+          <i class="fa-solid fa-crown"></i>
         </div>
         <div>
           <div class="flex items-center gap-2 flex-wrap">
@@ -146,14 +146,14 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       <div class="w-full lg:w-auto">
         <div class="text-[11px] text-white/50 mb-1.5 font-bold">التبديل السريع بين المطاعم:</div>
         <div class="flex items-center gap-1.5 overflow-x-auto pb-1 max-w-full">
-          <button onclick="changeActiveMerchantStore('baz')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="baz">🥩 الباز</button>
-          <button onclick="changeActiveMerchantStore('broast')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="broast">🍗 البروست</button>
-          <button onclick="changeActiveMerchantStore('fish')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="fish">🐟 أسماك بحري</button>
-          <button onclick="changeActiveMerchantStore('pizza')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="pizza">🍕 بيتزا السلطان</button>
-          <button onclick="changeActiveMerchantStore('falafel')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="falafel">🧆 فلافل المدينة</button>
-          <button onclick="changeActiveMerchantStore('koshary')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="koshary">🍛 كشري التحرير</button>
-          <button onclick="changeActiveMerchantStore('shendel')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="shendel">☕ شندل كافيه</button>
-          <button onclick="changeActiveMerchantStore('forsan')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="forsan">🍖 الفرسان</button>
+          <button onclick="changeActiveMerchantStore('baz')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="baz"><i class="fa-solid fa-drumstick-bite ml-1 text-amber-400"></i> الباز</button>
+          <button onclick="changeActiveMerchantStore('broast')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="broast"><i class="fa-solid fa-drumstick-bite ml-1 text-orange-400"></i> البروست</button>
+          <button onclick="changeActiveMerchantStore('fish')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="fish"><i class="fa-solid fa-fish ml-1 text-cyan-400"></i> أسماك بحري</button>
+          <button onclick="changeActiveMerchantStore('pizza')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="pizza"><i class="fa-solid fa-pizza-slice ml-1 text-red-400"></i> بيتزا السلطان</button>
+          <button onclick="changeActiveMerchantStore('falafel')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="falafel"><i class="fa-solid fa-bowl-food ml-1 text-emerald-400"></i> فلافل المدينة</button>
+          <button onclick="changeActiveMerchantStore('koshary')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="koshary"><i class="fa-solid fa-bowl-rice ml-1 text-amber-400"></i> كشري التحرير</button>
+          <button onclick="changeActiveMerchantStore('shendel')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="shendel"><i class="fa-solid fa-mug-hot ml-1 text-amber-300"></i> شندل كافيه</button>
+          <button onclick="changeActiveMerchantStore('forsan')" class="store-quick-pill px-3 py-1 rounded-xl text-xs font-bold glass text-white/80 hover:text-white" data-store="forsan"><i class="fa-solid fa-fire-burner ml-1 text-orange-400"></i> الفرسان</button>
         </div>
       </div>
     </div>
@@ -178,7 +178,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     </div>
     <div class="glass-card rounded-2xl p-4 sm:p-5">
       <div class="text-white/40 text-xs mb-1">تقييم الزبائن</div>
-      <div class="text-xl sm:text-2xl font-black text-amber-400" id="metric-rating">★ 4.9</div>
+      <div class="text-xl sm:text-2xl font-black text-amber-400 flex items-center justify-center sm:justify-start gap-1" id="metric-rating"><i class="fa-solid fa-star text-amber-400 text-base"></i> 4.9</div>
       <div class="text-[10px] text-white/40 mt-1" id="metric-reviews">بناءً على التقييمات</div>
     </div>
   </div>
@@ -186,16 +186,16 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
   <!-- Tabs Navigation -->
   <div class="flex items-center gap-2 mb-6 overflow-x-auto pb-2">
     <button onclick="switchMerchantTab('live-orders')" id="tab-btn-live-orders" class="btn-tab active">
-      <span>🔔</span>
+      <i class="fa-solid fa-bell text-sm"></i>
       <span>الطلبات الواردة الحية</span>
       <span class="px-2 py-0.5 rounded-full bg-amber-400 text-black text-[10px] font-extrabold" id="live-badge">0</span>
     </button>
     <button onclick="switchMerchantTab('menu-manage')" id="tab-btn-menu-manage" class="btn-tab">
-      <span>🍽️</span>
+      <i class="fa-solid fa-utensils text-sm"></i>
       <span id="tab-menu-title">إدارة قائمة المأكولات (الأصناف والأسعار)</span>
     </button>
     <button onclick="switchMerchantTab('sales-report')" id="tab-btn-sales-report" class="btn-tab">
-      <span>📊</span>
+      <i class="fa-solid fa-chart-pie text-sm"></i>
       <span>الأرباح والتقارير المالية</span>
     </button>
   </div>
@@ -211,15 +211,15 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         <span id="active-store-filter-badge" class="text-xs px-2.5 py-0.5 rounded-full bg-white/10 text-emerald-300 font-semibold"></span>
       </div>
       <button onclick="simulateNewOrder()" class="glass px-3 py-1.5 rounded-xl text-xs font-bold text-amber-300 hover:bg-white/10 transition">
-        + محاكاة وصول طلب جديد 🔔
+        <i class="fa-solid fa-plus ml-1 text-emerald-400"></i> محاكاة وصول طلب جديد <i class="fa-solid fa-bell mr-1 text-amber-400"></i>
       </button>
     </div>
 
     <div id="orders-list" class="space-y-4">
       <div id="no-merchant-orders" class="text-center py-12 text-white/50 glass-card rounded-3xl p-8">
-        <div class="text-4xl mb-3">👨‍🍳</div>
+        <div class="text-4xl mb-3 text-amber-400"><i class="fa-solid fa-kitchen-set"></i></div>
         <h3 class="text-base font-bold text-white mb-1">لا توجد طلبات واردة في المطبخ حالياً</h3>
-        <p class="text-xs text-white/40 max-w-sm mx-auto leading-relaxed">عند قيام أي عميل بطلب وجبة من مطاعم الحسينية ستصلك هنا فورياً مع تنبيه صوتي وتفاصيل الأصناف بدقة 🔔</p>
+        <p class="text-xs text-white/40 max-w-sm mx-auto leading-relaxed">عند قيام أي عميل بطلب وجبة من مطاعم الحسينية ستصلك هنا فورياً مع تنبيه صوتي وتفاصيل الأصناف بدقة.</p>
       </div>
     </div>
   </div>
@@ -249,13 +249,13 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
     <div class="glass-card rounded-3xl p-6">
       <h3 class="text-base font-bold mb-4">تقرير أرباح هذا الأسبوع (الحسينية)</h3>
       <div class="h-44 rounded-2xl bg-white/[0.02] border border-white/5 p-4 flex flex-col items-center justify-center text-center">
-        <span class="text-3xl mb-2">📊</span>
+        <span class="text-3xl mb-2 text-cyan-400"><i class="fa-solid fa-chart-line"></i></span>
         <span class="text-xs text-white/50 font-bold">لا توجد مبيعات أو أرباح مسجلة لهذا الأسبوع حتى الآن</span>
         <span class="text-[10px] text-white/30 mt-1">سيتم رسم المخطط البياني للأرباح تلقائياً فور استلام وتنفيذ طلبات الزبائن</span>
       </div>
       <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center text-xs">
         <span>صافي الأرباح القابلة للسحب: <span class="font-extrabold text-emerald-400 text-sm">0.00 ج.م</span></span>
-        <button onclick="alert('لا يوجد رصيد أرباح متاح للسحب حالياً (0.00 ج.م)')" class="btn-primary px-4 py-2 rounded-xl font-bold">طلب سحب الأرباح 💸</button>
+        <button onclick="alert('لا يوجد رصيد أرباح متاح للسحب حالياً (0.00 ج.م)')" class="btn-primary px-4 py-2 rounded-xl font-bold">طلب سحب الأرباح <i class="fa-solid fa-money-bill-wave mr-1"></i></button>
       </div>
     </div>
   </div>
@@ -265,7 +265,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
 <!-- ══════════════════ ADD ITEM MODAL ══════════════════ -->
 <div id="add-item-modal" class="modal-overlay">
   <div class="glass-card rounded-3xl p-6 md:p-8 max-w-md w-full relative border border-white/20">
-    <button onclick="closeAddItemModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg">✕</button>
+    <button onclick="closeAddItemModal()" class="absolute top-5 left-5 text-white/40 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
     <h3 class="text-base font-bold mb-4" id="add-item-modal-title">إضافة وجبة جديدة للمطعم</h3>
     <div class="space-y-3 text-xs mb-5">
       <div>
@@ -287,8 +287,8 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
         </select>
       </div>
       <div>
-        <label class="block font-semibold mb-1 text-white/70">أيقونة أو رمز تعبيري (Emoji)</label>
-        <input id="new-item-icon" type="text" value="🥘" class="input-glass w-full rounded-xl px-3 py-2 text-center text-lg"/>
+        <label class="block font-semibold mb-1 text-white/70">أيقونة الصنف (رمز Font Awesome)</label>
+        <input id="new-item-icon" type="text" value="fa-utensils" class="input-glass w-full rounded-xl px-3 py-2 text-center text-sm font-mono"/>
       </div>
       <div>
         <label class="block font-semibold mb-1 text-white/70">وصف المكونات</label>
@@ -296,7 +296,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#06091a;color:#ff
       </div>
     </div>
     <button onclick="saveNewItem()" class="btn-primary w-full py-3 rounded-xl text-xs font-bold">
-      حفظ ونشر الوجبة في منيو الحسينية 🚀
+      حفظ ونشر الوجبة في منيو الحسينية <i class="fa-solid fa-paper-plane mr-1"></i>
     </button>
   </div>
 </div>
@@ -368,7 +368,7 @@ function applyActiveStoreUI(storeKey) {
 
   // 3. Metrics update
   var ratingEl = document.getElementById('metric-rating');
-  if (ratingEl) ratingEl.textContent = store.rating || '★ 4.9';
+  if (ratingEl) ratingEl.innerHTML = '<i class="fa-solid fa-star text-amber-400 text-base"></i> ' + (store.rating ? store.rating.replace(/[^0-9.]/g, '') : '4.9');
 
   var reviewsEl = document.getElementById('metric-reviews');
   if (reviewsEl) reviewsEl.textContent = store.reviewsCount || 'بناءً على التقييمات';
@@ -424,15 +424,17 @@ function renderStoreMenuItems(storeKey) {
   for (var i = 0; i < items.length; i++) {
     var item = items[i];
     var price = Number(item.price || 0).toFixed(2);
-    var icon = item.icon || '🥘';
+    var iconClass = item.icon || 'fa-utensils';
+    if (!iconClass.startsWith('fa-') && !iconClass.startsWith('fa ')) iconClass = 'fa-' + iconClass;
+    var iconRender = '<i class="fa-solid ' + iconClass + ' text-emerald-400"></i>';
     var isAvail = localStorage.getItem('husayniya_item_avail_' + item.id) !== 'false';
-    var statusText = isAvail ? 'متاح ✓' : 'غير متوفر ✕';
+    var statusText = isAvail ? 'متاح <i class="fa-solid fa-check mr-1"></i>' : 'غير متوفر <i class="fa-solid fa-xmark mr-1"></i>';
     var statusClass = isAvail ? 'text-emerald-400 bg-emerald-500/10' : 'text-rose-400 bg-rose-500/10';
 
     html += '<div class="glass-card rounded-2xl p-4 flex flex-col justify-between gap-3 border border-white/10" id="item-card-' + item.id + '">' +
       '<div class="flex items-start gap-3">' +
-        '<div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0" style="background:linear-gradient(135deg,rgba(0,176,155,0.2),rgba(247,201,72,0.15))">' +
-          icon +
+        '<div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0" style="background:linear-gradient(135deg,rgba(0,176,155,0.2),rgba(247,201,72,0.15))">' +
+          iconRender +
         '</div>' +
         '<div class="flex-1 min-w-0">' +
           '<h4 class="font-bold text-sm text-white truncate">' + item.title + '</h4>' +
@@ -446,10 +448,10 @@ function renderStoreMenuItems(storeKey) {
         '</button>' +
         '<div class="flex items-center gap-1.5">' +
           '<button onclick="editItemPrice(\'' + item.id + '\', \'' + item.title + '\', ' + item.price + ')" class="px-2.5 py-1 rounded-lg glass text-[11px] text-amber-300 hover:text-white font-bold" title="تعديل السعر">' +
-            '✏️ تعديل' +
+            '<i class="fa-solid fa-pen-to-square ml-1"></i> تعديل' +
           '</button>' +
           '<button onclick="deleteMenuItem(\'' + storeKey + '\', \'' + item.id + '\')" class="px-2 py-1 rounded-lg glass text-[11px] text-rose-400 hover:text-white" title="حذف الصنف">' +
-            '🗑️' +
+            '<i class="fa-solid fa-trash-can"></i>' +
           '</button>' +
         '</div>' +
       '</div>' +
@@ -545,9 +547,9 @@ function advanceOrderStatus(orderId, nextState) {
       card.classList.add('border-blue-400');
     }
     if (actions) {
-      actions.innerHTML = '<div class="text-xs text-white/60">حالة الطلب: <span class="text-blue-300 font-bold">جاري التحضير بالمطبخ 👨‍🍳</span></div>' +
+      actions.innerHTML = '<div class="text-xs text-white/60">حالة الطلب: <span class="text-blue-300 font-bold">جاري التحضير بالمطبخ <i class="fa-solid fa-fire-burner ml-1"></i></span></div>' +
         '<button onclick="advanceOrderStatus(\'' + orderId + '\', \'ready\')" class="btn-primary px-5 py-2 rounded-xl text-xs font-bold">' +
-          '📦 تم التجهيز — تسليم الوجبة للسائق' +
+          '<i class="fa-solid fa-box-open ml-1"></i> تم التجهيز — تسليم الوجبة للسائق' +
         '</button>';
     }
   } else if (nextState === 'ready') {
@@ -556,7 +558,7 @@ function advanceOrderStatus(orderId, nextState) {
       card.classList.add('border-emerald-400');
     }
     if (actions) {
-      actions.innerHTML = '<div class="text-xs text-emerald-400 font-bold">✓ تم تسليم الوجبة للكابتن بنجاح وهو في طريقه للعميل! 🛵</div>';
+      actions.innerHTML = '<div class="text-xs text-emerald-400 font-bold"><i class="fa-solid fa-circle-check ml-1"></i> تم تسليم الوجبة للكابتن بنجاح وهو في طريقه للعميل! <i class="fa-solid fa-motorcycle mr-1"></i></div>';
     }
   }
 }
@@ -606,10 +608,10 @@ function renderIncomingOrderCard(order) {
       '</div>' +
       '<div class="pt-3 border-t border-white/10 flex items-center justify-end gap-2" id="order-actions-' + code + '">' +
         '<button onclick="rejectOrder(\'' + code + '\')" class="px-3.5 py-2 rounded-xl bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 text-xs font-bold transition">' +
-          '✕ اعتذار' +
+          '<i class="fa-solid fa-xmark ml-1"></i> اعتذار' +
         '</button>' +
         '<button onclick="advanceOrderStatus(\'' + code + '\', \'prep\')" class="btn-primary px-5 py-2 rounded-xl text-xs font-bold">' +
-          '✓ قبول الطلب والتحضير بالمطبخ' +
+          '<i class="fa-solid fa-check ml-1"></i> قبول الطلب والتحضير بالمطبخ' +
         '</button>' +
       '</div>' +
     '</div>';
@@ -629,7 +631,7 @@ function simulateNewOrder() {
     delivery_address: 'حي المعاشات، شارع المدارس أمام مدرسة التجارة',
     payment_method: 'كاش عند الاستلام'
   });
-  alert('🔔 تنبيه صوتي: وصل طلب طعام جديد لمطعم ' + store.name + '!');
+  alert('تنبيه صوتي: وصل طلب طعام جديد لمطعم ' + store.name + '!');
 }
 
 function updateLiveBadge(delta) {
@@ -658,7 +660,7 @@ window.addEventListener('load', function() {
       if (type === 'order_created' && order) {
         renderIncomingOrderCard(order);
         if (window.HusayniyaCloud.sendNotification) {
-          window.HusayniyaCloud.sendNotification('🔔 طلب جديد #' + order.order_code + '!', {
+          window.HusayniyaCloud.sendNotification('طلب جديد #' + order.order_code + '!', {
             body: order.store_name + ' — العميل: ' + order.customer_name + ' (' + order.total_amount + ' ج.م)',
             soundType: 'order'
           });
@@ -680,7 +682,7 @@ function saveNewItem() {
   var name = document.getElementById('new-item-name').value.trim();
   var price = document.getElementById('new-item-price').value.trim();
   var cat = document.getElementById('new-item-cat').value;
-  var icon = document.getElementById('new-item-icon').value.trim() || '🥘';
+  var icon = document.getElementById('new-item-icon').value.trim() || 'fa-utensils';
   var desc = document.getElementById('new-item-desc').value.trim();
 
   if (!name || !price) {
